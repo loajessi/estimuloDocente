@@ -132,7 +132,7 @@ function Docentes_RevisionDocumentos_TablaCargar(sControl, piCicloEstimuloID){
                     if(value == 0) {
                         $(sControl).jqxGrid('beginrowedit', row, "numeroHojas");
                         if(sEstado == 'Si')
-                            return { result: false, message: "No ha editado el nÃºmero de hojas del expediente." };
+                            return { result: false, message: "No ha editado el número de hojas del expediente." };
                     }
                     else
                         return true;

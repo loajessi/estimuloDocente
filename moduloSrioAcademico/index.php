@@ -1,14 +1,22 @@
-<?
-	//if($_SESSION['iUsuarioEstimuloDocenteVS']=='') header("Location: ../index.php");
+﻿<?php
+	if (!isset($_SESSION['VS_Usuario']) || $_SESSION['VS_Usuario'] == '') {
+		$_SESSION['Alerta'] = true;
+		$_SESSION['AlertaMensaje'] = 'Debes accesar al sistema';
+		$_SESSION['AlertaTipo'] = 'alert';
+		$_SESSION['AlertaAnimacion'] = 'shake';
+
+		header('Location: ../index.php');
+		die();
+	}
+
 	$_SESSION['iEstimuloTiempoActividadVS'] = time();
-	@ini_set('display_errors', 'Off');
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>UAEH:::Sistema del Est&iacute;mulo al Desempe&ntilde;o Docente</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>UAEH:::Sistema del Est&iacute;mulo al Desempe&ntilde;o Docente </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<!-- Estilos -->
 	<link rel="stylesheet" href="/generalesDIyS/_estilo/layout.css" type="text/css" />
@@ -42,15 +50,14 @@
 
 	<!-- Widgets estimulo -->
 	<script type="text/javascript" src="widgets/jqxDocentesRevisionDocumentos.js"></script>
-	<script type="text/javascript" src="../moduloGenerales/widgets/jqxContrato_personales.js"></script>
 
 	<!-- Controladores -->
 	<script type="text/javascript" src="../manejoSesion/controlador/ajxSesion.js"></script>
-	<script type="text/javascript" src="../moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
+	<script type="text/javascript" src="/estimuloDocente/moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
 	<script type="text/javascript" src="../moduloGenerales/controlador/ajxIndex.js"></script>
 	<script type="text/javascript" src="controlador/ajxRevisionDocumentos.js"></script>
 
-	<!-- Control de sesión -->
+	<!-- Control de sesi?n -->
 	<script type="text/javascript">
 		window.onclick = function () {
 			PCDTiempoInactividadCalcular();
@@ -84,11 +91,8 @@
 <div class="wrapper">
 	<div id="topbar">
 		<div class="fl_right">
-			<p>
-				<?= $_SESSION['sPersonaVS']; ?>&nbsp;&nbsp;&nbsp;
-				<a onclick="PCDCerrarSesion();" class="boton icon salir">Cerrar sesi&oacute;n</a>
-			</p>
-		</div>
+			<p><? echo $_SESSION['sPersonaVS']; ?>&nbsp;&nbsp;&nbsp;
+				<a href="javascript:PCDCerrarSesion();" class="boton icon salir">Cerrar sesi&oacute;n </a></p></div>
 		<br class="clear" />
 	</div>
 </div>
@@ -117,9 +121,7 @@
 <!-- ####################################################################################################### -->
 <div class="wrapper">
 	<div class="container animated fadeIn">
-		<div id="divPrincipal" class="whitebox">
-			<h1>Bienvenid@</h1>
-		</div>
+		<div id="divPrincipal" class="whitebox"><h1>Bienvenid@</h1></div>
 		<div id="divInformacionEmpleado" class="whitebox"></div>
 		<div class="clear"></div>
 	</div>

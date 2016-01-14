@@ -1,4 +1,4 @@
-<?
+﻿<?
 	require($_SERVER['DOCUMENT_ROOT']."/generalesDIyS/rutas.php");
 	require($_SERVER['DOCUMENT_ROOT'] . "/estimuloDocente/conexionBD.php");
 

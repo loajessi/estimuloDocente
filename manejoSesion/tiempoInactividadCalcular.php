@@ -4,7 +4,7 @@
 			
 		// Comparamos el tiempo transcurrido (1800 segundos = 30 minutos) 
 		if($iTiempoTranscurrido > 1800) { 
-			// Si pasaron 30 minutos o m·s
+			// Si pasaron 30 minutos o m√°s
 			$bCerrarSesion = -1;	
 		}else { 
 			// Sino, actualizo el tiempo de actividad

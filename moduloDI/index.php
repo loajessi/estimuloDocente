@@ -1,7 +1,15 @@
-﻿<?
-	//if($_SESSION['iUsuarioEstimuloDocenteVS']=='') header("Location: ../index.php");
+﻿<?php
+	if (!isset($_SESSION['VS_Usuario']) || $_SESSION['VS_Usuario'] == '') {
+		$_SESSION['Alerta'] = true;
+		$_SESSION['AlertaMensaje'] = 'Debes accesar al sistema';
+		$_SESSION['AlertaTipo'] = 'alert';
+		$_SESSION['AlertaAnimacion'] = 'shake';
+
+		header('Location: ../index.php');
+		die();
+	}
+
 	$_SESSION['iEstimuloTiempoActividadVS'] = time();
-	@ini_set('display_errors', 'Off');
 ?>
 
 <!DOCTYPE html>
@@ -50,16 +58,15 @@
 	<!-- Widgets estimulo -->
 	<script type="text/javascript" src="widgets/jqxValidacionDatos.js"></script>
 	<script type="text/javascript" src="widgets/jqxDetalleProyectos.js"></script>
-	<script type="text/javascript" src="../moduloGenerales/widgets/jqxContrato_personales.js"></script>
 
 	<!-- Controladores -->
 	<script type="text/javascript" src="../manejoSesion/controlador/ajxSesion.js"></script>
-	<script type="text/javascript" src="../moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
+	<script type="text/javascript" src="/estimuloDocente/moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
 	<script type="text/javascript" src="../moduloGenerales/controlador/ajxIndex.js"></script>
 	<script type="text/javascript" src="controlador/ajxValidacionDatos.js"></script>
 	<script type="text/javascript" src="controlador/ajxDetalleProyectos.js"></script>
 
-	<!-- Control de sesión -->
+	<!-- Control de sesi�n -->
 	<script type="text/javascript">
 		/*window.onclick = function () {
 		 PCDTiempoInactividadCalcular();

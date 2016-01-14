@@ -1,5 +1,5 @@
-function seleccionaRol (psRol){
-	
+ï»¿function seleccionaRol (psRol){
+
 	$("hdnRol").value = psRol;
 	if($("hdnRol").value == 'Administrador') {
 		$("hdnApp").value = "SisEDDNT-Adm";
@@ -7,32 +7,32 @@ function seleccionaRol (psRol){
 	}
 	else if($("hdnRol").value == 'ComiteEval') {
 		$("hdnApp").value = "SisEDDNT-Evl";
-		$("RolMostrar").innerHTML = "Comité de evaluación";
+		$("RolMostrar").innerHTML = "Comitï¿½ de evaluaciï¿½n";
 	}
 	else if($("hdnRol").value == 'SecretarioAcademico') { // JLA
 		$("hdnApp").value = "SisEDDNT-Adm";
-		$("RolMostrar").innerHTML = "Secretario Académico";
+		$("RolMostrar").innerHTML = "Secretario Acadï¿½mico";
 	}
 
 }
 
 function validaAcceso(){
 	if($("hdnRol").value == 0){
-		alert("Especifique el módulo al que desea entrar.");
+		alert("Especifique el mÃ³dulo al que desea entrar.");
 		return;
 	}
-	
+
 	$("btnEntrar").innerHTML = "Validando acceso";
 	var ajax=nuevoAjax();
 	ajax.open("POST", "_modelo/modAcceso.php", true);
-	ajax.onreadystatechange=function() 
-	{ 
+	ajax.onreadystatechange=function()
+	{
 		if (ajax.readyState==4){
 			$("btnEntrar").disabled = 0;
 			//alert(ajax.responseText);
 			eval(ajax.responseText);
 			if(json.iError > 0){
-				alert("Ocurrió un error de base de datos al accesar: \n\n" + json.sMsjError);
+				alert("Ocurriï¿½ un error de base de datos al accesar: \n\n" + json.sMsjError);
 				$("btnEntrar").innerHTML = "Entrar";
 			}
 			else {
@@ -46,7 +46,7 @@ function validaAcceso(){
 			}
 		}
 	}
-	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");		
+	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	var formulario = $("frmAcceso").serialize();
-	ajax.send(formulario);	
+	ajax.send(formulario);
 }

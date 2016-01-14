@@ -1,4 +1,4 @@
-﻿function datos_Docentes_ValidacionDatos_Cargar(pCicloEstimulo) {
+function datos_Docentes_ValidacionDatos_Cargar(pCicloEstimulo) {
 
 	/* var Docentes_ValidacionDatosSource =
 	 {

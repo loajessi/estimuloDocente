@@ -1,4 +1,4 @@
-// FunciÃ³n de inicializaciÃ³n de la vista
+// Función de inicialización de la vista
 
 function validacionDatosInicializar() {
 
@@ -18,7 +18,7 @@ function validacionDatosInicializar() {
 	        // Guarda en la BD
 
 	        //Envio exitoso
-	        //Actualizar datos despuÃ©s de agregar patente...
+	        //Actualizar datos después de agregar patente...
 
 	        window.setTimeout(function() {
 		        //Restarurar texto original
@@ -39,5 +39,5 @@ function validacionDatosInicializar() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicializaciÃ³n de contenido
+// Funciones correspondientes a eventos o inicialización de contenido
 

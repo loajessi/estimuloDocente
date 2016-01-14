@@ -1,4 +1,4 @@
-ï»¿// FunciÃ³n de inicializaciÃ³n de la vista
+// Función de inicialización de la vista
 
 function validacionDatosInicializar() {
 
@@ -12,7 +12,7 @@ function validacionDatosInicializar() {
 			panels: [{size: '41%'}, {size: '59%'}]
 		});
 
-		// Eliminar botÃ³n de colapso para evitar error en grid
+		// Eliminar botón de colapso para evitar error en grid
 		$('.jqx-splitter-collapse-button-vertical').remove();
 	};
 
@@ -29,7 +29,7 @@ function validacionDatosInicializar() {
 			// Guarda en la BD
 			//docente_ValidacionDatosCambiarEstado(idEstimuloLista);
 
-			//Simular envÃ­o de datos
+			//Simular envío de datos
 			window.setTimeout(function () {
 				//Restarurar texto original
 				$(elemento).html(txtOriginal);
@@ -52,4 +52,4 @@ function validacionDatosInicializar() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicializaciÃ³n de contenido
+// Funciones correspondientes a eventos o inicialización de contenido

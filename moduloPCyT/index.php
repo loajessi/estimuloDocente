@@ -1,14 +1,22 @@
-<?
-	//if($_SESSION['iUsuarioEstimuloDocenteVS']=='') header("Location: ../index.php");
+﻿<?php
+	if (!isset($_SESSION['VS_Usuario']) || $_SESSION['VS_Usuario'] == '') {
+		$_SESSION['Alerta'] = true;
+		$_SESSION['AlertaMensaje'] = 'Debes accesar al sistema';
+		$_SESSION['AlertaTipo'] = 'alert';
+		$_SESSION['AlertaAnimacion'] = 'shake';
+
+		header('Location: ../index.php');
+		die();
+	}
+
 	$_SESSION['iEstimuloTiempoActividadVS'] = time();
-	@ini_set('display_errors', 'Off');
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<title>UAEH:::Sistema del Est&iacute;mulo al Desempe&ntilde;o Docente</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<!-- Estilos -->
 	<link rel="stylesheet" href="/generalesDIyS/_estilo/layout.css" type="text/css" />
@@ -49,16 +57,15 @@
 	<!-- Widgets estimulo -->
 	<script type="text/javascript" src="widgets/jqxValidacionDatos.js"></script>
 	<script type="text/javascript" src="widgets/jqxDetallePatentes.js"></script>
-	<script type="text/javascript" src="../moduloGenerales/widgets/jqxContrato_personales.js"></script>
 
 	<!-- Controladores -->
 	<script type="text/javascript" src="../manejoSesion/controlador/ajxSesion.js"></script>
-	<script type="text/javascript" src="../moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
+	<script type="text/javascript" src="/estimuloDocente/moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
 	<script type="text/javascript" src="../moduloGenerales/controlador/ajxIndex.js"></script>
 	<script type="text/javascript" src="controlador/ajxValidacionDatos.js"></script>
 	<script type="text/javascript" src="controlador/ajxDetallePatentes.js"></script>
 
-	<!-- Control de sesión -->
+	<!-- Control de sesi�n -->
 	<script type="text/javascript">
 		/*window.onclick = function () {
 		 PCDTiempoInactividadCalcular();

@@ -1,4 +1,4 @@
-// FunciÃ³n de inicializaciÃ³n de la vista
+// Función de inicialización de la vista
 
 function revisionDocumentosInicializar() {
 
@@ -22,7 +22,7 @@ function revisionDocumentosInicializar() {
 			// Guarda en la BD
 
 			//Envio exitoso
-			//Actualizar datos despuÃ©s de agregar patente...
+			//Actualizar datos después de agregar patente...
 
 			window.setTimeout(function() {
 				//Restarurar texto original
@@ -46,7 +46,7 @@ function revisionDocumentosInicializar() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicializaciÃ³n de contenido
+// Funciones correspondientes a eventos o inicialización de contenido
 
 function estadoAutorizadoCambiar(piEstimuloID, piEstado) {
 	var arrDocentes = $("#jqxGrid_Docentes").jqxGrid('getrows');
@@ -55,8 +55,8 @@ function estadoAutorizadoCambiar(piEstimuloID, piEstado) {
 	var bBreak = false;
 	var idEstimulo = -1;
 
-	if (piEstado == 0) sEstado = 'Si'; // VÃ¡lido
-	else if (piEstado == 1) sEstado = 'No'; // No vÃ¡lido
+	if (piEstado == 0) sEstado = 'Si'; // Válido
+	else if (piEstado == 1) sEstado = 'No'; // No válido
 
 	for (var iFila = 0; iFila < arrDocentes.length; iFila++) {
 		if (piEstimuloID > -1) {

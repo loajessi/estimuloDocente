@@ -45,11 +45,11 @@
 
 	<!-- Controladores -->
 	<script type="text/javascript" src="../manejoSesion/controlador/ajxSesion.js"></script>
-	<script type="text/javascript" src="/estimuloPersonalDocente/moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
+	<script type="text/javascript" src="/estimuloDocente/moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
 	<script type="text/javascript" src="../moduloGenerales/controlador/ajxIndex.js"></script>
 	<script type="text/javascript" src="controlador/ajxValidacionDatos.js"></script>
 
-	<!-- Control de sesión -->
+	<!-- Control de sesi�n -->
 	<script type="text/javascript">
 		/*window.onclick = function () {
 		 PCDTiempoInactividadCalcular();

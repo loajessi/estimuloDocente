@@ -1,4 +1,4 @@
-ï»¿// FunciÃ³n de inicializaciÃ³n de la vista
+// Función de inicialización de la vista
 
 function detalleProyectosInicializar() {
 
@@ -88,7 +88,7 @@ function detalleProyectosInicializar() {
 			// Guarda en la BD
 
 			//Envio exitoso
-			//Actualizar datos despuÃ©s de agregar patente...
+			//Actualizar datos después de agregar patente...
 
 			window.setTimeout(function() {
 				//Restarurar texto original
@@ -108,10 +108,10 @@ function detalleProyectosInicializar() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicializaciÃ³n de contenido
+// Funciones correspondientes a eventos o inicialización de contenido
 
 function ProyectosEliminarRegistro(objeto) {
-	if (confirm('Â¿EstÃ¡s seguro que deseas eliminar esta proyecto?') ) {
+	if (confirm('¿Estás seguro que deseas eliminar esta proyecto?') ) {
 		// Eliminando... simular proceso
 		window.setTimeout(function() {
 			$(objeto).parent().parent().nextAll().html('<div class="jqx-grid-cell-middle-align" style="margin-top: 11px;">Eliminando...</div>');

@@ -1,7 +1,7 @@
-<?php 
+<?php
 require_once("../../config.php");
-require_once("clsConsulta.php"); 
-require_once("clsProcedimientos.php"); 
+require_once("clsConsulta.php");
+require_once("clsProcedimientos.php");
 /*** Clase Generada por CTool 3.3.3 para el objeto Personal
 * @author nombreAutor
 * Fecha:14/01/2016
@@ -11,8 +11,8 @@ require_once("clsProcedimientos.php");
 * @property varchar $puestoDrectivo descripcion
 * @property float $asistencias descripcion
 * @property datetime $fechaRegistro descripcion
-* @property string usuarioRealizo 
-* @property string ordenQuery agrega un orden especifico en el query 
+* @property string usuarioRealizo
+* @property string ordenQuery agrega un orden especifico en el query
 */
 class clsPersonal{
 	private $idPersonal;
@@ -42,7 +42,7 @@ class clsPersonal{
 	*  Metodo que inicializa el atributo idPersonal
 	*  @access public
 	*  @param int $pidPersonal descripcion.
-	*  
+	*
 	*/
 	public function setidPersonal($pidPersonal){
 		$this->idPersonal=$pidPersonal;
@@ -51,7 +51,7 @@ class clsPersonal{
 	*  Metodo que obtiene el atributo idPersonal
 	*  @access private
 	*  @return int atributo idPersonal
-	*  
+	*
 	*/
 	private function getidPersonal(){
 		return $this->idPersonal;
@@ -60,7 +60,7 @@ class clsPersonal{
 	*  Metodo que inicializa el atributo idEstimulo
 	*  @access public
 	*  @param int $pidEstimulo descripcion.
-	*  
+	*
 	*/
 	public function setidEstimulo($pidEstimulo){
 		$this->idEstimulo=$pidEstimulo;
@@ -69,7 +69,7 @@ class clsPersonal{
 	*  Metodo que obtiene el atributo idEstimulo
 	*  @access private
 	*  @return int atributo idEstimulo
-	*  
+	*
 	*/
 	private function getidEstimulo(){
 		return $this->idEstimulo;
@@ -78,7 +78,7 @@ class clsPersonal{
 	*  Metodo que inicializa el atributo gradoAcademico
 	*  @access public
 	*  @param varchar $pgradoAcademico descripcion.
-	*  
+	*
 	*/
 	public function setgradoAcademico($pgradoAcademico){
 		$this->gradoAcademico=$pgradoAcademico;
@@ -87,7 +87,7 @@ class clsPersonal{
 	*  Metodo que obtiene el atributo gradoAcademico
 	*  @access private
 	*  @return varchar atributo gradoAcademico
-	*  
+	*
 	*/
 	private function getgradoAcademico(){
 		return $this->gradoAcademico;
@@ -96,7 +96,7 @@ class clsPersonal{
 	*  Metodo que inicializa el atributo puestoDrectivo
 	*  @access public
 	*  @param varchar $ppuestoDrectivo descripcion.
-	*  
+	*
 	*/
 	public function setpuestoDrectivo($ppuestoDrectivo){
 		$this->puestoDrectivo=$ppuestoDrectivo;
@@ -105,7 +105,7 @@ class clsPersonal{
 	*  Metodo que obtiene el atributo puestoDrectivo
 	*  @access private
 	*  @return varchar atributo puestoDrectivo
-	*  
+	*
 	*/
 	private function getpuestoDrectivo(){
 		return $this->puestoDrectivo;
@@ -114,7 +114,7 @@ class clsPersonal{
 	*  Metodo que inicializa el atributo asistencias
 	*  @access public
 	*  @param float $pasistencias descripcion.
-	*  
+	*
 	*/
 	public function setasistencias($pasistencias){
 		$this->asistencias=$pasistencias;
@@ -123,7 +123,7 @@ class clsPersonal{
 	*  Metodo que obtiene el atributo asistencias
 	*  @access private
 	*  @return float atributo asistencias
-	*  
+	*
 	*/
 	private function getasistencias(){
 		return $this->asistencias;
@@ -132,7 +132,7 @@ class clsPersonal{
 	*  Metodo que inicializa el atributo fechaRegistro
 	*  @access public
 	*  @param datetime $pfechaRegistro descripcion.
-	*  
+	*
 	*/
 	public function setfechaRegistro($pfechaRegistro){
 		$this->fechaRegistro=$pfechaRegistro;
@@ -141,7 +141,7 @@ class clsPersonal{
 	*  Metodo que obtiene el atributo fechaRegistro
 	*  @access private
 	*  @return datetime atributo fechaRegistro
-	*  
+	*
 	*/
 	private function getfechaRegistro(){
 		return $this->fechaRegistro;
@@ -235,13 +235,13 @@ class clsPersonal{
 			,est.num_empleado
 			,est.tipo_contrato
 			,est.id_estimulo
-		FROM vtaC_estPersonal per 
-		RIGHT JOIN ms_estimulo est 
+		FROM vtaC_estPersonal per
+		RIGHT JOIN ms_estimulo est
 		ON per.idEstimulo = est.id_estimulo
 		where id_ciclo = 11
-		" . $sFiltro . " 
+		" . $sFiltro . "
 		" . $sOrdenQuery . " ";
-		
+
 		return $sQuery;
 	}
 
@@ -277,7 +277,7 @@ class clsPersonal{
 	public function getDatosJson($bPrimero=true){
 
 		$arrDatos=$this->getDatos($bPrimero);
-		
+
 		if(empty($arrDatos)) return "null";
 		if($bPrimero){
 			foreach($arrDatos as $llaveFila=>$fila){
@@ -292,27 +292,27 @@ class clsPersonal{
 				foreach($fila as $llaveColumna=>$valor){
 					$arrDatos[$llaveFila]['accion']="<button class='btnInfoEmpleado' id='btngVerInfo' title='Ver informaci&oacute;n del empleado'
 						 onclick='verInformacionEmpleado(".$iNoEmpleado.")'; >Ver informaci&oacute;n del empleado</button>";
-					$arrDatos[$llaveFila][$llaveColumna] = utf8_encode($valor); 
+					$arrDatos[$llaveFila][$llaveColumna] = utf8_encode($valor);
 					$i++;
 				}
 			}
 		}
-		
+
 		return json_encode($arrDatos);
 	}
 	/**
 	* Metodo que ejecuta el SP estPersonalAgregarModificar
-	* 
+	*
 	* @access public
-	* @param int idEstimulo 
-	* @param varchar gradoAcademico 
-	* @param varchar puestoDrectivo 
-	* @param float asistencias 
-	* @param datetime fechaRegistro 
-	* @param varchar usuarioRealizo 
-	* @return int idPersonal 
-	* @return int noError 
-	* @return varchar mensaje 
+	* @param int idEstimulo
+	* @param varchar gradoAcademico
+	* @param varchar puestoDrectivo
+	* @param float asistencias
+	* @param datetime fechaRegistro
+	* @param varchar usuarioRealizo
+	* @return int idPersonal
+	* @return int noError
+	* @return varchar mensaje
 	*/
 	public function estPersonalAgregarModificar(){
 		$objProc=new clsProcedimientos("estPersonalAgregarModificar");
@@ -322,7 +322,7 @@ class clsPersonal{
 		$objProc->FNCAgregaParametrosEntrada($this->asistencias);
 		$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo,1);
 		if($this->idPersonal != -1)
-			$objProc->FNCAgregaParametrosEntrada($this->idPersonal);		
+			$objProc->FNCAgregaParametrosEntrada($this->idPersonal);
 		else
 			$objProc->FNCAgregaParametroSalida("idPersonal","INT");
 		$objProc->FNCAgregaParametroSalida("noError","INT");
@@ -346,12 +346,12 @@ class clsPersonal{
 
 	/**
 	* Metodo que ejecuta el SP estPersonalEliminar
-	* 
+	*
 	* @access public
-	* @param int idPersonal 
-	* @param varchar usuarioRealizo 
-	* @return int noError 
-	* @return varchar mensaje 
+	* @param int idPersonal
+	* @param varchar usuarioRealizo
+	* @return int noError
+	* @return varchar mensaje
 	*/
 	public function estPersonalEliminar(){
 		$objProc=new clsProcedimientos("estPersonalEliminar");
@@ -376,5 +376,5 @@ class clsPersonal{
 	}
 
 
-} 
+}
 ?>

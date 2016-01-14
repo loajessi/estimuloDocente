@@ -1,16 +1,16 @@
-function datosPersonalCargar(pPersonalID){
+﻿function datosPersonalCargar(pPersonalID){
 	var PersonalSource =
 	{
 		datatype: "json",
 		datafields: [
-			{name:'accion',type:'string'},			
+			{name:'accion',type:'string'},
 			{name:'idPersonal', type:'int'},
 			{name:'id_estimulo', type:'int'},
 			{name:'num_empleado', type:'varchar'},
 			{name:'tipo_contrato', type:'varchar'},
 			{name:'gradoAcademico', type:'varchar'},
 			{name:'puestoDrectivo', type:'varchar'},
-			{name:'asistencias', type:'float'}			
+			{name:'asistencias', type:'float'}
  		],
 		url: "modelo/modPersonalConsultar.php",
 		type: 'POST',
@@ -44,7 +44,7 @@ function Docentes_ValidacionDatos_TablaCargar(sControl, piCicloEstimuloID) {
 			{text: 'Nombre completo', datafield: 'tipo_contrato', editable: false, width: '350px' },
 			{text: 'Cumplimiento de grado acad&eacute;mico', datafield: 'gradoAcademico', columntype: 'checkbox', cellsalign: 'center', width: '195px', renderer: function () {return '<div class="jxGrid_headerDoble txtCentrado">Cumplimiento de<br />grado acad&eacute;mico</div>'; }},
 			{text: 'Cuenta con puesto directivo o de confianza', datafield: 'puestoDrectivo', width: '195px', columntype: 'checkbox', renderer: function () {return '<div class="jxGrid_headerDoble txtCentrado">&iquest;Cuenta con puesto<br />directivo o de confianza?</div>'; }},
-			{text: 'Porcentaje de asistencia', datafield: 'asistencias', cellsalign: 'center', width: '195px', columntype: 'numberinput', cellsformat: 'f2', 
+			{text: 'Porcentaje de asistencia', datafield: 'asistencias', cellsalign: 'center', width: '195px', columntype: 'numberinput', cellsformat: 'f2',
 				renderer: function () {return '<div class="jxGrid_headerDoble txtCentrado">Porcentaje de<br />asistencia</div>';},
 				validation: function (cell, value) {
 					var row = cell.row;
@@ -71,11 +71,11 @@ function Docentes_ValidacionDatos_TablaCargar(sControl, piCicloEstimuloID) {
 
 function validacionDatosPersonalAgregarModificar(rowid){
 	if(rowid == -1) return;
-	
+
 	$("#jqxGrid_Docentes").jqxGrid('endrowedit', rowid, false); // false = confirma cambios
 
 	var sPagina="modelo/modPersonalAgregarModificar.php";
-	var data = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', rowid);	
+	var data = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', rowid);
 
 	if(data.gradoAcademico) var requisitoGradoAcademico = '1';
 	else var requisitoGradoAcademico = '0';
@@ -98,7 +98,7 @@ function validacionDatosPersonalAgregarModificar(rowid){
 					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
 				}
 				else {
-					// alert("Su informaci\u00f3n se registr\u00f3 correctamente en la base de datos.");	
+					// alert("Su informaci\u00f3n se registr\u00f3 correctamente en la base de datos.");
 					// Acciones posteriores a la actualizacion
 				}
 			}

@@ -1,0 +1,285 @@
+/**
+ *  Hoja de estilos específicos
+ */
+
+@import "animaciones.css";
+
+/* -- CONTROL DE ANIMACIONES -- */
+.animated.delay-5 { -webkit-animation-delay: 0.5s; -moz-animation-delay: 0.5s; -ms-animation-delay: 0.5s; -o-animation-delay: 0.5s; animation-delay: 0.5s; }
+.animated.delay-10 { -webkit-animation-delay: 1s; -moz-animation-delay: 1s; -ms-animation-delay: 1s; -o-animation-delay: 1s; animation-delay: 1s; }
+.animated.delay-15 { -webkit-animation-delay: 1.5s; -moz-animation-delay: 1.5s; -ms-animation-delay: 1.5s; -o-animation-delay: 1.5s; animation-delay: 1.5s; }
+.animated.delay-20 { -webkit-animation-delay: 2s; -moz-animation-delay: 2s; -ms-animation-delay: 2s; -o-animation-delay: 2s; animation-delay: 2s; }
+.animated.delay-25 { -webkit-animation-delay: 2.5s; -moz-animation-delay: 2.5s; -ms-animation-delay: 2.5s; -o-animation-delay: 2.5s; animation-delay: 2.5s; }
+.animated.delay-30 { -webkit-animation-delay: 3s; -moz-animation-delay: 3s; -ms-animation-delay: 3s; -o-animation-delay: 3s; animation-delay: 3s; }
+.animated.delay-35 { -webkit-animation-delay: 3.5s; -moz-animation-delay: 3.5s; -ms-animation-delay: 3.5s; -o-animation-delay: 3.5s; animation-delay: 3.5s; }
+.animated.delay-40 { -webkit-animation-delay: 4s; -moz-animation-delay: 4s; -ms-animation-delay: 4s; -o-animation-delay: 4s; animation-delay: 4s; }
+.animated.delay-45 { -webkit-animation-delay: 4.5s; -moz-animation-delay: 4.5s; -ms-animation-delay: 4.5s; -o-animation-delay: 4.5s; animation-delay: 4.5s; }
+.animated.delay-50 { -webkit-animation-delay: 5s; -moz-animation-delay: 5s; -ms-animation-delay: 5s; -o-animation-delay: 5s; animation-delay: 5s; }
+.animated.delay-55 { -webkit-animation-delay: 5.5s; -moz-animation-delay: 5.5s; -ms-animation-delay: 5.5s; -o-animation-delay: 5.5s; animation-delay: 5.5s; }
+.animated.delay-60 { -webkit-animation-delay: 6s; -moz-animation-delay: 6s; -ms-animation-delay: 6s; -o-animation-delay: 6s; animation-delay: 6s; }
+.animated.delay-65 { -webkit-animation-delay: 6.5s; -moz-animation-delay: 6.5s; -ms-animation-delay: 6.5s; -o-animation-delay: 6.5s; animation-delay: 6.5s; }
+.animated.delay-70 { -webkit-animation-delay: 7s; -moz-animation-delay: 7s; -ms-animation-delay: 7s; -o-animation-delay: 7s; animation-delay: 7s; }
+.animated.delay-75 { -webkit-animation-delay: 7.5s; -moz-animation-delay: 7.5s; -ms-animation-delay: 7.5s; -o-animation-delay: 7.5s; animation-delay: 7.5s; }
+.animated.medium { -webkit-animation-duration: 2s; -moz-animation-duration: 2s; -ms-animation-duration: 2s; -o-animation-duration: 2s; animation-duration: 2s; }
+.animated.slow { -webkit-animation-duration: 3s; -moz-animation-duration: 3s; -ms-animation-duration: 3s; -o-animation-duration: 3s; animation-duration: 3s; }
+/* -- * -- * -- * -- * -- * -- * -- */
+
+.btnActivo {
+	background: #989898;
+	font-weight: bold;
+	color: #FFF;
+	text-shadow: 0 0 10px #505050;
+}
+
+.btnActivo.btnCorrecto {
+	background: #17B739;
+}
+
+.btnActivo.btnPeligro {
+	background: #EA0000;
+}
+
+.barraInferiorAcciones {
+	text-align: center;
+	display: block;
+	width: 100%;
+}
+
+.barraSuperiorAcciones {
+	float: right;
+}
+
+.barraSuperiorAcciones + h1, .barraSuperiorAcciones + h2 {
+	height: 30px;
+	line-height: 30px;
+}
+
+.barraSuperiorAcciones + h3.dobleLinea {
+	height: 30px;
+	line-height: 17px;
+}
+
+.barraSuperiorAcciones + h3.dobleLinea > small {
+	display: block;
+	font-style: italic;
+	text-transform: uppercase;
+	font-size: 11px;
+}
+
+.barraSuperiorAcciones + h1 + hr {
+	margin-bottom: 10px;
+}
+
+.txtCentrado {
+	text-align: center;
+}
+
+/* Corregir alineación del breadcrumb */
+#breadcrumb ul {
+	padding-left: 15px;
+}
+
+/* Corregir altura del breadcrumb */
+#breadcrumb > ul > .separador {
+	line-height: 1;
+}
+
+#breadcrumb > ul > li[rel="cargarVista"] {
+	cursor: pointer;
+	color: #2071A2;
+}
+
+.lineaAyuda {
+	color: #999999;
+	font-style: italic;
+}
+
+.btnInfoEmpleado {
+	background: url('/generalesDIyS/_img/iconoUsuario.png') no-repeat center center transparent;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	text-indent: -9999%;
+	border: 0;
+}
+
+.btnEliminarPatente {
+	background: url('/generalesDIyS/_img/iconoPapelera.png') no-repeat center center transparent;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	text-indent: -9999%;
+	border: 0;
+}
+
+.dataForm label, .dataForm input[type="text"],
+.dataForm input[type="password"], .dataForm input[type="email"],
+.dataForm textarea, .dataForm select {
+	font-family: sans-serif !important;
+}
+
+#frmModalAgregarPatente {
+	border: none;
+	padding: 0;
+}
+
+.jqxGrid_PrimerColumnaBoton div[id^="contenttablejqxGrid"] > div[role="row"] > div[role="gridcell"]:first-child > .jqx-grid-cell-middle-align {
+	margin: 0 !important;
+	height: 40px;
+	width: 100%;
+}
+
+.clear {
+	float: none;
+	clear: both;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted blue;
+	cursor: help;
+}
+
+.columna {
+	float: left;
+	margin: 0;
+	padding: 10px;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.columna.separador-izq:before {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 1px;
+	background-color: #ABABAB;
+	left: -1px;
+	top: 0;
+}
+
+.columna.separador-der:after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 1px;
+	background-color: #ABABAB;
+	right: 1px;
+	top: 0;
+}
+
+.columna.ancho-50 {
+	width: 50%;
+}
+
+.columna.ancho-30 {
+	width: 30%;
+}
+
+.columna.ancho-70 {
+	width: 70%;
+}
+
+.columna > input, .columna > select {
+	width: 100% !important;
+	box-sizing: border-box;
+	padding: 13px 10px !important;
+	margin-top: 0 !important;
+}
+
+/*.columna > input, .columna > select {
+	width: 100% !important;
+	box-sizing: border-box;
+	margin-top: 0 !important;
+	padding: 0 0 0 10px !important;
+	height: 28px !important;
+	line-height: 25px !important;
+}*/
+
+div[id^="dropdownlistContentjqxComboBox_"] {
+	padding-left: 10px !important;
+}
+
+#detalleDatosPatentes {
+	padding: 15px;
+}
+
+#jqxWindow_ModalAgregarPatente {
+	position: fixed;
+}
+
+#windowHeader h3 {
+	margin: 0;
+}
+
+#windowContent {
+	position: relative;
+}
+
+hr + form > .columna {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+form > .columna:first-child {}
+
+hr + form > .columna > *:last-child {
+	margin-bottom: 0;
+}
+
+.label_multilinea {
+	font-weight: normal !important;
+	font-size: 13px !important;
+}
+
+.label_multilinea b {
+	font-weight: bold !important;
+}
+
+.dataForm input[type="number"] {
+	border: 1px solid #CCCCCC;
+	color: #888888;
+	margin-bottom: 16px;
+	margin-right: 6px;
+	margin-top: 2px;
+	outline: 0 none;
+	padding: 5px 10px;
+	width: 200px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	font: normal 14px/14px sans-serif;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	height: 16px;
+}
+
+#jqxButtonGroup_SNI div:not(:last-child) {
+	cursor: pointer;
+}
+
+/* Corrección: Texto de row seleccionado en negritas para Grid docentes */
+.jqxGrid_PanelDetalles .jqx-grid-cell-selected {
+	font-weight: bold !important;
+}
+
+/* Corrección: Agregar borde inferior a la última fila de un grid */
+div[id^="contenttablejqxGrid"]:not(#contenttablejqxGrid_DetallePatentes) > div[role="row"]:last-child {
+	border-bottom: 1px solid #A4BED4;
+}
+
+/* Corrección: Alto de línea para headers de doble línea en grid */
+.jxGrid_headerDoble {
+	line-height: 11px;
+	padding-top: 1px;
+}
+
+#frmModalAgregarPatente textarea{
+	width: 568px;
+	height: 50px;
+	margin-bottom: 0;
+}

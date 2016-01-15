@@ -175,17 +175,17 @@ function PersonalFormularioCargar(pPersonalID) {
 	var dataAdapter = datosPersonalRegistroObtener(pPersonalID);
 	registro = dataAdapter.records[0];
 
-	$('#ctrlidPersonal').val(registro.idPersonal)
-	$('#ctrlidEstimulo').val(registro.idEstimulo)
-	$('#ctrlidPersona').val(registro.idPersona)
-	$('#ctrlnumeroEmpleado').val(registro.numeroEmpleado)
-	$('#ctrlnombreCompleto').val(registro.nombreCompleto)
-	$('#ctrltipoContrato').val(registro.tipoContrato)
-	$('#ctrlfechaRegistroEstimulo').val(registro.fechaRegistroEstimulo)
-	$('#ctrlgradoAcademico').val(registro.gradoAcademico)
-	$('#ctrlpuestoDrectivo').val(registro.puestoDrectivo)
-	$('#ctrlasistencias').val(registro.asistencias)
-	$('#ctrlfechaRegistro').val(registro.fechaRegistro)
+	$('#ctrlidPersonal').val(registro.idPersonal);
+	$('#ctrlidEstimulo').val(registro.idEstimulo);
+	$('#ctrlidPersona').val(registro.idPersona);
+	$('#ctrlnumeroEmpleado').val(registro.numeroEmpleado);
+	$('#ctrlnombreCompleto').val(registro.nombreCompleto);
+	$('#ctrltipoContrato').val(registro.tipoContrato);
+	$('#ctrlfechaRegistroEstimulo').val(registro.fechaRegistroEstimulo);
+	$('#ctrlgradoAcademico').val(registro.gradoAcademico);
+	$('#ctrlpuestoDrectivo').val(registro.puestoDrectivo);
+	$('#ctrlasistencias').val(registro.asistencias);
+	$('#ctrlfechaRegistro').val(registro.fechaRegistro);
 }
 
 function personalAgregarModificar() {
@@ -198,13 +198,10 @@ function personalAgregarModificar() {
 		idPersonal = $('#cd_idPersonal').val();
 
 	if(gradoAcademico=='') {
-		//$('#btnGradoAcademico_'+row+'_No, #btnGradoAcademico_'+row+'_Si').removeClass('btnActivo btnPeligro btnCorrecto');
 		return;
 	}
 
 	if(puestoDrectivo=='') {
-		//$('#btnPuestoDrectivo_'+row+'_No, #btnPuestoDrectivo_'+row+'_Si').removeClass('btnActivo btnPeligro btnCorrecto');
-		//notif({msg: '<b>Debes capturar todos los datos para guardar.</b>', type: 'error', position: 'right', width: 300});
 		return;
 	}
 

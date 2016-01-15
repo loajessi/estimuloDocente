@@ -65,10 +65,10 @@ function btn_puestoDrectivo(obj) {
 
 	if (val == 'S') {
 		$(obj).addClass('btnActivo btnCorrecto');
-		$('#btnGradoAcademico_'+row+'_No').removeClass('btnActivo btnPeligro');
+		$('#btnPuestoDrectivo_'+row+'_No').removeClass('btnActivo btnPeligro');
 	} else if (val == 'N') {
 		$(obj).addClass('btnActivo btnPeligro');
-		$('#btnGradoAcademico_'+row+'_Si').removeClass('btnActivo btnCorrecto');
+		$('#btnPuestoDrectivo_'+row+'_Si').removeClass('btnActivo btnCorrecto');
 	}
 
 	$('#cd_puestoDrectivo').val(val);

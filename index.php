@@ -1,10 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
-<head profile="http://gmpg.org/xfn/11">
-	<title>UAEH:::Sistema del Est&iacute;mulo Acad&eacute;mico</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+﻿<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+	<title>UAEH:::Sistema del Estímulo al Desempeño del Personal Docente</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" href="/generalesDIyS/_estilo/layout.css" type="text/css" />
+	<link rel="stylesheet" href="_estilo/estimuloPersonalDocente.css" type="text/css" />
 	<!--script-- type="text/javascript" src="/generalesDIyS/_jscript/tcal.js"></script-->
 	<!--script type="text/javascript" src="/generalesDIyS/_jscript/jquery-1.4.1.min.js"></script-->
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -29,16 +30,17 @@
 		</div>
 		<div id="tituloHeader">
 			<h1>Secretar&iacute;a General</h1>
+
 			<h2>Est&iacute;mulo al Desempe&ntilde;o del Personal Docente </h2>
 		</div>
 	</div>
 </div>
 <!-- ####################################################################################################### -->
-<div class="wrapper">
+<!--div class="wrapper">
 	<div id="topbar">
 		<br class="clear" />
 	</div>
-</div>
+</div-->
 <div class="wrapper">
 	<div id="breadcrumb"></div>
 </div>
@@ -49,7 +51,16 @@
 		<div class="whitebox">
 			<p align="center"></p>
 			<!-- ####################################################################################################### -->
-			<div id="stylized" class="formulario">
+
+			<?php if (isset($_SESSION['Alerta']) && $_SESSION['Alerta'] != '') { ?>
+				<div class="box <?= $_SESSION['AlertaTipo'] ?>-box animated <?=$_SESSION['AlertaAnimacion']?>">
+					<?= $_SESSION['AlertaMensaje'] ?>
+				</div>
+			<?php }
+				unset($_SESSION['Alerta'], $_SESSION['AlertaMensaje'], $_SESSION['AlertaTipo']); ?>
+
+			<!-- ####################################################################################################### -->
+			<div id="stylized" class="formulario animated fadeInUp">
 				<form id="frmAcceso" name="frmAcceso" method="post" action="#">
 					<h1>ACCESO</h1>
 
@@ -68,7 +79,7 @@
 					<div class="spacer"></div>
 				</form>
 			</div>
-			<div id="divReestablecerContrasenia" align="center">
+			<div id="divReestablecerContrasenia" class="animated fadeIn txtCentrado">
 				<form id="frmReestablecerContrasenia" name="frmReestablecerContrasenia" method="post" action="http://sistemas.uaeh.edu.mx/generalesDIyS/autenticacion/vista/vtaReestablecerEnviar.php" target="_blank">
 					<br />
 					<a href="#" onClick="document.frmReestablecerContrasenia.submit()">
@@ -82,16 +93,16 @@
 					<!--a href="#" class="boton icon usuario" onclick="seleccionaRol('Administrador');">Administrador</a>
 					<a href="#" class="boton icon usuario" onclick="seleccionaRol('ComiteEval');">Comit&eacute; Evaluaci&oacute;n</a>
 					<a href="#" class="boton icon usuario" onclick="seleccionaRol('SecretarioAcademico');">Secretario Acad&eacute;mico</a-->
-					<a href="moduloSrioAcademico/index.php" class="boton icon usuario">Secretario Acad&eacute;mico</a>
-					<a href="moduloPCyT/index.php" class="boton icon usuario">Parque Cient&iacute;fico y Tecnol&oacute;gico</a>
-					<a href="moduloCECA/index.php" class="boton icon usuario">Centro de C&oacute;mputo Acad&eacute;mico</a>
+					<a href="dummyAccesar.php?m=moduloSrioAcademico" class="boton icon usuario">Secretario Académico</a>
+					<a href="dummyAccesar.php?m=moduloPCyT" class="boton icon usuario">Parque Científico y Tecnológico</a>
+					<a href="dummyAccesar.php?m=moduloCECA" class="boton icon usuario">Centro de Cómputo Académico</a>
 					<br />
-					<a href="moduloDAP/index.php" class="boton icon usuario">Direcci&oacute;n de Administraci&oacute;n de Personal</a>
-					<a href="moduloDGE/index.php" class="boton icon usuario">Direcci&oacute;n General de Evaluaci&oacute;n</a>
-					<a href="moduloDI/index.php" class="boton icon usuario">Direcci&oacute;n de Investigaci&oacute;n</a>
+					<a href="dummyAccesar.php?m=moduloDAP" class="boton icon usuario">Direcci&oacute;n de Administraci&oacute;n de Personal</a>
+					<a href="dummyAccesar.php?m=moduloDGE" class="boton icon usuario">Direcci&oacute;n General de Evaluaci&oacute;n</a>
+					<a href="dummyAccesar.php?m=moduloDI" class="boton icon usuario">Direcci&oacute;n de Investigaci&oacute;n</a>
 					<br />
-					<a href="moduloDRI/index.php" class="boton icon usuario">Direcci&oacute;n de Relaciones Internacionales</a>
-					<a href="moduloDISA/index.php" class="boton icon usuario">Direcci&oacute;n de Superaci&oacute;n Acad&eacute;mica</a>
+					<a href="dummyAccesar.php?m=moduloDRI" class="boton icon usuario">Direcci&oacute;n de Relaciones Internacionales</a>
+					<a href="dummyAccesar.php?m=moduloDISA" class="boton icon usuario">Direcci&oacute;n de Superaci&oacute;n Acad&eacute;mica</a>
 				</div>
 			</div>
 

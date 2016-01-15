@@ -1,4 +1,4 @@
-﻿<h1 class="animated fadeInLeft">Validaci&oacute;n de datos</h1>
+<h1 class="animated fadeInLeft">Validaci&oacute;n de datos</h1>
 <hr class="animated fadeIn" />
 
 <em class="lineaAyuda animated fadeInLeft delay-5">Selecciona un empleado de la lista para consultar el detalle de proyectos<br /><br /></em>

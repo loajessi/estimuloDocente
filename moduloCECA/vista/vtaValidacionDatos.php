@@ -1,13 +1,5 @@
-
-<div class="barraSuperiorAcciones animated fadeInRight">
-	<a id="btnGuardar" class="boton icon guardar">Guardar</a>
-	<a id="btnCancelar" class="boton peligro icon remover">Cancelar</a>
-</div>
-
 <h1 class="animated fadeInLeft">Validaci&oacute;n de datos</h1>
 <hr />
-
-
 
 <em class="lineaAyuda animated fadeIn delay-5">Selecciona el campo <b>No. de multimedios educativos elaborados</b> para editar su contenido<br /><br /></em>
 

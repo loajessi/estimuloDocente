@@ -1,4 +1,4 @@
-﻿function datos_Docentes_DetalleProyectos_Cargar() {
+function datos_Docentes_DetalleProyectos_Cargar() {
 
 	/* var Docentes_ValidacionDatosSource =
 	 {

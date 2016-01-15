@@ -1,4 +1,4 @@
-﻿<div class="animated slideInLeft">
+<div class="animated slideInLeft">
 	<div class="barraSuperiorAcciones">
 		<a id="btnGuardar" class="boton icon guardar">Guardar</a>
 		<a id="btnCancelar" class="boton peligro icon remover">Cancelar</a>

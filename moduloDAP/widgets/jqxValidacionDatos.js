@@ -28,7 +28,7 @@
 function datosPersonalRegistroObtener(pPersonalID){
 	$.ajax({
 		async: false,
-		url: "../moduloXX/modelo/modPersonalConsultar.php",
+		url: "modelo/modPersonalConsultar.php",
 		data: {iPersonalID : pPersonalID},
 		type: 'POST',
 		success: function (data, status, xhr) {
@@ -54,16 +54,17 @@ function PersonalTablaCargar(sControl){
 		editable: true,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu: false},
+			{text: '', datafield: 'idPersonal', hidden: true},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '149px' },
 			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '350px' },
 			{text: 'Cumplimiento de grado acad&eacute;mico', datafield: 'gradoAcademico', columntype: 'checkbox', cellsalign: 'center', width: '195px', renderer: function () {return '<div class="jxGrid_headerDoble txtCentrado">Cumplimiento de<br />grado acad&eacute;mico</div>'; }},
 			{text: 'Cuenta con puesto directivo o de confianza', datafield: 'puestoDrectivo', width: '195px', columntype: 'checkbox', renderer: function () {return '<div class="jxGrid_headerDoble txtCentrado">&iquest;Cuenta con puesto<br />directivo o de confianza?</div>'; }},
-			{text: 'Porcentaje de asistencia', datafield: 'asistencias', cellsalign: 'center', width: '195px', columntype: 'numberinput', cellsformat: 'f2',
+			{text: 'Porcentaje de asistencia', datafield: 'asistencias', cellsalign: 'center', width: '195px', columntype: 'numberinput', editable: true , cellsformat: 'f2',
 				renderer: function () {return '<div class="jxGrid_headerDoble txtCentrado">Porcentaje de<br />asistencia</div>';},
 				validation: function (cell, value) {
 					var row = cell.row;
 					if (value < 0.00 || value > 100.00) {
-						$(sControl).jqxGrid('cellbeginedit', row, "porcentajeAsistencia");
+						$(sControl).jqxGrid('cellbeginedit', row, "asistencias");
 						return {result: false, message: "El valor debe estar entre 0 y 100"};
 					} else { return true; }
 				},
@@ -127,7 +128,7 @@ function PersonalFormularioCargar(pPersonalID){
 }
 
 function personalAgregarModificar(){
-	var sPagina="../../moduloXX/modelo/modPersonalAgregarModificar.php";
+	var sPagina="/modelo/modPersonalAgregarModificar.php";
 	var oParametros=$('#frmFormulario').serialize();
 
 	$.post(sPagina

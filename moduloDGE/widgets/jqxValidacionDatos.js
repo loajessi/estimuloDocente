@@ -30,7 +30,7 @@ function datosEvaluacionCargar(pEvaluacionID){
 function datosEvaluacionRegistroObtener(pEvaluacionID){
 	$.ajax({
 		async: false,
-		url: "../moduloXX/modelo/modEvaluacionConsultar.php",
+		url: "modelo/modEvaluacionConsultar.php",
 		data: {iEvaluacionID : pEvaluacionID},
 		type: 'POST',
 		success: function (data, status, xhr) {
@@ -56,7 +56,7 @@ function EvaluacionTablaCargar(sControl){
 		editable: true,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true},
-			{text: '', datafield: 'idEvaluacion', hidden: true },
+			{text: '', datafield: 'idEvaluacion', hidden: true},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '115px'},
 			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '272px'},
 			{text: 'Desempe&ntilde;o en el aula (Alumnos)', datafield: 'desempeñoAula', cellsalign: 'center', editable: true, width: '167px', columntype: 'numberinput',
@@ -94,7 +94,7 @@ function EvaluacionTablaCargar(sControl){
 				validation: function (cell, value) {
 					var row = cell.row;
 					if (value < 0 || value > 18) {
-						$(sControl).jqxGrid('cellbeginedit', row, "InnovacionEducativa");
+						$(sControl).jqxGrid('cellbeginedit', row, "Innovacion");
 						return {result: false, message: "El valor debe estar entre 0 y 18"};
 					} else { return true; }
 				},
@@ -103,7 +103,7 @@ function EvaluacionTablaCargar(sControl){
 				validation: function (cell, value) {
 					var row = cell.row;
 					if (value < 0 || value > 18) {
-						$(sControl).jqxGrid('cellbeginedit', row, "InnovacionEducativa");
+						$(sControl).jqxGrid('cellbeginedit', row, "tics");
 						return {result: false, message: "El valor debe estar entre 0 y 18"};
 					} else { return true; }
 				},
@@ -162,7 +162,7 @@ function EvaluacionFormularioCargar(pEvaluacionID){
 }
 
 function evaluacionAgregarModificar(){
-	var sPagina="../../moduloXX/modelo/modEvaluacionAgregarModificar.php";
+	var sPagina="modelo/modEvaluacionAgregarModificar.php";
 	var oParametros=$('#frmFormulario').serialize();
 
 	$.post(sPagina

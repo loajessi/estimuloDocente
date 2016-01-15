@@ -478,8 +478,9 @@
 				$i=0;
 				foreach($arrDatos as $llaveFila=>$fila){
 					$iEvaluacionID = $arrDatos[$llaveFila]['idEvaluacion'];
+					$numEmpleado = $arrDatos[$llaveFila]['numeroEmpleado'];
 					foreach($fila as $llaveColumna=>$valor){
-						$arrDatos[$llaveFila]['accion']="<a id='btnEliminar_". $i . "' href=# class='boton icon papelera' title='Eliminar' onclick='evaluacionEliminar(" . $iEvaluacionID . ")'></a> <a id='btnEditar_". $i . "' href='#' class='boton icon editar' title='Editar' onclick='evaluacionEditar(" . $iEvaluacionID . ")'></a>";
+						$arrDatos[$llaveFila]['accion']="<button class='btnInfoEmpleado' id='btngVerInfo' title='Ver informaci&oacute;n del empleado' onclick='verInformacionEmpleado(".$numEmpleado.")'; >Ver informaci&oacute;n del empleado</button>"; "' href='#' class='boton icon editar' title='Editar' onclick='evaluacionEditar(" . $iEvaluacionID . ")'></a>";
 						$arrDatos[$llaveFila][$llaveColumna] = utf8_encode($valor);
 						$i++;
 					}

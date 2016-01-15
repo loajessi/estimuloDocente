@@ -18,31 +18,6 @@ function validacionDatosInicializar() {
 
 	var agregarEventos = function () {
 
-		/*console.info('Cambio para intercambiar el texto del boton automaticamente');
-		$('#btnGuardar').click(function () {
-
-			//Reemplazar texto por "Guardando..."
-			var elemento = $(this),
-				txtOriginal = $(elemento).html();
-			$(this).html("Guardando...");
-
-			// Guarda en la BD
-			//docente_ValidacionDatosCambiarEstado(idEstimuloLista);
-
-			//Simular env�o de datos
-			window.setTimeout(function () {
-				//Restarurar texto original
-				$(elemento).html(txtOriginal);
-			}, 2000);
-		});*/
-
-		$("#btnCancelar").on("click", function (event) {
-			InvestigacionTablaCargar("#jqxGrid_Docentes");
-		});
-
-//    $('#jqxButtonGroup_Estado').on('selected', function () {
-//    });
-
 	};
 
 	crearWidgets();

@@ -1,12 +1,12 @@
 <?php
 //****************//
-//  modInvestigacionConsultar.php//
+//  modSupAcademicaConsultar.php//
 //****************//
-	include("../class/clsInvestigacion.php");
-	$objConsulta=new clsInvestigacion();
+	include("../class/clsSupAcademica.php");
+	$objConsulta=new clsSupAcademica();
 
 	// setters para configurar el filtro de la consulta
-	//$objConsulta->setIdInvestigacion($_POST['pInvestigacionID']);
+	//$objConsulta->setIdSupAcademica($_POST['pSupAcademicaID']);
 	//$objConsulta->setOrdenQuery("XX");
 
 	echo $objConsulta->getDatosJson(false);

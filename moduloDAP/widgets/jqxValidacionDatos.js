@@ -1,4 +1,4 @@
-﻿function datosPersonalCargar(pPersonalID) {
+﻿﻿function datosPersonalCargar(pPersonalID) {
 	var PersonalSource =
 	{
 		datatype: "json",

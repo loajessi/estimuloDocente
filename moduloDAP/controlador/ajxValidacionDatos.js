@@ -1,7 +1,5 @@
 // Función de inicialización de la vista
 
-function personalEliminar() {alert("OK"); }
-
 function validacionDatosInicializar() {
 
     var crearWidgets = function () {

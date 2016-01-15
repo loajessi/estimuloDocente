@@ -3,44 +3,32 @@
 	require_once("clsConsulta.php");
 	require_once("clsProcedimientos.php");
 
-	/*** Clase Generada por CTool 3.3.3 para el objeto Investigacion
+	/*** Clase Generada por CTool 3.3.3 para el objeto SupAcademica
 	 * @author nombreAutor
 	 * Fecha:15/01/2016
-	 * @property int $idInvestigacion              descripcion
-	 * @property int $idEstimulo                   descripcion
-	 * @property int $idPersona                    descripcion
-	 * @property int $numeroEmpleado               descripcion
-	 * @property varchar $nombreCompleto           descripcion
-	 * @property varchar $tipoContrato             descripcion
-	 * @property datetime $fechaRegistroEstimulo   descripcion
-	 * @property varchar $reconocimientoSNI        descripcion
-	 * @property datetime $fechaInicioSNI          descripcion
-	 * @property datetime $fechaTerminoSNI         descripcion
-	 * @property varchar $nivelSNI                 descripcion
-	 * @property int $noProyOrganismoResponsable   descripcion
-	 * @property int $noProyInstitucionResponsable descripcion
-	 * @property int $noProyOrganismoParticipo     descripcion
-	 * @property int $noProyInstitucionParticipo   descripcion
-	 * @property datetime $fechaRegistro           descripcion
+	 * @property int $idSupAcademica             descripcion
+	 * @property int $idEstimulo                 descripcion
+	 * @property int $idPersona                  descripcion
+	 * @property int $numeroEmpleado             descripcion
+	 * @property varchar $nombreCompleto         descripcion
+	 * @property varchar $tipoContrato           descripcion
+	 * @property datetime $fechaRegistroEstimulo descripcion
+	 * @property varchar $certificacionIngles    descripcion
+	 * @property tinyint $cursoCompetencia       descripcion
+	 * @property datetime $fechaRegistro         descripcion
 	 * @property string usuarioRealizo
-	 * @property string ordenQuery                 agrega un orden especifico en el query
+	 * @property string ordenQuery               agrega un orden especifico en el query
 	 */
-	class clsInvestigacion {
-		private $idInvestigacion;
+	class clsSupAcademica {
+		private $idSupAcademica;
 		private $idEstimulo;
 		private $idPersona;
 		private $numeroEmpleado;
 		private $nombreCompleto;
 		private $tipoContrato;
 		private $fechaRegistroEstimulo;
-		private $reconocimientoSNI;
-		private $fechaInicioSNI;
-		private $fechaTerminoSNI;
-		private $nivelSNI;
-		private $noProyOrganismoResponsable;
-		private $noProyInstitucionResponsable;
-		private $noProyOrganismoParticipo;
-		private $noProyInstitucionParticipo;
+		private $certificacionIngles;
+		private $cursoCompetencia;
 		private $fechaRegistro;
 		private $usuarioRealizo;
 		private $ordenQuery;
@@ -50,45 +38,39 @@
 		 * Constructor de la clase
 		 */
 		public function __construct() {
-			$this->idInvestigacion = -1;
+			$this->idSupAcademica = -1;
 			$this->idEstimulo = -1;
 			$this->idPersona = -1;
 			$this->numeroEmpleado = -1;
 			$this->nombreCompleto = "";
 			$this->tipoContrato = "";
 			$this->fechaRegistroEstimulo = "";
-			$this->reconocimientoSNI = "";
-			$this->fechaInicioSNI = "";
-			$this->fechaTerminoSNI = "";
-			$this->nivelSNI = "";
-			$this->noProyOrganismoResponsable = -1;
-			$this->noProyInstitucionResponsable = -1;
-			$this->noProyOrganismoParticipo = -1;
-			$this->noProyInstitucionParticipo = -1;
+			$this->certificacionIngles = "";
+			$this->cursoCompetencia = -1;
 			$this->fechaRegistro = "";
 			$this->usuarioRealizo = "";
 			$this->ordenQuery = "";
 		}
 
 		/**
-		 *  Metodo que inicializa el atributo idInvestigacion
+		 *  Metodo que inicializa el atributo idSupAcademica
 		 * @access public
 		 *
-		 * @param int $pidInvestigacion descripcion.
+		 * @param int $pidSupAcademica descripcion.
 		 *
 		 */
-		public function setidInvestigacion($pidInvestigacion) {
-			$this->idInvestigacion = $pidInvestigacion;
+		public function setidSupAcademica($pidSupAcademica) {
+			$this->idSupAcademica = $pidSupAcademica;
 		}
 
 		/**
-		 *  Metodo que obtiene el atributo idInvestigacion
+		 *  Metodo que obtiene el atributo idSupAcademica
 		 * @access private
-		 * @return int atributo idInvestigacion
+		 * @return int atributo idSupAcademica
 		 *
 		 */
-		private function getidInvestigacion() {
-			return $this->idInvestigacion;
+		private function getidSupAcademica() {
+			return $this->idSupAcademica;
 		}
 
 		/**
@@ -218,171 +200,45 @@
 		}
 
 		/**
-		 *  Metodo que inicializa el atributo reconocimientoSNI
+		 *  Metodo que inicializa el atributo certificacionIngles
 		 * @access public
 		 *
-		 * @param varchar $preconocimientoSNI descripcion.
+		 * @param varchar $pcertificacionIngles descripcion.
 		 *
 		 */
-		public function setreconocimientoSNI($preconocimientoSNI) {
-			$this->reconocimientoSNI = $preconocimientoSNI;
+		public function setcertificacionIngles($pcertificacionIngles) {
+			$this->certificacionIngles = $pcertificacionIngles;
 		}
 
 		/**
-		 *  Metodo que obtiene el atributo reconocimientoSNI
+		 *  Metodo que obtiene el atributo certificacionIngles
 		 * @access private
-		 * @return varchar atributo reconocimientoSNI
+		 * @return varchar atributo certificacionIngles
 		 *
 		 */
-		private function getreconocimientoSNI() {
-			return $this->reconocimientoSNI;
+		private function getcertificacionIngles() {
+			return $this->certificacionIngles;
 		}
 
 		/**
-		 *  Metodo que inicializa el atributo fechaInicioSNI
+		 *  Metodo que inicializa el atributo cursoCompetencia
 		 * @access public
 		 *
-		 * @param datetime $pfechaInicioSNI descripcion.
+		 * @param tinyint $pcursoCompetencia descripcion.
 		 *
 		 */
-		public function setfechaInicioSNI($pfechaInicioSNI) {
-			$this->fechaInicioSNI = $pfechaInicioSNI;
+		public function setcursoCompetencia($pcursoCompetencia) {
+			$this->cursoCompetencia = $pcursoCompetencia;
 		}
 
 		/**
-		 *  Metodo que obtiene el atributo fechaInicioSNI
+		 *  Metodo que obtiene el atributo cursoCompetencia
 		 * @access private
-		 * @return datetime atributo fechaInicioSNI
+		 * @return tinyint atributo cursoCompetencia
 		 *
 		 */
-		private function getfechaInicioSNI() {
-			return $this->fechaInicioSNI;
-		}
-
-		/**
-		 *  Metodo que inicializa el atributo fechaTerminoSNI
-		 * @access public
-		 *
-		 * @param datetime $pfechaTerminoSNI descripcion.
-		 *
-		 */
-		public function setfechaTerminoSNI($pfechaTerminoSNI) {
-			$this->fechaTerminoSNI = $pfechaTerminoSNI;
-		}
-
-		/**
-		 *  Metodo que obtiene el atributo fechaTerminoSNI
-		 * @access private
-		 * @return datetime atributo fechaTerminoSNI
-		 *
-		 */
-		private function getfechaTerminoSNI() {
-			return $this->fechaTerminoSNI;
-		}
-
-		/**
-		 *  Metodo que inicializa el atributo nivelSNI
-		 * @access public
-		 *
-		 * @param varchar $pnivelSNI descripcion.
-		 *
-		 */
-		public function setnivelSNI($pnivelSNI) {
-			$this->nivelSNI = $pnivelSNI;
-		}
-
-		/**
-		 *  Metodo que obtiene el atributo nivelSNI
-		 * @access private
-		 * @return varchar atributo nivelSNI
-		 *
-		 */
-		private function getnivelSNI() {
-			return $this->nivelSNI;
-		}
-
-		/**
-		 *  Metodo que inicializa el atributo noProyOrganismoResponsable
-		 * @access public
-		 *
-		 * @param int $pnoProyOrganismoResponsable descripcion.
-		 *
-		 */
-		public function setnoProyOrganismoResponsable($pnoProyOrganismoResponsable) {
-			$this->noProyOrganismoResponsable = $pnoProyOrganismoResponsable;
-		}
-
-		/**
-		 *  Metodo que obtiene el atributo noProyOrganismoResponsable
-		 * @access private
-		 * @return int atributo noProyOrganismoResponsable
-		 *
-		 */
-		private function getnoProyOrganismoResponsable() {
-			return $this->noProyOrganismoResponsable;
-		}
-
-		/**
-		 *  Metodo que inicializa el atributo noProyInstitucionResponsable
-		 * @access public
-		 *
-		 * @param int $pnoProyInstitucionResponsable descripcion.
-		 *
-		 */
-		public function setnoProyInstitucionResponsable($pnoProyInstitucionResponsable) {
-			$this->noProyInstitucionResponsable = $pnoProyInstitucionResponsable;
-		}
-
-		/**
-		 *  Metodo que obtiene el atributo noProyInstitucionResponsable
-		 * @access private
-		 * @return int atributo noProyInstitucionResponsable
-		 *
-		 */
-		private function getnoProyInstitucionResponsable() {
-			return $this->noProyInstitucionResponsable;
-		}
-
-		/**
-		 *  Metodo que inicializa el atributo noProyOrganismoParticipo
-		 * @access public
-		 *
-		 * @param int $pnoProyOrganismoParticipo descripcion.
-		 *
-		 */
-		public function setnoProyOrganismoParticipo($pnoProyOrganismoParticipo) {
-			$this->noProyOrganismoParticipo = $pnoProyOrganismoParticipo;
-		}
-
-		/**
-		 *  Metodo que obtiene el atributo noProyOrganismoParticipo
-		 * @access private
-		 * @return int atributo noProyOrganismoParticipo
-		 *
-		 */
-		private function getnoProyOrganismoParticipo() {
-			return $this->noProyOrganismoParticipo;
-		}
-
-		/**
-		 *  Metodo que inicializa el atributo noProyInstitucionParticipo
-		 * @access public
-		 *
-		 * @param int $pnoProyInstitucionParticipo descripcion.
-		 *
-		 */
-		public function setnoProyInstitucionParticipo($pnoProyInstitucionParticipo) {
-			$this->noProyInstitucionParticipo = $pnoProyInstitucionParticipo;
-		}
-
-		/**
-		 *  Metodo que obtiene el atributo noProyInstitucionParticipo
-		 * @access private
-		 * @return int atributo noProyInstitucionParticipo
-		 *
-		 */
-		private function getnoProyInstitucionParticipo() {
-			return $this->noProyInstitucionParticipo;
+		private function getcursoCompetencia() {
+			return $this->cursoCompetencia;
 		}
 
 		/**
@@ -432,11 +288,11 @@
 		 */
 		private function getFiltroQuery() {
 			$sFiltro = "";
-			if ($this->idInvestigacion != -1) {
+			if ($this->idSupAcademica != -1) {
 				if (strlen(trim($sFiltro)) > 0) {
 					$sFiltro .= "AND ";
 				}
-				$sFiltro .= "idInvestigacion=" . $this->idInvestigacion . " ";
+				$sFiltro .= "idSupAcademica=" . $this->idSupAcademica . " ";
 			}
 			if ($this->idEstimulo != -1) {
 				if (strlen(trim($sFiltro)) > 0) {
@@ -474,53 +330,17 @@
 				}
 				$sFiltro .= "fechaRegistroEstimulo='" . $this->fechaRegistroEstimulo . "'";
 			}
-			if (strlen(trim($this->reconocimientoSNI)) > 0) {
+			if (strlen(trim($this->certificacionIngles)) > 0) {
 				if (strlen(trim($sFiltro)) > 0) {
 					$sFiltro .= "AND ";
 				}
-				$sFiltro .= "reconocimientoSNI='" . $this->reconocimientoSNI . "'";
+				$sFiltro .= "certificacionIngles='" . $this->certificacionIngles . "'";
 			}
-			if (strlen(trim($this->fechaInicioSNI)) > 0) {
+			if ($this->cursoCompetencia != -1) {
 				if (strlen(trim($sFiltro)) > 0) {
 					$sFiltro .= "AND ";
 				}
-				$sFiltro .= "fechaInicioSNI='" . $this->fechaInicioSNI . "'";
-			}
-			if (strlen(trim($this->fechaTerminoSNI)) > 0) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
-				}
-				$sFiltro .= "fechaTerminoSNI='" . $this->fechaTerminoSNI . "'";
-			}
-			if (strlen(trim($this->nivelSNI)) > 0) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
-				}
-				$sFiltro .= "nivelSNI='" . $this->nivelSNI . "'";
-			}
-			if ($this->noProyOrganismoResponsable != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
-				}
-				$sFiltro .= "noProyOrganismoResponsable=" . $this->noProyOrganismoResponsable . " ";
-			}
-			if ($this->noProyInstitucionResponsable != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
-				}
-				$sFiltro .= "noProyInstitucionResponsable=" . $this->noProyInstitucionResponsable . " ";
-			}
-			if ($this->noProyOrganismoParticipo != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
-				}
-				$sFiltro .= "noProyOrganismoParticipo=" . $this->noProyOrganismoParticipo . " ";
-			}
-			if ($this->noProyInstitucionParticipo != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
-				}
-				$sFiltro .= "noProyInstitucionParticipo=" . $this->noProyInstitucionParticipo . " ";
+				$sFiltro .= "cursoCompetencia=" . $this->cursoCompetencia . " ";
 			}
 			if (strlen(trim($this->fechaRegistro)) > 0) {
 				if (strlen(trim($sFiltro)) > 0) {
@@ -550,23 +370,17 @@
 			}
 			$sQuery = "
 		SELECT
-			 idInvestigacion
+			 idSupAcademica
 			,idEstimulo
 			,idPersona
 			,numeroEmpleado
 			,nombreCompleto
 			,tipoContrato
-			,fechaRegistroEstimulo
-			,reconocimientoSNI
-			,fechaInicioSNI
-			,fechaTerminoSNI
-			,nivelSNI
-			,noProyOrganismoResponsable
-			,noProyInstitucionResponsable
-			,noProyOrganismoParticipo
-			,noProyInstitucionParticipo
+			,convert(varchar(10),fechaRegistroEstimulo,103) AS fechaRegistroEstimulo
+			,certificacionIngles
+			,cursoCompetencia
 			,fechaRegistro
-		FROM vtaC_estInvestigacion
+		FROM vtaC_estSupAcademica
 		" . $sFiltro . "
 		" . $sOrdenQuery . " ";
 
@@ -620,7 +434,7 @@
 			} else {
 				$i = 0;
 				foreach ($arrDatos as $llaveFila => $fila) {
-					$iInvestigacionID = $arrDatos[$llaveFila]['idInvestigacion'];
+					$iSupAcademicaID = $arrDatos[$llaveFila]['idSupAcademica'];
 					$numEmpleado = $arrDatos[$llaveFila]['numeroEmpleado'];
 					foreach ($fila as $llaveColumna => $valor) {
 						$arrDatos[$llaveFila]['accion'] = "<button class='btnInfoEmpleado' id='btngVerInfo' title='Ver informaci&oacute;n del empleado' onclick='verInformacionEmpleado(".$numEmpleado.")'; >Ver informaci&oacute;n del empleado</button>";
@@ -634,38 +448,33 @@
 		}
 
 		/**
-		 * Metodo que ejecuta el SP estInvestigacionAgregarModificar
+		 * Metodo que ejecuta el SP estSupAcademicaAgregarModificar
 		 *
 		 * @access public
 		 *
-		 * @param int      idEstimulo
-		 * @param varchar  reconocimientoSNI
-		 * @param datetime fechaInicioSNI
-		 * @param datetime fechaTerminoSNI
-		 * @param varchar  nivelSNI
-		 * @param int      noProyOrganismoResponsable
-		 * @param int      noProyInstitucionResponsable
-		 * @param int      noProyOrganismoParticipo
-		 * @param int      noProyInstitucionParticipo
-		 * @param varchar  usuarioRealizo
+		 * @param int     idEstimulo
+		 * @param varchar certificacionIngles
+		 * @param tinyint cursoCompetencia
+		 * @param varchar usuarioRealizo
 		 *
-		 * @return int idInvestigacion
+		 * @return int idSupAcademica
 		 * @return int noError
 		 * @return varchar mensaje
 		 */
-		public function estInvestigacionAgregarModificar() {
-			$objProc = new clsProcedimientos("estInvestigacionAgregarModificar");
+		public function estSupAcademicaAgregarModificar() {
+			$objProc = new clsProcedimientos("estSupAcademicaAgregarModificar");
 			$objProc->FNCAgregaParametrosEntrada($this->idEstimulo);
-			$objProc->FNCAgregaParametrosEntrada($this->reconocimientoSNI, 1);
-			$objProc->FNCAgregaParametrosEntrada($this->fechaInicioSNI, 1);
-			$objProc->FNCAgregaParametrosEntrada($this->fechaTerminoSNI, 1);
-			$objProc->FNCAgregaParametrosEntrada($this->nivelSNI, 1);
-			$objProc->FNCAgregaParametrosEntrada($this->noProyOrganismoResponsable);
-			$objProc->FNCAgregaParametrosEntrada($this->noProyInstitucionResponsable);
-			$objProc->FNCAgregaParametrosEntrada($this->noProyOrganismoParticipo);
-			$objProc->FNCAgregaParametrosEntrada($this->noProyInstitucionParticipo);
+			$objProc->FNCAgregaParametrosEntrada($this->certificacionIngles);
+			$objProc->FNCAgregaParametrosEntrada($this->cursoCompetencia);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
-			$objProc->FNCAgregaParametroSalida("idInvestigacion", "INT");
+
+
+			if ($this->idSupAcademica != -1) {
+				$objProc->FNCAgregaParametrosEntrada($this->idSupAcademica);
+			} else {
+				$objProc->FNCAgregaParametroSalida("idSupAcademica", "INT");
+			}
+
 			$objProc->FNCAgregaParametroSalida("noError", "INT");
 			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);
 
@@ -687,19 +496,19 @@
 
 
 		/**
-		 * Metodo que ejecuta el SP estInvestigacionEliminar
+		 * Metodo que ejecuta el SP estSupAcademicaEliminar
 		 *
 		 * @access public
 		 *
-		 * @param int     idInvestigacion
+		 * @param int     idSupAcademica
 		 * @param varchar usuarioRealizo
 		 *
 		 * @return int noError
 		 * @return varchar mensaje
 		 */
-		public function estInvestigacionEliminar() {
-			$objProc = new clsProcedimientos("estInvestigacionEliminar");
-			$objProc->FNCAgregaParametrosEntrada($this->idInvestigacion);
+		public function estSupAcademicaEliminar() {
+			$objProc = new clsProcedimientos("estSupAcademicaEliminar");
+			$objProc->FNCAgregaParametrosEntrada($this->idSupAcademica);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
 			$objProc->FNCAgregaParametroSalida("noError", "INT");
 			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);

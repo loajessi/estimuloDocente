@@ -2,14 +2,14 @@
 //****************//
 //  modParqueCientificoEliminar.php//
 //****************//
-    include("../class/clsParqueCientifico.php");
+	include("../class/clsParqueCientifico.php");
 
-    $objParqueCientifico = new clsParqueCientifico();
+	$objParqueCientifico = new clsParqueCientifico();
 
-    $objParqueCientifico->setidParqueCientifico($_POST['pRegistroID']);
-    $objParqueCientifico->setusuarioRealizo($_SESSION['VS_Usuario']);
+	$objParqueCientifico->setidParqueCientifico($_POST['pRegistroID']);
+	$objParqueCientifico->setusuarioRealizo($_SESSION['VS_Usuario']);
 
-    $arrSalida = $objParqueCientifico->estParqueCientificoEliminar();
+	$arrSalida = $objParqueCientifico->estParqueCientificoEliminar();
 
-    echo "json={'noError':'" . $arrSalida['noError'] . "', 'mensaje':'" . $arrSalida['mensaje'] . "'}";
+	echo "json={'noError':'" . $arrSalida['noError'] . "', 'mensaje':'" . $arrSalida['mensaje'] . "'}";
 ?>

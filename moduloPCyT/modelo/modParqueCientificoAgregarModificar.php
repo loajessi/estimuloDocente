@@ -1,17 +1,17 @@
 <?php
-//****************//
-//  modParqueCientificoAgregarModificar.php//
-//****************//
-    include("../class/clsParqueCientifico.php");
+	//****************//
+	//  modParqueCientificoAgregarModificar.php//
+	//****************//
+	include("../class/clsParqueCientifico.php");
 
-    $objParqueCientifico = new clsParqueCientifico();
+	$objParqueCientifico = new clsParqueCientifico();
 
-    $objParqueCientifico->setidEstimulo($_POST['ctridEstimulo']);
-    $objParqueCientifico->setpatente($_POST['ctrpatente']);
-    $objParqueCientifico->setfase($_POST['ctrfase']);
-    $objParqueCientifico->setusuarioRealizo($_SESSION['VS_Usuario']);
+	$objParqueCientifico->setidEstimulo($_POST['ctridEstimulo']);
+	$objParqueCientifico->setpatente($_POST['ctrpatente']);
+	$objParqueCientifico->setfase($_POST['ctrfase']);
+	$objParqueCientifico->setusuarioRealizo($_SESSION['VS_Usuario']);
 
-    $arrSalida = $objParqueCientifico->estParqueCientificoAgregarModificar();
+	$arrSalida = $objParqueCientifico->estParqueCientificoAgregarModificar();
 
-    echo "json={'noError':'" . $arrSalida['noError'] . "', 'mensaje':'" . $arrSalida['mensaje'] . "'}";
+	echo "json={'noError':'" . $arrSalida['noError'] . "', 'mensaje':'" . $arrSalida['mensaje'] . "'}";
 ?>

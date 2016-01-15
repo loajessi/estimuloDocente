@@ -1,8 +1,3 @@
-<div class="barraSuperiorAcciones animated fadeInRight">
-	<a id="btnGuardar" class="boton icon guardar">Guardar</a>
-	<a id="btnCancelar" class="boton peligro icon remover">Cancelar</a>
-</div>
-
 <h1 class="animated fadeIn">Validaci&oacute;n de datos</h1>
 <hr />
 

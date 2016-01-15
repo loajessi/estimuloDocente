@@ -2,30 +2,38 @@
 	require_once("../../config.php");
 	require_once("clsConsulta.php");
 	require_once("clsProcedimientos.php");
-	/*** Clase Generada por CTool 3.3.3 para el objeto CentroComputo
+	/*** Clase Generada por CTool 3.3.3 para el objeto Evaluacion
 	 * @author nombreAutor
-	 * Fecha:14/01/2016
-	 * @property int $idCentroComputo descripcion
+	 * Fecha:15/01/2016
+	 * @property int $idEvaluacion descripcion
 	 * @property int $idEstimulo descripcion
 	 * @property int $idPersona descripcion
 	 * @property int $numeroEmpleado descripcion
 	 * @property varchar $nombreCompleto descripcion
 	 * @property varchar $tipoContrato descripcion
 	 * @property datetime $fechaRegistroEstimulo descripcion
-	 * @property smallint $noMultimedioElaborado descripcion
+	 * @property smallint $desempeñoAula descripcion
+	 * @property smallint $desempeñoAcademico descripcion
+	 * @property tinyint $innovacion descripcion
+	 * @property tinyint $tics descripcion
+	 * @property tinyint $egel descripcion
 	 * @property datetime $fechaRegistro descripcion
 	 * @property string usuarioRealizo
 	 * @property string ordenQuery agrega un orden especifico en el query
 	 */
-	class clsCentroComputo{
-		private $idCentroComputo;
+	class clsEvaluacion{
+		private $idEvaluacion;
 		private $idEstimulo;
 		private $idPersona;
 		private $numeroEmpleado;
 		private $nombreCompleto;
 		private $tipoContrato;
 		private $fechaRegistroEstimulo;
-		private $noMultimedioElaborado;
+		private $desempeñoAula;
+		private $desempeñoAcademico;
+		private $innovacion;
+		private $tics;
+		private $egel;
 		private $fechaRegistro;
 		private $usuarioRealizo;
 		private $ordenQuery;
@@ -35,35 +43,39 @@
 		 * Constructor de la clase
 		 */
 		public function __construct(){
-			$this->idCentroComputo=-1;
+			$this->idEvaluacion=-1;
 			$this->idEstimulo=-1;
 			$this->idPersona=-1;
 			$this->numeroEmpleado=-1;
 			$this->nombreCompleto="";
 			$this->tipoContrato="";
 			$this->fechaRegistroEstimulo="";
-			$this->noMultimedioElaborado=-1;
+			$this->desempeñoAula=-1;
+			$this->desempeñoAcademico=-1;
+			$this->innovacion=-1;
+			$this->tics=-1;
+			$this->egel=-1;
 			$this->fechaRegistro="";
 			$this->usuarioRealizo="";
 			$this->ordenQuery="";
 		}
 		/**
-		 *  Metodo que inicializa el atributo idCentroComputo
+		 *  Metodo que inicializa el atributo idEvaluacion
 		 *  @access public
-		 *  @param int $pidCentroComputo descripcion.
+		 *  @param int $pidEvaluacion descripcion.
 		 *
 		 */
-		public function setidCentroComputo($pidCentroComputo){
-			$this->idCentroComputo=$pidCentroComputo;
+		public function setidEvaluacion($pidEvaluacion){
+			$this->idEvaluacion=$pidEvaluacion;
 		}
 		/**
-		 *  Metodo que obtiene el atributo idCentroComputo
+		 *  Metodo que obtiene el atributo idEvaluacion
 		 *  @access private
-		 *  @return int atributo idCentroComputo
+		 *  @return int atributo idEvaluacion
 		 *
 		 */
-		private function getidCentroComputo(){
-			return $this->idCentroComputo;
+		private function getidEvaluacion(){
+			return $this->idEvaluacion;
 		}
 		/**
 		 *  Metodo que inicializa el atributo idEstimulo
@@ -174,22 +186,94 @@
 			return $this->fechaRegistroEstimulo;
 		}
 		/**
-		 *  Metodo que inicializa el atributo noMultimedioElaborado
+		 *  Metodo que inicializa el atributo desempeñoAula
 		 *  @access public
-		 *  @param smallint $pnoMultimedioElaborado descripcion.
+		 *  @param smallint $pdesempeñoAula descripcion.
 		 *
 		 */
-		public function setnoMultimedioElaborado($pnoMultimedioElaborado){
-			$this->noMultimedioElaborado=$pnoMultimedioElaborado;
+		public function setdesempeñoAula($pdesempeñoAula){
+			$this->desempeñoAula=$pdesempeñoAula;
 		}
 		/**
-		 *  Metodo que obtiene el atributo noMultimedioElaborado
+		 *  Metodo que obtiene el atributo desempeñoAula
 		 *  @access private
-		 *  @return smallint atributo noMultimedioElaborado
+		 *  @return smallint atributo desempeñoAula
 		 *
 		 */
-		private function getnoMultimedioElaborado(){
-			return $this->noMultimedioElaborado;
+		private function getdesempeñoAula(){
+			return $this->desempeñoAula;
+		}
+		/**
+		 *  Metodo que inicializa el atributo desempeñoAcademico
+		 *  @access public
+		 *  @param smallint $pdesempeñoAcademico descripcion.
+		 *
+		 */
+		public function setdesempeñoAcademico($pdesempeñoAcademico){
+			$this->desempeñoAcademico=$pdesempeñoAcademico;
+		}
+		/**
+		 *  Metodo que obtiene el atributo desempeñoAcademico
+		 *  @access private
+		 *  @return smallint atributo desempeñoAcademico
+		 *
+		 */
+		private function getdesempeñoAcademico(){
+			return $this->desempeñoAcademico;
+		}
+		/**
+		 *  Metodo que inicializa el atributo innovacion
+		 *  @access public
+		 *  @param tinyint $pinnovacion descripcion.
+		 *
+		 */
+		public function setinnovacion($pinnovacion){
+			$this->innovacion=$pinnovacion;
+		}
+		/**
+		 *  Metodo que obtiene el atributo innovacion
+		 *  @access private
+		 *  @return tinyint atributo innovacion
+		 *
+		 */
+		private function getinnovacion(){
+			return $this->innovacion;
+		}
+		/**
+		 *  Metodo que inicializa el atributo tics
+		 *  @access public
+		 *  @param tinyint $ptics descripcion.
+		 *
+		 */
+		public function settics($ptics){
+			$this->tics=$ptics;
+		}
+		/**
+		 *  Metodo que obtiene el atributo tics
+		 *  @access private
+		 *  @return tinyint atributo tics
+		 *
+		 */
+		private function gettics(){
+			return $this->tics;
+		}
+		/**
+		 *  Metodo que inicializa el atributo egel
+		 *  @access public
+		 *  @param tinyint $pegel descripcion.
+		 *
+		 */
+		public function setegel($pegel){
+			$this->egel=$pegel;
+		}
+		/**
+		 *  Metodo que obtiene el atributo egel
+		 *  @access private
+		 *  @return tinyint atributo egel
+		 *
+		 */
+		private function getegel(){
+			return $this->egel;
 		}
 		/**
 		 *  Metodo que inicializa el atributo fechaRegistro
@@ -232,11 +316,11 @@
 		 */
 		private function getFiltroQuery(){
 			$sFiltro="";
-			if($this->idCentroComputo!= -1){
+			if($this->idEvaluacion!= -1){
 				if(strlen(trim($sFiltro))>0){
 					$sFiltro.="AND ";
 				}
-				$sFiltro.="idCentroComputo=" . $this->idCentroComputo . " ";
+				$sFiltro.="idEvaluacion=" . $this->idEvaluacion . " ";
 			}
 			if($this->idEstimulo!= -1){
 				if(strlen(trim($sFiltro))>0){
@@ -274,11 +358,35 @@
 				}
 				$sFiltro.="fechaRegistroEstimulo='" . $this->fechaRegistroEstimulo . "'" ;
 			}
-			if($this->noMultimedioElaborado!= -1){
+			if($this->desempeñoAula!= -1){
 				if(strlen(trim($sFiltro))>0){
 					$sFiltro.="AND ";
 				}
-				$sFiltro.="noMultimedioElaborado=" . $this->noMultimedioElaborado . " ";
+				$sFiltro.="desempeñoAula=" . $this->desempeñoAula . " ";
+			}
+			if($this->desempeñoAcademico!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
+				}
+				$sFiltro.="desempeñoAcademico=" . $this->desempeñoAcademico . " ";
+			}
+			if($this->innovacion!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
+				}
+				$sFiltro.="innovacion=" . $this->innovacion . " ";
+			}
+			if($this->tics!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
+				}
+				$sFiltro.="tics=" . $this->tics . " ";
+			}
+			if($this->egel!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
+				}
+				$sFiltro.="egel=" . $this->egel . " ";
 			}
 			if(strlen(trim($this->fechaRegistro))>0){
 				if(strlen(trim($sFiltro))>0){
@@ -307,16 +415,20 @@
 			}
 			$sQuery="
 		SELECT
-			 idCentroComputo
+			 idEvaluacion
 			,idEstimulo
 			,idPersona
 			,numeroEmpleado
 			,nombreCompleto
 			,tipoContrato
-			,convert(varchar(10),fechaRegistroEstimulo,103) AS fechaRegistroEstimulo
-			,noMultimedioElaborado
+			,fechaRegistroEstimulo
+			,desempeñoAula
+			,desempeñoAcademico
+			,innovacion
+			,tics
+			,egel
 			,fechaRegistro
-		FROM vtaC_estCentroComputo
+		FROM vtaC_estEvaluacion
 		" . $sFiltro . "
 		" . $sOrdenQuery . " ";
 
@@ -365,10 +477,9 @@
 			else{
 				$i=0;
 				foreach($arrDatos as $llaveFila=>$fila){
-					$iCentroComputoID = $arrDatos[$llaveFila]['idCentroComputo'];
-					$numEmpleado = $arrDatos[$llaveFila]['numeroEmpleado'];
+					$iEvaluacionID = $arrDatos[$llaveFila]['idEvaluacion'];
 					foreach($fila as $llaveColumna=>$valor){
-						$arrDatos[$llaveFila]['accion'] = "<button class='btnInfoEmpleado' id='btngVerInfo' title='Ver informaci&oacute;n del empleado' onclick='verInformacionEmpleado(".$numEmpleado.")'; >Ver informaci&oacute;n del empleado</button>";
+						$arrDatos[$llaveFila]['accion']="<a id='btnEliminar_". $i . "' href=# class='boton icon papelera' title='Eliminar' onclick='evaluacionEliminar(" . $iEvaluacionID . ")'></a> <a id='btnEditar_". $i . "' href='#' class='boton icon editar' title='Editar' onclick='evaluacionEditar(" . $iEvaluacionID . ")'></a>";
 						$arrDatos[$llaveFila][$llaveColumna] = utf8_encode($valor);
 						$i++;
 					}
@@ -378,28 +489,30 @@
 			return json_encode($arrDatos);
 		}
 		/**
-		 * Metodo que ejecuta el SP estCentroComputoAgregarModificar
+		 * Metodo que ejecuta el SP estEvaluacionAgregarModificar
 		 *
 		 * @access public
 		 * @param int idEstimulo
-		 * @param smallint noMultimedioElaborado
+		 * @param smallint desempeñoAula
+		 * @param smallint desempeñoAcademico
+		 * @param tinyint innovacion
+		 * @param tinyint tics
+		 * @param tinyint egel
 		 * @param varchar usuarioRealizo
-		 * @return int idCentroComputo
+		 * @return int idEvaluacion
 		 * @return int noError
 		 * @return varchar mensaje
 		 */
-		public function estCentroComputoAgregarModificar(){
-			$objProc=new clsProcedimientos("estCentroComputoAgregarModificar");
+		public function estEvaluacionAgregarModificar(){
+			$objProc=new clsProcedimientos("estEvaluacionAgregarModificar");
 			$objProc->FNCAgregaParametrosEntrada($this->idEstimulo);
-			$objProc->FNCAgregaParametrosEntrada($this->noMultimedioElaborado);
+			$objProc->FNCAgregaParametrosEntrada($this->desempeñoAula);
+			$objProc->FNCAgregaParametrosEntrada($this->desempeñoAcademico);
+			$objProc->FNCAgregaParametrosEntrada($this->innovacion);
+			$objProc->FNCAgregaParametrosEntrada($this->tics);
+			$objProc->FNCAgregaParametrosEntrada($this->egel);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo,1);
-
-			if ($this->idCentroComputo != -1) {
-				$objProc->FNCAgregaParametrosEntrada($this->idCentroComputo);
-			} else {
-				$objProc->FNCAgregaParametroSalida("idCentroComputo","INT");
-			}
-
+			$objProc->FNCAgregaParametroSalida("idEvaluacion","INT");
 			$objProc->FNCAgregaParametroSalida("noError","INT");
 			$objProc->FNCAgregaParametroSalida("mensaje","VARCHAR",255);
 
@@ -420,17 +533,17 @@
 
 
 		/**
-		 * Metodo que ejecuta el SP estCentroComputoEliminar
+		 * Metodo que ejecuta el SP estEvaluacionEliminar
 		 *
 		 * @access public
-		 * @param int idCentroComputo
+		 * @param int idEvaluacion
 		 * @param varchar usuarioRealizo
 		 * @return int noError
 		 * @return varchar mensaje
 		 */
-		public function estCentroComputoEliminar(){
-			$objProc=new clsProcedimientos("estCentroComputoEliminar");
-			$objProc->FNCAgregaParametrosEntrada($this->idCentroComputo);
+		public function estEvaluacionEliminar(){
+			$objProc=new clsProcedimientos("estEvaluacionEliminar");
+			$objProc->FNCAgregaParametrosEntrada($this->idEvaluacion);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo,1);
 			$objProc->FNCAgregaParametroSalida("noError","INT");
 			$objProc->FNCAgregaParametroSalida("mensaje","VARCHAR",255);

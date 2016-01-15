@@ -1,4 +1,3 @@
-
 <h1 class=" animated fadeIn ">Validaci&oacute;n de datos</h1>
 <hr />
 

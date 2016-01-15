@@ -466,8 +466,9 @@
 				$i = 0;
 				foreach ($arrDatos as $llaveFila => $fila) {
 					$iPersonalID = $arrDatos[$llaveFila]['idPersonal'];
+					$numEmpleado = $arrDatos[$llaveFila]['numeroEmpleado'];
 					foreach ($fila as $llaveColumna => $valor) {
-						$arrDatos[$llaveFila]['accion'] = "<a id='btnEliminar_" . $i . "' href=# class='boton icon papelera' title='Eliminar' onclick='personalEliminar(" . $iPersonalID . ")'></a> <a id='btnEditar_" . $i . "' href='#' class='boton icon editar' title='Editar' onclick='personalEditar(" . $iPersonalID . ")'></a>";
+						$arrDatos[$llaveFila]['accion'] = "<button class='btnInfoEmpleado' id='btngVerInfo' title='Ver informaci&oacute;n del empleado' onclick='verInformacionEmpleado(".$numEmpleado.")'; >Ver informaci&oacute;n del empleado</button>";
 						$arrDatos[$llaveFila][$llaveColumna] = utf8_encode($valor);
 						$i++;
 					}
@@ -499,6 +500,13 @@
 			$objProc->FNCAgregaParametrosEntrada($this->puestoDrectivo, 1);
 			$objProc->FNCAgregaParametrosEntrada($this->asistencias);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
+
+			if($this->idPersonal != -1) {
+				$objProc->FNCAgregaParametrosEntrada($this->idPersonal);
+			} else {
+				$objProc->FNCAgregaParametroSalida("idPersonal","INT");
+			}
+
 			$objProc->FNCAgregaParametroSalida("idPersonal", "INT");
 			$objProc->FNCAgregaParametroSalida("noError", "INT");
 			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);

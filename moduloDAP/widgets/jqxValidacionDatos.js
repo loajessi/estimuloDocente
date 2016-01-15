@@ -230,6 +230,7 @@ function personalAgregarModificar() {
 			} else {
 				// Acciones posteriores a la actualizacion
 				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+				$('#cd_Guardado').val('1');
 			}
 		}
 	});

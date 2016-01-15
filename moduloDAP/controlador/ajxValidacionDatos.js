@@ -8,23 +8,19 @@ function validacionDatosInicializar() {
 
     var agregarEventos = function () {
 
-	    //$('#jqxGrid_Docentes').on('rowclick', function (event) {
 	    $('#jqxGrid_Docentes').on('rowselect', function (event) {
-		    var tiempoGuardar;
+
+		    var puestoDrectivo = $('#cd_puestoDrectivo').val(),
+			    gradoAcademico = $('#cd_gradoAcademico').val(),
+			    asistencias = $('#cd_asistencias').val();
 
 		    var data = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', event.args.rowindex);
-		    $('#cd_RowIndex').val(event.args.rowindex);
-		    $('#cd_idEstimulo').val(data.idEstimulo);
-		    $('#cd_idPersonal').val(data.idPersonal);
 
-		    //Si es una fila diferente, ejecutar nuevamente
 		    if (event.args.rowindex != $('#cd_RowIndex').val()) {
 
-			    //clearTimeout(tiempoGuardar);
-			    //console.info('Guardado fila '+$('#cd_RowIndex').val());
-
-			    //Terminar eventos de fila anterior
-			    //$('#row'+ $('#cd_RowIndex').val() +'jqxGrid_Docentes').off('mouseenter').off('mouseleave');
+			    if( $('#cd_Guardado').val() == '' && (puestoDrectivo!='' || gradoAcademico!='' || asistencias!='') ) {
+				    notif({msg: '<b>No se guardaron los cambios</b>', type: 'error', position: 'right', width: 300, autohide: false});
+			    }
 
 			    //Restablecer campos
 			    $('#contenedorDatos input').val('');
@@ -32,21 +28,6 @@ function validacionDatosInicializar() {
 			    $('#cd_RowIndex').val(event.args.rowindex);
 			    $('#cd_idEstimulo').val(data.idEstimulo);
 			    $('#cd_idPersonal').val(data.idPersonal);
-
-			    //$('#jqxGrid_Docentes').jqxGrid('beginrowedit', event.args.rowindex);
-
-			    /*$('#row'+event.args.rowindex+'jqxGrid_Docentes').on('mouseleave', function () {
-				    tiempoGuardar = setTimeout(function() {
-					    console.info('Guardando fila '+event.args.rowindex);
-				    }, 1000);
-			    }).on('mouseenter', function () {
-				    clearTimeout(tiempoGuardar);
-			    });
-
-			    $("#jqxGrid_Docentes").on('cellbeginedit', function (event) {
-				    clearTimeout(tiempoGuardar);
-				    console.info('Borrando tiempo');
-			    });*/
 
 		    }
 

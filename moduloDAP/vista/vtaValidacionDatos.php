@@ -16,4 +16,5 @@
 	<input type="text" id="cd_gradoAcademico" value="" />
 	<input type="text" id="cd_puestoDrectivo" value="" />
 	<input type="text" id="cd_asistencias" value="" />
+	<input type="text" id="cd_Guardado" value="" />
 </div>

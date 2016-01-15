@@ -18,7 +18,7 @@ function validacionDatosInicializar() {
 
     crearWidgets();
     agregarEventos();
-    Docentes_ValidacionDatos_TablaCargar("#jqxGrid_Docentes");
+	PersonalTablaCargar("#jqxGrid_Docentes");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

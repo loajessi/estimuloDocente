@@ -1,4 +1,4 @@
-// Función de inicialización de la vista
+// FunciÃ³n de inicializaciÃ³n de la vista
 
 function validacionDatosInicializar() {
 
@@ -8,35 +8,13 @@ function validacionDatosInicializar() {
 
     var agregarEventos = function () {
 
-	    $("#btnGuardar").on("click", function (event) {
-		    //Reemplazar texto por "Guardando..."
-		    var elemento = $(this),
-			    txtOriginal = $(elemento).html();
-		    $(this).html("Guardando...");
-
-		    // Guarda en la BD
-
-		    //Envio exitoso
-		    //Actualizar datos después de agregar patente...
-
-		    window.setTimeout(function() {
-			    //Restarurar texto original
-			    $(elemento).html(txtOriginal);
-		    }, 1500);
-	    });
-
-        $("#btnCancelar").on("click", function (event) {
-            Docentes_ValidacionDatos_TablaCargar("#jqxGrid_Docentes");
-        });
-
-
     };
 
     crearWidgets();
     agregarEventos();
-    Docentes_ValidacionDatos_TablaCargar("#jqxGrid_Docentes");
+	RelacionesInternacionalesTablaCargar("#jqxGrid_Docentes");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicialización de contenido
+// Funciones correspondientes a eventos o inicializaciÃ³n de contenido

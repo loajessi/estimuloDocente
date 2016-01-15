@@ -56,6 +56,7 @@ function EvaluacionTablaCargar(sControl){
 		editable: true,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true},
+			{text: '', datafield: 'idEvaluacion', hidden: true },
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '115px'},
 			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '272px'},
 			{text: 'Desempe&ntilde;o en el aula (Alumnos)', datafield: 'desempeñoAula', cellsalign: 'center', editable: true, width: '167px', columntype: 'numberinput',

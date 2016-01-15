@@ -5,13 +5,17 @@
 		datafields: [
 			{name:'accion',type:'string'},
 			{name:'idPersonal', type:'int'},
-			{name:'id_estimulo', type:'int'},
-			{name:'num_empleado', type:'varchar'},
-			{name:'tipo_contrato', type:'varchar'},
+			{name:'idEstimulo', type:'int'},
+			{name:'idPersona', type:'int'},
+			{name:'numeroEmpleado', type:'int'},
+			{name:'nombreCompleto', type:'varchar'},
+			{name:'tipoContrato', type:'varchar'},
+			{name:'fechaRegistroEstimulo', type:'datetime'},
 			{name:'gradoAcademico', type:'varchar'},
 			{name:'puestoDrectivo', type:'varchar'},
-			{name:'asistencias', type:'float'}
- 		],
+			{name:'asistencias', type:'float'},
+			{name:'fechaRegistro', type:'datetime'}
+		],
 		url: "modelo/modPersonalConsultar.php",
 		type: 'POST',
 		data: {'pPersonalID':pPersonalID},
@@ -21,11 +25,21 @@
 	return dataAdapter;
 }
 
-function Docentes_ValidacionDatos_TablaCargar(sControl, piCicloEstimuloID) {
-	var dataAdapter = datosPersonalCargar(piCicloEstimuloID);
-	dataAdapter.dataBind();
-	var registros = dataAdapter.records;
+function datosPersonalRegistroObtener(pPersonalID){
+	$.ajax({
+		async: false,
+		url: "../moduloXX/modelo/modPersonalConsultar.php",
+		data: {iPersonalID : pPersonalID},
+		type: 'POST',
+		success: function (data, status, xhr) {
+			registro = jQuery.parseJSON(data);
+		}
+	});
+	return registro;
+}
 
+function PersonalTablaCargar(sControl){
+	var dataAdapter= datosPersonalCargar();
 	$(sControl).jqxGrid({
 		width: '99.5%',
 		height: '455px',
@@ -40,8 +54,8 @@ function Docentes_ValidacionDatos_TablaCargar(sControl, piCicloEstimuloID) {
 		editable: true,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu: false},
-			{text: 'No. empleado', datafield: 'num_empleado', cellsalign: 'center', editable: false, width: '149px' },
-			{text: 'Nombre completo', datafield: 'tipo_contrato', editable: false, width: '350px' },
+			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '149px' },
+			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '350px' },
 			{text: 'Cumplimiento de grado acad&eacute;mico', datafield: 'gradoAcademico', columntype: 'checkbox', cellsalign: 'center', width: '195px', renderer: function () {return '<div class="jxGrid_headerDoble txtCentrado">Cumplimiento de<br />grado acad&eacute;mico</div>'; }},
 			{text: 'Cuenta con puesto directivo o de confianza', datafield: 'puestoDrectivo', width: '195px', columntype: 'checkbox', renderer: function () {return '<div class="jxGrid_headerDoble txtCentrado">&iquest;Cuenta con puesto<br />directivo o de confianza?</div>'; }},
 			{text: 'Porcentaje de asistencia', datafield: 'asistencias', cellsalign: 'center', width: '195px', columntype: 'numberinput', cellsformat: 'f2',
@@ -68,26 +82,53 @@ function Docentes_ValidacionDatos_TablaCargar(sControl, piCicloEstimuloID) {
 	});
 }
 
+function PersonalComboCargar(sControl){
+	var dataAdapter= datosPersonalCargar();
+	$(sControl).jqxComboBox({ // o .jqxInput
+		source: dataAdapter
+		,displayMember:'option'
+		,valueMember:'value'
+		,width: '100%'
+		,animationType: 'fade'
+		,theme: 'energyblue'
+		,searchMode: 'containsignorecase'
+		,autoComplete: true
+		,placeHolder: "seleccione..."
+	});
+}
 
-function validacionDatosPersonalAgregarModificar(rowid){
-	if(rowid == -1) return;
+function PersonalListBoxCargar(sControl){
+	var dataAdapter= datosPersonalCargar();
+	$(sControl).jqxListBox({
+		source: dataAdapter
+		,displayMember:'option'
+		,valueMember:'value'
+		,width: '100%'
+		,theme: 'enegryBlue'
+		,disabled : true
+	});
+}
 
-	$("#jqxGrid_Docentes").jqxGrid('endrowedit', rowid, false); // false = confirma cambios
+function PersonalFormularioCargar(pPersonalID){
+	var dataAdapter= datosPersonalRegistroObtener(pPersonalID);
+	registro=dataAdapter.records[0];
 
-	var sPagina="modelo/modPersonalAgregarModificar.php";
-	var data = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', rowid);
+	$('#ctrlidPersonal').val(registro.idPersonal)
+	$('#ctrlidEstimulo').val(registro.idEstimulo)
+	$('#ctrlidPersona').val(registro.idPersona)
+	$('#ctrlnumeroEmpleado').val(registro.numeroEmpleado)
+	$('#ctrlnombreCompleto').val(registro.nombreCompleto)
+	$('#ctrltipoContrato').val(registro.tipoContrato)
+	$('#ctrlfechaRegistroEstimulo').val(registro.fechaRegistroEstimulo)
+	$('#ctrlgradoAcademico').val(registro.gradoAcademico)
+	$('#ctrlpuestoDrectivo').val(registro.puestoDrectivo)
+	$('#ctrlasistencias').val(registro.asistencias)
+	$('#ctrlfechaRegistro').val(registro.fechaRegistro)
+}
 
-	if(data.gradoAcademico) var requisitoGradoAcademico = '1';
-	else var requisitoGradoAcademico = '0';
-
-	if(data.puestoDrectivo) var cuentaConPuestoDirectivo = '1';
-	else var cuentaConPuestoDirectivo = '0';
-
-	var oParametros = "idPersonal="+data.idPersonal+
-					  "&idEstimulo="+data.id_estimulo+
-					  "&gradoAcademico="+requisitoGradoAcademico+
-					  "&puestoDrectivo="+cuentaConPuestoDirectivo+
-					  "&asistencias="+data.asistencias;
+function personalAgregarModificar(){
+	var sPagina="../../moduloXX/modelo/modPersonalAgregarModificar.php";
+	var oParametros=$('#frmFormulario').serialize();
 
 	$.post(sPagina
 		,oParametros
@@ -98,10 +139,36 @@ function validacionDatosPersonalAgregarModificar(rowid){
 					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
 				}
 				else {
-					// alert("Su informaci\u00f3n se registr\u00f3 correctamente en la base de datos.");
+					alert("Su informaci\u00f3n se registr\u00f3 correctamente en la base de datos.");
 					// Acciones posteriores a la actualizacion
 				}
 			}
 		}
 	);
 }
+
+
+
+function personalEliminar(pRegistroID){
+	var sPagina="../../moduloXX/modelo/modPersonalEliminar.php";
+	var oParametros={'pRegistroID':pRegistroID}
+
+	$.post(sPagina
+		,oParametros
+		,function(datos,status){
+			if(status=='success'){
+				eval(datos);
+				if(json.noError > 0){
+					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
+				}
+				else {
+					alert("Su informaci\u00f3n se elimin\u00f3 correctamente en la base de datos.");
+					// Acciones posteriores a la actualizacion
+				}
+			}
+		}
+	);
+}
+
+
+

@@ -1,7 +1,7 @@
 <?php
     require_once("../../config.php");
-    require_once("../../../generalesDIyS/_class/db/clsConsulta.php");
-    require_once("../../../generalesDIyS/_class/db/clsProcedimientos.php");
+    require_once("clsConsulta.php");
+    require_once("clsProcedimientos.php");
     /*** Clase Generada por CTool 3.3.3 para el objeto Evaluacion
      * @author nombreAutor
      * Fecha:14/01/2016

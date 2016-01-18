@@ -1,13 +1,14 @@
-// Función de inicialización de la vista
+// FunciÃ³n de inicializaciÃ³n de la vista
 
 function detalleProyectosInicializar() {
 
 	var crearWidgets = function () {
 		$("#jqxButtonGroup_SNI").jqxButtonGroup({ mode: 'RadioButtons', theme: 'energyblue' });
 
-		var jqxNumberInputConfig = {
+		/*var jqxNumberInputConfig = {
 			width: '150px',
 			height: '28px',
+			textAlign: 'center',
 			inputMode: 'simple',
 			spinButtons: true,
 			min: 0,
@@ -15,7 +16,7 @@ function detalleProyectosInicializar() {
 			decimalDigits: 0,
 			theme: 'energyblue'
 		};
-		$('.jqxNumberInput_ValidacionProyectos').jqxNumberInput(jqxNumberInputConfig);
+		$('.jqxNumberInput_ValidacionProyectos').jqxNumberInput(jqxNumberInputConfig);*/
 
 		var jqxDateTimeInputConfig = {
 			width: '100%',
@@ -51,18 +52,25 @@ function detalleProyectosInicializar() {
 
 	var agregarEventos = function () {
 
+		$('#frmModalAgregarProyecto').on('submit', function (e) {
+			e.stopPropagation();
+			alert('OK');
+		});
+
 		$("#jqxButtonGroup_SNI").on('buttonclick', function (event) {
 			var clickedButton = event.args.button;
 			$('.btnActivo').removeClass('btnActivo btnCorrecto btnPeligro');
 
 			if (clickedButton[0].id == 'btnSNI_Si') {
 				$('#'+clickedButton[0].id).addClass('btnActivo btnCorrecto');
-
+				$('#botonSNI').val(1);
 				$('#hdnSNI').val(1).trigger('change');
 			} else if (clickedButton[0].id == 'btnSNI_No') {
 				$('#'+clickedButton[0].id).addClass('btnActivo btnPeligro');
+				$('#botonSNI').val(0);
 				$('#hdnSNI').val(0).trigger('change');
 			} else {
+				$('#botonSNI').val('');
 				$('#hdnSNI').val('').trigger('change');
 			}
 		});
@@ -86,18 +94,18 @@ function detalleProyectosInicializar() {
 			$(this).html("Guardando...");
 
 			// Guarda en la BD
+			//var respuesta = investigacionAgregarModificar();
 
-			//Envio exitoso
-			//Actualizar datos después de agregar patente...
+			/*if(respuesta !== true){
 
-			window.setTimeout(function() {
-				//Restarurar texto original
-				$(elemento).html(txtOriginal);
-			}, 1500);
+			}*/
+
+			//Restarurar texto original
+			$(elemento).html(txtOriginal);
 		});
 
 		$("#btnCancelar").on("click", function (event) {
-			Docentes_ValidacionDatos_TablaCargar("#jqxGrid_Docentes");
+			InvestigacionTablaCargar("#jqxGrid_Docentes");
 		});
 
 	};
@@ -108,10 +116,10 @@ function detalleProyectosInicializar() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicialización de contenido
+// Funciones correspondientes a eventos o inicializaciÃ³n de contenido
 
 function ProyectosEliminarRegistro(objeto) {
-	if (confirm('¿Estás seguro que deseas eliminar esta proyecto?') ) {
+	if (confirm('Â¿EstÃ¡s seguro que deseas eliminar esta proyecto?') ) {
 		// Eliminando... simular proceso
 		window.setTimeout(function() {
 			$(objeto).parent().parent().nextAll().html('<div class="jqx-grid-cell-middle-align" style="margin-top: 11px;">Eliminando...</div>');

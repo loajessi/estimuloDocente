@@ -8,7 +8,7 @@
 		<div id="jqxGrid_Docentes" class="jqxGrid_PrimerColumnaBoton jqxGrid_PanelDetalles"></div>
 	</div>
 	<div style="overflow-y: auto;">
-		<div id="detalleDatosPatentes">
+		<div id="detalleDatosProyecto">
 			<div class="txtCentrado">
 				<h2 style="width: 500px; padding-top: 90px; margin: 0 auto; color: #ABABAB;">Selecciona un empleado de la lista para consultar aquí el detalle de proyectos</h2>
 			</div>

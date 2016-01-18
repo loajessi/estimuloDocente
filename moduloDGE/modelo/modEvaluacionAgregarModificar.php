@@ -4,7 +4,7 @@
 	//****************//
 	include("../class/clsEvaluacion.php");
 
-	$objEvaluacion=new clsEvaluacion();
+	$objEvaluacion = new clsEvaluacion();
 
 	$objEvaluacion->setidEstimulo($_POST['ctridEstimulo']);
 	$objEvaluacion->setdesempeñoAula($_POST['ctrdesempeñoAula']);

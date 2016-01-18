@@ -59,7 +59,7 @@ function RelacionesInternacionalesTablaCargar(sControl){
 			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '350px'},
 			{text: 'Cuenta con beca federal', datafield: 'becaFederal', width: '195px', columntype: 'checkbox' },
 			{text: 'Fecha de inicio', datafield: 'fechaInicioBecaFederal', cellsalign: 'center', width: '195px', columntype: 'DateTime'},
-			{text: 'Fecha de termino', datafield: 'fechaTerminoBecaFederal', cellsalign: 'center', width: '195px', columntype: 'DateTime'}
+			{text: 'Fecha de t&eacute;rmino', datafield: 'fechaTerminoBecaFederal', cellsalign: 'center', width: '195px', columntype: 'DateTime'}
 		]
 	});
 }

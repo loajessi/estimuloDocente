@@ -6,15 +6,15 @@
 
 	$objInvestigacion=new clsInvestigacion();
 
-	$objInvestigacion->setidEstimulo($_POST['ctridEstimulo']);
-	$objInvestigacion->setreconocimientoSNI($_POST['ctrreconocimientoSNI']);
-	$objInvestigacion->setfechaInicioSNI($_POST['ctrfechaInicioSNI']);
-	$objInvestigacion->setfechaTerminoSNI($_POST['ctrfechaTerminoSNI']);
-	$objInvestigacion->setnivelSNI($_POST['ctrnivelSNI']);
-	$objInvestigacion->setnoProyOrganismoResponsable($_POST['ctrnoProyOrganismoResponsable']);
-	$objInvestigacion->setnoProyInstitucionResponsable($_POST['ctrnoProyInstitucionResponsable']);
-	$objInvestigacion->setnoProyOrganismoParticipo($_POST['ctrnoProyOrganismoParticipo']);
-	$objInvestigacion->setnoProyInstitucionParticipo($_POST['ctrnoProyInstitucionParticipo']);
+	$objInvestigacion->setidEstimulo($_POST['idEstimulo']);
+	$objInvestigacion->setreconocimientoSNI($_POST['reconocimientoSNI']);
+	$objInvestigacion->setfechaInicioSNI($_POST['fechaInicioSNI']);
+	$objInvestigacion->setfechaTerminoSNI($_POST['fechaTerminoSNI']);
+	$objInvestigacion->setnivelSNI($_POST['nivelSNI']);
+	$objInvestigacion->setnoProyOrganismoResponsable($_POST['noProyOrganismoResponsable']);
+	$objInvestigacion->setnoProyInstitucionResponsable($_POST['noProyInstitucionResponsable']);
+	$objInvestigacion->setnoProyOrganismoParticipo($_POST['noProyOrganismoParticipo']);
+	$objInvestigacion->setnoProyInstitucionParticipo($_POST['|noProyInstitucionParticipo']);
 	$objInvestigacion->setusuarioRealizo($_SESSION['VS_Usuario']);
 
 	$arrSalida = $objInvestigacion->estInvestigacionAgregarModificar();

@@ -6,8 +6,8 @@
 	$objConsulta = new clsPersonal();
 
 	/* setters para configurar el filtro de la consulta
-	$objConsulta->setIdPersonal($_POST['pPersonalID']);
-	$objConsulta->setOrdenQuery("XX");*/
+	$objConsulta->setIdPersonal($_POST['pPersonalID']);*/
+	$objConsulta->setOrdenQuery("nombreCompleto");
 
 	echo $objConsulta->getDatosJson(false);
 ?>

@@ -197,8 +197,7 @@ function Docentes_DetallePatentes_TablaCargar(sControl) {
 				createeditor: function (row, value, editor) {
 					editor.jqxComboBox({ source: estadosComboAdapter, displayMember: 'nombre', valueMember: 'nombre', autoDropDownHeight: true, dropDownHeight: 200 });
 				}
-			},
-			{text: 'ID', datafield: 'idPatente', cellsalign: 'center', hidden: true}
+			}
 		]
 	});
 }

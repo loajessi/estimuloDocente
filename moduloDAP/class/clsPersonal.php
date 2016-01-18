@@ -507,7 +507,6 @@
 				$objProc->FNCAgregaParametroSalida("idPersonal","INT");
 			}
 
-			$objProc->FNCAgregaParametroSalida("idPersonal", "INT");
 			$objProc->FNCAgregaParametroSalida("noError", "INT");
 			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);
 

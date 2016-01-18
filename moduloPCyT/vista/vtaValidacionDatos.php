@@ -1,10 +1,3 @@
-<!-- Botones en cada validaci�n de patentes para evitar confusiones y posibles problemas en caso de errores. -->
-
-<!--div class="barraSuperiorAcciones">
-	<a id="btnGuardar" class="boton icon guardar">Guardar</a>
-	<a id="btnCancelar" class="boton peligro icon remover">Cancelar</a>
-</div-->
-
 <h1 class="animated fadeInLeft">Validaci&oacute;n de datos</h1>
 <hr />
 

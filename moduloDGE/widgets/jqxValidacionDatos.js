@@ -11,8 +11,8 @@ function datosEvaluacionCargar(pEvaluacionID) {
 			{name: 'nombreCompleto', type: 'varchar'},
 			{name: 'tipoContrato', type: 'varchar'},
 			{name: 'fechaRegistroEstimulo', type: 'datetime'},
-			{name: 'desempeñoAula', type: 'smallint'},
-			{name: 'desempeñoAcademico', type: 'smallint'},
+			{name: 'desempenoAula', type: 'smallint'},
+			{name: 'desempenoAcademico', type: 'smallint'},
 			{name: 'innovacion', type: 'tinyint'},
 			{name: 'tics', type: 'tinyint'},
 			{name: 'egel', type: 'tinyint'},
@@ -56,11 +56,9 @@ function EvaluacionTablaCargar(sControl) {
 		editable: true,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true},
-			{text: '', datafield: 'idEvaluacion', hidden: true},
-			{text: '', datafield: 'idEstimulo', hidden: true},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '115px'},
 			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '272px'},
-			{text: 'Desempe&ntilde;o en el aula (Alumnos)', datafield: 'desempeñoAula', cellsalign: 'center', editable: true, width: '167px', columntype: 'numberinput',
+			{text: 'Desempe&ntilde;o en el aula (Alumnos)', datafield: 'desempenoAula', cellsalign: 'center', editable: true, width: '167px', columntype: 'numberinput',
 				renderer: function(){return '<div class="jxGrid_headerDoble txtCentrado">Desempe&ntilde;o en<br />el aula (Alumnos)</div>'; },
 				createeditor: function (row, cellvalue, editor) {
 					editor.jqxNumberInput({
@@ -75,7 +73,7 @@ function EvaluacionTablaCargar(sControl) {
 					});
 				},
 			},
-			{text: 'Desempe&ntilde;o acad&eacute;mico (Directivos, Academicos)', datafield: 'desempeñoAcademico', cellsalign: 'center', editable: true, width: '167px', columntype: 'numberinput',
+			{text: 'Desempe&ntilde;o acad&eacute;mico (Directivos, Academicos)', datafield: 'desempenoAcademico', cellsalign: 'center', editable: true, width: '167px', columntype: 'numberinput',
 				renderer: function(){return '<div class="jxGrid_headerDoble txtCentrado">Desempe&ntilde;o acad&eacute;mico<br />(Directivos, Academicos)</div>'; },
 				createeditor: function (row, cellvalue, editor) {
 					editor.jqxNumberInput({
@@ -95,7 +93,7 @@ function EvaluacionTablaCargar(sControl) {
 				validation: function (cell, value) {
 					var row = cell.row;
 					if (value < 0 || value > 18) {
-						$(sControl).jqxGrid('cellbeginedit', row, "innovacion");
+						$(sControl).jqxGrid('cellbeginedit', row, "Innovacion");
 						return {result: false, message: "El valor debe estar entre 0 y 18"};
 					} else { return true; }
 				},
@@ -154,8 +152,8 @@ function EvaluacionFormularioCargar(pEvaluacionID) {
 	$('#ctrlnombreCompleto').val(registro.nombreCompleto)
 	$('#ctrltipoContrato').val(registro.tipoContrato)
 	$('#ctrlfechaRegistroEstimulo').val(registro.fechaRegistroEstimulo)
-	$('#ctrldesempeñoAula').val(registro.desempeñoAula)
-	$('#ctrldesempeñoAcademico').val(registro.desempeñoAcademico)
+	$('#ctrldesempenoAula').val(registro.desempenoAula)
+	$('#ctrldesempenoAcademico').val(registro.desempenoAcademico)
 	$('#ctrlinnovacion').val(registro.innovacion)
 	$('#ctrltics').val(registro.tics)
 	$('#ctrlegel').val(registro.egel)

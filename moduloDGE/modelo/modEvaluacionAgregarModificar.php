@@ -1,7 +1,7 @@
 <?php
-	//****************//
-	//  modEvaluacionAgregarModificar.php//
-	//****************//
+//****************//
+//  modEvaluacionAgregarModificar.php//
+//****************//
 	include("../class/clsEvaluacion.php");
 
 	$objEvaluacion = new clsEvaluacion();

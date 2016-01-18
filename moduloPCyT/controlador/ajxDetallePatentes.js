@@ -1,4 +1,4 @@
-// Función de inicialización de la vista
+// Funciï¿½n de inicializaciï¿½n de la vista
 
 function detallePatentesInicializar() {
 
@@ -47,12 +47,12 @@ function detallePatentesInicializar() {
 
 				// Guarda en la BD
 
-				//Simular envío de datos
+				//Simular envï¿½o de datos
 				window.setTimeout(function () {
 					//Envio exitoso
-					//Actualizar datos después de agregar patente...
+					//Actualizar datos despuï¿½s de agregar patente...
 
-					//TODO: Quitar... refrescar vista para emular inserción de datos
+					//TODO: Quitar... refrescar vista para emular inserciï¿½n de datos
 					$('#jqxGrid_Docentes').trigger('getrowdata');
 
 					//TODO: Quitar...
@@ -87,10 +87,10 @@ function detallePatentesInicializar() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicialización de contenido
+// Funciones correspondientes a eventos o inicializaciï¿½n de contenido
 
 function PatentesEliminarRegistro(objeto) {
-	if (confirm('¿Estás seguro que deseas eliminar esta patente?') ) {
+	if (confirm('Â¿EstÃ¡s seguro que deseas eliminar esta patente?') ) {
 		// Eliminando... simular proceso
 		window.setTimeout(function() {
 			$(objeto).parent().parent().nextAll().html('<div class="jqx-grid-cell-middle-align" style="margin-top: 11px;">Eliminando...</div>');

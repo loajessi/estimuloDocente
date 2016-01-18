@@ -665,7 +665,13 @@
 			$objProc->FNCAgregaParametrosEntrada($this->noProyOrganismoParticipo);
 			$objProc->FNCAgregaParametrosEntrada($this->noProyInstitucionParticipo);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
-			$objProc->FNCAgregaParametroSalida("idInvestigacion", "INT");
+
+			if ($this->idInvestigacion != -1) {
+				$objProc->FNCAgregaParametrosEntrada($this->idInvestigacion);
+			} else {
+				$objProc->FNCAgregaParametroSalida("idInvestigacion", "INT");
+			}
+
 			$objProc->FNCAgregaParametroSalida("noError", "INT");
 			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);
 

@@ -560,13 +560,18 @@
 		public function estEvaluacionAgregarModificar() {
 			$objProc = new clsProcedimientos("estEvaluacionAgregarModificar");
 			$objProc->FNCAgregaParametrosEntrada($this->idEstimulo);
-			$objProc->FNCAgregaParametrosEntrada($this->desempeñoAula);
-			$objProc->FNCAgregaParametrosEntrada($this->desempeñoAcademico);
+			$objProc->FNCAgregaParametrosEntrada($this->desempenoAula);
+			$objProc->FNCAgregaParametrosEntrada($this->desempenoAcademico);
 			$objProc->FNCAgregaParametrosEntrada($this->innovacion);
 			$objProc->FNCAgregaParametrosEntrada($this->tics);
 			$objProc->FNCAgregaParametrosEntrada($this->egel);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
-			$objProc->FNCAgregaParametroSalida("idEvaluacion", "INT");
+			if ($this->idEvaluacion != -1) {
+				$objProc->FNCAgregaParametrosEntrada($this->idEvaluacion);
+			} else {
+				$objProc->FNCAgregaParametroSalida("idEvaluacion", "INT");
+			}
+
 			$objProc->FNCAgregaParametroSalida("noError", "INT");
 			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);
 

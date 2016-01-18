@@ -93,7 +93,7 @@ function EvaluacionTablaCargar(sControl) {
 				validation: function (cell, value) {
 					var row = cell.row;
 					if (value < 0 || value > 18) {
-						$(sControl).jqxGrid('cellbeginedit', row, "Innovacion");
+						$(sControl).jqxGrid('cellbeginedit', row, "innovacion");
 						return {result: false, message: "El valor debe estar entre 0 y 18"};
 					} else { return true; }
 				},

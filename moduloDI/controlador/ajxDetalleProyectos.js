@@ -53,6 +53,7 @@ function detalleProyectosInicializar() {
 	var agregarEventos = function () {
 
 		$('#frmModalAgregarProyecto').on('submit', function (e) {
+			e.preventDefault();
 			e.stopPropagation();
 
 			if ( $('#frmModalAgregarProyecto')[0].checkValidity() ) {
@@ -91,8 +92,8 @@ function detalleProyectosInicializar() {
 			}
 		});
 
-		$('#hdnSNI').change(function() {
-			var val = $('#hdnSNI').val();
+		$('#hdnBotonSNI').change(function() {
+			var val = $('#hdnBotonSNI').val();
 			if (val==1) {
 				$('#SNI_CamposAdicionales').slideDown();
 			} else {
@@ -101,23 +102,6 @@ function detalleProyectosInicializar() {
 				$('#jqxDateTimeInput_FechaInicio').val(null);
 				$('#jqxDateTimeInput_FechaTermino').val(null);
 			}
-		});
-
-		$("#btnGuardar").on("click", function (event) {
-			//Reemplazar texto por "Guardando..."
-			var elemento = $(this),
-				txtOriginal = $(elemento).html();
-			$(this).html("Guardando...");
-
-			// Guarda en la BD
-			//var respuesta = investigacionAgregarModificar();
-
-			/*if(respuesta !== true){
-
-			}*/
-
-			//Restarurar texto original
-			$(elemento).html(txtOriginal);
 		});
 
 		$("#btnCancelar").on("click", function (event) {

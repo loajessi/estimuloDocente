@@ -10,11 +10,11 @@
 
 <div id="contenedorDatos">
 	<!-- Contenedor temporal para datos editados en el grid -->
-	<input type="text" id="cd_RowIndex" value="" />
-	<input type="text" id="cd_idEstimulo" value="" />
-	<input type="text" id="cd_idPersonal" value="" />
-	<input type="text" id="cd_gradoAcademico" value="" />
-	<input type="text" id="cd_puestoDrectivo" value="" />
-	<input type="text" id="cd_asistencias" value="" />
-	<input type="text" id="cd_Guardado" value="" />
+	<input type="text" id="cd_f1_RowIndex" value="" />
+	<input type="text" id="cd_f1_idEstimulo" value="" />
+	<input type="text" id="cd_f1_idPersonal" value="" />
+	<input type="text" id="cd_f1_gradoAcademico" value="" />
+	<input type="text" id="cd_f1_puestoDrectivo" value="" />
+	<input type="text" id="cd_f1_asistencias" value="" />
+	<input type="text" id="cd_f1_Guardado" value="" />
 </div>

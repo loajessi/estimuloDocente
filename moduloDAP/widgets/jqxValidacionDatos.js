@@ -135,27 +135,6 @@ function PersonalTablaCargar(sControl) {
 					var html = '<div class="jqxNumberInput_asistencias" id="jqxNumberInput_'+row+'_asistencias" data-value="'+value+'"></div>';
 					return html;
 				},
-				/*createwidget: function (row, column, value, cellElement) {
-					cellElement = '<div id="jqxNumberInput_'+row+'_asistencias"></div>';
-					return cellElement;
-				},
-				initwidget: function (row, column, value, cellElement) {
-					var fila;
-
-					if (typeof row.boundindex == 'undefined') {
-						fila = row;
-					} else {
-						fila = row.boundindex
-					}
-					//$('#jqxNumberInput_'+fila+'_asistencias').jqxNumberInput({
-					$(cellElement).jqxNumberInput({
-						digits: 3,
-						decimalDigits: 2,
-						inputMode: 'simple',
-						spinButtons: false,
-						theme: 'energyblue'
-					});
-				},*/
 				renderer: function () {
 					return '<div class="jxGrid_headerDoble txtCentrado">Porcentaje de<br />asistencia</div>';
 				},
@@ -165,26 +144,15 @@ function PersonalTablaCargar(sControl) {
 						$(sControl).jqxGrid('cellbeginedit', row, 'asistencias');
 						return {result: false, message: "El valor debe estar entre 0 y 100"};
 					} else { return true; }
-				},
-				/*createeditor: function (row, cellvalue, editor) {
-					editor.jqxNumberInput({
-						digits: 3,
-						decimalDigits: 2,
-						inputMode: 'simple',
-						spinButtons: false,
-						theme: 'energyblue'
-					});
-				},
-				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
-					$('#cd_' + datafield).val(newvalue);
-					personalAgregarModificar();
-				}*/
+				}
 			}
 		]
 	});
 
 	cargarInputsAsistencias();
 	$(sControl).on("pagechanged", cargarInputsAsistencias);
+	$(sControl).on("filter", cargarInputsAsistencias);
+	$(sControl).on("sort", cargarInputsAsistencias);
 }
 
 function cargarInputsAsistencias() {
@@ -205,8 +173,9 @@ function cargarInputsAsistencias() {
 		});
 	});
 
-	$('.jqxNumberInput_asistencias').on('valueChanged', function (event) {
+	$('.jqxNumberInput_asistencias').on('change', function (event) {
 		$('#cd_asistencias').val(event.args.value);
+		$(event.currentTarget).attr('data-value', event.args.value);
 		personalAgregarModificar();
 	});
 }

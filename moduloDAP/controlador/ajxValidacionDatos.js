@@ -88,3 +88,15 @@ function btn_puestoDrectivo(obj) {
 	$('#cd_puestoDrectivo').val(val);
 	personalAgregarModificar();
 }
+
+/*
+	Crear widgets al cambiar de página - OK
+	Crear widgets al cambiar el filtro - OK
+	Crear widgets al cambiar el orden - OK
+
+	Crear campos placeholder para todos los registros devueltos
+	Crear banderas en esos campos y no tocarlos cuando se hayan guardado
+	Inicializar todos los controles con los valores devueltos
+
+	Campos numericos con valor nulo de BD en texto blanco, cambiar atributo al editar y mostrar en negro
+ */

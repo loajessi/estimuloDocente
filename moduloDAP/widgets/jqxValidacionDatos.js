@@ -1,4 +1,4 @@
-﻿﻿function datosPersonalCargar(pPersonalID) {
+﻿function datosPersonalCargar(pPersonalID) {
 	var PersonalSource =
 	{
 		datatype: "json",
@@ -58,11 +58,26 @@ function PersonalTablaCargar(sControl) {
 			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '350px'},
 			{text: 'Cumplimiento de grado acad&eacute;mico', datafield: 'gradoAcademico', cellsalign: 'center', width: '195px', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
-					var html = '<div class="ButtonGroup_gradoAcademico jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
-						'<div id="btnGradoAcademico_'+row+'_Si" onclick="btn_gradoAcademico(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue" role="button" data-row="'+row+'" data-val="S">Sí</div>' +
-						'<div id="btnGradoAcademico_'+row+'_No" onclick="btn_gradoAcademico(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue" role="button" data-row="'+row+'" data-val="N">No</div>' +
-						'<div style="clear: both;">' +
-						'</div>';
+					if (value == '1') {
+						var html = '<div class="ButtonGroup_gradoAcademico jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnGradoAcademico_'+row+'_Si" onclick="btn_gradoAcademico(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnActivo btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnGradoAcademico_'+row+'_No" onclick="btn_gradoAcademico(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
+							'<div style="clear: both;">' +
+							'</div>';
+					} else if (value == '0') {
+						var html = '<div class="ButtonGroup_gradoAcademico jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnGradoAcademico_'+row+'_Si" onclick="btn_gradoAcademico(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnGradoAcademico_'+row+'_No" onclick="btn_gradoAcademico(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnActivo btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
+							'<div style="clear: both;">' +
+							'</div>';
+					} else {
+						var html = '<div class="ButtonGroup_gradoAcademico jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnGradoAcademico_'+row+'_Si" onclick="btn_gradoAcademico(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnGradoAcademico_'+row+'_No" onclick="btn_gradoAcademico(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
+							'<div style="clear: both;">' +
+							'</div>';
+					}
+
 					return html;
 				},
 				renderer: function () {
@@ -70,9 +85,9 @@ function PersonalTablaCargar(sControl) {
 				},
 				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
 					if (newvalue == 1) {
-						$('#cd_' + datafield).val('S');
+						$('#cd_' + datafield).val(1);
 					} else if (newvalue == 0) {
-						$('#cd_' + datafield).val('N');
+						$('#cd_' + datafield).val(0);
 					} else {
 						$('#cd_' + datafield).val('');
 					}
@@ -80,22 +95,22 @@ function PersonalTablaCargar(sControl) {
 			},
 			{text: 'Cuenta con puesto directivo o de confianza', datafield: 'puestoDrectivo', width: '195px', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
-					if (value=='S') {
+					if (value == '1') {
 						var html = '<div class="ButtonGroup_puestoDrectivo jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
-							'<div id="btnPuestoDrectivo_'+row+'_Si" onclick="btn_puestoDrectivo(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnActivo btnCorrecto" role="button" data-row="'+row+'" data-val="S">Sí</div>' +
-							'<div id="btnPuestoDrectivo_'+row+'_No" onclick="btn_puestoDrectivo(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue" role="button" data-row="'+row+'" data-val="N">No</div>' +
+							'<div id="btnPuestoDrectivo_'+row+'_Si" onclick="btn_puestoDrectivo(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnActivo btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnPuestoDrectivo_'+row+'_No" onclick="btn_puestoDrectivo(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
 							'<div style="clear: both;">' +
 							'</div>';
-					} else if (value=='N') {
-						var html = '<div class="ButtonGroup_puestoDrectivo jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
-							'<div id="btnPuestoDrectivo_'+row+'_Si" onclick="btn_puestoDrectivo(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue" role="button" data-row="'+row+'" data-val="S">Sí</div>' +
-							'<div id="btnPuestoDrectivo_'+row+'_No" onclick="btn_puestoDrectivo(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnActivo btnCorrecto" role="button" data-row="'+row+'" data-val="N">No</div>' +
+					} else if (value == '0') {
+						html = '<div class="ButtonGroup_puestoDrectivo jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnPuestoDrectivo_'+row+'_Si" onclick="btn_puestoDrectivo(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnPuestoDrectivo_'+row+'_No" onclick="btn_puestoDrectivo(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnActivo btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
 							'<div style="clear: both;">' +
 							'</div>';
 					} else {
-						var html = '<div class="ButtonGroup_puestoDrectivo jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
-							'<div id="btnPuestoDrectivo_'+row+'_Si" onclick="btn_puestoDrectivo(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue" role="button" data-row="'+row+'" data-val="S">Sí</div>' +
-							'<div id="btnPuestoDrectivo_'+row+'_No" onclick="btn_puestoDrectivo(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue" role="button" data-row="'+row+'" data-val="N">No</div>' +
+						html = '<div class="ButtonGroup_puestoDrectivo jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnPuestoDrectivo_'+row+'_Si" onclick="btn_puestoDrectivo(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnPuestoDrectivo_'+row+'_No" onclick="btn_puestoDrectivo(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
 							'<div style="clear: both;">' +
 							'</div>';
 					}
@@ -107,15 +122,40 @@ function PersonalTablaCargar(sControl) {
 				},
 				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
 					if (newvalue == true) {
-						$('#cd_' + datafield).val('S');
+						$('#cd_' + datafield).val(1);
 					} else if (newvalue == false) {
-						$('#cd_' + datafield).val('N');
+						$('#cd_' + datafield).val(0);
 					} else {
 						$('#cd_' + datafield).val('');
 					}
 				}
 			},
-			{text: 'Porcentaje de asistencia', datafield: 'asistencias', cellsalign: 'center', width: '195px', columntype: 'numberinput', cellsformat: 'f2',
+			{text: 'Porcentaje de asistencia', datafield: 'asistencias', cellsalign: 'center', width: '195px', columntype: 'numberinput', cellsformat: 'f2', editable: false,
+				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+					var html = '<div class="jqxNumberInput_asistencias" id="jqxNumberInput_'+row+'_asistencias" data-value="'+value+'"></div>';
+					return html;
+				},
+				/*createwidget: function (row, column, value, cellElement) {
+					cellElement = '<div id="jqxNumberInput_'+row+'_asistencias"></div>';
+					return cellElement;
+				},
+				initwidget: function (row, column, value, cellElement) {
+					var fila;
+
+					if (typeof row.boundindex == 'undefined') {
+						fila = row;
+					} else {
+						fila = row.boundindex
+					}
+					//$('#jqxNumberInput_'+fila+'_asistencias').jqxNumberInput({
+					$(cellElement).jqxNumberInput({
+						digits: 3,
+						decimalDigits: 2,
+						inputMode: 'simple',
+						spinButtons: false,
+						theme: 'energyblue'
+					});
+				},*/
 				renderer: function () {
 					return '<div class="jxGrid_headerDoble txtCentrado">Porcentaje de<br />asistencia</div>';
 				},
@@ -126,7 +166,7 @@ function PersonalTablaCargar(sControl) {
 						return {result: false, message: "El valor debe estar entre 0 y 100"};
 					} else { return true; }
 				},
-				createeditor: function (row, cellvalue, editor) {
+				/*createeditor: function (row, cellvalue, editor) {
 					editor.jqxNumberInput({
 						digits: 3,
 						decimalDigits: 2,
@@ -138,9 +178,36 @@ function PersonalTablaCargar(sControl) {
 				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
 					$('#cd_' + datafield).val(newvalue);
 					personalAgregarModificar();
-				}
+				}*/
 			}
 		]
+	});
+
+	cargarInputsAsistencias();
+	$(sControl).on("pagechanged", cargarInputsAsistencias);
+}
+
+function cargarInputsAsistencias() {
+	$('.jqxNumberInput_asistencias').each(function () {
+		$(this).jqxNumberInput({
+			digits: 3,
+			decimalDigits: 2,
+			inputMode: 'simple',
+			spinButtons: false,
+			spinMode: 'simple',
+			textAlign: 'center',
+			height: '100%',
+			width: '100%',
+			enableMouseWheel: false,
+			min: 0,
+			max: 100,
+			theme: 'energyblue'
+		});
+	});
+
+	$('.jqxNumberInput_asistencias').on('valueChanged', function (event) {
+		$('#cd_asistencias').val(event.args.value);
+		personalAgregarModificar();
 	});
 }
 
@@ -215,7 +282,7 @@ function personalAgregarModificar() {
 	//var data = $("#jqxGrid_Docentes").jqxGrid('getrowdatabyid', rowId);
 
 	//Parámetros a enviar
-	var oParametros = 'idEstimulo=' + idEstimulo + '&gradoAcademicoo=' + gradoAcademico + '&puestoDrectivo=' + puestoDrectivo + '&asistencias=' + asistencias + '&idPersonal=' + idPersonal;
+	var oParametros = 'idEstimulo=' + idEstimulo + '&gradoAcademico=' + gradoAcademico + '&puestoDrectivo=' + puestoDrectivo + '&asistencias=' + asistencias + '&idPersonal=' + idPersonal;
 
 	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});
 

@@ -59,6 +59,21 @@ function ParqueCientificoTablaCargar(sControl) {
 			{text: 'ID', datafield: 'idParqueCientifico', hidden: true}
 		]
 	});
+
+	// Configurar clics en rows
+	$(sControl).bind('rowselect', function (event) {
+		var row = event.args.rowindex,
+			datafield = event.args.datafield,
+			datarow = $(sControl).jqxGrid('getrowdata', row);
+
+		var mensajeCargando = '<div class="txtCentrado"><h2 style="width: 500px; padding-top: 90px; margin: 0 auto; color: #ABABAB;">Cargando...</h2></div>';
+
+		$("#detalleDatosPatentes").html(mensajeCargando);
+
+		window.setTimeout(function(){ //Simular carga de datos
+			Docentes_DetallePatentes_CargarVista(datarow.idEstimulo, datarow);
+		}, 1800);
+	});
 }
 
 function ParqueCientificoComboCargar(sControl) {

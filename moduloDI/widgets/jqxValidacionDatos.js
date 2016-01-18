@@ -140,12 +140,11 @@ function investigacionAgregarModificar() {
 		fechaInicioSNI = $('#jqxDateTimeInput_FechaInicioSNI').jqxDateTimeInput('getDate'),
 		fechaTerminoSNI = $('#jqxDateTimeInput_FechaTerminoSNI').jqxDateTimeInput('getDate'),
 		nivelSNI = $("#jqxComboBox_NivelSNI").jqxComboBox('val'),
-		botonSNI = $('#botonSNI').val(),
-		idEstimulo = $('#idEstimulo').val(),
-		idInvestigacion = $('#idInvestigacion').val();
+		botonSNI = $('#hdnBotonSNI').val(),
+		idEstimulo = $('#hdnIdEstimulo').val(),
+		idInvestigacion = $('#hdnIdInvestigacion').val();
 
 	if (noProyOrganismoResponsable === '' || noProyInstitucionResponsable === '' || noProyOrganismoParticipo === '' || noProyInstitucionParticipo === '' || botonSNI === '') {
-		notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
 		return null;
 	}
 
@@ -162,7 +161,10 @@ function investigacionAgregarModificar() {
 
 	var sPagina = "modelo/modInvestigacionAgregarModificar.php";
 
-	var oParametros = 'idEstimulo=' + idEstimulo +
+	//Serializar formulario
+	var oParametros;
+
+	/*var oParametros = 'idEstimulo=' + idEstimulo +
 		'&noProyOrganismoResponsable' + noProyOrganismoResponsable +
 		'&noProyInstitucionResponsable' + noProyInstitucionResponsable +
 		'&noProyOrganismoParticipo' + noProyOrganismoParticipo +
@@ -170,7 +172,7 @@ function investigacionAgregarModificar() {
 		'&fechaInicioSNI' + fechaInicioSNI +
 		'&fechaTerminoSNI' + fechaTerminoSNI +
 		'&nivelSNI' + nivelSNI +
-		'&idInvestigacion' + idInvestigacion;
+		'&idInvestigacion' + idInvestigacion;*/
 
 	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});
 
@@ -189,28 +191,3 @@ function investigacionAgregarModificar() {
 		}
 	});
 }
-
-
-function investigacionEliminar(pRegistroID) {
-	var sPagina = "../../moduloXX/modelo/modInvestigacionEliminar.php";
-	var oParametros = {'pRegistroID': pRegistroID}
-
-	$.post(sPagina
-		, oParametros
-		, function (datos, status) {
-			if (status == 'success') {
-				eval(datos);
-				if (json.noError > 0) {
-					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
-				}
-				else {
-					alert("Su informaci\u00f3n se elimin\u00f3 correctamente en la base de datos.");
-					// Acciones posteriores a la actualizacion
-				}
-			}
-		}
-	);
-}
-
-
-

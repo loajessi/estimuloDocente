@@ -54,7 +54,26 @@ function detalleProyectosInicializar() {
 
 		$('#frmModalAgregarProyecto').on('submit', function (e) {
 			e.stopPropagation();
-			alert('OK');
+
+			if ( $('#frmModalAgregarProyecto')[0].checkValidity() ) {
+				// Comprobación del navegador correcta
+
+				var txtOriginal = $('#btnGuardar').html();
+				$('#btnGuardar').html("Guardando...");
+
+				// Guarda en la BD
+				var respuesta = investigacionAgregarModificar();
+
+				if (respuesta === true) {
+					notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+				} else if (respuesta === false) {
+					notif({msg: '<b>Error al guardar datos</b>', type: 'error', position: 'right', width: 200});
+				} else if (respuesta === null) {
+					notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 200});
+				}
+
+				$('#btnGuardar').html(txtOriginal);
+			}else console.error('Error en formulario');
 		});
 
 		$("#jqxButtonGroup_SNI").on('buttonclick', function (event) {
@@ -63,15 +82,12 @@ function detalleProyectosInicializar() {
 
 			if (clickedButton[0].id == 'btnSNI_Si') {
 				$('#'+clickedButton[0].id).addClass('btnActivo btnCorrecto');
-				$('#botonSNI').val(1);
-				$('#hdnSNI').val(1).trigger('change');
+				$('#hdnBotonSNI').val(1).trigger('change');
 			} else if (clickedButton[0].id == 'btnSNI_No') {
 				$('#'+clickedButton[0].id).addClass('btnActivo btnPeligro');
-				$('#botonSNI').val(0);
-				$('#hdnSNI').val(0).trigger('change');
+				$('#hdnBotonSNI').val(0).trigger('change');
 			} else {
-				$('#botonSNI').val('');
-				$('#hdnSNI').val('').trigger('change');
+				$('#hdnBotonSNI').val('').trigger('change');
 			}
 		});
 

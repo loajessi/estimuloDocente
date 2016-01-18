@@ -28,8 +28,8 @@ function Docentes_DetalleProyectos_CargarVista(datosFila) {
 				$("#jqxComboBox_NivelSNI").jqxComboBox('val', datosFila.nivelSNI);
 			}
 
-			$('#idEstimulo').val(datosFila.idEstimulo);
-			$('#idInvestigacion').val(datosFila.idInvestigacion);
+			$('#hdnIdEstimulo').val(datosFila.idEstimulo);
+			$('#hdnIdInvestigacion').val(datosFila.idInvestigacion);
 		}
 	});
 }

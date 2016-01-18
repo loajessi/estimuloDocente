@@ -13,8 +13,8 @@
 	 * @property varchar $nombreCompleto         descripcion
 	 * @property varchar $tipoContrato           descripcion
 	 * @property datetime $fechaRegistroEstimulo descripcion
-	 * @property smallint $desempeñoAula         descripcion
-	 * @property smallint $desempeñoAcademico    descripcion
+	 * @property smallint $desempenoAula         descripcion
+	 * @property smallint $desempenoAcademico    descripcion
 	 * @property tinyint $innovacion             descripcion
 	 * @property tinyint $tics                   descripcion
 	 * @property tinyint $egel                   descripcion
@@ -30,8 +30,8 @@
 		private $nombreCompleto;
 		private $tipoContrato;
 		private $fechaRegistroEstimulo;
-		private $desempeñoAula;
-		private $desempeñoAcademico;
+		private $desempenoAula;
+		private $desempenoAcademico;
 		private $innovacion;
 		private $tics;
 		private $egel;
@@ -51,8 +51,8 @@
 			$this->nombreCompleto = "";
 			$this->tipoContrato = "";
 			$this->fechaRegistroEstimulo = "";
-			$this->desempeñoAula = -1;
-			$this->desempeñoAcademico = -1;
+			$this->desempenoAula = -1;
+			$this->desempenoAcademico = -1;
 			$this->innovacion = -1;
 			$this->tics = -1;
 			$this->egel = -1;
@@ -209,45 +209,45 @@
 		}
 
 		/**
-		 *  Metodo que inicializa el atributo desempeñoAula
+		 *  Metodo que inicializa el atributo desempenoAula
 		 * @access public
 		 *
-		 * @param smallint $pdesempeñoAula descripcion.
+		 * @param smallint $pdesempenoAula descripcion.
 		 *
 		 */
-		public function setdesempeñoAula($pdesempeñoAula) {
-			$this->desempeñoAula = $pdesempeñoAula;
+		public function setdesempenoAula($pdesempenoAula) {
+			$this->desempenoAula = $pdesempenoAula;
 		}
 
 		/**
-		 *  Metodo que obtiene el atributo desempeñoAula
+		 *  Metodo que obtiene el atributo desempenoAula
 		 * @access private
-		 * @return smallint atributo desempeñoAula
+		 * @return smallint atributo desempenoAula
 		 *
 		 */
-		private function getdesempeñoAula() {
-			return $this->desempeñoAula;
+		private function getdesempenoAula() {
+			return $this->desempenoAula;
 		}
 
 		/**
-		 *  Metodo que inicializa el atributo desempeñoAcademico
+		 *  Metodo que inicializa el atributo desempenoAcademico
 		 * @access public
 		 *
-		 * @param smallint $pdesempeñoAcademico descripcion.
+		 * @param smallint $pdesempenoAcademico descripcion.
 		 *
 		 */
-		public function setdesempeñoAcademico($pdesempeñoAcademico) {
-			$this->desempeñoAcademico = $pdesempeñoAcademico;
+		public function setdesempenoAcademico($pdesempenoAcademico) {
+			$this->desempenoAcademico = $pdesempenoAcademico;
 		}
 
 		/**
-		 *  Metodo que obtiene el atributo desempeñoAcademico
+		 *  Metodo que obtiene el atributo desempenoAcademico
 		 * @access private
-		 * @return smallint atributo desempeñoAcademico
+		 * @return smallint atributo desempenoAcademico
 		 *
 		 */
-		private function getdesempeñoAcademico() {
-			return $this->desempeñoAcademico;
+		private function getdesempenoAcademico() {
+			return $this->desempenoAcademico;
 		}
 
 		/**
@@ -402,17 +402,17 @@
 				}
 				$sFiltro .= "fechaRegistroEstimulo='" . $this->fechaRegistroEstimulo . "'";
 			}
-			if ($this->desempeñoAula != -1) {
+			if ($this->desempenoAula != -1) {
 				if (strlen(trim($sFiltro)) > 0) {
 					$sFiltro .= "AND ";
 				}
-				$sFiltro .= "desempeñoAula=" . $this->desempeñoAula . " ";
+				$sFiltro .= "desempenoAula=" . $this->desempenoAula . " ";
 			}
-			if ($this->desempeñoAcademico != -1) {
+			if ($this->desempenoAcademico != -1) {
 				if (strlen(trim($sFiltro)) > 0) {
 					$sFiltro .= "AND ";
 				}
-				$sFiltro .= "desempeñoAcademico=" . $this->desempeñoAcademico . " ";
+				$sFiltro .= "desempenoAcademico=" . $this->desempenoAcademico . " ";
 			}
 			if ($this->innovacion != -1) {
 				if (strlen(trim($sFiltro)) > 0) {
@@ -467,8 +467,8 @@
 			,nombreCompleto
 			,tipoContrato
 			,fechaRegistroEstimulo
-			,desempeñoAula
-			,desempeñoAcademico
+			,desempenoAula
+			,desempenoAcademico
 			,innovacion
 			,tics
 			,egel
@@ -566,13 +566,7 @@
 			$objProc->FNCAgregaParametrosEntrada($this->tics);
 			$objProc->FNCAgregaParametrosEntrada($this->egel);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
-
-			if ($this->idEvaluacion != -1) {
-				$objProc->FNCAgregaParametrosEntrada($this->idEvaluacion);
-			} else{
-				$objProc->FNCAgregaParametroSalida("idEvaluacion","INT");
-			}
-
+			$objProc->FNCAgregaParametroSalida("idEvaluacion", "INT");
 			$objProc->FNCAgregaParametroSalida("noError", "INT");
 			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);
 

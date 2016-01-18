@@ -4,7 +4,7 @@
         <a id="btnCancelarPatente" class="boton peligro icon remover">Cancelar</a>
     </div>
 
-    <h3 class="dobleLinea">Validación de patentes
+    <h3 class="dobleLinea">ValidaciÃ³n de patentes
         <small id="PatentesNombreEmpleado" class="validado"></small>
     </h3>
     <hr>

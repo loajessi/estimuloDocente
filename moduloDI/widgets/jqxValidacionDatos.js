@@ -76,7 +76,7 @@ function InvestigacionTablaCargar(sControl) {
 		pageable: true,
 		editable: false,
 		pagermode: 'simple',
-		pagerbuttonscount: 10,
+		pagerbuttonscount: 6,
 		handlekeyboardnavigation: keyboardHandler,
 		columns: [
 			{text: '', datafield: 'accion', width: '40px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},

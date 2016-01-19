@@ -1,13 +1,13 @@
 <?php
-	//****************//
-	//  modEvaluacionConsultar.php//
-	//****************//
+//****************//
+//  modEvaluacionConsultar.php//
+//****************//
 	include("../class/clsEvaluacion.php");
-	$objConsulta = new clsEvaluacion();
+	$objConsulta=new clsEvaluacion();
 
 	// setters para configurar el filtro de la consulta
 	//$objConsulta->setIdEvaluacion($_POST['pEvaluacionID']);
-	//$objConsulta->setOrdenQuery("nombrecompleto");
+	//$objConsulta->setOrdenQuery("XX");
 
 	echo $objConsulta->getDatosJson(false);
 ?>

@@ -255,15 +255,37 @@ hr + form > .columna > *:last-child {
 	font-weight: bold !important;
 }
 
-.dataForm input[type="number"] {
+#detalleDatosProyecto, #detalleDatosPatentes {
+	padding: 10px;
+}
+
+#jqxButtonGroup_SNI {
+	margin-top: 5px;
+}
+
+.jqxNumberInput_asistencias[data-value=""] input {
+	color: #FFFFFF;
+}
+
+.jqxNumberInput_asistencias[data-value=""] input:focus, .jqxNumberInput_asistencias[data-value=""] input:active {
+	color: #000000;
+}
+
+#contenedorDatos {
+	visibility: hidden;
+	display: none;
+	opacity: 0;
+}
+
+#frmModalAgregarProyecto input[type="number"] {
 	border: 1px solid #CCCCCC;
 	color: #888888;
 	margin-bottom: 16px;
 	margin-right: 6px;
-	margin-top: 2px;
+	margin-top: 5px !important;
 	outline: 0 none;
-	padding: 5px 10px;
-	width: 200px;
+	padding: 0 0 0 10px !important;
+	width: 100px !important;
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -271,7 +293,9 @@ hr + form > .columna > *:last-child {
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	height: 16px;
+	height: 26px;
+	text-align: center;
+	font-size: 16px;
 }
 
 #jqxButtonGroup_SNI div:not(:last-child) {

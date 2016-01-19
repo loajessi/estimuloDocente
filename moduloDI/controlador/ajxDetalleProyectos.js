@@ -1,13 +1,14 @@
-// Funci髇 de inicializaci髇 de la vista
+// Funci贸n de inicializaci贸n de la vista
 
 function detalleProyectosInicializar() {
 
 	var crearWidgets = function () {
 		$("#jqxButtonGroup_SNI").jqxButtonGroup({ mode: 'RadioButtons', theme: 'energyblue' });
 
-		var jqxNumberInputConfig = {
+		/*var jqxNumberInputConfig = {
 			width: '150px',
 			height: '28px',
+			textAlign: 'center',
 			inputMode: 'simple',
 			spinButtons: true,
 			min: 0,
@@ -15,7 +16,7 @@ function detalleProyectosInicializar() {
 			decimalDigits: 0,
 			theme: 'energyblue'
 		};
-		$('.jqxNumberInput_ValidacionProyectos').jqxNumberInput(jqxNumberInputConfig);
+		$('.jqxNumberInput_ValidacionProyectos').jqxNumberInput(jqxNumberInputConfig);*/
 
 		var jqxDateTimeInputConfig = {
 			width: '100%',
@@ -51,24 +52,48 @@ function detalleProyectosInicializar() {
 
 	var agregarEventos = function () {
 
+		$('#frmModalAgregarProyecto').on('submit', function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+
+			if ( $('#frmModalAgregarProyecto')[0].checkValidity() ) {
+				// Comprobaci贸n del navegador correcta
+
+				var txtOriginal = $('#btnGuardar').html();
+				$('#btnGuardar').html("Guardando...");
+
+				// Guarda en la BD
+				var respuesta = investigacionAgregarModificar();
+
+				if (respuesta === true) {
+					notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+				} else if (respuesta === false) {
+					notif({msg: '<b>Error al guardar datos</b>', type: 'error', position: 'right', width: 200});
+				} else if (respuesta === null) {
+					notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
+				}
+
+				$('#btnGuardar').html(txtOriginal);
+			}else console.error('Error en formulario');
+		});
+
 		$("#jqxButtonGroup_SNI").on('buttonclick', function (event) {
 			var clickedButton = event.args.button;
 			$('.btnActivo').removeClass('btnActivo btnCorrecto btnPeligro');
 
 			if (clickedButton[0].id == 'btnSNI_Si') {
 				$('#'+clickedButton[0].id).addClass('btnActivo btnCorrecto');
-
-				$('#hdnSNI').val(1).trigger('change');
+				$('#hdnBotonSNI').val(1).trigger('change');
 			} else if (clickedButton[0].id == 'btnSNI_No') {
 				$('#'+clickedButton[0].id).addClass('btnActivo btnPeligro');
-				$('#hdnSNI').val(0).trigger('change');
+				$('#hdnBotonSNI').val(0).trigger('change');
 			} else {
-				$('#hdnSNI').val('').trigger('change');
+				$('#hdnBotonSNI').val('').trigger('change');
 			}
 		});
 
-		$('#hdnSNI').change(function() {
-			var val = $('#hdnSNI').val();
+		$('#hdnBotonSNI').change(function() {
+			var val = $('#hdnBotonSNI').val();
 			if (val==1) {
 				$('#SNI_CamposAdicionales').slideDown();
 			} else {
@@ -79,25 +104,8 @@ function detalleProyectosInicializar() {
 			}
 		});
 
-		$("#btnGuardar").on("click", function (event) {
-			//Reemplazar texto por "Guardando..."
-			var elemento = $(this),
-				txtOriginal = $(elemento).html();
-			$(this).html("Guardando...");
-
-			// Guarda en la BD
-
-			//Envio exitoso
-			//Actualizar datos despu閟 de agregar patente...
-
-			window.setTimeout(function() {
-				//Restarurar texto original
-				$(elemento).html(txtOriginal);
-			}, 1500);
-		});
-
 		$("#btnCancelar").on("click", function (event) {
-			Docentes_ValidacionDatos_TablaCargar("#jqxGrid_Docentes");
+			InvestigacionTablaCargar("#jqxGrid_Docentes");
 		});
 
 	};
@@ -108,10 +116,10 @@ function detalleProyectosInicializar() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicializaci髇 de contenido
+// Funciones correspondientes a eventos o inicializaci贸n de contenido
 
 function ProyectosEliminarRegistro(objeto) {
-	if (confirm('縀st醩 seguro que deseas eliminar esta proyecto?') ) {
+	if (confirm('驴Est谩s seguro que deseas eliminar este proyecto?') ) {
 		// Eliminando... simular proceso
 		window.setTimeout(function() {
 			$(objeto).parent().parent().nextAll().html('<div class="jqx-grid-cell-middle-align" style="margin-top: 11px;">Eliminando...</div>');

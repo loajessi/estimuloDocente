@@ -1,4 +1,4 @@
-// Funci�n de inicializaci�n de la vista
+// Función de inicialización de la vista
 
 function validacionDatosInicializar() {
 
@@ -18,5 +18,5 @@ function validacionDatosInicializar() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicializaci�n de contenido
+// Funciones correspondientes a eventos o inicialización de contenido
 

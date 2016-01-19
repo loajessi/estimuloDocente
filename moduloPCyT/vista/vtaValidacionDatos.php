@@ -17,5 +17,5 @@
 </div>
 
 <form id="frmValidacionDatos" name="frmValidacionDatos" method="post">
-	<!-- Agregar campos a guardar aquí -->
+	<!-- Agregar campos a guardar aqu� -->
 </form>

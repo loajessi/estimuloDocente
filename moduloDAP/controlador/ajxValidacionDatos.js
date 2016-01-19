@@ -8,43 +8,39 @@ function validacionDatosInicializar() {
 
     var agregarEventos = function () {
 
+	    $('.jqxNumberInput_asistencias').each(function () {
+		    $(this).on('keydown', function (e) {
+			    if (e.keyCode==13){
+				    $(this).trigger('change');
+			    }
+		    })
+	    });
+
 	    $('#jqxGrid_Docentes').on('rowselect', function (event) {
+		    var fila = event.args.rowindex,
+			    filaAnterior = $('#cd_g_rowAnterior').val(),
+			    idPersonal = $('#cd_f'+filaAnterior+'_idPersonal').val();
 
-		    // Datos del grid
-		    var data = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', event.args.rowindex);
-
-		    // Datos de campos
-		    var puestoDrectivo = $('#cd_puestoDrectivo').val(),
-			    gradoAcademico = $('#cd_gradoAcademico').val(),
-			    asistencias = $('#cd_asistencias').val();
+		    // Datos de fila anterior
+		    var puestoDrectivo = $('#cd_f'+filaAnterior+'_puestoDrectivo').val(),
+			    gradoAcademico = $('#cd_f'+filaAnterior+'_gradoAcademico').val(),
+			    asistencias = $('#cd_f'+filaAnterior+'_asistencias').val();
 
 		    // Comprobar fila anterior
-		    if( $('#cd_Guardado').val() == '' && (puestoDrectivo!='' || gradoAcademico!='' || asistencias!='') ) {
-			    notif({msg: '<b>No se guardaron los cambios</b>', type: 'error', position: 'right', width: 300, autohide: false});
+		    if( idPersonal == '' && (puestoDrectivo!='' || gradoAcademico!='' || asistencias!='') ) {
+			    notif({msg: '<b>No se guardaron los cambios</b>', type: 'error', position: 'right', width: 400, autohide: false});
 
 			    //Restablecer campos fila anterior para indicar que no se guardó la información
-			    $('#jqxGrid').jqxGrid('refreshdata');
+			    $('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'puestoDrectivo', '');
+			    $('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'gradoAcademico', '');
+			    $('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'asistencias', '');
+			    $('#cd_f'+filaAnterior+'_puestoDrectivo').val('');
+				$('#cd_f'+filaAnterior+'_gradoAcademico').val('');
+				$('#cd_f'+filaAnterior+'_asistencias').val('');
+			    cargarInputsAsistencias();
 		    }
 
-		    //Restablecer campos
-		    $('#contenedorDatos input').val('');
-
-		    if (data.puestoDirectivo != '' && puestoDrectivo == '') {
-			    $('#cd_puestoDrectivo').val(data.puestoDirectivo);
-		    }
-
-		    if (data.gradoAcademico != '' && gradoAcademico == '') {
-			    $('#cd_gradoAcademico').val(data.gradoAcademico);
-		    }
-
-		    if (data.asistencias != '' && asistencias == '') {
-			    $('#cd_asistencias').val(data.asistencias);
-		    }
-
-		    $('#cd_RowIndex').val(event.args.rowindex);
-		    $('#cd_idEstimulo').val(data.idEstimulo);
-		    $('#cd_idPersonal').val(data.idPersonal);
-
+		    $('#cd_g_rowAnterior').val(fila);
 	    });
 
     };
@@ -69,8 +65,8 @@ function btn_gradoAcademico(obj) {
 		$('#btnGradoAcademico_'+row+'_Si').removeClass('btnActivo');
 	}
 
-	$('#cd_gradoAcademico').val(val);
-	personalAgregarModificar();
+	$('#cd_f'+row+'_gradoAcademico').val(val);
+	personalAgregarModificar(row);
 }
 
 function btn_puestoDrectivo(obj) {
@@ -85,6 +81,18 @@ function btn_puestoDrectivo(obj) {
 		$('#btnPuestoDrectivo_'+row+'_Si').removeClass('btnActivo');
 	}
 
-	$('#cd_puestoDrectivo').val(val);
-	personalAgregarModificar();
+	$('#cd_f'+row+'_puestoDrectivo').val(val);
+	personalAgregarModificar(row);
 }
+
+/*
+	Crear widgets al cambiar de página - OK
+	Crear widgets al cambiar el filtro - OK
+	Crear widgets al cambiar el orden - OK
+
+	Crear campos placeholder para todos los registros devueltos
+	Crear banderas en esos campos y no tocarlos cuando se hayan guardado
+	Inicializar todos los controles con los valores devueltos
+
+	Campos numericos con valor nulo de BD en texto blanco, cambiar atributo al editar y mostrar en negro
+ */

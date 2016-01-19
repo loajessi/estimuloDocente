@@ -77,7 +77,7 @@ function InvestigacionTablaCargar(sControl) {
 		$("#detalleDatosPatentes").html(mensajeCargando);
 
 		window.setTimeout(function(){ //Simular carga de datos
-			Docentes_DetalleProyectos_CargarVista(datarow.idEstimulo, datarow);
+			Docentes_DetalleProyectos_CargarVista(datarow);
 		}, 800);
 	});
 }
@@ -132,47 +132,59 @@ function InvestigacionFormularioCargar(pInvestigacionID) {
 }
 
 function investigacionAgregarModificar() {
-	var sPagina = "../../moduloXX/modelo/modInvestigacionAgregarModificar.php";
-	var oParametros = $('#frmFormulario').serialize();
 
-	$.post(sPagina
-		, oParametros
-		, function (datos, status) {
-			if (status == 'success') {
-				eval(datos);
-				if (json.noError > 0) {
-					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
-				}
-				else {
-					alert("Su informaci\u00f3n se registr\u00f3 correctamente en la base de datos.");
-					// Acciones posteriores a la actualizacion
-				}
+	var noProyOrganismoResponsable = $('#noProyOrganismoResponsable').val(),
+	    noProyInstitucionResponsable = $('#noProyInstitucionResponsable').val(),
+		noProyOrganismoParticipo = $('#noProyOrganismoParticipo').val(),
+		noProyInstitucionParticipo = $('#noProyInstitucionParticipo').val(),
+		fechaInicioSNI = $('#jqxDateTimeInput_FechaInicioSNI').jqxDateTimeInput('getDate'),
+		fechaTerminoSNI = $('#jqxDateTimeInput_FechaTerminoSNI').jqxDateTimeInput('getDate'),
+		nivelSNI = $("#jqxComboBox_NivelSNI").jqxComboBox('val'),
+		botonSNI = $('#hdnBotonSNI').val(),
+		idEstimulo = $('#hdnIdEstimulo').val(),
+		idInvestigacion = $('#hdnIdInvestigacion').val();
+
+	if (noProyOrganismoResponsable === '' || noProyInstitucionResponsable === '' || noProyOrganismoParticipo === '' || noProyInstitucionParticipo === '' || botonSNI === '') {
+		return null;
+	}
+
+	if (botonSNI=='1') {
+
+		if (nivelSNI=='' || fechaInicioSNI=='' || fechaTerminoSNI=='' || fechaInicioSNI==null || fechaTerminoSNI==null){
+			return null;
+		}
+
+	}
+
+	var sPagina = "modelo/modInvestigacionAgregarModificar.php";
+
+	//Serializar formulario
+	var oParametros = $('#frmModalAgregarProyecto').serialize();
+
+	/*var oParametros = 'idEstimulo=' + idEstimulo +
+		'&noProyOrganismoResponsable' + noProyOrganismoResponsable +
+		'&noProyInstitucionResponsable' + noProyInstitucionResponsable +
+		'&noProyOrganismoParticipo' + noProyOrganismoParticipo +
+		'&noProyInstitucionParticipo' + noProyInstitucionParticipo +
+		'&fechaInicioSNI' + fechaInicioSNI +
+		'&fechaTerminoSNI' + fechaTerminoSNI +
+		'&nivelSNI' + nivelSNI +
+		'&idInvestigacion' + idInvestigacion;*/
+
+	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});
+
+	$.post(sPagina, oParametros, function (datos, status) {
+		if (status == 'success') {
+			eval(datos);
+			if (json.noError > 0) {
+				//notif({msg: '<b>Error al guardar:</b> " + json.mensaje', type: 'error', position: 'right', width: 200});
+				return false;
+			}
+			else {
+				//notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+				// Acciones posteriores a la actualizacion
+				return true;
 			}
 		}
-	);
+	});
 }
-
-
-function investigacionEliminar(pRegistroID) {
-	var sPagina = "../../moduloXX/modelo/modInvestigacionEliminar.php";
-	var oParametros = {'pRegistroID': pRegistroID}
-
-	$.post(sPagina
-		, oParametros
-		, function (datos, status) {
-			if (status == 'success') {
-				eval(datos);
-				if (json.noError > 0) {
-					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
-				}
-				else {
-					alert("Su informaci\u00f3n se elimin\u00f3 correctamente en la base de datos.");
-					// Acciones posteriores a la actualizacion
-				}
-			}
-		}
-	);
-}
-
-
-

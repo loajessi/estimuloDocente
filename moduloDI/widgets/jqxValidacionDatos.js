@@ -102,7 +102,7 @@ function InvestigacionTablaCargar(sControl) {
 			datarow = $(sControl).jqxGrid('getrowdata', row);
 
 		$('#detalleDatosProyecto > .animated').removeClass('slideInLeft').addClass('slideOutLeft');
-		var datarow = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex') );
+		var datarow = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', row);
 
 		Docentes_DetalleProyectos_CargarVista(datarow);
 	});

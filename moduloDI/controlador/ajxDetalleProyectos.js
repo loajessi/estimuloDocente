@@ -70,7 +70,7 @@ function detalleProyectosInicializar() {
 				} else if (respuesta === false) {
 					notif({msg: '<b>Error al guardar datos</b>', type: 'error', position: 'right', width: 200});
 				} else if (respuesta === null) {
-					notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
+					notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 350});
 				}
 
 				$('#btnGuardar').html(txtOriginal);

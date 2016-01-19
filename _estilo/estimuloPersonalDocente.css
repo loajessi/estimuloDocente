@@ -271,6 +271,10 @@ hr + form > .columna > *:last-child {
 	color: #000000;
 }
 
+.jqxNumberInput_asistencias {
+	border-top: 0 !important;
+}
+
 #contenedorDatos {
 	visibility: hidden;
 	display: none;

@@ -40,6 +40,24 @@ function datosPersonalRegistroObtener(pPersonalID) {
 
 function PersonalTablaCargar(sControl) {
 	var dataAdapter = datosPersonalCargar();
+
+	var keyboardHandler = function (event) {
+		var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+		if ((key >= 33 && key <= 36) || key == 37 || key == 39) {
+			return true;
+		} else if (key==38) { //Flecha arriba
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual-1);
+			cargarInputsAsistencias();
+			return true;
+		} else if (key==40) { //Flecha abajo
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual+1);
+			cargarInputsAsistencias();
+			return true;
+		}
+	};
+
 	$(sControl).jqxGrid({
 		width: '99.5%',
 		height: '455px',
@@ -52,6 +70,10 @@ function PersonalTablaCargar(sControl) {
 		autoshowfiltericon: true,
 		pageable: true,
 		editable: false,
+		pagermode: 'simple',
+		pagerbuttonscount: 10,
+		handlekeyboardnavigation: keyboardHandler,
+		//keyboardnavigation: false,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu: false, cellclassname: 'cell-acciones'},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '149px'},
@@ -298,28 +320,3 @@ function personalAgregarModificar(fila) {
 		}
 	});
 }
-
-
-function personalEliminar(pRegistroID) {
-	var sPagina = "../../moduloXX/modelo/modPersonalEliminar.php";
-	var oParametros = {'pRegistroID': pRegistroID}
-
-	$.post(sPagina
-		, oParametros
-		, function (datos, status) {
-			if (status == 'success') {
-				eval(datos);
-				if (json.noError > 0) {
-					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
-				}
-				else {
-					alert("Su informaci\u00f3n se elimin\u00f3 correctamente en la base de datos.");
-					// Acciones posteriores a la actualizacion
-				}
-			}
-		}
-	);
-}
-
-
-

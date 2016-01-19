@@ -77,7 +77,7 @@ function InvestigacionTablaCargar(sControl) {
 		editable: false,
 		pagermode: 'simple',
 		pagerbuttonscount: 6,
-		handlekeyboardnavigation: keyboardHandler,
+		keyboardnavigation: false,
 		columns: [
 			{text: '', datafield: 'accion', width: '40px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', width: '120px'},

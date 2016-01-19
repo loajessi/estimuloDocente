@@ -89,6 +89,27 @@ function detalleProyectosInicializar() {
 			Docentes_DetalleProyectos_CargarVista(datarow);
 		});
 
+		//Limitar input
+		$('#frmModalAgregarProyecto input[type="number"]').change(function() {
+			var valor = $(this).val();
+			if (valor.indexOf(".")!=-1) { //Decimal
+				valor = Math.floor(valor);
+			}
+
+			if (valor>999) {
+				$(this).val(999);
+			} else if (valor<0) {
+				$(this).val(0);
+			} else {
+				$(this).val(valor);
+			}
+
+		});
+
+		//Mostrar botones al editar algun dato
+		$('#frmModalAgregarProyecto input').change(function () {
+			$('.barraSuperiorAcciones').fadeIn();
+		});
 	};
 
 	crearWidgets();

@@ -172,8 +172,10 @@ function PersonalTablaCargar(sControl) {
 	});
 
 	var numRegistros = $(sControl).jqxGrid('getdatainformation').rowscount,
-		registros = $(sControl).jqxGrid('getrows');
-	crearCamposAuxiliares(numRegistros, registros);
+		registros = $(sControl).jqxGrid('getrows'),
+		camposAuxiliares = ['idEstimulo', 'idPersonal', 'gradoAcademico', 'puestoDrectivo', 'asistencias'];
+
+	crearCamposAuxiliares(numRegistros, registros, camposAuxiliares);
 
 	cargarInputsAsistencias();
 	$(sControl).on("pagechanged", cargarInputsAsistencias);
@@ -212,17 +214,16 @@ function cargarInputsAsistencias() {
 	});
 }
 
-function crearCamposAuxiliares(numRegistros, registros) {
-	var contenedor = $('#contenedorDatos');
+function crearCamposAuxiliares(numRegistros, registros, camposAuxiliares) {
+	var contenedor = $('#contenedorDatos'),
+		tipoCampo = 'hidden';
 
 	for(var i=0; i<numRegistros; i++) {
-		contenedor.append('<input type="hidden" id="cd_f'+i+'_RowIndex" value="'+i+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_idEstimulo" value="'+registros[i].idEstimulo+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_idPersonal" value="'+registros[i].idPersonal+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_gradoAcademico" value="'+registros[i].gradoAcademico+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_puestoDrectivo" value="'+registros[i].puestoDrectivo+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_asistencias" value="'+registros[i].asistencias+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_Guardado" value="" /><br />');
+		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_RowIndex" value="'+i+'" />');
+		for (var arr = 0; arr < camposAuxiliares.length; arr++) {
+			contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_'+camposAuxiliares[arr]+'" value="'+registros[i][camposAuxiliares[arr]]+'" />');
+		}
+		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_Guardado" value="" /><br />');
 	}
 }
 

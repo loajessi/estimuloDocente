@@ -2,27 +2,26 @@
 	require_once("../../config.php");
 	require_once("clsConsulta.php");
 	require_once("clsProcedimientos.php");
-
 	/*** Clase Generada por CTool 3.3.3 para el objeto Evaluacion
 	 * @author nombreAutor
-	 * Fecha:18/01/2016
-	 * @property int $idEvaluacion               descripcion
-	 * @property int $idEstimulo                 descripcion
-	 * @property int $idPersona                  descripcion
-	 * @property int $numeroEmpleado             descripcion
-	 * @property varchar $nombreCompleto         descripcion
-	 * @property varchar $tipoContrato           descripcion
+	 * Fecha:19/01/2016
+	 * @property int $idEvaluacion descripcion
+	 * @property int $idEstimulo descripcion
+	 * @property int $idPersona descripcion
+	 * @property int $numeroEmpleado descripcion
+	 * @property varchar $nombreCompleto descripcion
+	 * @property varchar $tipoContrato descripcion
 	 * @property datetime $fechaRegistroEstimulo descripcion
-	 * @property smallint $desempenoAula         descripcion
-	 * @property smallint $desempenoAcademico    descripcion
-	 * @property tinyint $innovacion             descripcion
-	 * @property tinyint $tics                   descripcion
-	 * @property tinyint $egel                   descripcion
-	 * @property datetime $fechaRegistro         descripcion
+	 * @property smallint $desempenoAula descripcion
+	 * @property smallint $desempenoAcademico descripcion
+	 * @property tinyint $innovacion descripcion
+	 * @property tinyint $tics descripcion
+	 * @property tinyint $egel descripcion
+	 * @property datetime $fechaRegistro descripcion
 	 * @property string usuarioRealizo
-	 * @property string ordenQuery               agrega un orden especifico en el query
+	 * @property string ordenQuery agrega un orden especifico en el query
 	 */
-	class clsEvaluacion {
+	class clsEvaluacion{
 		private $idEvaluacion;
 		private $idEstimulo;
 		private $idPersona;
@@ -43,310 +42,267 @@
 		/**
 		 * Constructor de la clase
 		 */
-		public function __construct() {
-			$this->idEvaluacion = -1;
-			$this->idEstimulo = -1;
-			$this->idPersona = -1;
-			$this->numeroEmpleado = -1;
-			$this->nombreCompleto = "";
-			$this->tipoContrato = "";
-			$this->fechaRegistroEstimulo = "";
-			$this->desempenoAula = -1;
-			$this->desempenoAcademico = -1;
-			$this->innovacion = -1;
-			$this->tics = -1;
-			$this->egel = -1;
-			$this->fechaRegistro = "";
-			$this->usuarioRealizo = "";
-			$this->ordenQuery = "";
+		public function __construct(){
+			$this->idEvaluacion=-1;
+			$this->idEstimulo=-1;
+			$this->idPersona=-1;
+			$this->numeroEmpleado=-1;
+			$this->nombreCompleto="";
+			$this->tipoContrato="";
+			$this->fechaRegistroEstimulo="";
+			$this->desempenoAula=-1;
+			$this->desempenoAcademico=-1;
+			$this->innovacion=-1;
+			$this->tics=-1;
+			$this->egel=-1;
+			$this->fechaRegistro="";
+			$this->usuarioRealizo="";
+			$this->ordenQuery="";
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo idEvaluacion
-		 * @access public
-		 *
-		 * @param int $pidEvaluacion descripcion.
+		 *  @access public
+		 *  @param int $pidEvaluacion descripcion.
 		 *
 		 */
-		public function setidEvaluacion($pidEvaluacion) {
-			$this->idEvaluacion = $pidEvaluacion;
+		public function setidEvaluacion($pidEvaluacion){
+			$this->idEvaluacion=$pidEvaluacion;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo idEvaluacion
-		 * @access private
-		 * @return int atributo idEvaluacion
+		 *  @access private
+		 *  @return int atributo idEvaluacion
 		 *
 		 */
-		private function getidEvaluacion() {
+		private function getidEvaluacion(){
 			return $this->idEvaluacion;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo idEstimulo
-		 * @access public
-		 *
-		 * @param int $pidEstimulo descripcion.
+		 *  @access public
+		 *  @param int $pidEstimulo descripcion.
 		 *
 		 */
-		public function setidEstimulo($pidEstimulo) {
-			$this->idEstimulo = $pidEstimulo;
+		public function setidEstimulo($pidEstimulo){
+			$this->idEstimulo=$pidEstimulo;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo idEstimulo
-		 * @access private
-		 * @return int atributo idEstimulo
+		 *  @access private
+		 *  @return int atributo idEstimulo
 		 *
 		 */
-		private function getidEstimulo() {
+		private function getidEstimulo(){
 			return $this->idEstimulo;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo idPersona
-		 * @access public
-		 *
-		 * @param int $pidPersona descripcion.
+		 *  @access public
+		 *  @param int $pidPersona descripcion.
 		 *
 		 */
-		public function setidPersona($pidPersona) {
-			$this->idPersona = $pidPersona;
+		public function setidPersona($pidPersona){
+			$this->idPersona=$pidPersona;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo idPersona
-		 * @access private
-		 * @return int atributo idPersona
+		 *  @access private
+		 *  @return int atributo idPersona
 		 *
 		 */
-		private function getidPersona() {
+		private function getidPersona(){
 			return $this->idPersona;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo numeroEmpleado
-		 * @access public
-		 *
-		 * @param int $pnumeroEmpleado descripcion.
+		 *  @access public
+		 *  @param int $pnumeroEmpleado descripcion.
 		 *
 		 */
-		public function setnumeroEmpleado($pnumeroEmpleado) {
-			$this->numeroEmpleado = $pnumeroEmpleado;
+		public function setnumeroEmpleado($pnumeroEmpleado){
+			$this->numeroEmpleado=$pnumeroEmpleado;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo numeroEmpleado
-		 * @access private
-		 * @return int atributo numeroEmpleado
+		 *  @access private
+		 *  @return int atributo numeroEmpleado
 		 *
 		 */
-		private function getnumeroEmpleado() {
+		private function getnumeroEmpleado(){
 			return $this->numeroEmpleado;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo nombreCompleto
-		 * @access public
-		 *
-		 * @param varchar $pnombreCompleto descripcion.
+		 *  @access public
+		 *  @param varchar $pnombreCompleto descripcion.
 		 *
 		 */
-		public function setnombreCompleto($pnombreCompleto) {
-			$this->nombreCompleto = $pnombreCompleto;
+		public function setnombreCompleto($pnombreCompleto){
+			$this->nombreCompleto=$pnombreCompleto;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo nombreCompleto
-		 * @access private
-		 * @return varchar atributo nombreCompleto
+		 *  @access private
+		 *  @return varchar atributo nombreCompleto
 		 *
 		 */
-		private function getnombreCompleto() {
+		private function getnombreCompleto(){
 			return $this->nombreCompleto;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo tipoContrato
-		 * @access public
-		 *
-		 * @param varchar $ptipoContrato descripcion.
+		 *  @access public
+		 *  @param varchar $ptipoContrato descripcion.
 		 *
 		 */
-		public function settipoContrato($ptipoContrato) {
-			$this->tipoContrato = $ptipoContrato;
+		public function settipoContrato($ptipoContrato){
+			$this->tipoContrato=$ptipoContrato;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo tipoContrato
-		 * @access private
-		 * @return varchar atributo tipoContrato
+		 *  @access private
+		 *  @return varchar atributo tipoContrato
 		 *
 		 */
-		private function gettipoContrato() {
+		private function gettipoContrato(){
 			return $this->tipoContrato;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo fechaRegistroEstimulo
-		 * @access public
-		 *
-		 * @param datetime $pfechaRegistroEstimulo descripcion.
+		 *  @access public
+		 *  @param datetime $pfechaRegistroEstimulo descripcion.
 		 *
 		 */
-		public function setfechaRegistroEstimulo($pfechaRegistroEstimulo) {
-			$this->fechaRegistroEstimulo = $pfechaRegistroEstimulo;
+		public function setfechaRegistroEstimulo($pfechaRegistroEstimulo){
+			$this->fechaRegistroEstimulo=$pfechaRegistroEstimulo;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo fechaRegistroEstimulo
-		 * @access private
-		 * @return datetime atributo fechaRegistroEstimulo
+		 *  @access private
+		 *  @return datetime atributo fechaRegistroEstimulo
 		 *
 		 */
-		private function getfechaRegistroEstimulo() {
+		private function getfechaRegistroEstimulo(){
 			return $this->fechaRegistroEstimulo;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo desempenoAula
-		 * @access public
-		 *
-		 * @param smallint $pdesempenoAula descripcion.
+		 *  @access public
+		 *  @param smallint $pdesempenoAula descripcion.
 		 *
 		 */
-		public function setdesempenoAula($pdesempenoAula) {
-			$this->desempenoAula = $pdesempenoAula;
+		public function setdesempenoAula($pdesempenoAula){
+			$this->desempenoAula=$pdesempenoAula;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo desempenoAula
-		 * @access private
-		 * @return smallint atributo desempenoAula
+		 *  @access private
+		 *  @return smallint atributo desempenoAula
 		 *
 		 */
-		private function getdesempenoAula() {
+		private function getdesempenoAula(){
 			return $this->desempenoAula;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo desempenoAcademico
-		 * @access public
-		 *
-		 * @param smallint $pdesempenoAcademico descripcion.
+		 *  @access public
+		 *  @param smallint $pdesempenoAcademico descripcion.
 		 *
 		 */
-		public function setdesempenoAcademico($pdesempenoAcademico) {
-			$this->desempenoAcademico = $pdesempenoAcademico;
+		public function setdesempenoAcademico($pdesempenoAcademico){
+			$this->desempenoAcademico=$pdesempenoAcademico;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo desempenoAcademico
-		 * @access private
-		 * @return smallint atributo desempenoAcademico
+		 *  @access private
+		 *  @return smallint atributo desempenoAcademico
 		 *
 		 */
-		private function getdesempenoAcademico() {
+		private function getdesempenoAcademico(){
 			return $this->desempenoAcademico;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo innovacion
-		 * @access public
-		 *
-		 * @param tinyint $pinnovacion descripcion.
+		 *  @access public
+		 *  @param tinyint $pinnovacion descripcion.
 		 *
 		 */
-		public function setinnovacion($pinnovacion) {
-			$this->innovacion = $pinnovacion;
+		public function setinnovacion($pinnovacion){
+			$this->innovacion=$pinnovacion;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo innovacion
-		 * @access private
-		 * @return tinyint atributo innovacion
+		 *  @access private
+		 *  @return tinyint atributo innovacion
 		 *
 		 */
-		private function getinnovacion() {
+		private function getinnovacion(){
 			return $this->innovacion;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo tics
-		 * @access public
-		 *
-		 * @param tinyint $ptics descripcion.
+		 *  @access public
+		 *  @param tinyint $ptics descripcion.
 		 *
 		 */
-		public function settics($ptics) {
-			$this->tics = $ptics;
+		public function settics($ptics){
+			$this->tics=$ptics;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo tics
-		 * @access private
-		 * @return tinyint atributo tics
+		 *  @access private
+		 *  @return tinyint atributo tics
 		 *
 		 */
-		private function gettics() {
+		private function gettics(){
 			return $this->tics;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo egel
-		 * @access public
-		 *
-		 * @param tinyint $pegel descripcion.
+		 *  @access public
+		 *  @param tinyint $pegel descripcion.
 		 *
 		 */
-		public function setegel($pegel) {
-			$this->egel = $pegel;
+		public function setegel($pegel){
+			$this->egel=$pegel;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo egel
-		 * @access private
-		 * @return tinyint atributo egel
+		 *  @access private
+		 *  @return tinyint atributo egel
 		 *
 		 */
-		private function getegel() {
+		private function getegel(){
 			return $this->egel;
 		}
-
 		/**
 		 *  Metodo que inicializa el atributo fechaRegistro
-		 * @access public
-		 *
-		 * @param datetime $pfechaRegistro descripcion.
+		 *  @access public
+		 *  @param datetime $pfechaRegistro descripcion.
 		 *
 		 */
-		public function setfechaRegistro($pfechaRegistro) {
-			$this->fechaRegistro = $pfechaRegistro;
+		public function setfechaRegistro($pfechaRegistro){
+			$this->fechaRegistro=$pfechaRegistro;
 		}
-
 		/**
 		 *  Metodo que obtiene el atributo fechaRegistro
-		 * @access private
-		 * @return datetime atributo fechaRegistro
+		 *  @access private
+		 *  @return datetime atributo fechaRegistro
 		 *
 		 */
-		private function getfechaRegistro() {
+		private function getfechaRegistro(){
 			return $this->fechaRegistro;
 		}
-
-		public function setUsuarioRealizo($pUsuarioRealizo) {
-			$this->usuarioRealizo = $pUsuarioRealizo;
+		public function setUsuarioRealizo($pUsuarioRealizo){
+			$this->usuarioRealizo=$pUsuarioRealizo;
 		}
-
-		private function getUsuarioRealizo() {
+		private function getUsuarioRealizo(){
 			return $this->usuarioRealizo;
 		}
-
-		public function setOrdenQuery($psOrdenQuery) {
-			$this->ordenQuery = $psOrdenQuery;
+		public function setOrdenQuery($psOrdenQuery){
+			$this->ordenQuery=$psOrdenQuery;
 		}
-
-		private function getOrdenQuery() {
+		private function getOrdenQuery(){
 			return $this->$psOrdenQuery;
 		}
 
@@ -358,87 +314,86 @@
 		 * @access public
 		 * @return string la cadena correpondiente al filtro WHERE del query
 		 */
-		private function getFiltroQuery() {
-			$sFiltro = "";
-			if ($this->idEvaluacion != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+		private function getFiltroQuery(){
+			$sFiltro="";
+			if($this->idEvaluacion!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "idEvaluacion=" . $this->idEvaluacion . " ";
+				$sFiltro.="idEvaluacion=" . $this->idEvaluacion . " ";
 			}
-			if ($this->idEstimulo != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if($this->idEstimulo!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "idEstimulo=" . $this->idEstimulo . " ";
+				$sFiltro.="idEstimulo=" . $this->idEstimulo . " ";
 			}
-			if ($this->idPersona != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if($this->idPersona!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "idPersona=" . $this->idPersona . " ";
+				$sFiltro.="idPersona=" . $this->idPersona . " ";
 			}
-			if ($this->numeroEmpleado != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if($this->numeroEmpleado!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "numeroEmpleado=" . $this->numeroEmpleado . " ";
+				$sFiltro.="numeroEmpleado=" . $this->numeroEmpleado . " ";
 			}
-			if (strlen(trim($this->nombreCompleto)) > 0) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if(strlen(trim($this->nombreCompleto))>0){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "nombreCompleto='" . $this->nombreCompleto . "'";
+				$sFiltro.="nombreCompleto='" . $this->nombreCompleto . "'" ;
 			}
-			if (strlen(trim($this->tipoContrato)) > 0) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if(strlen(trim($this->tipoContrato))>0){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "tipoContrato='" . $this->tipoContrato . "'";
+				$sFiltro.="tipoContrato='" . $this->tipoContrato . "'" ;
 			}
-			if (strlen(trim($this->fechaRegistroEstimulo)) > 0) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if(strlen(trim($this->fechaRegistroEstimulo))>0){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "fechaRegistroEstimulo='" . $this->fechaRegistroEstimulo . "'";
+				$sFiltro.="fechaRegistroEstimulo='" . $this->fechaRegistroEstimulo . "'" ;
 			}
-			if ($this->desempenoAula != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if($this->desempenoAula!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "desempenoAula=" . $this->desempenoAula . " ";
+				$sFiltro.="desempenoAula=" . $this->desempenoAula . " ";
 			}
-			if ($this->desempenoAcademico != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if($this->desempenoAcademico!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "desempenoAcademico=" . $this->desempenoAcademico . " ";
+				$sFiltro.="desempenoAcademico=" . $this->desempenoAcademico . " ";
 			}
-			if ($this->innovacion != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if($this->innovacion!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "innovacion=" . $this->innovacion . " ";
+				$sFiltro.="innovacion=" . $this->innovacion . " ";
 			}
-			if ($this->tics != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if($this->tics!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "tics=" . $this->tics . " ";
+				$sFiltro.="tics=" . $this->tics . " ";
 			}
-			if ($this->egel != -1) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if($this->egel!= -1){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "egel=" . $this->egel . " ";
+				$sFiltro.="egel=" . $this->egel . " ";
 			}
-			if (strlen(trim($this->fechaRegistro)) > 0) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
+			if(strlen(trim($this->fechaRegistro))>0){
+				if(strlen(trim($sFiltro))>0){
+					$sFiltro.="AND ";
 				}
-				$sFiltro .= "fechaRegistro='" . $this->fechaRegistro . "'";
+				$sFiltro.="fechaRegistro='" . $this->fechaRegistro . "'" ;
 			}
-
 			return $sFiltro;
 		}
 
@@ -449,16 +404,16 @@
 		 * @access public
 		 * @return string la cadena correpondiente codigo SQL del query de consulta
 		 */
-		public function getQuery() {
-			$sFiltro = $this->getFiltroQuery();
-			if (strlen(trim($sFiltro)) > 0) {
-				$sFiltro = "WHERE " . $sFiltro . " ";
+		public function getQuery(){
+			$sFiltro=$this->getFiltroQuery();
+			if(strlen(trim($sFiltro))>0){
+				$sFiltro="WHERE " . $sFiltro . " ";
 			}
-			$sOrdenQuery = "";
-			if (strlen(trim($this->ordenQuery)) > 0) {
-				$sOrdenQuery = "ORDER BY " . $this->ordenQuery . " ";
+			$sOrdenQuery="";
+			if(strlen(trim($this->ordenQuery))>0){
+				$sOrdenQuery="ORDER BY " . $this->ordenQuery . " ";
 			}
-			$sQuery = "
+			$sQuery="
 		SELECT
 			 idEvaluacion
 			,idEstimulo
@@ -484,49 +439,44 @@
 		/**
 		 * Metodo que obtiene el arreglo como resultado de la consulta datos y sus filtros
 		 * @access public
-		 *
-		 * @param boolean $bPrimero  si se manda a false, entrega todos los registros
-		 *                           se se manda en true, devuelve el primer registro en forma de vector
+		 * @param boolean $bPrimero si se manda a false, entrega todos los registros
+		 *                          se se manda en true, devuelve el primer registro en forma de vector
 		 *                           Por defecto esta en true
-		 *
 		 * @return array $arrDatos arreglo de datos
 		 */
-		function getDatos($bPrimero = true) {
+		function getDatos($bPrimero=true){
 			//echo $this->getQuery();
 
-			$objConsulta = new clsConsulta($this->getQuery());
+			$objConsulta=new clsConsulta($this->getQuery());
 			$objConsulta->FNCQueryEjecutar();
 
-			$arrDatos = $objConsulta->getArregloResultado();
-			if ($bPrimero) {
-				$arrDatos = $arrDatos[0];
+			$arrDatos=$objConsulta->getArregloResultado();
+			if($bPrimero){
+				$arrDatos=$arrDatos[0];
 			}
-
 			return $arrDatos;
 		}
-
 		/**
 		 * Metodo que obtiene el json como resultado de la consulta datos y sus filtros
 		 * @access public
-		 *
-		 * @param boolean $bPrimero  si se manda a false, entrega todos los registros
-		 *                           se se manda en true, devuelve el primer registro en forma de vector
+		 * @param boolean $bPrimero si se manda a false, entrega todos los registros
+		 *                          se se manda en true, devuelve el primer registro en forma de vector
 		 *                           Por defecto esta en true
-		 *
 		 * @return array $arrDatos arreglo de datos
 		 */
-		public function getDatosJson($bPrimero = true) {
+		public function getDatosJson($bPrimero=true){
 
-			$arrDatos = $this->getDatos($bPrimero);
+			$arrDatos=$this->getDatos($bPrimero);
 
-			if (empty($arrDatos)) return "null";
-			if ($bPrimero) {
-				foreach ($arrDatos as $llaveFila => $fila) {
-					$arrDatos[$llaveFila] = utf8_encode($fila);
+			if(empty($arrDatos)) return "null";
+			if($bPrimero){
+				foreach($arrDatos as $llaveFila=>$fila){
+					$arrDatos[$llaveFila]=utf8_encode($fila);
 				}
-			} else {
-				$i = 0;
-				foreach ($arrDatos as $llaveFila => $fila) {
+			}
+			else{
+				$i=0;
+				foreach($arrDatos as $llaveFila=>$fila){
 					$iEvaluacionID = $arrDatos[$llaveFila]['idEvaluacion'];
 					$numEmpleado = $arrDatos[$llaveFila]['numeroEmpleado'];
 					foreach($fila as $llaveColumna=>$valor){
@@ -539,94 +489,55 @@
 
 			return json_encode($arrDatos);
 		}
-
 		/**
 		 * Metodo que ejecuta el SP estEvaluacionAgregarModificar
 		 *
 		 * @access public
-		 *
-		 * @param int      idEstimulo
+		 * @param int idEstimulo
 		 * @param smallint desempeñoAula
 		 * @param smallint desempeñoAcademico
-		 * @param tinyint  innovacion
-		 * @param tinyint  tics
-		 * @param tinyint  egel
-		 * @param varchar  usuarioRealizo
-		 *
+		 * @param tinyint innovacion
+		 * @param tinyint tics
+		 * @param tinyint egel
+		 * @param varchar usuarioRealizo
 		 * @return int idEvaluacion
 		 * @return int noError
 		 * @return varchar mensaje
 		 */
-		public function estEvaluacionAgregarModificar() {
-			$objProc = new clsProcedimientos("estEvaluacionAgregarModificar");
+		public function estEvaluacionAgregarModificar(){
+			$objProc=new clsProcedimientos("estEvaluacionAgregarModificar");
 			$objProc->FNCAgregaParametrosEntrada($this->idEstimulo);
 			$objProc->FNCAgregaParametrosEntrada($this->desempenoAula);
 			$objProc->FNCAgregaParametrosEntrada($this->desempenoAcademico);
 			$objProc->FNCAgregaParametrosEntrada($this->innovacion);
 			$objProc->FNCAgregaParametrosEntrada($this->tics);
 			$objProc->FNCAgregaParametrosEntrada($this->egel);
-			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
-			if ($this->idEvaluacion != -1) {
+			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo,1);
+
+			if($this->idEvaluacion != -1) {
 				$objProc->FNCAgregaParametrosEntrada($this->idEvaluacion);
 			} else {
-				$objProc->FNCAgregaParametroSalida("idEvaluacion", "INT");
+				$objProc->FNCAgregaParametroSalida("idEvaluacion","INT");
 			}
 
-			$objProc->FNCAgregaParametroSalida("noError", "INT");
-			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);
+			$objProc->FNCAgregaParametroSalida("noError","INT");
+			$objProc->FNCAgregaParametroSalida("mensaje","VARCHAR",255);
 
 
-			$arrSalida = $objProc->FNCObtieneResultado();
+			$arrSalida=$objProc->FNCObtieneResultado();
 
-			if (empty($arrSalida[0][noError])) {
-				$arrSalida[0][noError] = 0;
-			}
-
-			//echo $objProc->getCadenaQuery();
-			if ($arrSalida['noError'] > 0) {
-				str_replace('"', '', $arrSalida['mensaje']);
-				str_replace("'", '', $arrSalida['mensaje']);
-			}
-
-			return $arrSalida[0];
-		}
-
-
-		/**
-		 * Metodo que ejecuta el SP estEvaluacionEliminar
-		 *
-		 * @access public
-		 *
-		 * @param int     idEvaluacion
-		 * @param varchar usuarioRealizo
-		 *
-		 * @return int noError
-		 * @return varchar mensaje
-		 */
-		public function estEvaluacionEliminar() {
-			$objProc = new clsProcedimientos("estEvaluacionEliminar");
-			$objProc->FNCAgregaParametrosEntrada($this->idEvaluacion);
-			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
-			$objProc->FNCAgregaParametroSalida("noError", "INT");
-			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);
-
-
-			$arrSalida = $objProc->FNCObtieneResultado();
-
-			if (empty($arrSalida[0][noError])) {
-				$arrSalida[0][noError] = 0;
+			if(empty($arrSalida[0][noError])){
+				$arrSalida[0][noError]=0;
 			}
 
 			//echo $objProc->getCadenaQuery();
-			if ($arrSalida['noError'] > 0) {
-				str_replace('"', '', $arrSalida['mensaje']);
-				str_replace("'", '', $arrSalida['mensaje']);
+			if($arrSalida['noError']>0){
+				str_replace('"','',$arrSalida['mensaje']);
+				str_replace("'",'',$arrSalida['mensaje']);
 			}
-
 			return $arrSalida[0];
 		}
 
 
 	}
-
 ?>

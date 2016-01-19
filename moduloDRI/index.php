@@ -30,6 +30,7 @@
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/globalize.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/localizationGrid.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/libFunc.js"></script>
+	<script type="text/javascript" src="../_jscript/notificaciones.js"></script>
 
 	<!-- Widgets jqwidgets -->
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxmenu.js"></script>
@@ -48,6 +49,8 @@
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxdata.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxtabs.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxcheckbox.js"></script>
+	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxcalendar.js"></script>
+	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxdatetimeinput.js"></script>
 
 	<!-- Widgets estimulo -->
 	<script type="text/javascript" src="widgets/jqxValidacionDatos.js"></script>

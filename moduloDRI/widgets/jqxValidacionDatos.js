@@ -112,13 +112,13 @@ function RelacionesInternacionalesTablaCargar(sControl){
 					}
 				}
 			},
-			{text: 'Fecha de inicio', datafield: 'fechaInicioBecaFederal', cellsalign: 'center', width: '195px',
+			{text: 'Fecha de inicio', datafield: 'fechaInicioBecaFederal', cellsalign: 'center', width: '195px', editable: false, type: 'datetimeinpu',filtertype: 'date' ,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					var html = '<div class="#jqxDateTimeInput_fechaInicioBecaFederal" id="jqxDateTimeInput_'+row+'_fechaInicioBecaFederal" data-value="'+value+'" data-row="'+row+'"></div>';
 					return html;
 				},
 			},
-			{text: 'Fecha de t&eacute;rmino', datafield: 'fechaTerminoBecaFederal', cellsalign: 'center', width: '195px',
+			{text: 'Fecha de t&eacute;rmino', datafield: 'fechaTerminoBecaFederal', cellsalign: 'center', width: '195px', editable: false, type: 'datetimeinpu', filtertype: 'date',
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					var html = '<div class="#jqxDateTimeInput_fechaTerminoBecaFederal" id="jqxDateTimeInput_'+row+'_fechaTerminoBecaFederal" data-value="'+value+'" data-row="'+row+'"></div>';
 					return html;
@@ -141,7 +141,7 @@ function crearCamposAuxiliares(numRegistros, registros) {
 	for(var i=0; i<numRegistros; i++) {
 		contenedor.append('<input type="hidden" id="cd_f'+i+'_RowIndex" value="'+i+'" />' +
 			'<input type="hidden" id="cd_f'+i+'_idEstimulo" value="'+registros[i].idEstimulo+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_ididRelacionesInternacionales" value="'+registros[i].idRelacionesInternacionales+'" />' +
+			'<input type="hidden" id="cd_f'+i+'_idRelacionesInternacionales" value="'+registros[i].idRelacionesInternacionales+'" />' +
 			'<input type="hidden" id="cd_f'+i+'_becaFederal" value="'+registros[i].becaFederal+'" />' +
 			'<input type="hidden" id="cd_f'+i+'_fechaInicioBecaFederal" value="'+registros[i].fechaInicioBecaFederal+'" />' +
 			'<input type="hidden" id="cd_f'+i+'_fechaTerminoBecaFederal" value="'+registros[i].fechaTerminoBecaFederal+'" />' +
@@ -229,7 +229,7 @@ function relacionesInternacionalesAgregarModificar(fila){
 					$('#cd_f' + fila + '_Guardado').val('1');
 
 					// Cambiar celdas en el grid
-					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'becaFederal', becaFederalo);
+					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'becaFederal', becaFederal);
 
 				}
 			}

@@ -121,9 +121,20 @@
 	border: 0;
 }
 
-.btnEliminarPatente {
-	background: url('/generalesDIyS/_img/iconoPapelera.png') no-repeat center center transparent;
-	width: 100%;
+.btnEliminar {
+	background: url('/generalesDIyS/_img/iconoPapelera.png') no-repeat left center transparent;
+	width: 25%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	text-indent: -9999%;
+	border: 0;
+}
+
+.btnEditar {
+	background: url('/generalesDIyS/_img/iconoEditar.png') no-repeat right center transparent;
+	width: 25%;
 	height: 100%;
 	padding: 0;
 	margin: 0;

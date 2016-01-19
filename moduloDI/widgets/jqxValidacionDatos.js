@@ -45,6 +45,24 @@ function datosInvestigacionRegistroObtener(pInvestigacionID) {
 
 function InvestigacionTablaCargar(sControl) {
 	var dataAdapter = datosInvestigacionCargar();
+
+	var keyboardHandler = function (event) {
+		var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+		if ((key >= 33 && key <= 36) || key == 37 || key == 39) {
+			return true;
+		} else if (key==38) { //Flecha arriba
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual-1);
+			cargarInputsAsistencias();
+			return true;
+		} else if (key==40) { //Flecha abajo
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual+1);
+			cargarInputsAsistencias();
+			return true;
+		}
+	};
+
 	$(sControl).jqxGrid({
 		width: '99.5%',
 		height: '100%',
@@ -57,12 +75,23 @@ function InvestigacionTablaCargar(sControl) {
 		sortable: true,
 		pageable: true,
 		editable: false,
+		pagermode: 'simple',
+		pagerbuttonscount: 10,
+		handlekeyboardnavigation: keyboardHandler,
 		columns: [
 			{text: '', datafield: 'accion', width: '40px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},
-			{text: '', datafield: 'idInvestigacion', hidden: true},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', width: '120px'},
 			{text: 'Nombre completo', datafield: 'nombreCompleto'},
-			{text: 'ID', datafield: 'idEstimulo', hidden: true}
+			{text: '', datafield: 'idEstimulo', hidden: true},
+			{text: '', datafield: 'idInvestigacion', hidden: true},
+			{text: '', datafield: 'reconocimientoSNI', hidden: true},
+			{text: '', datafield: 'fechaInicioSNI', hidden: true},
+			{text: '', datafield: 'fechaTerminoSNI', hidden: true},
+			{text: '', datafield: 'nivelSNI', hidden: true},
+			{text: '', datafield: 'noProyOrganismoResponsable', hidden: true},
+			{text: '', datafield: 'noProyInstitucionResponsable', hidden: true},
+			{text: '', datafield: 'noProyOrganismoParticipo', hidden: true},
+			{text: '', datafield: 'noProyInstitucionParticipo', hidden: true},
 		]
 	});
 
@@ -76,9 +105,7 @@ function InvestigacionTablaCargar(sControl) {
 
 		$("#detalleDatosPatentes").html(mensajeCargando);
 
-		window.setTimeout(function(){ //Simular carga de datos
-			Docentes_DetalleProyectos_CargarVista(datarow);
-		}, 800);
+		Docentes_DetalleProyectos_CargarVista(datarow);
 	});
 }
 
@@ -132,6 +159,8 @@ function InvestigacionFormularioCargar(pInvestigacionID) {
 }
 
 function investigacionAgregarModificar() {
+	var txtOriginal = $('#btnGuardar').html();
+	$('#btnGuardar').html("Guardando...");
 
 	var noProyOrganismoResponsable = $('#noProyOrganismoResponsable').val(),
 	    noProyInstitucionResponsable = $('#noProyInstitucionResponsable').val(),
@@ -145,12 +174,14 @@ function investigacionAgregarModificar() {
 		idInvestigacion = $('#hdnIdInvestigacion').val();
 
 	if (noProyOrganismoResponsable === '' || noProyInstitucionResponsable === '' || noProyOrganismoParticipo === '' || noProyInstitucionParticipo === '' || botonSNI === '') {
+		notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
 		return null;
 	}
 
 	if (botonSNI=='1') {
 
 		if (nivelSNI=='' || fechaInicioSNI=='' || fechaTerminoSNI=='' || fechaInicioSNI==null || fechaTerminoSNI==null){
+			notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
 			return null;
 		}
 
@@ -161,29 +192,32 @@ function investigacionAgregarModificar() {
 	//Serializar formulario
 	var oParametros = $('#frmModalAgregarProyecto').serialize();
 
-	/*var oParametros = 'idEstimulo=' + idEstimulo +
-		'&noProyOrganismoResponsable' + noProyOrganismoResponsable +
-		'&noProyInstitucionResponsable' + noProyInstitucionResponsable +
-		'&noProyOrganismoParticipo' + noProyOrganismoParticipo +
-		'&noProyInstitucionParticipo' + noProyInstitucionParticipo +
-		'&fechaInicioSNI' + fechaInicioSNI +
-		'&fechaTerminoSNI' + fechaTerminoSNI +
-		'&nivelSNI' + nivelSNI +
-		'&idInvestigacion' + idInvestigacion;*/
-
 	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});
 
 	$.post(sPagina, oParametros, function (datos, status) {
 		if (status == 'success') {
 			eval(datos);
 			if (json.noError > 0) {
-				//notif({msg: '<b>Error al guardar:</b> " + json.mensaje', type: 'error', position: 'right', width: 200});
-				return false;
+				notif({msg: '<b>Error al guardar:</b> " + json.mensaje', type: 'error', position: 'right', width: 400});
+				$('#btnGuardar').html(txtOriginal);
 			}
 			else {
-				//notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
 				// Acciones posteriores a la actualizacion
-				return true;
+				$('#btnGuardar').html(txtOriginal);
+
+				//Actualizar Grid
+				if (idInvestigacion=='') {
+					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'idInvestigacion', json.idInvestigacion);
+				}
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'reconocimientoSNI', botonSNI);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'fechaInicioSNI', fechaInicioSNI);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'fechaTerminoSNI', fechaTerminoSNI);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'nivelSNI', nivelSNI);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'noProyOrganismoResponsable', noProyOrganismoResponsable);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'noProyInstitucionResponsable', noProyInstitucionResponsable);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'noProyOrganismoParticipo', noProyOrganismoParticipo);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'noProyInstitucionParticipo', noProyInstitucionParticipo);
 			}
 		}
 	});

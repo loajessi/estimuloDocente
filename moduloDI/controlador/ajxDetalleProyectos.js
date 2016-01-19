@@ -5,27 +5,15 @@ function detalleProyectosInicializar() {
 	var crearWidgets = function () {
 		$("#jqxButtonGroup_SNI").jqxButtonGroup({ mode: 'RadioButtons', theme: 'energyblue' });
 
-		/*var jqxNumberInputConfig = {
-			width: '150px',
-			height: '28px',
-			textAlign: 'center',
-			inputMode: 'simple',
-			spinButtons: true,
-			min: 0,
-			digits: 3,
-			decimalDigits: 0,
-			theme: 'energyblue'
-		};
-		$('.jqxNumberInput_ValidacionProyectos').jqxNumberInput(jqxNumberInputConfig);*/
-
 		var jqxDateTimeInputConfig = {
-			width: '100%',
+			width: '140px',
 			theme: 'energyblue',
 			allowNullDate: true,
 			culture: 'es-MX',
 			showWeekNumbers: false,
 			todayString: 'Hoy',
-			value: null
+			value: null,
+			formatString: 'MM/dd/yyyy'
 		};
 		$("#jqxDateTimeInput_FechaInicioSNI").jqxDateTimeInput(jqxDateTimeInputConfig);
 		$("#jqxDateTimeInput_FechaTerminoSNI").jqxDateTimeInput(jqxDateTimeInputConfig);
@@ -45,7 +33,7 @@ function detalleProyectosInicializar() {
 			displayMember: 'nivel',
 			valueMember: 'valor',
 			autoDropDownHeight: true,
-			width: '100%',
+			width: '140px',
 			theme: 'energyblue'
 		});
 	};
@@ -59,21 +47,8 @@ function detalleProyectosInicializar() {
 			if ( $('#frmModalAgregarProyecto')[0].checkValidity() ) {
 				// Comprobación del navegador correcta
 
-				var txtOriginal = $('#btnGuardar').html();
-				$('#btnGuardar').html("Guardando...");
-
 				// Guarda en la BD
-				var respuesta = investigacionAgregarModificar();
-
-				if (respuesta === true) {
-					notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
-				} else if (respuesta === false) {
-					notif({msg: '<b>Error al guardar datos</b>', type: 'error', position: 'right', width: 200});
-				} else if (respuesta === null) {
-					notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
-				}
-
-				$('#btnGuardar').html(txtOriginal);
+				investigacionAgregarModificar();
 			}else console.error('Error en formulario');
 		});
 
@@ -99,13 +74,19 @@ function detalleProyectosInicializar() {
 			} else {
 				$('#SNI_CamposAdicionales').slideUp();
 				//Borrar campos
-				$('#jqxDateTimeInput_FechaInicio').val(null);
-				$('#jqxDateTimeInput_FechaTermino').val(null);
+				$('#jqxDateTimeInput_FechaInicioSNI').val(null);
+				$('#jqxDateTimeInput_FechaTerminoSNI').val(null);
+				$("#jqxComboBox_NivelSNI").jqxComboBox('clearSelection');
 			}
 		});
 
 		$("#btnCancelar").on("click", function (event) {
-			InvestigacionTablaCargar("#jqxGrid_Docentes");
+			$('#detalleDatosProyecto > .animated').removeClass('slideInLeft').addClass('slideOutLeft');
+
+			window.setTimeout(function (){
+				var datarow = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex') );
+				Docentes_DetalleProyectos_CargarVista(datarow);
+			}, 800);
 		});
 
 	};
@@ -117,24 +98,3 @@ function detalleProyectosInicializar() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Funciones correspondientes a eventos o inicialización de contenido
-
-function ProyectosEliminarRegistro(objeto) {
-	if (confirm('¿Estás seguro que deseas eliminar este proyecto?') ) {
-		// Eliminando... simular proceso
-		window.setTimeout(function() {
-			$(objeto).parent().parent().nextAll().html('<div class="jqx-grid-cell-middle-align" style="margin-top: 11px;">Eliminando...</div>');
-		}, 1000);
-
-		// Eliminar de la base de datos
-
-		// Ocultar amigablemente el objeto
-		window.setTimeout(function() {
-			$(objeto).parent().parent().parent().slideUp();
-		}, 2000);
-
-		//Eliminar del DOM
-		window.setTimeout(function() {
-			$(objeto).parent().parent().parent().remove()
-		}, 3000);
-	}
-}

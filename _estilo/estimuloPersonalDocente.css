@@ -255,6 +255,13 @@ hr + form > .columna > *:last-child {
 	font-weight: bold !important;
 }
 
+.ayudaCargando {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 0;
+}
+
 #detalleDatosProyecto, #detalleDatosPatentes {
 	padding: 10px;
 }

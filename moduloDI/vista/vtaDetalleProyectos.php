@@ -1,3 +1,6 @@
+<div class="txtCentrado ayudaCargando">
+	<h2 style="width: 500px; padding-top: 90px; margin: 0 auto; color: #ABABAB;">Cargando...</h2>
+</div>
 <div class="animated slideInLeft">
 	<div class="barraSuperiorAcciones">
 		<button type="submit" form="frmModalAgregarProyecto" class="boton icon guardar">Guardar</button>

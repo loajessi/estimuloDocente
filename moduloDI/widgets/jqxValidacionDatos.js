@@ -101,9 +101,8 @@ function InvestigacionTablaCargar(sControl) {
 			datafield = event.args.datafield,
 			datarow = $(sControl).jqxGrid('getrowdata', row);
 
-		var mensajeCargando = '<div class="txtCentrado"><h2 style="width: 500px; padding-top: 90px; margin: 0 auto; color: #ABABAB;">Cargando...</h2></div>';
-
-		$("#detalleDatosPatentes").html(mensajeCargando);
+		$('#detalleDatosProyecto > .animated').removeClass('slideInLeft').addClass('slideOutLeft');
+		var datarow = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex') );
 
 		Docentes_DetalleProyectos_CargarVista(datarow);
 	});

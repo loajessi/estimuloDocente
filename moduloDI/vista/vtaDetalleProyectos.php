@@ -8,6 +8,7 @@
 	<hr>
 
 	<form id="frmModalAgregarProyecto" name="frmModalAgregarProyecto" action="" method="post" class="dataForm" style="border:0; padding: 0;">
+		<input type="hidden" value="" id="RowIndex" />
 		<input type="hidden" value="" id="hdnIdEstimulo" name="idEstimulo" />
 		<input type="hidden" value="" id="hdnIdInvestigacion" name="idInvestigacion" />
 		<input type="hidden" id="hdnBotonSNI" name="reconocimientoSNI" value="" required="required" />

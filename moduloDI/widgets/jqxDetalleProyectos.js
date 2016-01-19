@@ -1,22 +1,24 @@
 function Docentes_DetalleProyectos_CargarVista(datosFila) {
-	var botonSNI;
 
 	$.get('vista/vtaDetalleProyectos.php', function (data, status) {
 		if (status == 'success') {
 			$("#detalleDatosProyecto").html(data);
-			// Inicializar datos dummy
+			// Inicializar datos
 			$('#ProyectoNombreEmpleado').html(datosFila.nombreCompleto);
+			$('#RowIndex').val(datosFila.rowIndex);
 			detalleProyectosInicializar();
 
 			if(datosFila.idInvestigacion != ""){
 				// LLenar widgets con datos existentes
-				if(datosFila.reconocimientoSNI == 0){
-					botonSNI = 1;
-				}else if(datosFila.reconocimientoSNI == 1){
-					botonSNI = 0;
-				}
-				$('#jqxButtonGroup_SNI').jqxButtonGroup('setSelection', botonSNI);
 
+				$('.btnActivo').removeClass('btnActivo btnCorrecto btnPeligro');
+				if(datosFila.reconocimientoSNI == 0){
+					$('#btnSNI_No').addClass('btnActivo btnPeligro');
+					$('#hdnBotonSNI').val(0).trigger('change');
+				}else if(datosFila.reconocimientoSNI == 1){
+					$('#btnSNI_Si').addClass('btnActivo btnCorrecto');
+					$('#hdnBotonSNI').val(1).trigger('change');
+				}
 
 				$('#noProyOrganismoResponsable').val(datosFila.noProyOrganismoResponsable);
 				$('#noProyInstitucionResponsable').val(datosFila.noProyInstitucionResponsable);

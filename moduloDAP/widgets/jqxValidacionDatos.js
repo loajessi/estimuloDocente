@@ -51,7 +51,7 @@ function PersonalTablaCargar(sControl) {
 		filterable: true,
 		autoshowfiltericon: true,
 		pageable: true,
-		editable: true,
+		editable: false,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu: false, cellclassname: 'cell-acciones'},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '149px'},
@@ -132,7 +132,7 @@ function PersonalTablaCargar(sControl) {
 			},
 			{text: 'Porcentaje de asistencia', datafield: 'asistencias', cellsalign: 'center', width: '195px', columntype: 'numberinput', cellsformat: 'f2', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
-					var html = '<div class="jqxNumberInput_asistencias" id="jqxNumberInput_'+row+'_asistencias" data-value="'+value+'"></div>';
+					var html = '<div class="jqxNumberInput_asistencias" id="jqxNumberInput_'+row+'_asistencias" data-value="'+value+'" data-row="'+row+'"></div>';
 					return html;
 				},
 				renderer: function () {
@@ -149,6 +149,10 @@ function PersonalTablaCargar(sControl) {
 		]
 	});
 
+	var numRegistros = $(sControl).jqxGrid('getdatainformation').rowscount,
+		registros = $(sControl).jqxGrid('getrows');
+	crearCamposAuxiliares(numRegistros, registros);
+
 	cargarInputsAsistencias();
 	$(sControl).on("pagechanged", cargarInputsAsistencias);
 	$(sControl).on("filter", cargarInputsAsistencias);
@@ -157,6 +161,8 @@ function PersonalTablaCargar(sControl) {
 
 function cargarInputsAsistencias() {
 	$('.jqxNumberInput_asistencias').each(function () {
+		var valor = $(this).attr('data-value');
+
 		$(this).jqxNumberInput({
 			digits: 3,
 			decimalDigits: 2,
@@ -170,14 +176,32 @@ function cargarInputsAsistencias() {
 			min: 0,
 			max: 100,
 			theme: 'energyblue'
-		});
+		}).jqxNumberInput('val', valor);
 	});
 
-	$('.jqxNumberInput_asistencias').on('change', function (event) {
-		$('#cd_asistencias').val(event.args.value);
-		$(event.currentTarget).attr('data-value', event.args.value);
-		personalAgregarModificar();
+	$('.jqxNumberInput_asistencias').change(function (event) {
+		var fila = $(this).attr('data-row'),
+			valor = $(this).val();
+
+		$('#cd_f'+fila+'_asistencias').val(valor);
+		$(this).attr('data-value', valor);
+
+		personalAgregarModificar(fila);
 	});
+}
+
+function crearCamposAuxiliares(numRegistros, registros) {
+	var contenedor = $('#contenedorDatos');
+
+	for(var i=0; i<numRegistros; i++) {
+		contenedor.append('<input type="hidden" id="cd_f'+i+'_RowIndex" value="'+i+'" />' +
+			'<input type="hidden" id="cd_f'+i+'_idEstimulo" value="'+registros[i].idEstimulo+'" />' +
+			'<input type="hidden" id="cd_f'+i+'_idPersonal" value="'+registros[i].idPersonal+'" />' +
+			'<input type="hidden" id="cd_f'+i+'_gradoAcademico" value="'+registros[i].gradoAcademico+'" />' +
+			'<input type="hidden" id="cd_f'+i+'_puestoDrectivo" value="'+registros[i].puestoDrectivo+'" />' +
+			'<input type="hidden" id="cd_f'+i+'_asistencias" value="'+registros[i].asistencias+'" />' +
+			'<input type="hidden" id="cd_f'+i+'_Guardado" value="" /><br />');
+	}
 }
 
 function PersonalComboCargar(sControl) {
@@ -224,14 +248,14 @@ function PersonalFormularioCargar(pPersonalID) {
 	$('#ctrlfechaRegistro').val(registro.fechaRegistro);
 }
 
-function personalAgregarModificar() {
+function personalAgregarModificar(fila) {
 
-	var puestoDrectivo = $('#cd_puestoDrectivo').val(),
-		gradoAcademico = $('#cd_gradoAcademico').val(),
-		asistencias = $('#cd_asistencias').val(),
-		row = $('#cd_RowIndex').val(),
-		idEstimulo = $('#cd_idEstimulo').val(),
-		idPersonal = $('#cd_idPersonal').val();
+	var puestoDrectivo = $('#cd_f'+fila+'_puestoDrectivo').val(),
+		gradoAcademico = $('#cd_f'+fila+'_gradoAcademico').val(),
+		asistencias = $('#cd_f'+fila+'_asistencias').val(),
+		row = $('#cd_f'+fila+'_RowIndex').val(),
+		idEstimulo = $('#cd_f'+fila+'_idEstimulo').val(),
+		idPersonal = $('#cd_f'+fila+'_idPersonal').val();
 
 	if(gradoAcademico=='') {
 		return;
@@ -247,9 +271,6 @@ function personalAgregarModificar() {
 
 	var sPagina = "modelo/modPersonalAgregarModificar.php";
 
-	//Obtener datos del row
-	//var data = $("#jqxGrid_Docentes").jqxGrid('getrowdatabyid', rowId);
-
 	//Parámetros a enviar
 	var oParametros = 'idEstimulo=' + idEstimulo + '&gradoAcademico=' + gradoAcademico + '&puestoDrectivo=' + puestoDrectivo + '&asistencias=' + asistencias + '&idPersonal=' + idPersonal;
 
@@ -263,7 +284,16 @@ function personalAgregarModificar() {
 			} else {
 				// Acciones posteriores a la actualizacion
 				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
-				$('#cd_Guardado').val('1');
+				if( idPersonal=='' || typeof idPersonal == 'undefined' || idPersonal == null ){
+					$('#cd_f'+fila+'_idPersonal').val(json.idPersonal);
+				}
+				$('#cd_f'+fila+'_Guardado').val('1');
+
+				// Cambiar celdas en el grid
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'gradoAcademico', gradoAcademico);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'puestoDrectivo', puestoDrectivo);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'asistencias', asistencias);
+				cargarInputsAsistencias();
 			}
 		}
 	});

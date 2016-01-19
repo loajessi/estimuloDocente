@@ -263,6 +263,20 @@ hr + form > .columna > *:last-child {
 	margin-top: 5px;
 }
 
+.jqxNumberInput_asistencias[data-value=""] input {
+	color: #FFFFFF;
+}
+
+.jqxNumberInput_asistencias[data-value=""] input:focus, .jqxNumberInput_asistencias[data-value=""] input:active {
+	color: #000000;
+}
+
+#contenedorDatos {
+	visibility: hidden;
+	display: none;
+	opacity: 0;
+}
+
 #frmModalAgregarProyecto input[type="number"] {
 	border: 1px solid #CCCCCC;
 	color: #888888;

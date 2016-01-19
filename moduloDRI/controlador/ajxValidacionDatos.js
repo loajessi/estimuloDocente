@@ -5,18 +5,6 @@ function validacionDatosInicializar() {
     var crearWidgets = function () {
 	    RelacionesInternacionalesTablaCargar("#jqxGrid_Docentes");
 
-	    var jqxDateTimeInputConfig = {
-		    width: '140px',
-		    theme: 'energyblue',
-		    allowNullDate: true,
-		    culture: 'es-MX',
-		    showWeekNumbers: false,
-		    todayString: 'Hoy',
-		    value: null,
-		    formatString: 'MM/dd/yyyy'
-	    };
-	   // $("#jqxDateTimeInput_fechaInicioBecaFederal").jqxDateTimeInput(jqxDateTimeInputConfig);
-	   // $("#jqxDateTimeInput_fechaTerminoBecaFederal").jqxDateTimeInput(jqxDateTimeInputConfig);
 
     };
 
@@ -54,7 +42,7 @@ function validacionDatosInicializar() {
 
     crearWidgets();
     agregarEventos();
-	RelacionesInternacionalesTablaCargar("#jqxGrid_Docentes");
+	//RelacionesInternacionalesTablaCargar("#jqxGrid_Docentes");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

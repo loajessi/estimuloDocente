@@ -41,7 +41,7 @@ function datosRelacionesInternacionalesRegistroObtener(pRelacionesInternacionale
 function RelacionesInternacionalesTablaCargar(sControl){
 	var dataAdapter= datosRelacionesInternacionalesCargar();
 
-	var keyboardHandler = function (event) {
+	/*var keyboardHandler = function (event) {
 		var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
 		if ((key >= 33 && key <= 36) || key == 37 || key == 39) {
 			return true;
@@ -56,7 +56,7 @@ function RelacionesInternacionalesTablaCargar(sControl){
 			cargarInputsAsistencias();
 			return true;
 		}
-	};
+	};*/
 
 	$(sControl).jqxGrid({
 		width: '99.5%',
@@ -72,7 +72,7 @@ function RelacionesInternacionalesTablaCargar(sControl){
 		editable: true,
 		pagermode: 'simple',
 		pagerbuttonscount: 10,
-		handlekeyboardnavigation: keyboardHandler,
+		//handlekeyboardnavigation: keyboardHandler,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu: false},
 			{text: '', datafield: 'idRelacionesInternacionales', hidden: true},
@@ -112,13 +112,13 @@ function RelacionesInternacionalesTablaCargar(sControl){
 					}
 				}
 			},
-			{text: 'Fecha de inicio', datafield: 'fechaInicioBecaFederal', cellsalign: 'center', width: '195px', editable: false, type: 'datetimeinpu',filtertype: 'date' ,
+			{text: 'Fecha de inicio', datafield: 'fechaInicioBecaFederal', cellsalign: 'center', width: '195px', editable: false, type: 'datetimeinput', cellsformat: 'f2', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					var html = '<div class="#jqxDateTimeInput_fechaInicioBecaFederal" id="jqxDateTimeInput_'+row+'_fechaInicioBecaFederal" data-value="'+value+'" data-row="'+row+'"></div>';
 					return html;
 				},
 			},
-			{text: 'Fecha de t&eacute;rmino', datafield: 'fechaTerminoBecaFederal', cellsalign: 'center', width: '195px', editable: false, type: 'datetimeinpu', filtertype: 'date',
+			{text: 'Fecha de t&eacute;rmino', datafield: 'fechaTerminoBecaFederal', cellsalign: 'center', width: '195px', editable: false, type: 'datetimeinput',  cellsformat: 'f2', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					var html = '<div class="#jqxDateTimeInput_fechaTerminoBecaFederal" id="jqxDateTimeInput_'+row+'_fechaTerminoBecaFederal" data-value="'+value+'" data-row="'+row+'"></div>';
 					return html;
@@ -203,14 +203,24 @@ function relacionesInternacionalesAgregarModificar(fila){
 	var becaFederal = $('#cd_f'+fila+'_becaFederal').val(),
 		row = $('#cd_f'+fila+'_RowIndex').val(),
 		idEstimulo = $('#cd_f'+fila+'_idEstimulo').val(),
+		fechaInicioBecaFederal = $('#cd_f'+fila+'_fechaInicioBecaFederal').val(),
+		fechaTerminoBecaFederal = $('#cd_f'+fila+'_fechaTerminoBecaFederal').val(),
 		idRelacionesInternacionales = $('#cd_f'+fila+'_idRelacionesInternacionales').val();
 
 	if(becaFederal=='') {
 		return;
 	}
 
+	if(fechaInicioBecaFederal==''){
+		return null;
+	}
+
+	if(fechaTerminoBecaFederal==''){
+		return null;
+	}
+
 	var sPagina="modelo/modRelacionesInternacionalesAgregarModificar.php";
-	var oParametros = 'idEstimulo=' + idEstimulo + '&becaFederal=' + becaFederal + '&idRelacionesInternacionales=' + idRelacionesInternacionales;
+	var oParametros = 'idEstimulo=' + idEstimulo + '&becaFederal=' + becaFederal +'&fechaInicioBecaFederal='+ fechaInicioBecaFederal + '&fechaTerminoBecaFederal='+ fechaTerminoBecaFederal +'&idRelacionesInternacionales=' + idRelacionesInternacionales;
 
 	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});
 
@@ -230,6 +240,8 @@ function relacionesInternacionalesAgregarModificar(fila){
 
 					// Cambiar celdas en el grid
 					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'becaFederal', becaFederal);
+					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'fechaInicioBecaFederal', fechaInicioBecaFederal);
+					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'FechaTerminoBecaFederal', fechaTerminoBecaFederal);
 
 				}
 			}

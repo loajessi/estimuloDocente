@@ -255,6 +255,13 @@ hr + form > .columna > *:last-child {
 	font-weight: bold !important;
 }
 
+.ayudaCargando {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 0;
+}
+
 #detalleDatosProyecto, #detalleDatosPatentes {
 	padding: 10px;
 }
@@ -269,6 +276,10 @@ hr + form > .columna > *:last-child {
 
 .jqxNumberInput_asistencias[data-value=""] input:focus, .jqxNumberInput_asistencias[data-value=""] input:active {
 	color: #000000;
+}
+
+.jqxNumberInput_asistencias {
+	border-top: 0 !important;
 }
 
 #contenedorDatos {

@@ -1,5 +1,8 @@
+<div class="txtCentrado ayudaCargando">
+	<h2 style="width: 500px; padding-top: 90px; margin: 0 auto; color: #ABABAB;">Cargando...</h2>
+</div>
 <div class="animated slideInLeft">
-	<div class="barraSuperiorAcciones">
+	<div class="barraSuperiorAcciones" style="display: none;">
 		<button type="submit" form="frmModalAgregarProyecto" class="boton icon guardar">Guardar</button>
 		<a id="btnCancelar" class="boton peligro icon remover">Cancelar</a>
 	</div>
@@ -8,6 +11,7 @@
 	<hr>
 
 	<form id="frmModalAgregarProyecto" name="frmModalAgregarProyecto" action="" method="post" class="dataForm" style="border:0; padding: 0;">
+		<input type="hidden" value="" id="RowIndex" />
 		<input type="hidden" value="" id="hdnIdEstimulo" name="idEstimulo" />
 		<input type="hidden" value="" id="hdnIdInvestigacion" name="idInvestigacion" />
 		<input type="hidden" id="hdnBotonSNI" name="reconocimientoSNI" value="" required="required" />

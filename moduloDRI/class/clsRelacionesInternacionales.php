@@ -406,11 +406,11 @@
 			,numeroEmpleado
 			,nombreCompleto
 			,tipoContrato
-			,convert(varchar(10),fechaRegistroEstimulo,103) AS fechaRegistroEstimulo
+			,convert(varchar(10), fechaRegistroEstimulo, 101) AS fechaRegistroEstimulo
 			,becaFederal
-			,convert(varchar(10),fechaInicioBecaFederal,103) AS fechaInicioBecaFederal
-			,convert(varchar(10),fechaTerminoBecaFederal,103) AS fechaTerminoBecaFederal
-			,fechaRegistro
+			,convert(varchar(10),fechaInicioBecaFederal,101) AS fechaInicioBecaFederal
+			,convert(varchar(10),fechaTerminoBecaFederal,101) AS fechaTerminoBecaFederal
+			,convert(varchar(10),fechaRegistro,101) AS fechaRegistro
 		FROM vtaC_estRelacionesInternacionales
 		" . $sFiltro . "
 		" . $sOrdenQuery . " ";

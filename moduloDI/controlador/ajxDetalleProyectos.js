@@ -53,6 +53,7 @@ function detalleProyectosInicializar() {
 	var agregarEventos = function () {
 
 		$('#frmModalAgregarProyecto').on('submit', function (e) {
+			e.preventDefault();
 			e.stopPropagation();
 
 			if ( $('#frmModalAgregarProyecto')[0].checkValidity() ) {
@@ -69,7 +70,7 @@ function detalleProyectosInicializar() {
 				} else if (respuesta === false) {
 					notif({msg: '<b>Error al guardar datos</b>', type: 'error', position: 'right', width: 200});
 				} else if (respuesta === null) {
-					notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 200});
+					notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
 				}
 
 				$('#btnGuardar').html(txtOriginal);
@@ -91,8 +92,8 @@ function detalleProyectosInicializar() {
 			}
 		});
 
-		$('#hdnSNI').change(function() {
-			var val = $('#hdnSNI').val();
+		$('#hdnBotonSNI').change(function() {
+			var val = $('#hdnBotonSNI').val();
 			if (val==1) {
 				$('#SNI_CamposAdicionales').slideDown();
 			} else {
@@ -101,23 +102,6 @@ function detalleProyectosInicializar() {
 				$('#jqxDateTimeInput_FechaInicio').val(null);
 				$('#jqxDateTimeInput_FechaTermino').val(null);
 			}
-		});
-
-		$("#btnGuardar").on("click", function (event) {
-			//Reemplazar texto por "Guardando..."
-			var elemento = $(this),
-				txtOriginal = $(elemento).html();
-			$(this).html("Guardando...");
-
-			// Guarda en la BD
-			//var respuesta = investigacionAgregarModificar();
-
-			/*if(respuesta !== true){
-
-			}*/
-
-			//Restarurar texto original
-			$(elemento).html(txtOriginal);
 		});
 
 		$("#btnCancelar").on("click", function (event) {
@@ -135,7 +119,7 @@ function detalleProyectosInicializar() {
 // Funciones correspondientes a eventos o inicialización de contenido
 
 function ProyectosEliminarRegistro(objeto) {
-	if (confirm('¿Estás seguro que deseas eliminar esta proyecto?') ) {
+	if (confirm('¿Estás seguro que deseas eliminar este proyecto?') ) {
 		// Eliminando... simular proceso
 		window.setTimeout(function() {
 			$(objeto).parent().parent().nextAll().html('<div class="jqx-grid-cell-middle-align" style="margin-top: 11px;">Eliminando...</div>');

@@ -148,21 +148,18 @@ function investigacionAgregarModificar() {
 		return null;
 	}
 
-	if (botonSNI=='0') {
-		botonSNI = 1;
+	if (botonSNI=='1') {
 
 		if (nivelSNI=='' || fechaInicioSNI=='' || fechaTerminoSNI=='' || fechaInicioSNI==null || fechaTerminoSNI==null){
 			return null;
 		}
 
-	} else if (botonSNI=='1') {
-		botonSNI = 0;
 	}
 
 	var sPagina = "modelo/modInvestigacionAgregarModificar.php";
 
 	//Serializar formulario
-	var oParametros;
+	var oParametros = $('#frmModalAgregarProyecto').serialize();
 
 	/*var oParametros = 'idEstimulo=' + idEstimulo +
 		'&noProyOrganismoResponsable' + noProyOrganismoResponsable +

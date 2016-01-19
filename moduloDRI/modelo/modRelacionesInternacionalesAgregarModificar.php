@@ -10,9 +10,14 @@
 	$objRelacionesInternacionales->setbecaFederal($_POST['becaFederal']);
 	$objRelacionesInternacionales->setfechaInicioBecaFederal($_POST['fechaInicioBecaFederal']);
 	$objRelacionesInternacionales->setfechaTerminoBecaFederal($_POST['fechaTerminoBecaFederal']);
+	if (isset($_POST['idRelacionesInternacionales']) && $_POST['idRelacionesInternacionales']!='') {
+		$objPersonal->setidPersonal($_POST['idRelacionesInternacionales']);
+	}
+
 	$objRelacionesInternacionales->setusuarioRealizo($_SESSION['VS_Usuario']);
 
 	$arrSalida = $objRelacionesInternacionales->estRelacionesInternacionalesAgregarModificar();
 
-	echo "json={'noError':'" . $arrSalida['noError'] . "', 'mensaje':'" . $arrSalida['mensaje'] . "'}";
+	echo "json={'noError':'{$arrSalida['noError']}', 'mensaje':'{$arrSalida['mensaje']}', 'idRelacionesInternacionales':'{$arrSalida['idRelacionesInternacionales']}'}";
+	//echo "json={'noError':'" . $arrSalida['noError'] . "', 'mensaje':'" . $arrSalida['mensaje'] . "'}";
 ?>

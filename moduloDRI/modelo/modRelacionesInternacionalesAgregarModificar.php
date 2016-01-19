@@ -6,10 +6,10 @@
 
 	$objRelacionesInternacionales = new clsRelacionesInternacionales();
 
-	$objRelacionesInternacionales->setidEstimulo($_POST['ctridEstimulo']);
-	$objRelacionesInternacionales->setbecaFederal($_POST['ctrbecaFederal']);
-	$objRelacionesInternacionales->setfechaInicioBecaFederal($_POST['ctrfechaInicioBecaFederal']);
-	$objRelacionesInternacionales->setfechaTerminoBecaFederal($_POST['ctrfechaTerminoBecaFederal']);
+	$objRelacionesInternacionales->setidEstimulo($_POST['idEstimulo']);
+	$objRelacionesInternacionales->setbecaFederal($_POST['becaFederal']);
+	$objRelacionesInternacionales->setfechaInicioBecaFederal($_POST['fechaInicioBecaFederal']);
+	$objRelacionesInternacionales->setfechaTerminoBecaFederal($_POST['fechaTerminoBecaFederal']);
 	$objRelacionesInternacionales->setusuarioRealizo($_SESSION['VS_Usuario']);
 
 	$arrSalida = $objRelacionesInternacionales->estRelacionesInternacionalesAgregarModificar();

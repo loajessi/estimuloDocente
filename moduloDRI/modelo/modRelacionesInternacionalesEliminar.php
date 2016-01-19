@@ -2,7 +2,7 @@
 	//****************//
 	//  modRelacionesInternacionalesEliminar.php//
 	//****************//
-	include("../../moduloGeneral/class/clsRelacionesInternacionales.php");
+	include("../class/clsRelacionesInternacionales.php");
 
 	$objRelacionesInternacionales = new clsRelacionesInternacionales();
 

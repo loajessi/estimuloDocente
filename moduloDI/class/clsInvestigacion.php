@@ -557,7 +557,6 @@
 			,nombreCompleto
 			,tipoContrato
 			,convert(varchar(10), fechaRegistroEstimulo, 101) as fechaRegistroEstimulo
-			/*,convert(varchar(10),fechaRegistroEstimulo,103) AS fechaRegistroEstimulo*/
 			,reconocimientoSNI
 			,convert(varchar(10),fechaInicioSNI,101) AS fechaInicioSNI
 			,convert(varchar(10),fechaTerminoSNI,101) AS fechaTerminoSNI

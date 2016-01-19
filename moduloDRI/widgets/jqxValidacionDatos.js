@@ -28,7 +28,7 @@ function datosRelacionesInternacionalesCargar(pRelacionesInternacionalesID){
 function datosRelacionesInternacionalesRegistroObtener(pRelacionesInternacionalesID){
 	$.ajax({
 		async: false,
-		url: "../moduloXX/modelo/modRelacionesInternacionalesConsultar.php",
+		url: "modelo/modRelacionesInternacionalesConsultar.php",
 		data: {iRelacionesInternacionalesID : pRelacionesInternacionalesID},
 		type: 'POST',
 		success: function (data, status, xhr) {

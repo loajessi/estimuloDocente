@@ -81,9 +81,12 @@ function detalleProyectosInicializar() {
 		});
 
 		$("#btnCancelar").on("click", function (event) {
-			//InvestigacionTablaCargar("#jqxGrid_Docentes");
-			var datarow = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex') );
-			Docentes_DetalleProyectos_CargarVista(datarow);
+			$('#detalleDatosProyecto > .animated').removeClass('slideInLeft').addClass('slideOutLeft');
+
+			window.setTimeout(function (){
+				var datarow = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex') );
+				Docentes_DetalleProyectos_CargarVista(datarow);
+			}, 800);
 		});
 
 	};

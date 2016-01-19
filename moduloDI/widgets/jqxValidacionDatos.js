@@ -45,6 +45,24 @@ function datosInvestigacionRegistroObtener(pInvestigacionID) {
 
 function InvestigacionTablaCargar(sControl) {
 	var dataAdapter = datosInvestigacionCargar();
+
+	var keyboardHandler = function (event) {
+		var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+		if ((key >= 33 && key <= 36) || key == 37 || key == 39) {
+			return true;
+		} else if (key==38) { //Flecha arriba
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual-1);
+			cargarInputsAsistencias();
+			return true;
+		} else if (key==40) { //Flecha abajo
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual+1);
+			cargarInputsAsistencias();
+			return true;
+		}
+	};
+
 	$(sControl).jqxGrid({
 		width: '99.5%',
 		height: '100%',
@@ -57,6 +75,9 @@ function InvestigacionTablaCargar(sControl) {
 		sortable: true,
 		pageable: true,
 		editable: false,
+		pagermode: 'simple',
+		pagerbuttonscount: 10,
+		handlekeyboardnavigation: keyboardHandler,
 		columns: [
 			{text: '', datafield: 'accion', width: '40px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', width: '120px'},

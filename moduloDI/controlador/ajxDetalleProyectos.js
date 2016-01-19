@@ -6,7 +6,7 @@ function detalleProyectosInicializar() {
 		$("#jqxButtonGroup_SNI").jqxButtonGroup({ mode: 'RadioButtons', theme: 'energyblue' });
 
 		var jqxDateTimeInputConfig = {
-			width: '170px',
+			width: '140px',
 			theme: 'energyblue',
 			allowNullDate: true,
 			culture: 'es-MX',
@@ -33,7 +33,7 @@ function detalleProyectosInicializar() {
 			displayMember: 'nivel',
 			valueMember: 'valor',
 			autoDropDownHeight: true,
-			width: '170px',
+			width: '140px',
 			theme: 'energyblue'
 		});
 	};

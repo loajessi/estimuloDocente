@@ -9,7 +9,7 @@ function validacionDatosInicializar() {
 			resizable: false,
 			theme: 'energyblue',
 			//panels: [{size: '41%', min: '41.1%'}, {size: '59%', min: '30%'}]
-			panels: [{size: '41%'}, {size: '59%'}]
+			panels: [{size: '45%'}, {size: '55%'}]
 		});
 
 		// Eliminar botón de colapso para evitar error en grid

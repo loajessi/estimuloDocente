@@ -105,11 +105,6 @@ function detalleProyectosInicializar() {
 			}
 
 		});
-
-		//Mostrar botones al editar algun dato
-		$('#frmModalAgregarProyecto input').change(function () {
-			$('.barraSuperiorAcciones').fadeIn();
-		});
 	};
 
 	crearWidgets();

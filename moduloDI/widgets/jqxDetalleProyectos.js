@@ -33,6 +33,11 @@ function Docentes_DetalleProyectos_CargarVista(datosFila) {
 
 			$('#hdnIdEstimulo').val(datosFila.idEstimulo);
 			$('#hdnIdInvestigacion').val(datosFila.idInvestigacion);
+
+			//Mostrar botones al editar algun dato
+			$('#frmModalAgregarProyecto input').change(function () {
+				$('.barraSuperiorAcciones').fadeIn();
+			});
 		}
 	});
 }

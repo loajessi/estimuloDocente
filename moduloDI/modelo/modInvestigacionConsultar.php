@@ -7,7 +7,7 @@
 
 	// setters para configurar el filtro de la consulta
 	//$objConsulta->setIdInvestigacion($_POST['pInvestigacionID']);
-	//$objConsulta->setOrdenQuery("XX");
+	$objConsulta->setOrdenQuery("nombreCompleto");
 
 	echo $objConsulta->getDatosJson(false);
 ?>

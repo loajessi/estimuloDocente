@@ -83,10 +83,10 @@ function detalleProyectosInicializar() {
 		$("#btnCancelar").on("click", function (event) {
 			$('#detalleDatosProyecto > .animated').removeClass('slideInLeft').addClass('slideOutLeft');
 
-			window.setTimeout(function (){
-				var datarow = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex') );
-				Docentes_DetalleProyectos_CargarVista(datarow);
-			}, 800);
+			notif({msg: 'Cambios cancelados', type: 'info', position: 'right', width: 200});
+			var datarow = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex') );
+
+			Docentes_DetalleProyectos_CargarVista(datarow);
 		});
 
 	};

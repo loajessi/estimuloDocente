@@ -8,9 +8,9 @@
 	<hr>
 
 	<form id="frmModalAgregarProyecto" name="frmModalAgregarProyecto" action="" method="post" class="dataForm" style="border:0; padding: 0;">
-		<input type="hidden" value="" id="hdnIdEstimulo" name="hdnIdEstimulo" />
-		<input type="hidden" value="" id="hdnIdInvestigacion" name="hdnIdInvestigacion" />
-		<input type="hidden" id="hdnBotonSNI" name="hdnBotonSNI" value="" required="required" />
+		<input type="hidden" value="" id="hdnIdEstimulo" name="idEstimulo" />
+		<input type="hidden" value="" id="hdnIdInvestigacion" name="idInvestigacion" />
+		<input type="hidden" id="hdnBotonSNI" name="reconocimientoSNI" value="" required="required" />
 
 		<div class="columna ancho-70 separador-der">
 			<label for="noProyOrganismoResponsable" class="label_multilinea">No. de proyectos de investigaci&oacute;n <b>financiados por organismos nacionales y/o internacionales</b> en proceso y/o terminados de los que <b>fue responsable</b></label>
@@ -41,13 +41,13 @@
 
 			<div id="SNI_CamposAdicionales" style="display: none;">
 				<label>Fecha de inicio</label>
-				<div id="jqxDateTimeInput_FechaInicioSNI"></div>
+				<div id="jqxDateTimeInput_FechaInicioSNI" name="fechaInicioSNI"></div>
 
 				<label>Fecha de t&eacute;rmino</label>
-				<div id="jqxDateTimeInput_FechaTerminoSNI"></div>
+				<div id="jqxDateTimeInput_FechaTerminoSNI" name="fechaTerminoSNI"></div>
 
 				<label>Nivel <abbr title="Sistema Nacional de Investigadores">SNI</abbr></label>
-				<div id="jqxComboBox_NivelSNI"></div>
+				<div id="jqxComboBox_NivelSNI" name="nivelSNI" ></div>
 				<!--div id="nivelSNI"></div-->
 
 			</div>

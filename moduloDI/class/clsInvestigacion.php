@@ -556,16 +556,16 @@
 			,numeroEmpleado
 			,nombreCompleto
 			,tipoContrato
-			,fechaRegistroEstimulo
+			,convert(varchar(10),fechaRegistroEstimulo,103) AS fechaRegistroEstimulo
 			,reconocimientoSNI
-			,fechaInicioSNI
-			,fechaTerminoSNI
+			,convert(varchar(10),fechaInicioSNI,103) AS fechaInicioSNI
+			,convert(varchar(10),fechaTerminoSNI,103) AS fechaTerminoSNI
 			,nivelSNI
 			,noProyOrganismoResponsable
 			,noProyInstitucionResponsable
 			,noProyOrganismoParticipo
 			,noProyInstitucionParticipo
-			,fechaRegistro
+			,convert(varchar(10),fechaRegistro,103) AS fechaRegistro
 		FROM vtaC_estInvestigacion
 		" . $sFiltro . "
 		" . $sOrdenQuery . " ";
@@ -682,7 +682,7 @@
 				$arrSalida[0][noError] = 0;
 			}
 
-			//echo $objProc->getCadenaQuery();
+			echo $objProc->getCadenaQuery();
 			if ($arrSalida['noError'] > 0) {
 				str_replace('"', '', $arrSalida['mensaje']);
 				str_replace("'", '', $arrSalida['mensaje']);

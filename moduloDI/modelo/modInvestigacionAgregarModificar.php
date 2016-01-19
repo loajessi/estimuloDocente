@@ -14,7 +14,7 @@
 	$objInvestigacion->setnoProyOrganismoResponsable($_POST['noProyOrganismoResponsable']);
 	$objInvestigacion->setnoProyInstitucionResponsable($_POST['noProyInstitucionResponsable']);
 	$objInvestigacion->setnoProyOrganismoParticipo($_POST['noProyOrganismoParticipo']);
-	$objInvestigacion->setnoProyInstitucionParticipo($_POST['|noProyInstitucionParticipo']);
+	$objInvestigacion->setnoProyInstitucionParticipo($_POST['noProyInstitucionParticipo']);
 	$objInvestigacion->setusuarioRealizo($_SESSION['VS_Usuario']);
 
 	$arrSalida = $objInvestigacion->estInvestigacionAgregarModificar();

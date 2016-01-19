@@ -70,7 +70,7 @@ function detalleProyectosInicializar() {
 				} else if (respuesta === false) {
 					notif({msg: '<b>Error al guardar datos</b>', type: 'error', position: 'right', width: 200});
 				} else if (respuesta === null) {
-					notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 200});
+					notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
 				}
 
 				$('#btnGuardar').html(txtOriginal);
@@ -119,7 +119,7 @@ function detalleProyectosInicializar() {
 // Funciones correspondientes a eventos o inicialización de contenido
 
 function ProyectosEliminarRegistro(objeto) {
-	if (confirm('¿Estás seguro que deseas eliminar esta proyecto?') ) {
+	if (confirm('¿Estás seguro que deseas eliminar este proyecto?') ) {
 		// Eliminando... simular proceso
 		window.setTimeout(function() {
 			$(objeto).parent().parent().nextAll().html('<div class="jqx-grid-cell-middle-align" style="margin-top: 11px;">Eliminando...</div>');

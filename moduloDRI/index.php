@@ -21,11 +21,13 @@
 	<!-- Estilos -->
 	<link rel="stylesheet" href="/generalesDIyS/_estilo/layout.css" type="text/css" />
 	<link rel="stylesheet" href="../_estilo/estimuloPersonalDocente.css" type="text/css" />
+	<link rel="stylesheet" href="/generalesDIyS/_jscript/jquery-ui-1.11.4/jquery-ui.min.css" type="text/css" />
 	<link rel="stylesheet" href="/generalesDIyS/_jscript/jqwidgets_3.9.1/styles/jqx.base.css" type="text/css" />
 	<link rel="stylesheet" href="/generalesDIyS/_jscript/jqwidgets_3.9.1/styles/jqx.energyblue.css" type="text/css" />
 
 	<!-- Librerias -->
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/generalesDIyS/_jscript/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxcore.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/globalize.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/localizationGrid.js"></script>

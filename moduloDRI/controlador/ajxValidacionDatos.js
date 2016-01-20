@@ -9,11 +9,11 @@ function validacionDatosInicializar() {
 
     var agregarEventos = function () {
 
-
 	    $('#jqxGrid_Docentes').on('rowselect', function (event) {
 		    var fila = event.args.rowindex,
-			    filaAnterior = $('#cd_g_rowAnterior').val(),
-			    guardado = $('#cd_f'+filaAnterior+'_Guardado').val(),
+			    filaAnterior = $('#cd_g_rowAnterior').val();
+
+			var guardado = $('#cd_f'+filaAnterior+'_Guardado').val(),
 			    idRelacionesInternacionales = $('#cd_f'+filaAnterior+'_idRelacionesInternacionales').val();
 
 		    // Datos de fila anterior

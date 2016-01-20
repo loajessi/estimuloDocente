@@ -147,8 +147,8 @@ function crearDatepickers() {
 			fila = $(this).attr('data-fila');
 
 		$(this).datepicker({
-			altField: '#cd_f'+fila+'_'+campo,
-			altFormat: "mm/dd/yy",
+			//altField: '#cd_f'+fila+'_'+campo,
+			//altFormat: "mm/dd/yy",
 			showOn: "both",
 			closeText: 'Cerrar',
 			prevText: '&leftarrow; Ant',
@@ -168,7 +168,17 @@ function crearDatepickers() {
 			yearSuffix: '',
 			selectOtherMonths: false,
 			changeMonth: true,
-			changeYear: true
+			changeYear: true,
+			onSelect: function (fecha, inst) {
+				var mes = fecha.substr(0,2),
+					dia = fecha.substr(3,2),
+					año = fecha.substr(6,4),
+					//fecha = mes+'/'+dia+'/'+año;
+					fecha = dia+'/'+mes+'/'+año;
+
+				$('#cd_f'+fila+'_'+campo).val(fecha);
+				relacionesInternacionalesAgregarModificar(fila);
+			}
 		});
 
 		//$('#cd_f'+fila+'_'+campo).on('change', relacionesInternacionalesAgregarModificar);
@@ -287,6 +297,19 @@ function relacionesInternacionalesAgregarModificar(fila){
 					$('#cd_f' + fila + '_Guardado').val('1');
 
 					// Cambiar celdas en el grid
+					var dia = fechaInicioBecaFederal.substr(0,2),
+						mes = fechaInicioBecaFederal.substr(3,2),
+						año = fechaInicioBecaFederal.substr(6,4);
+
+					//fechaInicioBecaFederal = mes+'/'+dia+'/'+año;
+					fechaInicioBecaFederal = dia+'/'+mes+'/'+año;
+
+					dia = fechaTerminoBecaFederal.substr(0,2);
+					mes = fechaTerminoBecaFederal.substr(3,2);
+					año = fechaTerminoBecaFederal.substr(6,4);
+					//fechaTerminoBecaFederal = mes+'/'+dia+'/'+año;
+					fechaTerminoBecaFederal = dia+'/'+mes+'/'+año;
+
 					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'becaFederal', becaFederal);
 					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'fechaInicioBecaFederal', fechaInicioBecaFederal);
 					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'fechaTerminoBecaFederal', fechaTerminoBecaFederal);

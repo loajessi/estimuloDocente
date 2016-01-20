@@ -929,7 +929,7 @@ class cls_contrato_personales{
 			,nombre_tipo
 			,categoria
 			,descripcionCategoria
-			,id_tiempo
+--			,id_tiempo test
 			,tiempo
 			,CENTRO_COSTOS
 			,nombre_plaza
@@ -946,7 +946,7 @@ class cls_contrato_personales{
 			,anio_anti_est
 			,mes_anti_est
 			,edad
-			,fecha_nacimiento
+--			,fecha_nacimiento test
 		FROM ap_contrato_personales
 		" . $sFiltro . " 
 		" . $sOrdenQuery . " ";

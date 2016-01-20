@@ -2,7 +2,7 @@
 function indexInicializar() {
 
 	var crearWidgets = function () {
-		// Menú de opciones
+		// MenÃº de opciones
 		$("#jqxMenu_Index").jqxMenu({
 			width: $("#jqxMenu_Index").parent.width,
 			height: $("#jqxMenu_Index").parent.height,

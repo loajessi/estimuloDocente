@@ -11,7 +11,7 @@
 	$objRelacionesInternacionales->setfechaInicioBecaFederal(utf8_decode($_POST['fechaInicioBecaFederal']));
 	$objRelacionesInternacionales->setfechaTerminoBecaFederal(utf8_decode($_POST['fechaTerminoBecaFederal']));
 	if (isset($_POST['idRelacionesInternacionales']) && $_POST['idRelacionesInternacionales']!='') {
-		$objPersonal->setidPersonal($_POST['idRelacionesInternacionales']);
+		$objRelacionesInternacionales->setidRelacionesInternacionales($_POST['idRelacionesInternacionales']);
 	}
 
 	$objRelacionesInternacionales->setusuarioRealizo($_SESSION['VS_Usuario']);

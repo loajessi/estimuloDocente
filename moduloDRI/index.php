@@ -29,6 +29,7 @@
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxcore.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/globalize.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/localizationGrid.js"></script>
+	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/globalize.culture.es-MX.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/libFunc.js"></script>
 	<script type="text/javascript" src="../_jscript/notificaciones.js"></script>
 

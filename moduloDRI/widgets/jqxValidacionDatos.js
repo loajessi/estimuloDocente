@@ -76,10 +76,17 @@ function RelacionesInternacionalesTablaCargar(sControl){
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu: false},
 			{text: '', datafield: 'idRelacionesInternacionales', hidden: true},
+			{text: '', datafield: 'idEstimulo', hidden: true},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '149px'},
 			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '350px'},
 			{text: 'Cuenta con beca federal', datafield: 'becaFederal', width: '195px', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+					var temp = $('#cd_f'+row+'_becaFederal').val();
+
+					if ( temp != "" && typeof temp != 'undefined') {
+						value = temp;
+					}
+
 					if (value == '1') {
 						var html = '<div class="ButtonGroup_becaFederal jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
 							'<div id="btnBecaFederal_'+row+'_Si" onclick="btn_becaFederal(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnActivo btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
@@ -103,54 +110,81 @@ function RelacionesInternacionalesTablaCargar(sControl){
 					return html;
 				},
 				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
-					if (newvalue == 1) {
-						$('#cd_' + datafield).val(1);
-					} else if (newvalue == 0) {
-						$('#cd_' + datafield).val(0);
-					} else {
-						$('#cd_' + datafield).val('');
-					}
+					$('#cd_f'+row+'_'+datafield).val(newvalue);
+					if (oldvalue!=newvalue) {relacionesInternacionalesAgregarModificar(row);}
 				}
 			},
-			{text: 'Fecha de inicio', datafield: 'fechaInicioBecaFederal', cellsalign: 'center', width: '195px', editable: false, type: 'datetimeinput', cellsformat: 'f2', editable: false,
-				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
-					var html = '<div class="#jqxDateTimeInput_fechaInicioBecaFederal" id="jqxDateTimeInput_'+row+'_fechaInicioBecaFederal" data-value="'+value+'" data-row="'+row+'"></div>';
-					return html;
+			{text: 'Fecha de inicio', datafield: 'fechaInicioBecaFederal', cellsalign: 'center', width: '195px', editable: true, columntype: 'datetimeinput', cellsformat: 'dd/MM/yyyy',
+				createeditor: function (row, cellvalue, editor) {
+					editor.jqxDateTimeInput({
+						width: '195px',
+						theme: 'energyblue',
+						allowNullDate: true,
+						culture: 'es-MX',
+						showWeekNumbers: false,
+						todayString: 'Hoy',
+						value: null,
+						formatString: 'dd/MM/yyyy'
+					});
 				},
+				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
+					var value = new Date(newvalue);
+					var mnth = ("0" + (value.getMonth()+1)).slice(-2),
+						day  = ("0" + value.getDate()).slice(-2);
+
+					newvalue = [mnth, day, value.getFullYear()].join("/");
+
+					//console.info(oldvalue + ' vs ' + newvalue);
+					$('#cd_f'+row+'_'+datafield).val(newvalue);
+					relacionesInternacionalesAgregarModificar(row);
+				}
 			},
-			{text: 'Fecha de t&eacute;rmino', datafield: 'fechaTerminoBecaFederal', cellsalign: 'center', width: '195px', editable: false, type: 'datetimeinput',  cellsformat: 'f2', editable: false,
-				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
-					var html = '<div class="#jqxDateTimeInput_fechaTerminoBecaFederal" id="jqxDateTimeInput_'+row+'_fechaTerminoBecaFederal" data-value="'+value+'" data-row="'+row+'"></div>';
-					return html;
+			{text: 'Fecha de t&eacute;rmino', datafield: 'fechaTerminoBecaFederal', cellsalign: 'center', width: '195px', editable: true, columntype: 'datetimeinput', cellsformat: 'dd/MM/yyyy',
+				createeditor: function (row, cellvalue, editor) {
+					editor.jqxDateTimeInput({
+						width: '195px',
+						theme: 'energyblue',
+						allowNullDate: true,
+						culture: 'es-MX',
+						showWeekNumbers: false,
+						todayString: 'Hoy',
+						value: null,
+						formatString: 'dd/MM/yyyy'
+					});
 				},
+				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
+					var value = new Date(newvalue);
+					var mnth = ("0" + (value.getMonth()+1)).slice(-2),
+						day  = ("0" + value.getDate()).slice(-2);
 
+					newvalue = [mnth, day, value.getFullYear()].join("/");
 
+					$('#cd_f'+row+'_'+datafield).val(newvalue);
+					relacionesInternacionalesAgregarModificar(row);
+				}
 			}
 		]
 	});
+
+	var numRegistros = $(sControl).jqxGrid('getdatainformation').rowscount,
+		registros = $(sControl).jqxGrid('getrows'),
+		camposAuxiliares = ['idEstimulo', 'idRelacionesInternacionales','becaFederal', 'fechaInicioBecaFederal', 'fechaTerminoBecaFederal'];
+
+	crearCamposAuxiliares(numRegistros, registros, camposAuxiliares);
 }
 
-var numRegistros = $(sControl).jqxGrid('getdatainformation').rowscount,
-	registros = $(sControl).jqxGrid('getrows');
-crearCamposAuxiliares(numRegistros, registros);
-
-
-function crearCamposAuxiliares(numRegistros, registros) {
-	var contenedor = $('#contenedorDatos');
+function crearCamposAuxiliares(numRegistros, registros, camposAuxiliares) {
+	var contenedor = $('#contenedorDatos'),
+		tipoCampo = 'text';
 
 	for(var i=0; i<numRegistros; i++) {
-		contenedor.append('<input type="hidden" id="cd_f'+i+'_RowIndex" value="'+i+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_idEstimulo" value="'+registros[i].idEstimulo+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_idRelacionesInternacionales" value="'+registros[i].idRelacionesInternacionales+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_becaFederal" value="'+registros[i].becaFederal+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_fechaInicioBecaFederal" value="'+registros[i].fechaInicioBecaFederal+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_fechaTerminoBecaFederal" value="'+registros[i].fechaTerminoBecaFederal+'" />' +
-			'<input type="hidden" id="cd_f'+i+'_Guardado" value="" /><br />');
+		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_RowIndex" value="'+i+'" />');
+		for (var arr = 0; arr < camposAuxiliares.length; arr++) {
+			contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_'+camposAuxiliares[arr]+'" value="'+registros[i][camposAuxiliares[arr]]+'" data-fila="'+i+'" name="'+camposAuxiliares[arr]+'" />');
+		}
+		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_Guardado" value="" data-fila="'+i+'" /><br />');
 	}
 }
-
-
-
 
 
 
@@ -200,27 +234,29 @@ function RelacionesInternacionalesFormularioCargar(pRelacionesInternacionalesID)
 
 function relacionesInternacionalesAgregarModificar(fila){
 
+
 	var becaFederal = $('#cd_f'+fila+'_becaFederal').val(),
 		row = $('#cd_f'+fila+'_RowIndex').val(),
-		idEstimulo = $('#cd_f'+fila+'_idEstimulo').val(),
 		fechaInicioBecaFederal = $('#cd_f'+fila+'_fechaInicioBecaFederal').val(),
 		fechaTerminoBecaFederal = $('#cd_f'+fila+'_fechaTerminoBecaFederal').val(),
-		idRelacionesInternacionales = $('#cd_f'+fila+'_idRelacionesInternacionales').val();
+		idRelacionesInternacionales = $('#cd_f'+fila+'_idRelacionesInternacionales').val(),
+		idEstimulo = $('#cd_f'+fila+'_idEstimulo').val();
 
 	if(becaFederal=='') {
 		return;
 	}
 
 	if(fechaInicioBecaFederal==''){
-		return null;
+		return;
 	}
 
 	if(fechaTerminoBecaFederal==''){
-		return null;
+		return;
 	}
 
 	var sPagina="modelo/modRelacionesInternacionalesAgregarModificar.php";
-	var oParametros = 'idEstimulo=' + idEstimulo + '&becaFederal=' + becaFederal +'&fechaInicioBecaFederal='+ fechaInicioBecaFederal + '&fechaTerminoBecaFederal='+ fechaTerminoBecaFederal +'&idRelacionesInternacionales=' + idRelacionesInternacionales;
+	//var oParametros = 'idEstimulo=' + idEstimulo + '&becaFederal=' + becaFederal +'&fechaInicioBecaFederal='+ fechaInicioBecaFederal + '&fechaTerminoBecaFederal='+ fechaTerminoBecaFederal +'&idRelacionesInternacionales=' + idRelacionesInternacionales;
+	var oParametros = $('input[data-fila="'+fila+'"][name]').serialize();
 
 	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});
 
@@ -231,8 +267,8 @@ function relacionesInternacionalesAgregarModificar(fila){
 					notif({msg: '<b>Error al guardar:</b> " + json.mensaje', type: 'error', position: 'right', width: 200});
 				}
 				else {
-					// Acciones posteriores a la actualizacion
 					notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+					// Acciones posteriores a la actualizacion
 					if (idRelacionesInternacionales == '' || typeof idRelacionesInternacionales == 'undefined' || idRelacionesInternacionales == null) {
 						$('#cd_f' + fila + '_idRelacionesInternacionales').val(json.idRelacionesInternacionales);
 					}
@@ -241,7 +277,7 @@ function relacionesInternacionalesAgregarModificar(fila){
 					// Cambiar celdas en el grid
 					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'becaFederal', becaFederal);
 					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'fechaInicioBecaFederal', fechaInicioBecaFederal);
-					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'FechaTerminoBecaFederal', fechaTerminoBecaFederal);
+					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'fechaTerminoBecaFederal', fechaTerminoBecaFederal);
 
 				}
 			}

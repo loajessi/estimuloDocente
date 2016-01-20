@@ -167,10 +167,17 @@ function investigacionAgregarModificar() {
 		noProyInstitucionParticipo = $('#noProyInstitucionParticipo').val(),
 		fechaInicioSNI = $('#jqxDateTimeInput_FechaInicioSNI').jqxDateTimeInput('getDate'),
 		fechaTerminoSNI = $('#jqxDateTimeInput_FechaTerminoSNI').jqxDateTimeInput('getDate'),
-		nivelSNI = $("#jqxComboBox_NivelSNI").jqxComboBox('val'),
+		nivelSNI = $("#jqxDropDownList_NivelSNI").jqxDropDownList('getSelectedItem'),
 		botonSNI = $('#hdnBotonSNI').val(),
 		idEstimulo = $('#hdnIdEstimulo').val(),
 		idInvestigacion = $('#hdnIdInvestigacion').val();
+
+	if (nivelSNI==null) {
+		notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
+		return;
+	} else {
+		nivelSNI = nivelSNI.value;
+	}
 
 	if (noProyOrganismoResponsable === '' || noProyInstitucionResponsable === '' || noProyOrganismoParticipo === '' || noProyInstitucionParticipo === '' || botonSNI === '') {
 		notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});

@@ -51,8 +51,7 @@
 				<div id="jqxDateTimeInput_FechaTerminoSNI" name="fechaTerminoSNI"></div>
 
 				<label>Nivel <abbr title="Sistema Nacional de Investigadores">SNI</abbr></label>
-				<div id="jqxComboBox_NivelSNI" name="nivelSNI" ></div>
-				<!--div id="nivelSNI"></div-->
+				<div id="jqxDropDownList_NivelSNI" name="nivelSNI" ></div>
 
 			</div>
 

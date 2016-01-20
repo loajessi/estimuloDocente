@@ -181,8 +181,6 @@ function crearDatepickers() {
 			}
 		});
 
-		//$('#cd_f'+fila+'_'+campo).on('change', relacionesInternacionalesAgregarModificar);
-
 		if (valor!='') {
 			var mes = valor.substr(0,2),
 				dia = valor.substr(3,2),
@@ -300,14 +298,11 @@ function relacionesInternacionalesAgregarModificar(fila){
 					var dia = fechaInicioBecaFederal.substr(0,2),
 						mes = fechaInicioBecaFederal.substr(3,2),
 						año = fechaInicioBecaFederal.substr(6,4);
-
-					//fechaInicioBecaFederal = mes+'/'+dia+'/'+año;
-					fechaInicioBecaFederal = dia+'/'+mes+'/'+año;
+						fechaInicioBecaFederal = dia+'/'+mes+'/'+año;
 
 					dia = fechaTerminoBecaFederal.substr(0,2);
 					mes = fechaTerminoBecaFederal.substr(3,2);
 					año = fechaTerminoBecaFederal.substr(6,4);
-					//fechaTerminoBecaFederal = mes+'/'+dia+'/'+año;
 					fechaTerminoBecaFederal = dia+'/'+mes+'/'+año;
 
 					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'becaFederal', becaFederal);
@@ -321,28 +316,6 @@ function relacionesInternacionalesAgregarModificar(fila){
 	);
 }
 
-
-
-function relacionesInternacionalesEliminar(pRegistroID){
-	var sPagina="../../moduloXX/modelo/modRelacionesInternacionalesEliminar.php";
-	var oParametros={'pRegistroID':pRegistroID}
-
-	$.post(sPagina
-		,oParametros
-		,function(datos,status){
-			if(status=='success'){
-				eval(datos);
-				if(json.noError > 0){
-					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
-				}
-				else {
-					alert("Su informaci\u00f3n se elimin\u00f3 correctamente en la base de datos.");
-					// Acciones posteriores a la actualizacion
-				}
-			}
-		}
-	);
-}
 
 
 

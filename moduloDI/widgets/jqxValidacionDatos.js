@@ -172,19 +172,19 @@ function investigacionAgregarModificar() {
 		idEstimulo = $('#hdnIdEstimulo').val(),
 		idInvestigacion = $('#hdnIdInvestigacion').val();
 
-	if (nivelSNI==null) {
-		notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
-		return;
-	} else {
-		nivelSNI = nivelSNI.value;
-	}
-
 	if (noProyOrganismoResponsable === '' || noProyInstitucionResponsable === '' || noProyOrganismoParticipo === '' || noProyInstitucionParticipo === '' || botonSNI === '') {
 		notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
 		return null;
 	}
 
 	if (botonSNI=='1') {
+
+		if (nivelSNI==null || nivelSNI=='') {
+			notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
+			return;
+		} else {
+			nivelSNI = nivelSNI.value;
+		}
 
 		if (nivelSNI=='' || fechaInicioSNI=='' || fechaTerminoSNI=='' || fechaInicioSNI==null || fechaTerminoSNI==null){
 			notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});

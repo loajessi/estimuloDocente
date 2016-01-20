@@ -385,9 +385,9 @@ div[id^="jqxDropDownList"] {
 	margin-top: 5px;
 }
 
-.jqxNumberInput_asistencias[data-value=""] input {
+/*.jqxNumberInput_asistencias[data-value=""] input {
 	color: #FFFFFF;
-}
+}*/
 
 .jqxNumberInput_asistencias[data-value=""] input:focus, .jqxNumberInput_asistencias[data-value=""] input:active {
 	color: #000000;

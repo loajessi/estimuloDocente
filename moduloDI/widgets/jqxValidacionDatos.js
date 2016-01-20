@@ -46,7 +46,7 @@ function datosInvestigacionRegistroObtener(pInvestigacionID) {
 function InvestigacionTablaCargar(sControl) {
 	var dataAdapter = datosInvestigacionCargar();
 
-	var keyboardHandler = function (event) {
+	/*var keyboardHandler = function (event) {
 		var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
 		if ((key >= 33 && key <= 36) || key == 37 || key == 39) {
 			return true;
@@ -61,7 +61,7 @@ function InvestigacionTablaCargar(sControl) {
 			cargarInputsAsistencias();
 			return true;
 		}
-	};
+	};*/
 
 	$(sControl).jqxGrid({
 		width: '99.5%',

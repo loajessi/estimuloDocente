@@ -5,4 +5,6 @@
 
 <div id="jqxGrid_Docentes" class="jqxGrid_PrimerColumnaBoton animated fadeIn delay-10"></div>
 
-<form id="frmRevisionDocumentos" name="frmRevisionDocumentos" method="post"></form>
+<div id="contenedorDatos" style="display: block; visibility: visible; opacity: 1">
+	<input type="text" id="cd_g_rowAnterior" /><br />
+</div>

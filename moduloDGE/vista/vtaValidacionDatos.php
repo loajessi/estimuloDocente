@@ -1,11 +1,17 @@
 <h1 class="animated fadeIn">Validaci&oacute;n de datos</h1>
 <hr />
 
-<em class="lineaAyuda animated fadeIn delay-5">Selecciona un <b>campo de datos</b> para editar su contenido<br /><br /></em>
+<em class="lineaAyuda animated fadeInLeft delay-5">Selecciona un empleado de la lista para consultar su detalle de evaluación<br /><br /></em>
 
-<div id="jqxGrid_Docentes" class="jqxGrid_PrimerColumnaBoton animated fadeIn delay-10"></div>
-
-<div id="contenedorDatos" style="display: block; opacity: 1; visibility: visible;">
-	<input type="text" id="cd_g_rowAnterior" /><br />
-	<!-- Contenedor temporal para datos editados en el grid -->
+<div id="jqxSplitter_Principal" class="animated fadeIn delay-10">
+	<div>
+		<div id="jqxGrid_Docentes" class="jqxGrid_PrimerColumnaBoton jqxGrid_PanelDetalles"></div>
+	</div>
+	<div style="overflow-y: auto;">
+		<div id="detalleEvaluacion">
+			<div class="txtCentrado">
+				<h2 style="width: 500px; padding-top: 90px; margin: 0 auto; color: #ABABAB;">Selecciona un empleado de la lista para consultar aquí su detalle de evaluación</h2>
+			</div>
+		</div>
+	</div>
 </div>

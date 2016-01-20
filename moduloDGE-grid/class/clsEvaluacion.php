@@ -4,7 +4,7 @@
 	require_once("clsProcedimientos.php");
 	/*** Clase Generada por CTool 3.3.3 para el objeto Evaluacion
 	 * @author nombreAutor
-	 * Fecha:20/01/2016
+	 * Fecha:19/01/2016
 	 * @property int $idEvaluacion descripcion
 	 * @property int $idEstimulo descripcion
 	 * @property int $idPersona descripcion
@@ -17,7 +17,6 @@
 	 * @property tinyint $innovacion descripcion
 	 * @property tinyint $tics descripcion
 	 * @property tinyint $egel descripcion
-	 * @property varchar $calidadProgramaEducativo descripcion
 	 * @property datetime $fechaRegistro descripcion
 	 * @property string usuarioRealizo
 	 * @property string ordenQuery agrega un orden especifico en el query
@@ -35,7 +34,6 @@
 		private $innovacion;
 		private $tics;
 		private $egel;
-		private $calidadProgramaEducativo;
 		private $fechaRegistro;
 		private $usuarioRealizo;
 		private $ordenQuery;
@@ -57,7 +55,6 @@
 			$this->innovacion=-1;
 			$this->tics=-1;
 			$this->egel=-1;
-			$this->calidadProgramaEducativo="";
 			$this->fechaRegistro="";
 			$this->usuarioRealizo="";
 			$this->ordenQuery="";
@@ -279,24 +276,6 @@
 			return $this->egel;
 		}
 		/**
-		 *  Metodo que inicializa el atributo calidadProgramaEducativo
-		 *  @access public
-		 *  @param varchar $pcalidadProgramaEducativo descripcion.
-		 *
-		 */
-		public function setcalidadProgramaEducativo($pcalidadProgramaEducativo){
-			$this->calidadProgramaEducativo=$pcalidadProgramaEducativo;
-		}
-		/**
-		 *  Metodo que obtiene el atributo calidadProgramaEducativo
-		 *  @access private
-		 *  @return varchar atributo calidadProgramaEducativo
-		 *
-		 */
-		private function getcalidadProgramaEducativo(){
-			return $this->calidadProgramaEducativo;
-		}
-		/**
 		 *  Metodo que inicializa el atributo fechaRegistro
 		 *  @access public
 		 *  @param datetime $pfechaRegistro descripcion.
@@ -409,12 +388,6 @@
 				}
 				$sFiltro.="egel=" . $this->egel . " ";
 			}
-			if(strlen(trim($this->calidadProgramaEducativo))>0){
-				if(strlen(trim($sFiltro))>0){
-					$sFiltro.="AND ";
-				}
-				$sFiltro.="calidadProgramaEducativo='" . $this->calidadProgramaEducativo . "'" ;
-			}
 			if(strlen(trim($this->fechaRegistro))>0){
 				if(strlen(trim($sFiltro))>0){
 					$sFiltro.="AND ";
@@ -454,7 +427,6 @@
 			,innovacion
 			,tics
 			,egel
-			,calidadProgramaEducativo
 			,fechaRegistro
 		FROM vtaC_estEvaluacion
 		" . $sFiltro . "
@@ -527,7 +499,6 @@
 		 * @param tinyint innovacion
 		 * @param tinyint tics
 		 * @param tinyint egel
-		 * @param varchar calidadProgramaEducativo
 		 * @param varchar usuarioRealizo
 		 * @return int idEvaluacion
 		 * @return int noError
@@ -541,7 +512,6 @@
 			$objProc->FNCAgregaParametrosEntrada($this->innovacion);
 			$objProc->FNCAgregaParametrosEntrada($this->tics);
 			$objProc->FNCAgregaParametrosEntrada($this->egel);
-			$objProc->FNCAgregaParametrosEntrada($this->calidadProgramaEducativo,1);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo,1);
 
 			if($this->idEvaluacion != -1) {

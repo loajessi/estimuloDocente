@@ -50,22 +50,16 @@
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxnumberinput.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxdata.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxtabs.js"></script>
-	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxsplitter.js"></script>
-	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxradiobutton.js"></script>
-	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxcalendar.js"></script>
-	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxdatetimeinput.js"></script>
+
 
 	<!-- Widgets estimulo -->
 	<script type="text/javascript" src="widgets/jqxValidacionDatos.js"></script>
-	<script type="text/javascript" src="widgets/jqxDetalleEvaluacion.js"></script>
 
 	<!-- Controladores -->
 	<script type="text/javascript" src="../manejoSesion/controlador/ajxSesion.js"></script>
 	<script type="text/javascript" src="/estimuloDocente/moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
-	<script type="text/javascript" src="/estimuloDocente/moduloGenerales/widgets/jqxContrato_personales.js"></script>
 	<script type="text/javascript" src="../moduloGenerales/controlador/ajxIndex.js"></script>
 	<script type="text/javascript" src="controlador/ajxValidacionDatos.js"></script>
-	<script type="text/javascript" src="controlador/ajxDetalleEvaluacion.js"></script>
 
 	<!-- Control de sesi?n -->
 	<script type="text/javascript">
@@ -150,10 +144,10 @@
 	</div>
 </div>
 <script type="text/javascript" src="/generalesDIyS/_jscript/superfish.js"></script>
-<!--script type="text/javascript">
+<script type="text/javascript">
 	jQuery(function () {
 		jQuery('ul.nav').superfish();
 	});
-</script-->
+</script>
 </body>
 </html>

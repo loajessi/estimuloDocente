@@ -1,0 +1,364 @@
+function datosEvaluacionCargar(pEvaluacionID) {
+	var EvaluacionSource =
+	{
+		datatype: "json",
+		datafields: [
+			{name: 'accion', type: 'string'},
+			{name: 'idEvaluacion', type: 'int'},
+			{name: 'idEstimulo', type: 'int'},
+			{name: 'idPersona', type: 'int'},
+			{name: 'numeroEmpleado', type: 'int'},
+			{name: 'nombreCompleto', type: 'varchar'},
+			{name: 'tipoContrato', type: 'varchar'},
+			{name: 'fechaRegistroEstimulo', type: 'datetime'},
+			{name: 'desempenoAula', type: 'smallint'},
+			{name: 'desempenoAcademico', type: 'smallint'},
+			{name: 'innovacion', type: 'tinyint'},
+			{name: 'tics', type: 'tinyint'},
+			{name: 'egel', type: 'tinyint'},
+			{name: 'fechaRegistro', type: 'datetime'}
+		],
+		url: "modelo/modEvaluacionConsultar.php",
+		type: 'POST',
+		data: {'pEvaluacionID': pEvaluacionID},
+		async: false
+	};
+	var dataAdapter = new $.jqx.dataAdapter(EvaluacionSource);
+	return dataAdapter;
+}
+
+function datosEvaluacionRegistroObtener(pEvaluacionID) {
+	$.ajax({
+		async: false,
+		url: "../moduloXX/modelo/modEvaluacionConsultar.php",
+		data: {iEvaluacionID: pEvaluacionID},
+		type: 'POST',
+		success: function (data, status, xhr) {
+			registro = jQuery.parseJSON(data);
+		}
+	});
+	return registro;
+}
+
+function EvaluacionTablaCargar(sControl) {
+	var dataAdapter = datosEvaluacionCargar();
+
+	//Fuentes combobox
+	var egel = {
+		datatype: "json",
+		datafields: [{ name: 'valor', type: 'int' }, { name: 'nombre', type: 'string' }],
+		localdata: [
+			{valor: 1, nombre: '1'},
+			{valor: 2, nombre: '2'},
+			{valor: 3, nombre: '3'}
+		]};
+
+	var innovacion = {
+		datatype: "json",
+		datafields: [{ name: 'valor', type: 'int' }, { name: 'nombre', type: 'string' }],
+		localdata: [
+			{valor: 0, nombre: '0'},
+			{valor: 1, nombre: '1'},
+			{valor: 2, nombre: '2'},
+			{valor: 3, nombre: '3'},
+			{valor: 4, nombre: '4'},
+			{valor: 5, nombre: '5'},
+			{valor: 6, nombre: '6'},
+			{valor: 7, nombre: '7'},
+			{valor: 8, nombre: '8'},
+			{valor: 9, nombre: '9'},
+			{valor: 10, nombre: '10'},
+			{valor: 11, nombre: '11'},
+			{valor: 12, nombre: '12'},
+			{valor: 13, nombre: '13'},
+			{valor: 14, nombre: '14'},
+			{valor: 15, nombre: '15'},
+			{valor: 16, nombre: '16'},
+			{valor: 17, nombre: '17'},
+			{valor: 18, nombre: '18'}
+		]};
+
+	var tics = {
+		datatype: "json",
+		datafields: [{ name: 'valor', type: 'int' }, { name: 'nombre', type: 'string' }],
+		localdata: [
+			{valor: 0, nombre: '0'},
+			{valor: 1, nombre: '1'},
+			{valor: 2, nombre: '2'},
+			{valor: 3, nombre: '3'},
+			{valor: 4, nombre: '4'},
+			{valor: 5, nombre: '5'},
+			{valor: 6, nombre: '6'},
+			{valor: 7, nombre: '7'},
+			{valor: 8, nombre: '8'},
+			{valor: 9, nombre: '9'},
+			{valor: 10, nombre: '10'},
+			{valor: 11, nombre: '11'},
+			{valor: 12, nombre: '12'},
+			{valor: 13, nombre: '13'},
+			{valor: 14, nombre: '14'},
+			{valor: 15, nombre: '15'},
+			{valor: 16, nombre: '16'},
+			{valor: 17, nombre: '17'},
+			{valor: 18, nombre: '18'}
+		]};
+
+	$(sControl).jqxGrid({
+		width: '99.5%',
+		height: '455px',
+		source: dataAdapter,
+		rowsheight: 40,
+		sortable: true,
+		theme: 'energyblue',
+		localization: getLocalization('es'),
+		filterable: true,
+		autoshowfiltericon: true,
+		pageable: true,
+		editable: true,
+		columns: [
+			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true},
+			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '115px'},
+			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '272px'},
+			{text: 'Desempeño en el aula (Alumnos)', datafield: 'desempenoAula', cellsalign: 'center', editable: true, width: '167px', columntype: 'numberinput',
+				renderer: function(){
+					return '<div class="jxGrid_headerDoble txtCentrado">Desempeño en<br />el aula (Alumnos)</div>';
+				},
+				validation: function (cell, value) {
+					if (value < 0 || value > 999) {
+						$(sControl).jqxGrid('cellbeginedit', cell.row, cell.column);
+						return {result: false, message: "El valor debe estar entre 0 y 999"};
+					} else return true;
+				},
+				createeditor: function (row, cellvalue, editor) {
+					editor.jqxNumberInput({
+						digits: 3,
+						decimalDigits: 0,
+						min: 0,
+						inputMode: 'advanced',
+						spinMode: 'simple',
+						spinButtonsStep: 1,
+						spinButtons: true,
+						theme: 'energyblue'
+					});
+				},
+				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
+					$('#cd_f'+row+'_'+datafield).val(newvalue);
+					if (oldvalue!=newvalue) {evaluacionAgregarModificar(row);}
+				}
+			},
+			{text: 'Desempe&ntilde;o acad&eacute;mico (Directivos, Academicos)', datafield: 'desempenoAcademico', cellsalign: 'center', editable: true, width: '167px', columntype: 'numberinput',
+				renderer: function(){return '<div class="jxGrid_headerDoble txtCentrado">Desempe&ntilde;o acad&eacute;mico<br />(Directivos, Academicos)</div>'; },
+				createeditor: function (row, cellvalue, editor) {
+					editor.jqxNumberInput({
+						digits: 3,
+						decimalDigits: 0,
+						min: 0,
+						inputMode: 'advanced',
+						spinMode: 'simple',
+						spinButtonsStep: 1,
+						spinButtons: true,
+						theme: 'energyblue'
+					});
+				},
+				validation: function (cell, value) {
+					if (value < 0 || value > 999) {
+						$(sControl).jqxGrid('cellbeginedit', cell.row, cell.column);
+						return {result: false, message: "El valor debe estar entre 0 y 999"};
+					} else return true;
+				},
+				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
+					$('#cd_f'+row+'_'+datafield).val(newvalue);
+					if (oldvalue!=newvalue) {evaluacionAgregarModificar(row);}
+				}
+			},
+			{text: 'Innovaci&oacute;n educativa', datafield: 'innovacion', cellsalign: 'center', editable: true, width: '121px', columntype: 'dropdownlist',
+				renderer: function(){return '<div class="jxGrid_headerDoble txtCentrado">Innovaci&oacute;n<br />educativa</div>';},
+				validation: function (cell, value) {
+					var row = cell.row;
+					if (value < 0 || value > 18) {
+						$(sControl).jqxGrid('cellbeginedit', row, "innovacion");
+						return {result: false, message: "El valor debe estar entre 0 y 18"};
+					} else { return true; }
+				},
+				createeditor: function (row, value, editor) {
+					editor.jqxDropDownList({
+						source: new $.jqx.dataAdapter(innovacion),
+						displayMember: 'nombre',
+						valueMember: 'valor',
+						//autoDropDownHeight: true,
+						dropDownHeight: '200px',
+						placeHolder: "Elige un valor",
+						theme: 'energyblue'
+					});
+				},
+				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
+					$('#cd_f'+row+'_'+datafield).val(newvalue);
+					if (oldvalue!=newvalue) {evaluacionAgregarModificar(row);}
+				}
+			},
+			{text: 'TICS', align: 'center', datafield: 'tics', cellsalign: 'center', editable: true, width: '121px', columntype: 'dropdownlist',
+				validation: function (cell, value) {
+					var row = cell.row;
+					if (value < 0 || value > 18) {
+						$(sControl).jqxGrid('cellbeginedit', row, "tics");
+						return {result: false, message: "El valor debe estar entre 0 y 18"};
+					} else { return true; }
+				},
+				createeditor: function (row, value, editor) {
+					editor.jqxDropDownList({
+						source: new $.jqx.dataAdapter(tics),
+						displayMember: 'nombre',
+						valueMember: 'valor',
+						//autoDropDownHeight: true,
+						placeHolder: "Elige un valor",
+						dropDownHeight: '200px',
+						theme: 'energyblue'
+					});
+				},
+				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
+					$('#cd_f'+row+'_'+datafield).val(newvalue);
+					if (oldvalue!=newvalue) {evaluacionAgregarModificar(row);}
+				}
+			},
+			{text: 'Nivel EGEL (CENEVAL)', align: 'center', datafield: 'egel', cellsalign: 'center', editable: true, width: '121px', columntype: 'dropdownlist',
+				renderer: function(){return '<div class="jxGrid_headerDoble txtCentrado">Nivel EGEL<br />(CENEVAL)</div>';},
+				createeditor: function (row, value, editor) {
+					editor.jqxDropDownList({
+						source: new $.jqx.dataAdapter(egel),
+						displayMember: 'nombre',
+						valueMember: 'valor',
+						autoDropDownHeight: true,
+						placeHolder: "Elige un valor",
+						theme: 'energyblue'
+					});
+				},
+				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
+					$('#cd_f'+row+'_'+datafield).val(newvalue.replace('Nivel ',''));
+					if (oldvalue!=newvalue) {evaluacionAgregarModificar(row);}
+				}
+			}
+		]
+	});
+
+	var numRegistros = $(sControl).jqxGrid('getdatainformation').rowscount,
+		registros = $(sControl).jqxGrid('getrows'),
+		camposAuxiliares = ['idEstimulo', 'idEvaluacion', 'desempenoAula', 'desempenoAcademico', 'innovacion', 'tics', 'egel'];
+
+	crearCamposAuxiliares(numRegistros, registros, camposAuxiliares);
+}
+
+function crearCamposAuxiliares(numRegistros, registros, camposAuxiliares) {
+	var contenedor = $('#contenedorDatos'),
+		tipoCampo = 'text';
+
+	for(var i=0; i<numRegistros; i++) {
+		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_RowIndex" value="'+i+'" />');
+		for (var arr = 0; arr < camposAuxiliares.length; arr++) {
+			contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_'+camposAuxiliares[arr]+'" value="'+registros[i][camposAuxiliares[arr]]+'" data-fila="'+i+'" name="'+camposAuxiliares[arr]+'" />');
+		}
+		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_Guardado" value="" data-fila="'+i+'" /><br />');
+	}
+}
+
+function EvaluacionComboCargar(sControl) {
+	var dataAdapter = datosEvaluacionCargar();
+	$(sControl).jqxComboBox({ // o .jqxInput
+		source: dataAdapter
+		, displayMember: 'option'
+		, valueMember: 'value'
+		, width: '100%'
+		, animationType: 'fade'
+		, theme: 'energyblue'
+		, searchMode: 'containsignorecase'
+		, autoComplete: true
+		, placeHolder: "seleccione..."
+	});
+}
+
+function EvaluacionListBoxCargar(sControl) {
+	var dataAdapter = datosEvaluacionCargar();
+	$(sControl).jqxListBox({
+		source: dataAdapter
+		, displayMember: 'option'
+		, valueMember: 'value'
+		, width: '100%'
+		, theme: 'enegryBlue'
+		, disabled: true
+	});
+}
+
+function EvaluacionFormularioCargar(pEvaluacionID) {
+	var dataAdapter = datosEvaluacionRegistroObtener(pEvaluacionID);
+	registro = dataAdapter.records[0];
+
+	$('#ctrlidEvaluacion').val(registro.idEvaluacion)
+	$('#ctrlidEstimulo').val(registro.idEstimulo)
+	$('#ctrlidPersona').val(registro.idPersona)
+	$('#ctrlnumeroEmpleado').val(registro.numeroEmpleado)
+	$('#ctrlnombreCompleto').val(registro.nombreCompleto)
+	$('#ctrltipoContrato').val(registro.tipoContrato)
+	$('#ctrlfechaRegistroEstimulo').val(registro.fechaRegistroEstimulo)
+	$('#ctrldesempenoAula').val(registro.desempenoAula)
+	$('#ctrldesempenoAcademico').val(registro.desempenoAcademico)
+	$('#ctrlinnovacion').val(registro.innovacion)
+	$('#ctrltics').val(registro.tics)
+	$('#ctrlegel').val(registro.egel)
+	$('#ctrlfechaRegistro').val(registro.fechaRegistro)
+}
+
+function evaluacionAgregarModificar(fila) {
+
+	var desempenoAula = $('#cd_f'+fila+'_desempenoAula').val(),
+		desempenoAcademico = $('#cd_f'+fila+'_desempenoAcademico').val(),
+		innovacion = $('#cd_f'+fila+'_innovacion').val(),
+		tics = $('#cd_f'+fila+'_tics').val(),
+		egel = $('#cd_f'+fila+'_egel').val(),
+		idEstimulo = $('#cd_f'+fila+'_idEstimulo').val(),
+		idEvaluacion = $('#cd_f'+fila+'_idEvaluacion').val();
+
+	if(desempenoAula=='') {
+		return;
+	}
+
+	if(desempenoAcademico=='') {
+		return;
+	}
+
+	if(innovacion=='') {
+		return;
+	}
+
+	if(tics=='') {
+		return;
+	}
+
+	if(egel=='') {
+		return;
+	}
+
+	var sPagina = "modelo/modEvaluacionAgregarModificar.php";
+	var oParametros = $('input[data-fila="'+fila+'"][name]').serialize();
+
+	$.post(sPagina, oParametros, function (datos, status) {
+		if (status == 'success') {
+			eval(datos);
+			if (json.noError > 0) {
+				notif({msg: '<b>Error al guardar:</b> " + json.mensaje', type: 'error', position: 'right', width: 200});
+			} else {
+				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+				// Acciones posteriores a la actualizacion
+				if( idEvaluacion =='' || typeof idEvaluacion == 'undefined' || idEvaluacion == null ){
+					$('#cd_f'+fila+'_idEvaluacion').val(json.idEvaluacion);
+				}
+				$('#cd_f'+fila+'_Guardado').val('1');
+
+				// Cambiar celdas en el grid
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'desempenoAula', desempenoAula);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'desempenoAcademico', desempenoAcademico);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'innovacion', innovacion);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'tics', tics);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'egel', 'Nivel '+egel);
+			}
+		}
+	});
+}

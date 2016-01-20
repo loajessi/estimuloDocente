@@ -280,15 +280,20 @@ hr + form > .columna > *:last-child {
 	border: 0;
 }
 
-.datepicker table {
+#ui-datepicker-div {
+	z-index: 1100 !important;
+}
+
+#ui-datepicker-div table {
 	background: inherit !important;
 }
 
-.datepicker table th {
+#ui-datepicker-div table th {
 	color: inherit !important;
+	background-color: inherit !important;
 }
 
-.datepicker td[data-handler="selectDay"] {
+#ui-datepicker-div td[data-handler="selectDay"] {
 	text-align: center !important;
 }
 

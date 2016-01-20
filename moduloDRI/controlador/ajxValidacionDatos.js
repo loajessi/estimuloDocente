@@ -9,6 +9,13 @@ function validacionDatosInicializar() {
 
     var agregarEventos = function () {
 
+	    $('.datepicker').on('change', function() {
+		    relacionesInternacionalesAgregarModificar( $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex') );
+	    });
+
+	    $('input[id$="_fechaInicioBecaFederal"]').on('change', relacionesInternacionalesAgregarModificar($('#jqxGrid_Docentes').jqxGrid('getselectedrowindex')));
+	    $('input[id$="_fechaTerminoBecaFederal"]').on('change', relacionesInternacionalesAgregarModificar($('#jqxGrid_Docentes').jqxGrid('getselectedrowindex')));
+
 	    $('#jqxGrid_Docentes').on('rowselect', function (event) {
 		    var fila = event.args.rowindex,
 			    filaAnterior = $('#cd_g_rowAnterior').val();
@@ -22,7 +29,9 @@ function validacionDatosInicializar() {
 			    fechaTerminoBecaFederal = $('#cd_f'+filaAnterior+'_fechaTerminoBecaFederal').val();
 
 		    // Comprobar fila anterior
-		    if( idRelacionesInternacionales == '' && guardado=='' ) {
+		    if( idRelacionesInternacionales == '' && becaFederal!='' && fechaInicioBecaFederal!='' && fechaTerminoBecaFederal!='' ) {
+			    relacionesInternacionalesAgregarModificar(filaAnterior);
+		    } else if( idRelacionesInternacionales == '' && (becaFederal!='' || fechaInicioBecaFederal!='' || fechaTerminoBecaFederal!='') ) {
 			    $('#jqxGrid_Docentes').jqxGrid('endcelledit', filaAnterior, 'becaFederal', false);
 			    $('#jqxGrid_Docentes').jqxGrid('endcelledit', filaAnterior, 'fechaInicioBecaFederal', false);
 			    $('#jqxGrid_Docentes').jqxGrid('endcelledit', filaAnterior, 'fechaTerminoBecaFederal', false);
@@ -36,6 +45,7 @@ function validacionDatosInicializar() {
 			    $('#cd_f'+filaAnterior+'_fechaInicioBecaFederal').val('');
 			    $('#cd_f'+filaAnterior+'_fechaTerminoBecaFederal').val('');
 
+			    crearDatepickers();
 		    }
 
 		    $('#cd_g_rowAnterior').val(fila);

@@ -41,6 +41,23 @@ function datosRelacionesInternacionalesRegistroObtener(pRelacionesInternacionale
 function RelacionesInternacionalesTablaCargar(sControl){
 	var dataAdapter= datosRelacionesInternacionalesCargar();
 
+	var keyboardHandler = function (event) {
+		var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+		if ((key >= 33 && key <= 36) || key == 37 || key == 39) {
+			return true;
+		} else if (key==38) { //Flecha arriba
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual-1);
+			crearDatepickers();
+			return true;
+		} else if (key==40) { //Flecha abajo
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual+1);
+			crearDatepickers();
+			return true;
+		}
+	};
+
 	$(sControl).jqxGrid({
 		width: '99.5%',
 		height: '455px',
@@ -55,13 +72,14 @@ function RelacionesInternacionalesTablaCargar(sControl){
 		editable: false,
 		pagermode: 'simple',
 		pagerbuttonscount: 10,
+		handlekeyboardnavigation: keyboardHandler,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', pinned: true, filterable: false, sortable: false, menu: false},
 			{text: '', datafield: 'idRelacionesInternacionales', hidden: true},
 			{text: '', datafield: 'idEstimulo', hidden: true},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', width: '149px'},
 			{text: 'Nombre completo', datafield: 'nombreCompleto', width: '350px'},
-			{text: 'Cuenta con beca federal', datafield: 'becaFederal', width: '195px',
+			{text: 'Cuenta con beca federal', datafield: 'becaFederal', width: '195px', align: 'center',
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					var temp = $('#cd_f'+row+'_becaFederal').val();
 
@@ -96,13 +114,13 @@ function RelacionesInternacionalesTablaCargar(sControl){
 					if (oldvalue!=newvalue) {relacionesInternacionalesAgregarModificar(row);}
 				}
 			},
-			{text: 'Fecha de inicio', datafield: 'fechaInicioBecaFederal', cellsalign: 'center', width: '195px',
+			{text: 'Fecha de inicio', datafield: 'fechaInicioBecaFederal', cellsalign: 'center', width: '195px', align: 'center',
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					var html = '<input class="datepicker" data-fila="'+row+'"  data-campo="fechaInicioBecaFederal" data-valor="'+value+'" />';
 					return html;
 				}
 			},
-			{text: 'Fecha de término', datafield: 'fechaTerminoBecaFederal', cellsalign: 'center', width: '195px',
+			{text: 'Fecha de término', datafield: 'fechaTerminoBecaFederal', cellsalign: 'center', width: '195px', align: 'center',
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					var html = '<input class="datepicker" data-fila="'+row+'"  data-campo="fechaTerminoBecaFederal" data-valor="'+value+'" />';
 					return html;
@@ -148,12 +166,12 @@ function crearDatepickers() {
 			showMonthAfterYear: false,
 			autoSize: true,
 			yearSuffix: '',
-			selectOtherMonths: true,
+			selectOtherMonths: false,
 			changeMonth: true,
 			changeYear: true
 		});
 
-		$('#cd_f'+fila+'_'+campo).on('change', relacionesInternacionalesAgregarModificar);
+		//$('#cd_f'+fila+'_'+campo).on('change', relacionesInternacionalesAgregarModificar);
 
 		if (valor!='') {
 			var mes = valor.substr(0,2),
@@ -227,6 +245,7 @@ function RelacionesInternacionalesFormularioCargar(pRelacionesInternacionalesID)
 
 function relacionesInternacionalesAgregarModificar(fila){
 
+	if (fila==-1) return;
 
 	var becaFederal = $('#cd_f'+fila+'_becaFederal').val(),
 		row = $('#cd_f'+fila+'_RowIndex').val(),
@@ -272,6 +291,7 @@ function relacionesInternacionalesAgregarModificar(fila){
 					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'fechaInicioBecaFederal', fechaInicioBecaFederal);
 					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'fechaTerminoBecaFederal', fechaTerminoBecaFederal);
 
+					crearDatepickers();
 				}
 			}
 		}

@@ -1,11 +1,5 @@
-<div class="barraSuperiorAcciones animated fadeInRight">
-		<a id="btnGuardar" class="boton icon guardar">Guardar</a>
-		<a id="btnCancelar" class="boton peligro icon remover">Cancelar</a>
-	</div>
-
-	<h1 class="animated fadeIn">Revisi&oacute;n de documentos</h1>
-	<hr />
-
+<h1 class="animated fadeIn">Revisi&oacute;n de documentos</h1>
+<hr />
 
 <div id="divRadioBtnsEstados" style="float:left; width:70%" class="animated fadeIn delay-5">
 	<label style="float:left">Validado por Secretario (aplicar a todos los docentes): &nbsp;</label>

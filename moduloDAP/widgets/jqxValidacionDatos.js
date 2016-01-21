@@ -158,11 +158,15 @@ function PersonalTablaCargar(sControl) {
 	$(sControl).on("sort", cargarInputsAsistencias);
 }
 
+function validarPorcentaje(valor) {
+	var patron = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/g;
+		return patron.test(valor);
+}
+
 function cargarInputsAsistencias() {
 	$('.inputAsistencias').each(function () {
 		$(this).off('change').on('change', function(event) {
 			var fila = parseInt( $(this).attr('data-row') ),
-				filaSig = fila + 1,
 				numAnterior = parseFloat( $(this).attr('data-value')),
 				num = parseFloat( $(this).val() );
 
@@ -173,7 +177,7 @@ function cargarInputsAsistencias() {
 
 			if (check) {
 				$('#cd_f' + fila + '_asistencias').val(valor);
-				$(this).val(num).select();
+				//$(this).val(num);
 				personalAgregarModificar(fila);
 				event.stopPropagation();
 			} else {
@@ -191,20 +195,34 @@ function cargarInputsAsistencias() {
 
 		$(this).off('focus').on('focus', function() {
 			$(this).select();
+			$(this).on('mousewheel.disableScroll', function (e) {
+				e.preventDefault()
+			})
+		});
+
+		$(this).off('blur').on('blur', function (e) {
+			$(this).off('mousewheel.disableScroll')
 		});
 
 		$(this).off('keyup').on('keyup', function(event) {
 			var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
 			if (key == 13) {
-				var fila = parseInt( $(this).attr('data-row') ),
-					filaSig = fila+1;
+				var fila = parseInt( $(this).attr('data-row')),
+					dataval = $(this).attr('data-value'),
+					val = $(this).val();
 
-				if ($(this).attr('data-value') != $(this).val()) {
+					//filaSig = fila+1;
+
+				if (dataval != val) {
 					$(this).trigger('change');
 				}
 
-				$('#jqxGrid_Docentes').jqxGrid('selectrow', filaSig);
-				$('#input_'+filaSig+'_asistencias').focus().select();
+				/*$('#jqxGrid_Docentes').jqxGrid('selectrow', filaSig);
+				$('#input_'+filaSig+'_asistencias').focus().select();*/
+			} else {
+				var valor = $(this).val(),
+					fila = parseInt( $(this).attr('data-row'));
+				$('#cd_f' + fila + '_asistencias').val( valor );
 			}
 		});
 	});
@@ -212,7 +230,7 @@ function cargarInputsAsistencias() {
 
 function crearCamposAuxiliares(numRegistros, registros, camposAuxiliares) {
 	var contenedor = $('#contenedorDatos'),
-		tipoCampo = 'text';
+		tipoCampo = 'hidden';
 
 	for(var i=0; i<numRegistros; i++) {
 		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_RowIndex" value="'+i+'" />');
@@ -286,6 +304,8 @@ function personalAgregarModificar(fila) {
 
 	if(asistencias=='') {
 		return;
+	} else {
+		if (!validarPorcentaje(parseFloat(asistencias))) return;
 	}
 
 	var sPagina = "modelo/modPersonalAgregarModificar.php";

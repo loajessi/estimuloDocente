@@ -27,7 +27,9 @@ function validacionDatosInicializar() {
 			    asistencias = $('#cd_f'+filaAnterior+'_asistencias').val();
 
 		    // Comprobar fila anterior
-		    if( idPersonal == '' && (puestoDrectivo!='' || gradoAcademico!='' || asistencias!='') ) {
+		    if( idPersonal == '' && puestoDrectivo!='' && gradoAcademico!='' && asistencias!='' ) {
+			    personalAgregarModificar(filaAnterior);
+		    } else if( idPersonal == '' && (puestoDrectivo!='' || gradoAcademico!='' || asistencias!='') ) {
 			    notif({msg: '<b>No se guardaron los cambios</b>', type: 'error', position: 'right', width: 400, autohide: false});
 
 			    //Restablecer campos fila anterior para indicar que no se guardó la información

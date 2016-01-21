@@ -170,6 +170,13 @@ abbr[title] {
 	cursor: help;
 }
 
+hr.slim {
+	height: 1px;
+	background: #DCDCDC;
+	border: 0;
+	box-shadow: 0px 2px 10px 0px #DCDCDC;
+}
+
 .columna {
 	float: left;
 	margin: 0;
@@ -188,6 +195,17 @@ abbr[title] {
 	top: 0;
 }
 
+.columna.separador-izq-slim:before {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 0px;
+	left: -1px;
+	top: 0;
+	border: 1px solid #F5F5F5;
+	box-shadow: 0px 0px 10px 0px #F5F5F5;
+}
+
 .columna.separador-der:after {
 	content: '';
 	position: absolute;
@@ -198,12 +216,35 @@ abbr[title] {
 	top: 0;
 }
 
-.columna.ancho-50 {
-	width: 50%;
+.columna.separador-der-slim:after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 0px;
+	right: 1px;
+	top: 0;
+	border: 1px solid #F5F5F5;
+	box-shadow: 0px 0px 10px 0px #F5F5F5;
+}
+
+.columna.ancho-25 {
+	width: 25%;
 }
 
 .columna.ancho-30 {
 	width: 30%;
+}
+
+.columna.ancho-40 {
+	width: 40%;
+}
+
+.columna.ancho-50 {
+	width: 50%;
+}
+
+.columna.ancho-60 {
+	width: 60%;
 }
 
 .columna.ancho-70 {
@@ -260,6 +301,7 @@ hr + form > .columna > *:last-child {
 .label_multilinea {
 	font-weight: normal !important;
 	font-size: 13px !important;
+	padding-right: 0 !important;
 }
 
 .label_multilinea b {
@@ -273,7 +315,80 @@ hr + form > .columna > *:last-child {
 	z-index: 0;
 }
 
-#detalleDatosProyecto, #detalleDatosPatentes {
+.ui-datepicker-trigger {
+	display: none;
+}
+
+.datepicker {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-family: Verdana, sans-serif;
+	font-size: 12px;
+	border: 0;
+}
+
+#ui-datepicker-div {
+	z-index: 1100 !important;
+}
+
+#ui-datepicker-div table {
+	background: inherit !important;
+}
+
+#ui-datepicker-div table th {
+	color: inherit !important;
+	background-color: inherit !important;
+}
+
+#ui-datepicker-div td[data-handler="selectDay"] {
+	text-align: center !important;
+}
+
+#botonesEGEL {
+	margin-top: 7px;
+}
+
+#botonesEGEL .btn {
+	padding: 5px 15px;
+	font-size: 20px;
+	cursor: pointer;
+	border: 1px solid #B1B1B1;
+	border-radius: 3px;
+	height: 40px;
+	vertical-align: top;
+}
+
+#botonesEGEL .btn:hover {
+	opacity: 0.8;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+}
+
+#ListaProgramasEducativosEmpleado > ul {
+	color: #000;
+	text-shadow: none;
+	padding-left: 15px;
+	font-size: 12px;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+#frmDetalleEvaluacion .columna.ancho-25 {
+	min-height: 110px;
+}
+
+div[id^="jqxDropDownList"] {
+	margin-top: 5px;
+}
+
+#dropdownlistContentjqxDropDownList_innovacion, #dropdownlistContentjqxDropDownList_tics {
+	left: 6px !important;
+}
+
+#detalleDatosProyecto, #detalleDatosPatentes, #detalleEvaluacion {
 	padding: 10px;
 }
 
@@ -281,9 +396,9 @@ hr + form > .columna > *:last-child {
 	margin-top: 5px;
 }
 
-.jqxNumberInput_asistencias[data-value=""] input {
+/*.jqxNumberInput_asistencias[data-value=""] input {
 	color: #FFFFFF;
-}
+}*/
 
 .jqxNumberInput_asistencias[data-value=""] input:focus, .jqxNumberInput_asistencias[data-value=""] input:active {
 	color: #000000;
@@ -299,9 +414,9 @@ hr + form > .columna > *:last-child {
 	opacity: 0;
 }
 
-#frmModalAgregarProyecto input[type="number"] {
+.dataForm input[type="number"] {
 	border: 1px solid #CCCCCC;
-	color: #888888;
+	color: #000000;
 	margin-bottom: 16px;
 	margin-right: 6px;
 	margin-top: 5px !important;

@@ -16,6 +16,7 @@ function datosEvaluacionCargar(pEvaluacionID) {
 			{name: 'innovacion', type: 'tinyint'},
 			{name: 'tics', type: 'tinyint'},
 			{name: 'egel', type: 'tinyint'},
+			{name: 'calidadProgramaEducativo', type: 'varchar'},
 			{name: 'fechaRegistro', type: 'datetime'}
 		],
 		url: "modelo/modEvaluacionConsultar.php",
@@ -42,6 +43,67 @@ function datosEvaluacionRegistroObtener(pEvaluacionID) {
 
 function EvaluacionTablaCargar(sControl) {
 	var dataAdapter = datosEvaluacionCargar();
+
+	//Fuentes combobox
+	var egel = {
+		datatype: "json",
+		datafields: [{ name: 'valor', type: 'int' }, { name: 'nombre', type: 'string' }],
+		localdata: [
+			{valor: 1, nombre: '1'},
+			{valor: 2, nombre: '2'},
+			{valor: 3, nombre: '3'}
+		]};
+
+	var innovacion = {
+		datatype: "json",
+		datafields: [{ name: 'valor', type: 'int' }, { name: 'nombre', type: 'string' }],
+		localdata: [
+			{valor: 0, nombre: '0'},
+			{valor: 1, nombre: '1'},
+			{valor: 2, nombre: '2'},
+			{valor: 3, nombre: '3'},
+			{valor: 4, nombre: '4'},
+			{valor: 5, nombre: '5'},
+			{valor: 6, nombre: '6'},
+			{valor: 7, nombre: '7'},
+			{valor: 8, nombre: '8'},
+			{valor: 9, nombre: '9'},
+			{valor: 10, nombre: '10'},
+			{valor: 11, nombre: '11'},
+			{valor: 12, nombre: '12'},
+			{valor: 13, nombre: '13'},
+			{valor: 14, nombre: '14'},
+			{valor: 15, nombre: '15'},
+			{valor: 16, nombre: '16'},
+			{valor: 17, nombre: '17'},
+			{valor: 18, nombre: '18'}
+		]};
+
+	var tics = {
+		datatype: "json",
+		datafields: [{ name: 'valor', type: 'int' }, { name: 'nombre', type: 'string' }],
+		localdata: [
+			{valor: 0, nombre: '0'},
+			{valor: 1, nombre: '1'},
+			{valor: 2, nombre: '2'},
+			{valor: 3, nombre: '3'},
+			{valor: 4, nombre: '4'},
+			{valor: 5, nombre: '5'},
+			{valor: 6, nombre: '6'},
+			{valor: 7, nombre: '7'},
+			{valor: 8, nombre: '8'},
+			{valor: 9, nombre: '9'},
+			{valor: 10, nombre: '10'},
+			{valor: 11, nombre: '11'},
+			{valor: 12, nombre: '12'},
+			{valor: 13, nombre: '13'},
+			{valor: 14, nombre: '14'},
+			{valor: 15, nombre: '15'},
+			{valor: 16, nombre: '16'},
+			{valor: 17, nombre: '17'},
+			{valor: 18, nombre: '18'}
+		]};
+
 	$(sControl).jqxGrid({
 		width: '99.5%',
 		height: '455px',
@@ -53,64 +115,34 @@ function EvaluacionTablaCargar(sControl) {
 		filterable: true,
 		autoshowfiltericon: true,
 		pageable: true,
-		editable: true,
+		editable: false,
+		pagermode: 'simple',
+		pagerbuttonscount: 5,
+		keyboardnavigation: false,
 		columns: [
-			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true},
-			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '115px'},
-			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '272px'},
-			{text: 'Desempe&ntilde;o en el aula (Alumnos)', datafield: 'desempenoAula', cellsalign: 'center', editable: true, width: '167px', columntype: 'numberinput',
-				renderer: function(){return '<div class="jxGrid_headerDoble txtCentrado">Desempe&ntilde;o en<br />el aula (Alumnos)</div>'; },
-				createeditor: function (row, cellvalue, editor) {
-					editor.jqxNumberInput({
-						digits: 3,
-						decimalDigits: 0,
-						min: 0,
-						inputMode: 'advanced',
-						spinMode: 'simple',
-						spinButtonsStep: 1,
-						spinButtons: true,
-						theme: 'energyblue'
-					});
-				},
-			},
-			{text: 'Desempe&ntilde;o acad&eacute;mico (Directivos, Academicos)', datafield: 'desempenoAcademico', cellsalign: 'center', editable: true, width: '167px', columntype: 'numberinput',
-				renderer: function(){return '<div class="jxGrid_headerDoble txtCentrado">Desempe&ntilde;o acad&eacute;mico<br />(Directivos, Academicos)</div>'; },
-				createeditor: function (row, cellvalue, editor) {
-					editor.jqxNumberInput({
-						digits: 3,
-						decimalDigits: 0,
-						min: 0,
-						inputMode: 'advanced',
-						spinMode: 'simple',
-						spinButtonsStep: 1,
-						spinButtons: true,
-						theme: 'energyblue'
-					});
-				},
-			},
-			{text: 'Innovaci&oacute;n educativa', datafield: 'innovacion', cellsalign: 'center', editable: true, width: '121px', columntype: 'combobox',
-				renderer: function(){return '<div class="jxGrid_headerDoble txtCentrado">Innovaci&oacute;n<br />educativa</div>';},
-				validation: function (cell, value) {
-					var row = cell.row;
-					if (value < 0 || value > 18) {
-						$(sControl).jqxGrid('cellbeginedit', row, "innovacion");
-						return {result: false, message: "El valor debe estar entre 0 y 18"};
-					} else { return true; }
-				},
-			},
-			{text: 'TICS', align: 'center', datafield: 'tics', cellsalign: 'center', editable: true, width: '121px', columntype: 'combobox',
-				validation: function (cell, value) {
-					var row = cell.row;
-					if (value < 0 || value > 18) {
-						$(sControl).jqxGrid('cellbeginedit', row, "tics");
-						return {result: false, message: "El valor debe estar entre 0 y 18"};
-					} else { return true; }
-				},
-			},
-			{text: 'EGEL (CENEVAL)', align: 'center', datafield: 'egel', cellsalign: 'center', editable: true, width: '121px', columntype: 'combobox',
-				/*createeditor: function (row, value, editor) {editor.jqxComboBox({ source: egelAdapter, displayMember: 'nombre', valueMember: 'nombre' });}*/
-			}
+			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', pinned: true, filterable: false, sortable: false, menu: false},
+			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', width: '115px'},
+			{text: 'Nombre completo', datafield: 'nombreCompleto'},
+			{text: 'Desempeño en el aula (Alumnos)', datafield: 'desempenoAula', hidden: true},
+			{text: 'Desempeño académico (Directivos, Academicos)', datafield: 'desempenoAcademico', hidden: true},
+			{text: 'Innovación educativa', datafield: 'innovacion', hidden: true},
+			{text: 'TICS', align: 'center', datafield: 'tics', hidden: true},
+			{text: 'Nivel EGEL (CENEVAL)', datafield: 'egel', hidden: true},
+			{text: '', datafield: 'idEstimulo', hidden: true},
+			{text: '', datafield: 'idEvaluacion', hidden: true},
+			{text: '', datafield: 'calidadProgramaEducativo', hidden: true}
 		]
+	});
+
+	// Configurar clics en rows
+	$(sControl).bind('rowselect', function (event) {
+		var row = event.args.rowindex,
+			datafield = event.args.datafield;
+
+		$('#detalleEvaluacion > .animated').removeClass('slideInLeft').addClass('slideOutLeft');
+		var datarow = $('#jqxGrid_Docentes').jqxGrid('getrowdatabyid', row);
+
+		Docentes_DetalleEvaluacion_CargarVista(datarow);
 	});
 }
 
@@ -160,48 +192,66 @@ function EvaluacionFormularioCargar(pEvaluacionID) {
 	$('#ctrlfechaRegistro').val(registro.fechaRegistro)
 }
 
-function evaluacionAgregarModificar() {
-	var sPagina = "../../moduloXX/modelo/modEvaluacionAgregarModificar.php";
-	var oParametros = $('#frmFormulario').serialize();
+function evaluacionAgregarModificar(fila) {
 
-	$.post(sPagina
-		, oParametros
-		, function (datos, status) {
-			if (status == 'success') {
-				eval(datos);
-				if (json.noError > 0) {
-					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
+	var desempenoAula = $('#desempenoAula').val(),
+		desempenoAcademico = $('#desempenoAcademico').val(),
+		innovacion = $('#hdnInnovacion').val(),
+		tics = $('#hdnTICs').val(),
+		egel = $('#hdnEGEL').val(),
+		calidadProgramaEducativo = $('#hdnCalidad').val(),
+		idEstimulo = $('#hdnIdEstimulo').val(),
+		idEvaluacion = $('#hdnIdEvaluacion').val();
+
+	if(desempenoAula=='') {
+		return;
+	}
+
+	if(desempenoAcademico=='') {
+		return;
+	}
+
+	if(innovacion=='') {
+		return;
+	}
+
+	if(tics=='') {
+		return;
+	}
+
+	if(egel=='') {
+		return;
+	}
+
+	if(egel != 0 && calidadProgramaEducativo=='') {
+		notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
+		return;
+	}
+
+	var sPagina = "modelo/modEvaluacionAgregarModificar.php";
+	var oParametros = $('#frmDetalleEvaluacion').serialize();
+
+	$.post(sPagina, oParametros, function (datos, status) {
+		if (status == 'success') {
+			eval(datos);
+			if (json.noError > 0) {
+				notif({msg: '<b>Error al guardar:</b> " + json.mensaje', type: 'error', position: 'right', width: 200});
+			} else {
+				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+				// Acciones posteriores a la actualizacion
+				if( idEvaluacion =='' || typeof idEvaluacion == 'undefined' || idEvaluacion == null ){
+					$('#hdnIdEvaluacion').val(json.idEvaluacion);
+					$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'idEvaluacion', json.idEvaluacion);
 				}
-				else {
-					alert("Su informaci\u00f3n se registr\u00f3 correctamente en la base de datos.");
-					// Acciones posteriores a la actualizacion
-				}
+
+				// Cambiar celdas en el grid
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'desempenoAula', desempenoAula);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'desempenoAcademico', desempenoAcademico);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'innovacion', innovacion);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'tics', tics);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'egel', egel);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'calidadProgramaEducativo', calidadProgramaEducativo);
 			}
 		}
-	);
+	});
 }
-
-
-function evaluacionEliminar(pRegistroID) {
-	var sPagina = "../../moduloXX/modelo/modEvaluacionEliminar.php";
-	var oParametros = {'pRegistroID': pRegistroID}
-
-	$.post(sPagina
-		, oParametros
-		, function (datos, status) {
-			if (status == 'success') {
-				eval(datos);
-				if (json.noError > 0) {
-					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
-				}
-				else {
-					alert("Su informaci\u00f3n se elimin\u00f3 correctamente en la base de datos.");
-					// Acciones posteriores a la actualizacion
-				}
-			}
-		}
-	);
-}
-
-
-

@@ -147,7 +147,7 @@ function centroComputoAgregarModificar(rowid, valor) {
 				notif({msg: '<b>Error al guardar:</b> " + json.mensaje', type: 'error', position: 'right', width: 200});
 			} else {
 				// Acciones posteriores a la actualizacion
-				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+				c
 			}
 		}
 	});

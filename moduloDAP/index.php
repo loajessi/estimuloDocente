@@ -94,6 +94,9 @@
 <!-- ####################################################################################################### -->
 <div class="wrapper">
 	<div id="topbar">
+		<div style="float: left; height: 55px; padding-top: 18px; box-sizing: border-box; padding-left: 17px; color: #9900FF">
+			<img src="/generalesDIyS/_img/info.png" height="20" width="20" style="vertical-align: -5px; display: inline;" />&nbsp;&nbsp;Fecha límite para captura de datos: <b id="FechaLimiteCaptura">00/00/00</b>
+		</div>
 		<div class="fl_right">
 			<p>
 				<?= $_SESSION['sPersonaVS']; ?>&nbsp;&nbsp;&nbsp;

@@ -19,21 +19,17 @@ function detalleProyectosInicializar() {
 		$("#jqxDateTimeInput_FechaTerminoSNI").jqxDateTimeInput(jqxDateTimeInputConfig);
 
 		var source = {
-			datatype: "json",
-			datafields: [{ name: 'valor', type: 'int' }, { name: 'nivel', type: 'string' }],
-			localdata: [
-				{valor: 0, nivel: 'Candidato'},
-				{valor: 1, nivel: 'Nivel I'},
-				{valor: 2, nivel: 'Nivel II'},
-				{valor: 3, nivel: 'Nivel III'}
-			]};
+			0: 'Candidato',
+			1: 'Nivel I',
+			2: 'Nivel II',
+			3: 'Nivel III'
+		};
 		//var dataAdapter = new $.jqx.dataAdapter(source);
-		$("#jqxComboBox_NivelSNI").jqxComboBox({
-			source: new $.jqx.dataAdapter(source),
-			displayMember: 'nivel',
-			valueMember: 'valor',
+		$("#jqxDropDownList_NivelSNI").jqxDropDownList({
+			source: source,
 			autoDropDownHeight: true,
 			width: '140px',
+			placeHolder: 'Seleccione...',
 			theme: 'energyblue'
 		});
 	};
@@ -76,7 +72,7 @@ function detalleProyectosInicializar() {
 				//Borrar campos
 				$('#jqxDateTimeInput_FechaInicioSNI').val(null);
 				$('#jqxDateTimeInput_FechaTerminoSNI').val(null);
-				$("#jqxComboBox_NivelSNI").jqxComboBox('clearSelection');
+				$("#jqxDropDownList_NivelSNI").jqxDropDownList('clearSelection');
 			}
 		});
 

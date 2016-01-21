@@ -12,6 +12,6 @@
 <div id="jqxGrid_Docentes" class="jqxGrid_PrimerColumnaBoton animated fadeIn delay-10"></div>
 
 <div id="contenedorDatos">
-	<input type="text" id="cd_g_rowAnterior" /><br />
+	<input type="hidden" id="cd_g_rowAnterior" /><br />
 	<!-- Contenedor temporal para datos editados en el grid -->
 </div>

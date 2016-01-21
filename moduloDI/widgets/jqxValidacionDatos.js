@@ -46,7 +46,7 @@ function datosInvestigacionRegistroObtener(pInvestigacionID) {
 function InvestigacionTablaCargar(sControl) {
 	var dataAdapter = datosInvestigacionCargar();
 
-	var keyboardHandler = function (event) {
+	/*var keyboardHandler = function (event) {
 		var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
 		if ((key >= 33 && key <= 36) || key == 37 || key == 39) {
 			return true;
@@ -61,7 +61,7 @@ function InvestigacionTablaCargar(sControl) {
 			cargarInputsAsistencias();
 			return true;
 		}
-	};
+	};*/
 
 	$(sControl).jqxGrid({
 		width: '99.5%',
@@ -167,7 +167,7 @@ function investigacionAgregarModificar() {
 		noProyInstitucionParticipo = $('#noProyInstitucionParticipo').val(),
 		fechaInicioSNI = $('#jqxDateTimeInput_FechaInicioSNI').jqxDateTimeInput('getDate'),
 		fechaTerminoSNI = $('#jqxDateTimeInput_FechaTerminoSNI').jqxDateTimeInput('getDate'),
-		nivelSNI = $("#jqxComboBox_NivelSNI").jqxComboBox('val'),
+		nivelSNI = $("#jqxDropDownList_NivelSNI").jqxDropDownList('getSelectedItem'),
 		botonSNI = $('#hdnBotonSNI').val(),
 		idEstimulo = $('#hdnIdEstimulo').val(),
 		idInvestigacion = $('#hdnIdInvestigacion').val();
@@ -178,6 +178,13 @@ function investigacionAgregarModificar() {
 	}
 
 	if (botonSNI=='1') {
+
+		if (nivelSNI==null || nivelSNI=='') {
+			notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
+			return;
+		} else {
+			nivelSNI = nivelSNI.value;
+		}
 
 		if (nivelSNI=='' || fechaInicioSNI=='' || fechaTerminoSNI=='' || fechaInicioSNI==null || fechaTerminoSNI==null){
 			notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});

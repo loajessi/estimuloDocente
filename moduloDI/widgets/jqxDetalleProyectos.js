@@ -28,14 +28,14 @@ function Docentes_DetalleProyectos_CargarVista(datosFila) {
 				$('#jqxDateTimeInput_FechaInicioSNI').jqxDateTimeInput('setDate', new Date(datosFila.fechaInicioSNI));
 				$('#jqxDateTimeInput_FechaTerminoSNI').jqxDateTimeInput('setDate', new Date(datosFila.fechaTerminoSNI));
 
-				$("#jqxComboBox_NivelSNI").jqxComboBox('val', datosFila.nivelSNI);
+				$("#jqxDropDownList_NivelSNI").jqxDropDownList('selectItem', datosFila.nivelSNI);
 			}
 
 			$('#hdnIdEstimulo').val(datosFila.idEstimulo);
 			$('#hdnIdInvestigacion').val(datosFila.idInvestigacion);
 
 			//Mostrar botones al editar algun dato
-			$('#frmModalAgregarProyecto input').change(function () {
+			$('#frmModalAgregarProyecto input, #jqxDropDownList_NivelSNI, #jqxDateTimeInput_FechaInicioSNI, #jqxDateTimeInput_FechaTerminoSNI').change(function () {
 				$('.barraSuperiorAcciones').fadeIn();
 			});
 		}

@@ -12,12 +12,9 @@
 	$objEvaluacion->setinnovacion($_POST['innovacion']);
 	$objEvaluacion->settics($_POST['tics']);
 	$objEvaluacion->setegel($_POST['egel']);
-	$objEvaluacion->setcalidadProgramaEducativo($_POST['calidadProgramaEducativo']);
-
 	if (isset($_POST['idEvaluacion']) && $_POST['idEvaluacion']!='') {
-		$objEvaluacion->setidEvaluacion($_POST['idEvaluacion']);
+		$objPersonal->setidEvaluacion($_POST['idEvaluacion']);
 	}
-
 	$objEvaluacion->setusuarioRealizo($_SESSION['VS_Usuario']);
 
 	$arrSalida = $objEvaluacion->estEvaluacionAgregarModificar();

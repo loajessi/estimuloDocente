@@ -39,6 +39,23 @@ function datosSecretarioAcademicoRegistroObtener(pSecretarioAcademicoID) {
 
 function SecretarioAcademicoTablaCargar(sControl) {
 	var dataAdapter = datosSecretarioAcademicoCargar();
+	var keyboardHandler = function (event) {
+		var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+		if ((key >= 33 && key <= 36) || key == 37 || key == 39) {
+			return true;
+		} else if (key==38) { //Flecha arriba
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual-1);
+			cargarInputsAsistencias();
+			return true;
+		} else if (key==40) { //Flecha abajo
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual+1);
+			cargarInputsnumeroHojas();
+			return true;
+		}
+	};
+
 	$(sControl).jqxGrid({
 		width: '99.5%',
 		height: "455px",
@@ -91,10 +108,6 @@ function SecretarioAcademicoTablaCargar(sControl) {
 
 					return html;
 				},
-				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
-					$('#cd_f'+row+'_'+datafield).val(newvalue);
-					if (oldvalue!=newvalue) {secretarioAcademicoAgregarModificar()(row);}
-				}
 			},
 
 			{ text: 'No. hojas',align: 'center', datafield: 'numeroHojas', width: '140px', cellsalign: 'center', columntype: 'numberinput',
@@ -113,10 +126,10 @@ function SecretarioAcademicoTablaCargar(sControl) {
 
 	crearCamposAuxiliares(numRegistros, registros, camposAuxiliares);
 
-	cargarInputsAsistencias();
-	$(sControl).on("pagechanged", cargarInputsAsistencias);
-	$(sControl).on("filter", cargarInputsAsistencias);
-	$(sControl).on("sort", cargarInputsAsistencias);
+	cargarInputsNumeroHojas();
+	$(sControl).on("pagechanged", cargarInputsNumeroHojas);
+	$(sControl).on("filter", cargarInputsNumeroHojas);
+	$(sControl).on("sort", cargarInputsNumeroHojas());
 }
 
 
@@ -170,7 +183,20 @@ function cargarInputsNumeroHojas() {
 		});
 	});
 }
-///////////////////////////////////////////////////////////////////////
+//////////////////
+function crearCamposAuxiliares(numRegistros, registros, camposAuxiliares) {
+	var contenedor = $('#contenedorDatos'),
+		tipoCampo = 'text';
+
+	for(var i=0; i<numRegistros; i++) {
+		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_RowIndex" value="'+i+'" />');
+		for (var arr = 0; arr < camposAuxiliares.length; arr++) {
+			contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_'+camposAuxiliares[arr]+'" value="'+registros[i][camposAuxiliares[arr]]+'" />');
+		}
+		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_Guardado" value="" /><br />');
+	}
+}
+//////////////////
 
 
 function SecretarioAcademicoComboCargar(sControl) {
@@ -254,8 +280,8 @@ function secretarioAcademicoAgregarModificar(fila) {
 				$('#cd_f'+fila+'_Guardado').val('1');
 
 				// Cambiar celdas en el grid
-				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'validado', gradoAcademico);
-				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'numeroHojas', puestoDrectivo);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'validado', validado);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'numeroHojas', numeroHojas);
 				cargarInputsNumeroHojas();
 			}
 		}

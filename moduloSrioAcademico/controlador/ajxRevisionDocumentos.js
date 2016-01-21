@@ -8,7 +8,7 @@ function revisionDocumentosInicializar() {
 
 	var agregarEventos = function () {
 
-		$('.jqxNumberInput_numeroHojas').each(function () {
+		$('.jqxNumberInput_validado').each(function () {
 			$(this).on('keydown', function (e) {
 				if (e.keyCode==13){
 					$(this).trigger('change');
@@ -24,18 +24,21 @@ function revisionDocumentosInicializar() {
 			// Datos de fila anterior
 			var validado = $('#cd_f'+filaAnterior+'_validado').val(),
 				numeroHojas = $('#cd_f'+filaAnterior+'_numeroHojas').val();
+				//asistencias = $('#cd_f'+filaAnterior+'_asistencias').val();
 
 			// Comprobar fila anterior
-			if( idSecretario == '' && (validado!='' || numeroHojas!='') ) {
+			if( idSecretario == '' && validado !='' && numeroHojas !='' ) {
+				secretarioAcademicoAgregarModificar(filaAnterior);
+			} else if( idSecretario == '' && (validado!='' || numeroHojas!='' ) ) {
 				notif({msg: '<b>No se guardaron los cambios</b>', type: 'error', position: 'right', width: 400, autohide: false});
 
 				//Restablecer campos fila anterior para indicar que no se guardó la información
 				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'validado', '');
-				//$('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'numeroHojas', '');
+				//$('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'gradoAcademico', '');
 				$('#input_'+filaAnterior+'_numeroHojas').val('');
 				$('#cd_f'+filaAnterior+'_validado').val('');
+				//$('#cd_f'+filaAnterior+'_gradoAcademico').val('');
 				$('#cd_f'+filaAnterior+'_numeroHojas').val('');
-				//$('#cd_f'+filaAnterior+'_asistencias').val('');
 				cargarInputsNumeroHojas();
 			}
 

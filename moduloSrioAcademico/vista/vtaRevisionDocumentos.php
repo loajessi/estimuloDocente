@@ -27,6 +27,7 @@
 
 <form id="frmRevisionDocumentos" name="frmRevisionDocumentos" method="post"></form>
 
-<div id="contenedorDatos" style="visibility: visible; display: block; opacity: 1 ">
+<div id="contenedorDatos" >
+<!--div id="contenedorDatos" style="visibility: visible; display: block; opacity: 1 "-->
 	<input type="text" id="cd_g_rowAnterior"  /><br />
 </div>

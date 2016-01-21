@@ -8,8 +8,15 @@
 
 	$objRelacionesInternacionales->setidEstimulo($_POST['idEstimulo']);
 	$objRelacionesInternacionales->setbecaFederal($_POST['becaFederal']);
-	$objRelacionesInternacionales->setfechaInicioBecaFederal(utf8_decode($_POST['fechaInicioBecaFederal']));
-	$objRelacionesInternacionales->setfechaTerminoBecaFederal(utf8_decode($_POST['fechaTerminoBecaFederal']));
+
+	if ($_POST['becaFederal']==1) {
+		$objRelacionesInternacionales->setfechaInicioBecaFederal(utf8_decode($_POST['fechaInicioBecaFederal']));
+		$objRelacionesInternacionales->setfechaTerminoBecaFederal(utf8_decode($_POST['fechaTerminoBecaFederal']));
+	} else {
+		$objRelacionesInternacionales->setfechaInicioBecaFederal(null);
+		$objRelacionesInternacionales->setfechaTerminoBecaFederal(null);
+	}
+
 	if (isset($_POST['idRelacionesInternacionales']) && $_POST['idRelacionesInternacionales']!='') {
 		$objRelacionesInternacionales->setidRelacionesInternacionales($_POST['idRelacionesInternacionales']);
 	}

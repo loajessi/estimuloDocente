@@ -62,20 +62,20 @@
 
 	<!-- Control de sesión -->
 	<script type="text/javascript">
-		/*window.onclick = function () {
+		window.onclick = function () {
 		 PCDTiempoInactividadCalcular();
-		 }
+		 };
+
 		 window.onkeypress = function () {
 		 PCDTiempoInactividadCalcular();
-		 }*/
+		 };
 
 		$(document).ready(function () {
 			indexInicializar();
 		});
 	</script>
 </head>
-<!--body id="top" onfocus="PCDTiempoInactividadCalcular();"-->
-<body id="top">
+<body id="top" onfocus="PCDTiempoInactividadCalcular();">
 <div class="wrapper">
 	<div id="header">
 		<div id="escudo">
@@ -85,18 +85,15 @@
 			<h1>Universidad Aut&oacute;noma del Estado de Hidalgo</h1>
 		</div>
 		<div id="tituloHeader">
-			<h1 class="animated fadeInRightBig">Secretar&iacute;a General</h1>
+			<h1>Secretar&iacute;a General</h1>
 
-			<h2 class="animated fadeInRightBig delay-5">Est&iacute;mulo al Desempe&ntilde;o del Personal Docente </h2>
+			<h2>Est&iacute;mulo al Desempe&ntilde;o del Personal Docente </h2>
 		</div>
 	</div>
 </div>
 <!-- ####################################################################################################### -->
 <div class="wrapper">
 	<div id="topbar">
-		<div class="info-fechaLimite animated fadeInLeft delay-10">
-			<img src="/generalesDIyS/_img/info.png" height="20" width="20" />&nbsp;&nbsp;Fecha límite para captura de datos: <b id="FechaLimiteCaptura">00/00/00</b>
-		</div>
 		<div class="fl_right">
 			<p>
 				<?= $_SESSION['sPersonaVS']; ?>&nbsp;&nbsp;&nbsp;

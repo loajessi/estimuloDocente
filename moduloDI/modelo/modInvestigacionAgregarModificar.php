@@ -10,17 +10,17 @@
 	$objInvestigacion->setreconocimientoSNI($_POST['reconocimientoSNI']);
 
 	if (isset($_POST['fechaInicioSNI']) && $_POST['fechaInicioSNI'] == "") {
-		$_POST['fechaInicioSNI'] = null;
+		$_POST['fechaInicioSNI'] = 'NULL';
 	}
 	$objInvestigacion->setfechaInicioSNI(utf8_decode($_POST['fechaInicioSNI']));
 
 	if (isset($_POST['fechaTerminoSNI']) && $_POST['fechaTerminoSNI'] == "") {
-		$_POST['fechaTerminoSNI'] = null;
+		$_POST['fechaTerminoSNI'] = 'NULL';
 	}
 	$objInvestigacion->setfechaTerminoSNI(utf8_decode($_POST['fechaTerminoSNI']));
 
 	if (isset($_POST['nivelSNI']) && $_POST['nivelSNI'] == "") {
-		$_POST['fechaTerminoSNI'] = null;
+		$_POST['fechaTerminoSNI'] = 'NULL';
 	}
 	$objInvestigacion->setnivelSNI($_POST['nivelSNI']);
 

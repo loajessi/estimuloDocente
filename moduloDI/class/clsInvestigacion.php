@@ -654,11 +654,21 @@
 		 * @return varchar mensaje
 		 */
 		public function estInvestigacionAgregarModificar() {
+			
 			$objProc = new clsProcedimientos("estInvestigacionAgregarModificar");
 			$objProc->FNCAgregaParametrosEntrada($this->idEstimulo);
 			$objProc->FNCAgregaParametrosEntrada($this->reconocimientoSNI, 1);
-			$objProc->FNCAgregaParametrosEntrada($this->fechaInicioSNI, 1);
-			$objProc->FNCAgregaParametrosEntrada($this->fechaTerminoSNI, 1);
+	
+			if($this->fechaInicioSNI == 'NULL')
+				$objProc->FNCAgregaParametrosEntrada($this->fechaInicioSNI);
+			else			
+				$objProc->FNCAgregaParametrosEntrada($this->fechaInicioSNI, 1);
+				
+			if($this->fechaInicioSNI == 'NULL')
+				$objProc->FNCAgregaParametrosEntrada($this->fechaTerminoSNI);
+			else			
+				$objProc->FNCAgregaParametrosEntrada($this->fechaTerminoSNI, 1);
+				
 			$objProc->FNCAgregaParametrosEntrada($this->nivelSNI, 1);
 			$objProc->FNCAgregaParametrosEntrada($this->noProyOrganismoResponsable);
 			$objProc->FNCAgregaParametrosEntrada($this->noProyInstitucionResponsable);

@@ -30,6 +30,7 @@
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/globalize.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/localizationGrid.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/libFunc.js"></script>
+	<script type="text/javascript" src="../_jscript/notificaciones.js"></script>
 
 	<!-- Widgets jqwidgets -->
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxmenu.js"></script>
@@ -50,6 +51,7 @@
 
 	<!-- Widgets estimulo -->
 	<script type="text/javascript" src="widgets/jqxDocentesRevisionDocumentos.js"></script>
+
 
 	<!-- Controladores -->
 	<script type="text/javascript" src="../manejoSesion/controlador/ajxSesion.js"></script>

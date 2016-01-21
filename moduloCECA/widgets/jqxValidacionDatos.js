@@ -49,6 +49,8 @@ function CentroComputoTablaCargar(sControl) {
 		autoshowfiltericon: true,
 		pageable: true,
 		editable: true,
+		pagermode: 'simple',
+		pagerbuttonscount: 10,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu: false},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '141px'},
@@ -56,12 +58,7 @@ function CentroComputoTablaCargar(sControl) {
 			{text: 'Tipo', datafield: 'tipoContrato', cellsalign: 'center', editable: false, width: '161px'},
 			{text: 'Env&iacute;o de solicitud', datafield: 'fechaRegistroEstimulo', cellsalign: 'center', editable: false, width: '173px'},
 			{text: '', datafield: 'idCentroComputo', hidden: true},
-			{
-				text: 'No. multimedios educativos elaborados',
-				datafield: 'noMultimedioElaborado',
-				width: '269px',
-				cellsalign: 'center',
-				columntype: 'numberinput'/*, cellsrenderer: cellsrenderer*/,
+			{text: 'No. multimedios educativos elaborados', datafield: 'noMultimedioElaborado', width: '269px', cellsalign: 'center', columntype: 'numberinput',
 				createeditor: function (row, cellvalue, editor) {
 					editor.jqxNumberInput({
 						digits: 3,
@@ -147,29 +144,10 @@ function centroComputoAgregarModificar(rowid, valor) {
 				notif({msg: '<b>Error al guardar:</b> " + json.mensaje', type: 'error', position: 'right', width: 200});
 			} else {
 				// Acciones posteriores a la actualizacion
-				c
+				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+
 			}
 		}
 	});
 }
 
-function centroComputoEliminar(pRegistroID) {
-	var sPagina = "../../moduloXX/modelo/modCentroComputoEliminar.php";
-	var oParametros = {'pRegistroID': pRegistroID}
-
-	$.post(sPagina
-		, oParametros
-		, function (datos, status) {
-			if (status == 'success') {
-				eval(datos);
-				if (json.noError > 0) {
-					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
-				}
-				else {
-					alert("Su informaci\u00f3n se elimin\u00f3 correctamente en la base de datos.");
-					// Acciones posteriores a la actualizacion
-				}
-			}
-		}
-	);
-}

@@ -79,7 +79,7 @@ function RelacionesInternacionalesTablaCargar(sControl){
 			{text: '', datafield: 'idEstimulo', hidden: true},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', width: '149px'},
 			{text: 'Nombre completo', datafield: 'nombreCompleto', width: '350px'},
-			{text: 'Cuenta con beca federal', datafield: 'becaFederal', width: '195px', align: 'center',
+			{text: '¿Cuenta con beca federal?', datafield: 'becaFederal', width: '195px', align: 'center',
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					var temp = $('#cd_f'+row+'_becaFederal').val();
 
@@ -146,6 +146,8 @@ function crearDatepickers() {
 			valor = $(this).attr('data-valor'),
 			fila = $(this).attr('data-fila');
 
+		var becaFederal = $('#btnBecaFederal_'+fila+'_Si').hasClass('btnActivo');
+
 		$(this).datepicker({
 			//altField: '#cd_f'+fila+'_'+campo,
 			//altFormat: "mm/dd/yy",
@@ -155,10 +157,10 @@ function crearDatepickers() {
 			nextText: 'Sig &rightarrow;',
 			currentText: 'Hoy',
 			monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-			monthNamesShort: ['ene','feb','mar','abr', 'may','jun','jul','ago','sep', 'oct','nov','dic'],
+			monthNamesShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
 			dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-			dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
-			dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+			dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+			dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
 			weekHeader: 'Sm',
 			dateFormat: 'dd/mm/yy',
 			firstDay: 0,
@@ -170,25 +172,30 @@ function crearDatepickers() {
 			changeMonth: true,
 			changeYear: true,
 			onSelect: function (fecha, inst) {
-				var mes = fecha.substr(0,2),
-					dia = fecha.substr(3,2),
-					año = fecha.substr(6,4),
-					//fecha = mes+'/'+dia+'/'+año;
-					fecha = dia+'/'+mes+'/'+año;
+				var mes = fecha.substr(0, 2),
+					dia = fecha.substr(3, 2),
+					año = fecha.substr(6, 4),
+				//fecha = mes+'/'+dia+'/'+año;
+					fecha = dia + '/' + mes + '/' + año;
 
-				$('#cd_f'+fila+'_'+campo).val(fecha);
+				$('#cd_f' + fila + '_' + campo).val(fecha);
 				relacionesInternacionalesAgregarModificar(fila);
 			}
 		});
 
-		if (valor!='') {
-			var mes = valor.substr(0,2),
-				dia = valor.substr(3,2),
-				año = valor.substr(6,4),
-				fecha = dia+'/'+mes+'/'+año;
+		if (valor != '') {
+			var mes = valor.substr(0, 2),
+				dia = valor.substr(3, 2),
+				año = valor.substr(6, 4),
+				fecha = dia + '/' + mes + '/' + año;
 
-			$(this).datepicker('setDate',fecha);
+			$(this).datepicker('setDate', fecha);
 		}
+
+		if (!becaFederal) {
+			$(this).datepicker('setDate', null).datepicker('option', 'disabled', true);
+		}
+
 	});
 }
 
@@ -264,14 +271,34 @@ function relacionesInternacionalesAgregarModificar(fila){
 
 	if(becaFederal=='') {
 		return;
-	}
+	} else {
 
-	if(fechaInicioBecaFederal==''){
-		return;
-	}
+		if( becaFederal=='1' ) {
+			if(fechaInicioBecaFederal==''){
+				return;
+			}
 
-	if(fechaTerminoBecaFederal==''){
-		return;
+			if(fechaTerminoBecaFederal==''){
+				return;
+			}
+
+			//Convertir para comparar
+			var FI = new Date(parseInt(fechaInicioBecaFederal.substring(6,10)), parseInt(fechaInicioBecaFederal.substring(0,2))-1, parseInt(fechaInicioBecaFederal.substring(3,5))),
+				FT = new Date(parseInt(fechaTerminoBecaFederal.substring(6,10)), parseInt(fechaTerminoBecaFederal.substring(0,2))-1, parseInt(fechaTerminoBecaFederal.substring(3,5)));
+
+			if (FI.getTime() < FT.getTime()) {
+				// Fechas OK
+			} else {
+				// Fechas mal
+				notif({msg: 'La fecha de término no puede ser anterior a la fecha de inicio', type: 'warning', position: 'right', autohide: false, width: 550});
+				return;
+			}
+
+			//console.info(FI.getTime()+' vs '+FT.getTime()+ ' = '+(FI.getTime() < FT.getTime()));
+		} else {
+			fechaInicioBecaFederal = null;
+			fechaTerminoBecaFederal = null;
+		}
 	}
 
 	var sPagina="modelo/modRelacionesInternacionalesAgregarModificar.php";

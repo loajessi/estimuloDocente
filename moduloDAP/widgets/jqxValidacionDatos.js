@@ -104,15 +104,6 @@ function PersonalTablaCargar(sControl) {
 				},
 				renderer: function () {
 					return '<div class="jxGrid_headerDoble txtCentrado">Cumplimiento de<br />grado acad&eacute;mico</div>';
-				},
-				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
-					if (newvalue == 1) {
-						$('#cd_' + datafield).val(1);
-					} else if (newvalue == 0) {
-						$('#cd_' + datafield).val(0);
-					} else {
-						$('#cd_' + datafield).val('');
-					}
 				}
 			},
 			{text: 'Cuenta con puesto directivo o de confianza', datafield: 'puestoDrectivo', width: '195px', editable: false,
@@ -141,31 +132,15 @@ function PersonalTablaCargar(sControl) {
 				},
 				renderer: function () {
 					return '<div class="jxGrid_headerDoble txtCentrado">&iquest;Cuenta con puesto<br />directivo o de confianza?</div>';
-				},
-				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
-					if (newvalue == true) {
-						$('#cd_' + datafield).val(1);
-					} else if (newvalue == false) {
-						$('#cd_' + datafield).val(0);
-					} else {
-						$('#cd_' + datafield).val('');
-					}
 				}
 			},
 			{text: 'Porcentaje de asistencia', datafield: 'asistencias', cellsalign: 'center', width: '195px', columntype: 'numberinput', cellsformat: 'f2', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
-					var html = '<div class="jqxNumberInput_asistencias" id="jqxNumberInput_'+row+'_asistencias" data-value="'+value+'" data-row="'+row+'"></div>';
+					var html = '<input type="number" min="0" max="100" step="0.01" class="inputAsistencias gridInput" id="input_'+row+'_asistencias" value="'+value+'" data-value="'+value+'" data-row="'+row+'" />';
 					return html;
 				},
 				renderer: function () {
 					return '<div class="jxGrid_headerDoble txtCentrado">Porcentaje de<br />asistencia</div>';
-				},
-				validation: function (cell, value) {
-					var row = cell.row;
-					if (value < 0.00 || value > 100.00) {
-						$(sControl).jqxGrid('cellbeginedit', row, 'asistencias');
-						return {result: false, message: "El valor debe estar entre 0 y 100"};
-					} else { return true; }
 				}
 			}
 		]
@@ -183,34 +158,73 @@ function PersonalTablaCargar(sControl) {
 	$(sControl).on("sort", cargarInputsAsistencias);
 }
 
+function validarPorcentaje(valor) {
+	var patron = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/g;
+		return patron.test(valor);
+}
+
 function cargarInputsAsistencias() {
-	$('.jqxNumberInput_asistencias').each(function () {
-		var valor = $(this).attr('data-value');
+	$('.inputAsistencias').each(function () {
+		$(this).off('change').on('change', function(event) {
+			var fila = parseInt( $(this).attr('data-row') ),
+				numAnterior = parseFloat( $(this).attr('data-value')),
+				num = parseFloat( $(this).val() );
 
-		$(this).jqxNumberInput({
-			digits: 3,
-			decimalDigits: 2,
-			inputMode: 'simple',
-			spinButtons: false,
-			spinMode: 'simple',
-			textAlign: 'center',
-			height: '100%',
-			width: '100%',
-			enableMouseWheel: false,
-			min: 0,
-			max: 100,
-			theme: 'energyblue'
-		}).jqxNumberInput('val', valor);
-	});
+			var valor =+ num.toFixed(2);
 
-	$('.jqxNumberInput_asistencias').change(function (event) {
-		var fila = $(this).attr('data-row'),
-			valor = $(this).val();
+			var patron = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/g,
+				check = patron.test(valor);
 
-		$('#cd_f'+fila+'_asistencias').val(valor);
-		$(this).attr('data-value', valor);
+			if (check) {
+				$('#cd_f' + fila + '_asistencias').val(valor);
+				//$(this).val(num);
+				personalAgregarModificar(fila);
+				event.stopPropagation();
+			} else {
+				notif({
+					msg: 'Ingrese un porcentaje válido de asistencia',
+					type: 'warning',
+					position: 'right',
+					autohide: true,
+					width: 500
+				});
+				$(this).val(numAnterior).select();
+				$('#jqxGrid_Docentes').jqxGrid('selectrow', fila);
+			}
+		});
 
-		personalAgregarModificar(fila);
+		$(this).off('focus').on('focus', function() {
+			$(this).select();
+			$(this).on('mousewheel.disableScroll', function (e) {
+				e.preventDefault()
+			})
+		});
+
+		$(this).off('blur').on('blur', function (e) {
+			$(this).off('mousewheel.disableScroll')
+		});
+
+		$(this).off('keyup').on('keyup', function(event) {
+			var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+			if (key == 13) {
+				var fila = parseInt( $(this).attr('data-row')),
+					dataval = $(this).attr('data-value'),
+					val = $(this).val();
+
+					//filaSig = fila+1;
+
+				if (dataval != val) {
+					$(this).trigger('change');
+				}
+
+				/*$('#jqxGrid_Docentes').jqxGrid('selectrow', filaSig);
+				$('#input_'+filaSig+'_asistencias').focus().select();*/
+			} else {
+				var valor = $(this).val(),
+					fila = parseInt( $(this).attr('data-row'));
+				$('#cd_f' + fila + '_asistencias').val( valor );
+			}
+		});
 	});
 }
 
@@ -290,6 +304,8 @@ function personalAgregarModificar(fila) {
 
 	if(asistencias=='') {
 		return;
+	} else {
+		if (!validarPorcentaje(parseFloat(asistencias))) return;
 	}
 
 	var sPagina = "modelo/modPersonalAgregarModificar.php";

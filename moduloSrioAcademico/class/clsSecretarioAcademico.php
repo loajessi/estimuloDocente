@@ -3,34 +3,32 @@
 	require_once("clsConsulta.php");
 	require_once("clsProcedimientos.php");
 
-	/*** Clase Generada por CTool 3.3.3 para el objeto RelacionesInternacionales
+	/*** Clase Generada por CTool 3.3.3 para el objeto SecretarioAcademico
 	 * @author nombreAutor
-	 * Fecha:15/01/2016
-	 * @property int $idRelacionesInternacionales  descripcion
-	 * @property int $idEstimulo                   descripcion
-	 * @property int $idPersona                    descripcion
-	 * @property int $numeroEmpleado               descripcion
-	 * @property varchar $nombreCompleto           descripcion
-	 * @property varchar $tipoContrato             descripcion
-	 * @property datetime $fechaRegistroEstimulo   descripcion
-	 * @property varchar $becaFederal              descripcion
-	 * @property datetime $fechaInicioBecaFederal  descripcion
-	 * @property datetime $fechaTerminoBecaFederal descripcion
-	 * @property datetime $fechaRegistro           descripcion
+	 * Fecha:21/01/2016
+	 * @property int $idSecretario               descripcion
+	 * @property int $idEstimulo                 descripcion
+	 * @property int $idPersona                  descripcion
+	 * @property int $numeroEmpleado             descripcion
+	 * @property varchar $nombreCompleto         descripcion
+	 * @property varchar $tipoContrato           descripcion
+	 * @property datetime $fechaRegistroEstimulo descripcion
+	 * @property varchar $validado               descripcion
+	 * @property tinyint $numeroHojas            descripcion
+	 * @property datetime $fechaRegistro         descripcion
 	 * @property string usuarioRealizo
-	 * @property string ordenQuery                 agrega un orden especifico en el query
+	 * @property string ordenQuery               agrega un orden especifico en el query
 	 */
-	class clsRelacionesInternacionales {
-		private $idRelacionesInternacionales;
+	class clsSecretarioAcademico {
+		private $idSecretario;
 		private $idEstimulo;
 		private $idPersona;
 		private $numeroEmpleado;
 		private $nombreCompleto;
 		private $tipoContrato;
 		private $fechaRegistroEstimulo;
-		private $becaFederal;
-		private $fechaInicioBecaFederal;
-		private $fechaTerminoBecaFederal;
+		private $validado;
+		private $numeroHojas;
 		private $fechaRegistro;
 		private $usuarioRealizo;
 		private $ordenQuery;
@@ -40,40 +38,39 @@
 		 * Constructor de la clase
 		 */
 		public function __construct() {
-			$this->idRelacionesInternacionales = -1;
+			$this->idSecretario = -1;
 			$this->idEstimulo = -1;
 			$this->idPersona = -1;
 			$this->numeroEmpleado = -1;
 			$this->nombreCompleto = "";
 			$this->tipoContrato = "";
 			$this->fechaRegistroEstimulo = "";
-			$this->becaFederal = "";
-			$this->fechaInicioBecaFederal = "";
-			$this->fechaTerminoBecaFederal = "";
+			$this->validado = "";
+			$this->numeroHojas = -1;
 			$this->fechaRegistro = "";
 			$this->usuarioRealizo = "";
 			$this->ordenQuery = "";
 		}
 
 		/**
-		 *  Metodo que inicializa el atributo idRelacionesInternacionales
+		 *  Metodo que inicializa el atributo idSecretario
 		 * @access public
 		 *
-		 * @param int $pidRelacionesInternacionales descripcion.
+		 * @param int $pidSecretario descripcion.
 		 *
 		 */
-		public function setidRelacionesInternacionales($pidRelacionesInternacionales) {
-			$this->idRelacionesInternacionales = $pidRelacionesInternacionales;
+		public function setidSecretario($pidSecretario) {
+			$this->idSecretario = $pidSecretario;
 		}
 
 		/**
-		 *  Metodo que obtiene el atributo idRelacionesInternacionales
+		 *  Metodo que obtiene el atributo idSecretario
 		 * @access private
-		 * @return int atributo idRelacionesInternacionales
+		 * @return int atributo idSecretario
 		 *
 		 */
-		private function getidRelacionesInternacionales() {
-			return $this->idRelacionesInternacionales;
+		private function getidSecretario() {
+			return $this->idSecretario;
 		}
 
 		/**
@@ -203,66 +200,45 @@
 		}
 
 		/**
-		 *  Metodo que inicializa el atributo becaFederal
+		 *  Metodo que inicializa el atributo validado
 		 * @access public
 		 *
-		 * @param varchar $pbecaFederal descripcion.
+		 * @param varchar $pvalidado descripcion.
 		 *
 		 */
-		public function setbecaFederal($pbecaFederal) {
-			$this->becaFederal = $pbecaFederal;
+		public function setvalidado($pvalidado) {
+			$this->validado = $pvalidado;
 		}
 
 		/**
-		 *  Metodo que obtiene el atributo becaFederal
+		 *  Metodo que obtiene el atributo validado
 		 * @access private
-		 * @return varchar atributo becaFederal
+		 * @return varchar atributo validado
 		 *
 		 */
-		private function getbecaFederal() {
-			return $this->becaFederal;
+		private function getvalidado() {
+			return $this->validado;
 		}
 
 		/**
-		 *  Metodo que inicializa el atributo fechaInicioBecaFederal
+		 *  Metodo que inicializa el atributo numeroHojas
 		 * @access public
 		 *
-		 * @param datetime $pfechaInicioBecaFederal descripcion.
+		 * @param tinyint $pnumeroHojas descripcion.
 		 *
 		 */
-		public function setfechaInicioBecaFederal($pfechaInicioBecaFederal) {
-			$this->fechaInicioBecaFederal = $pfechaInicioBecaFederal;
+		public function setnumeroHojas($pnumeroHojas) {
+			$this->numeroHojas = $pnumeroHojas;
 		}
 
 		/**
-		 *  Metodo que obtiene el atributo fechaInicioBecaFederal
+		 *  Metodo que obtiene el atributo numeroHojas
 		 * @access private
-		 * @return datetime atributo fechaInicioBecaFederal
+		 * @return tinyint atributo numeroHojas
 		 *
 		 */
-		private function getfechaInicioBecaFederal() {
-			return $this->fechaInicioBecaFederal;
-		}
-
-		/**
-		 *  Metodo que inicializa el atributo fechaTerminoBecaFederal
-		 * @access public
-		 *
-		 * @param datetime $pfechaTerminoBecaFederal descripcion.
-		 *
-		 */
-		public function setfechaTerminoBecaFederal($pfechaTerminoBecaFederal) {
-			$this->fechaTerminoBecaFederal = $pfechaTerminoBecaFederal;
-		}
-
-		/**
-		 *  Metodo que obtiene el atributo fechaTerminoBecaFederal
-		 * @access private
-		 * @return datetime atributo fechaTerminoBecaFederal
-		 *
-		 */
-		private function getfechaTerminoBecaFederal() {
-			return $this->fechaTerminoBecaFederal;
+		private function getnumeroHojas() {
+			return $this->numeroHojas;
 		}
 
 		/**
@@ -312,11 +288,11 @@
 		 */
 		private function getFiltroQuery() {
 			$sFiltro = "";
-			if ($this->idRelacionesInternacionales != -1) {
+			if ($this->idSecretario != -1) {
 				if (strlen(trim($sFiltro)) > 0) {
 					$sFiltro .= "AND ";
 				}
-				$sFiltro .= "idRelacionesInternacionales=" . $this->idRelacionesInternacionales . " ";
+				$sFiltro .= "idSecretario=" . $this->idSecretario . " ";
 			}
 			if ($this->idEstimulo != -1) {
 				if (strlen(trim($sFiltro)) > 0) {
@@ -354,23 +330,17 @@
 				}
 				$sFiltro .= "fechaRegistroEstimulo='" . $this->fechaRegistroEstimulo . "'";
 			}
-			if (strlen(trim($this->becaFederal)) > 0) {
+			if (strlen(trim($this->validado)) > 0) {
 				if (strlen(trim($sFiltro)) > 0) {
 					$sFiltro .= "AND ";
 				}
-				$sFiltro .= "becaFederal='" . $this->becaFederal . "'";
+				$sFiltro .= "validado='" . $this->validado . "'";
 			}
-			if (strlen(trim($this->fechaInicioBecaFederal)) > 0) {
+			if ($this->numeroHojas != -1) {
 				if (strlen(trim($sFiltro)) > 0) {
 					$sFiltro .= "AND ";
 				}
-				$sFiltro .= "fechaInicioBecaFederal='" . $this->fechaInicioBecaFederal . "'";
-			}
-			if (strlen(trim($this->fechaTerminoBecaFederal)) > 0) {
-				if (strlen(trim($sFiltro)) > 0) {
-					$sFiltro .= "AND ";
-				}
-				$sFiltro .= "fechaTerminoBecaFederal='" . $this->fechaTerminoBecaFederal . "'";
+				$sFiltro .= "numeroHojas=" . $this->numeroHojas . " ";
 			}
 			if (strlen(trim($this->fechaRegistro)) > 0) {
 				if (strlen(trim($sFiltro)) > 0) {
@@ -400,18 +370,17 @@
 			}
 			$sQuery = "
 		SELECT
-			 idRelacionesInternacionales
+			 idSecretario
 			,idEstimulo
 			,idPersona
 			,numeroEmpleado
 			,nombreCompleto
 			,tipoContrato
-			,convert(varchar(10), fechaRegistroEstimulo, 101) AS fechaRegistroEstimulo
-			,becaFederal
-			,convert(varchar(10),fechaInicioBecaFederal,101) AS fechaInicioBecaFederal
-			,convert(varchar(10),fechaTerminoBecaFederal,101) AS fechaTerminoBecaFederal
-			,convert(varchar(10),fechaRegistro,101) AS fechaRegistro
-		FROM vtaC_estRelacionesInternacionales
+			,convert(varchar(10),fechaRegistroEstimulo,103) AS fechaRegistroEstimulo
+			,validado
+			,numeroHojas
+			,fechaRegistro
+		FROM vtaC_estSecretarioAcademico
 		" . $sFiltro . "
 		" . $sOrdenQuery . " ";
 
@@ -465,7 +434,7 @@
 			} else {
 				$i = 0;
 				foreach ($arrDatos as $llaveFila => $fila) {
-					$iRelacionesInternacionalesID = $arrDatos[$llaveFila]['idRelacionesInternacionales'];
+					$iSecretarioAcademicoID = $arrDatos[$llaveFila]['idSecretarioAcademico'];
 					$numEmpleado = $arrDatos[$llaveFila]['numeroEmpleado'];
 					foreach ($fila as $llaveColumna => $valor) {
 						$arrDatos[$llaveFila]['accion'] = "<button class='btnInfoEmpleado' id='btngVerInfo' title='Ver informaci&oacute;n del empleado' onclick='verInformacionEmpleado(".$numEmpleado.")'; >Ver informaci&oacute;n del empleado</button>";
@@ -479,38 +448,39 @@
 		}
 
 		/**
-		 * Metodo que ejecuta el SP estRelacionesInternacionalesAgregarModificar
+		 * Metodo que ejecuta el SP estSecretarioAcademicoAgregarModificar
 		 *
 		 * @access public
 		 *
-		 * @param int      idEstimulo
-		 * @param varchar  becaFederal
-		 * @param datetime fechaInicioBecaFederal
-		 * @param datetime fechaTerminoBecaFederal
-		 * @param varchar  usuarioRealizo
+		 * @param int     idEstimulo
+		 * @param varchar validado
+		 * @param tinyint numeroHojas
+		 * @param varchar usuarioRealizo
 		 *
-		 * @return int idRelacionesInternacionales
+		 * @return int idSecretario
 		 * @return int noError
 		 * @return varchar mensaje
 		 */
-		public function estRelacionesInternacionalesAgregarModificar() {
-			$objProc = new clsProcedimientos("estRelacionesInternacionalesAgregarModificar");
+		public function estSecretarioAcademicoAgregarModificar() {
+			$objProc = new clsProcedimientos("estSecretarioAcademicoAgregarModificar");
 			$objProc->FNCAgregaParametrosEntrada($this->idEstimulo);
-			$objProc->FNCAgregaParametrosEntrada($this->becaFederal, 1);
-
-			$objProc->FNCAgregaParametrosEntrada((($this->becaFederal == 1) ? $this->fechaInicioBecaFederal : null), (INT)($this->becaFederal == 1));
-			$objProc->FNCAgregaParametrosEntrada((($this->becaFederal == 1) ? $this->fechaTerminoBecaFederal : null), (INT)($this->becaFederal == 1));
-
+			$objProc->FNCAgregaParametrosEntrada($this->validado, 1);
+			$objProc->FNCAgregaParametrosEntrada($this->numeroHojas);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
 
-			if ($this->idRelacionesInternacionales != -1) {
-				$objProc->FNCAgregaParametrosEntrada($this->idRelacionesInternacionales);
+
+			if ($this->idSecretario != -1) {
+				$objProc->FNCAgregaParametrosEntrada($this->idSecretario);
 			} else {
-				$objProc->FNCAgregaParametroSalida("idRelacionesInternacionales", "INT");
+				$objProc->FNCAgregaParametroSalida("idSecretario", "INT");
 			}
+
+
+
 
 			$objProc->FNCAgregaParametroSalida("noError", "INT");
 			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);
+
 
 			$arrSalida = $objProc->FNCObtieneResultado();
 
@@ -529,19 +499,19 @@
 
 
 		/**
-		 * Metodo que ejecuta el SP estRelacionesInternacionalesEliminar
+		 * Metodo que ejecuta el SP estSecretarioAcademicoEliminar
 		 *
 		 * @access public
 		 *
-		 * @param int     idRelacionesInternacionales
+		 * @param int     idSecretario
 		 * @param varchar usuarioRealizo
 		 *
 		 * @return int noError
 		 * @return varchar mensaje
 		 */
-		public function estRelacionesInternacionalesEliminar() {
-			$objProc = new clsProcedimientos("estRelacionesInternacionalesEliminar");
-			$objProc->FNCAgregaParametrosEntrada($this->idRelacionesInternacionales);
+		public function estSecretarioAcademicoEliminar() {
+			$objProc = new clsProcedimientos("estSecretarioAcademicoEliminar");
+			$objProc->FNCAgregaParametrosEntrada($this->idSecretario);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
 			$objProc->FNCAgregaParametroSalida("noError", "INT");
 			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);

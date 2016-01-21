@@ -1,7 +1,6 @@
 ﻿/**
  *  Hoja de estilos específicos
  */
-
 @import "animaciones.css";
 @import "notificaciones.css";
 
@@ -23,13 +22,28 @@
 .animated.delay-75 { -webkit-animation-delay: 7.5s; -moz-animation-delay: 7.5s; -ms-animation-delay: 7.5s; -o-animation-delay: 7.5s; animation-delay: 7.5s; }
 .animated.medium { -webkit-animation-duration: 2s; -moz-animation-duration: 2s; -ms-animation-duration: 2s; -o-animation-duration: 2s; animation-duration: 2s; }
 .animated.slow { -webkit-animation-duration: 3s; -moz-animation-duration: 3s; -ms-animation-duration: 3s; -o-animation-duration: 3s; animation-duration: 3s; }
+.animated.slower { -webkit-animation-duration: 5s; -moz-animation-duration: 5s; -ms-animation-duration: 5s; -o-animation-duration: 5s; animation-duration: 5s; }
 /* -- * -- * -- * -- * -- * -- * -- */
+
+#divInformacionEmpleado {
+	display: none;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+}
 
 .btnActivo {
 	background: #989898;
 	font-weight: bold;
-	color: #FFF;
+	color: #FFFFFF;
 	text-shadow: 0 0 10px #505050;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
 }
 
 .btnActivo.btnCorrecto {
@@ -292,7 +306,7 @@ hr + form > .columna {
 	padding-bottom: 0;
 }
 
-form > .columna:first-child {}
+form > .columna:first-child { }
 
 hr + form > .columna > *:last-child {
 	margin-bottom: 0;
@@ -326,6 +340,7 @@ hr + form > .columna > *:last-child {
 	font-family: Verdana, sans-serif;
 	font-size: 12px;
 	border: 0;
+	background: transparent;
 }
 
 #ui-datepicker-div {
@@ -357,6 +372,10 @@ hr + form > .columna > *:last-child {
 	border-radius: 3px;
 	height: 40px;
 	vertical-align: top;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
 }
 
 #botonesEGEL .btn:hover {
@@ -368,12 +387,44 @@ hr + form > .columna > *:last-child {
 }
 
 #ListaProgramasEducativosEmpleado > ul {
-	color: #000;
+	color: #000000;
 	text-shadow: none;
 	padding-left: 15px;
 	font-size: 12px;
 	font-family: sans-serif;
 	font-weight: bold;
+}
+
+.gridInput {
+	background: transparent;
+	border: 0;
+	width: 100%;
+	height: 100%;
+	font-family: Verdana, sans-serif;
+	text-align: center;
+	font-size: 12px;
+}
+
+input[type=number],
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+	-moz-appearance: textfield;
+}
+
+.info-fechaLimite {
+	float: left;
+	height: 55px;
+	padding-top: 18px;
+	box-sizing: border-box;
+	padding-left: 17px;
+	color: #004EFF;
+}
+
+.info-fechaLimite img {
+	vertical-align: -5px;
+	display: inline;
 }
 
 #frmDetalleEvaluacion .columna.ancho-25 {
@@ -455,7 +506,7 @@ div[id^="contenttablejqxGrid"]:not(#contenttablejqxGrid_DetallePatentes) > div[r
 	padding-top: 1px;
 }
 
-#frmModalAgregarPatente textarea{
+#frmModalAgregarPatente textarea {
 	width: 568px;
 	height: 50px;
 	margin-bottom: 0;

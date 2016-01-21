@@ -27,13 +27,15 @@ function validacionDatosInicializar() {
 			    asistencias = $('#cd_f'+filaAnterior+'_asistencias').val();
 
 		    // Comprobar fila anterior
-		    if( idPersonal == '' && (puestoDrectivo!='' || gradoAcademico!='' || asistencias!='') ) {
+		    if( idPersonal == '' && puestoDrectivo!='' && gradoAcademico!='' && asistencias!='' ) {
+			    personalAgregarModificar(filaAnterior);
+		    } else if( idPersonal == '' && (puestoDrectivo!='' || gradoAcademico!='' || asistencias!='') ) {
 			    notif({msg: '<b>No se guardaron los cambios</b>', type: 'error', position: 'right', width: 400, autohide: false});
 
 			    //Restablecer campos fila anterior para indicar que no se guardó la información
 			    $('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'puestoDrectivo', '');
 			    $('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'gradoAcademico', '');
-			    $('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'asistencias', '');
+			    $('#input_'+filaAnterior+'_asistencias').val('');
 			    $('#cd_f'+filaAnterior+'_puestoDrectivo').val('');
 				$('#cd_f'+filaAnterior+'_gradoAcademico').val('');
 				$('#cd_f'+filaAnterior+'_asistencias').val('');

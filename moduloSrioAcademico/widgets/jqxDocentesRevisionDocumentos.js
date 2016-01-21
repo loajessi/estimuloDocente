@@ -1,226 +1,305 @@
-function datos_Docentes_RevisionDocumentos_Cargar(pCicloEstimulo){
-
-	/*var Docentes_RevisionDocumentosSource =
+function datosSecretarioAcademicoCargar(pSecretarioAcademicoID) {
+	var SecretarioAcademicoSource =
 	{
 		datatype: "json",
 		datafields: [
-			{name:'accion',type:'string'},
-			{name:'idEstimulo', type:'bigint'},
-            {name:'idEstadoRevisado', type:'bigint'},
-			{name:'numeroEmpleado', type:'bigint'},
-			{name:'nombreCompleto', type:'varchar'},
-			{name:'tipo', type:'varchar'},
-			{name:'envioSolicitud', type:'varchar'},
-            {name:'numeroHojas', type:'int'}
- 		],
-		url: "/modelo/modListadocentesAprobadosConsultar.php",
+			{name: 'accion', type: 'string'},
+			{name: 'idSecretario', type: 'int'},
+			{name: 'idEstimulo', type: 'int'},
+			{name: 'idPersona', type: 'int'},
+			{name: 'numeroEmpleado', type: 'int'},
+			{name: 'nombreCompleto', type: 'varchar'},
+			{name: 'tipoContrato', type: 'varchar'},
+			{name: 'fechaRegistroEstimulo', type: 'datetime'},
+			{name: 'validado', type: 'varchar'},
+			{name: 'numeroHojas', type: 'tinyint'},
+			{name: 'fechaRegistro', type: 'datetime'}
+		],
+		url: "modelo/modSecretarioAcademicoConsultar.php",
 		type: 'POST',
-		data: {'pCicloEstimulo':pCicloEstimulo},
+		data: {'pSecretarioAcademicoID': pSecretarioAcademicoID},
 		async: false
 	};
-	var dataAdapter = new $.jqx.dataAdapter(Docentes_RevisionDocumentosSource);
-	return dataAdapter;*/
-
-    //////////////////////
-    var data = new Array();
-    var accion =
-    [
-        "<div id='divEstadoCosto_100' align='center'><button style='padding:2px 2px 2px 2px; cursor:pointer;' id='btngVerInfo' title='Ver informaci&oacute;n del empleado' onclick='verInformacionEmpleado()'; ><img src='/generalesDIyS/_img/iconoUsuario.png'/></button>&nbsp;&nbsp;<button style='padding:2px 2px 2px 2px; cursor:pointer;' id='btngAprobar' title='Validar' onclick='estadoAutorizadoCambiar(100, 0)'; ><img src='/generalesDIyS/_img/iconoAprobar.png'/></button><button style='padding:2px 2px 2px 2px; cursor:pointer;' id='btngRechazar' title='Rechazar' onclick='estadoAutorizadoCambiar(100, 1)'; ><img src='/generalesDIyS/_img/iconoRemover.png'/></button></div>"
-    ];
-    var nombreCompleto =
-    [
-        "Flores Lopez Teodoro", "Trejo Rivas Alejandra", "Morales Islas Teresa", "Sanchez Espinosa Xochitl",
-        "Espinosa Osorio Carlos", "Saavedra Cervantes Mario", "Oropeza Lopez Pedro", "Dominguez Saavedra Marisol",
-        "Perez Diaz Karla", "Prado Zapata Liliana", "Cervantes Soria Olga", "Barron Quintero Luciana", "Perez Diaz Luis",
-        "Rosas Villa Lorena", "Valle Ortiz Elena", "Zapata Flores Eduardo", "Nuno Islas Sandra", "Narez Rios Esperanza"
-    ];
-    var tipos =
-    [
-        "PTC", "PMT", "PH"
-    ];
-
-    var envioSolicitud =
-    [
-        "20/01/2016", "15/01/2016", "16/01/2015", "17/01/2016", "18/01/2016", "19/01/2016", "21/01/2016"
-    ];
-
-    var estados =
-    [
-        "Si", "No"
-    ];
-    for (var i = 0; i < 200; i++) {
-        var row = {};
-        var idEstimulo = 1 + Math.round(Math.random() * 10);
-        var numeroEmpleado = 2000 + Math.round(Math.random() * 100);
-        var numeroHojas = 1 + Math.round(Math.random() * 10);
-
-        row["accion"] = accion[Math.floor(Math.random() * accion.length)];
-        row["nombreCompleto"] = nombreCompleto[Math.floor(Math.random() * nombreCompleto.length)];
-        row["tipo"] = tipos[Math.floor(Math.random() * tipos.length)];
-        row["envioSolicitud"] = envioSolicitud[Math.floor(Math.random() * envioSolicitud.length)];
-        row["idEstadoRevisado"] = estados[Math.floor(Math.random() * estados.length)];
-        row["numeroHojas"] = numeroHojas;
-        row["idEstimulo"] = idEstimulo;
-        row["numeroEmpleado"] = numeroEmpleado;
-        data[i] = row;
-    }
-    var source =
-    {
-        localdata: data,
-        datatype: "array",
-        datafields:
-        [
-            {name:'accion',type:'string'},
-            {name:'idEstimulo', type:'bigint'},
-            {name:'idEstadoRevisado', type:'bigint'},
-            {name:'numeroEmpleado', type:'bigint'},
-            {name:'nombreCompleto', type:'varchar'},
-            {name:'tipo', type:'varchar'},
-            {name:'envioSolicitud', type:'varchar'},
-            {name:'numeroHojas', type:'int'}
-        ]
-    };
-    var dataAdapter = new $.jqx.dataAdapter(source);
-
-    return dataAdapter;
+	var dataAdapter = new $.jqx.dataAdapter(SecretarioAcademicoSource);
+	return dataAdapter;
 }
 
-function Docentes_RevisionDocumentos_TablaCargar(sControl, piCicloEstimuloID){
-    var dataAdapter = datos_Docentes_RevisionDocumentos_Cargar(piCicloEstimuloID);
-    dataAdapter.dataBind();
-    var registros = dataAdapter.records;
-
-    Docentes_RevisionDocumentos_FormularioEnvioCargar(registros);
-
-    var cellsrenderer = function (row, column, value, defaultHtml) {
-        var hdnEstado = "#hdnEstado_" + registros[row].idEstimulo;
-        var sEstado = $(hdnEstado).val();
-        var colorTexto = "";
-
-        if(sEstado == 'Si') colorTexto = 'Green';
-        else if(sEstado == 'No') colorTexto = 'Red';
-
-        var element = $(defaultHtml);
-        element.css({ 'color': colorTexto });
-        return element[0].outerHTML;
-    }
-
-    $(sControl).jqxGrid({
-        width: '99.5%',
-        height: "455px",
-        source: dataAdapter,
-        rowsheight: 40,
-        sortable: true,
-        theme: 'energyblue',
-        localization: getLocalization('es'),
-        filterable: true,
-        autoshowfiltericon: true,
-        pageable: true,
-        editable: true,
-        columns: [
-          { text: '', datafield: 'accion', width:'10%', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu:false },
-          { text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '15%',  cellsrenderer: cellsrenderer },
-          { text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '40%',  cellsrenderer: cellsrenderer },
-          { text: 'Tipo', datafield: 'tipo', editable: false, width: '5%', cellsrenderer: cellsrenderer },
-          { text: 'Env&iacute;o de solicitud', datafield: 'envioSolicitud', editable: false, width: '15%', cellsrenderer: cellsrenderer },
-          { text: 'No. hojas', datafield: 'numeroHojas', cellsalign: 'center', width: '15%', columntype: 'numberinput', cellsrenderer: cellsrenderer,
-                /*validation: function (cell, value) {
-                    var hdnEstado = "#hdnEstado_" + registros[row].idEstimulo;
-                    var sEstado = $(hdnEstado).val();
-                    var row = cell.row;
-
-                    if(value == 0) {
-                        $(sControl).jqxGrid('beginrowedit', row, "numeroHojas");
-                        if(sEstado == 'Si')
-                            return { result: false, message: "No ha editado el n�mero de hojas del expediente." };
-                    }
-                    else
-                        return true;
-                },
-                cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
-                    var cadena = newvalue + '';
-                    cadena.replace(/,/g, '');
-                    newvalue = parseInt(cadena);
-                    return newvalue;
-                },*/
-                createeditor: function (row, cellvalue, editor) {
-                                    editor.jqxNumberInput({
-                                        digits: 3,
-                                        decimalDigits:0,
-                                        min: 0,
-                                        inputMode: 'advanced',
-                                        spinMode: 'simple',
-                                        spinButtonsStep: 1,
-                                        spinButtons:true,
-                                        theme: 'energyblue'
-                                    });
-                              },
-                cellbeginedit: function (row, datafield, columntype) {
-                                    var hdnEstado = "#hdnEstado_" + registros[row].idEstimulo;
-                                    var sEstado = $(hdnEstado).val();
-
-                                    if(sEstado == 'No') return false;
-                               },
-                cellendedit: function (row, datafield, columntype, oldvalue, newvalue) {
-                    var iEstimuloID = registros[row].idEstimulo;
-                    var hdnEstado = "#hdnEstado_" + iEstimuloID;
-
-                    if(newvalue == 0){
-                        var sEstado = "No";
-                        $(hdnEstado).val(sEstado);
-                    }
-                }
-          }
-        ]
-    });
+function datosSecretarioAcademicoRegistroObtener(pSecretarioAcademicoID) {
+	$.ajax({
+		async: false,
+		url: "../moduloXX/modelo/modSecretarioAcademicoConsultar.php",
+		data: {iSecretarioAcademicoID: pSecretarioAcademicoID},
+		type: 'POST',
+		success: function (data, status, xhr) {
+			registro = jQuery.parseJSON(data);
+		}
+	});
+	return registro;
 }
 
-function Docentes_RevisionDocumentos_FormularioEnvioCargar(arrDocentes){
+function SecretarioAcademicoTablaCargar(sControl) {
+	var dataAdapter = datosSecretarioAcademicoCargar();
+	var keyboardHandler = function (event) {
+		var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+		if ((key >= 33 && key <= 36) || key == 37 || key == 39) {
+			return true;
+		} else if (key==38) { //Flecha arriba
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual-1);
+			cargarInputsNumeroHojas();
+			return true;
+		} else if (key==40) { //Flecha abajo
+			var filaActual = $(sControl).jqxGrid('getselectedrowindex');
+			$(sControl).jqxGrid('selectrow', filaActual+1);
+			cargarInputsNumeroHojas();
+			return true;
+		}
+	};
 
-    $("#frmRevisionDocumentos").html('');
+	$(sControl).jqxGrid({
+		width: '99.5%',
+		height: "455px",
+		source: dataAdapter,
+		rowsheight: 40,
+		sortable: true,
+		theme: 'energyblue',
+		localization: getLocalization('es'),
+		filterable: true,
+		autoshowfiltericon: true,
+		pageable: true,
+		editable: false,
+		pagermode: 'simple',
+		pagerbuttonscount: 10,
+		columns: [
+			{ text: '', datafield: 'accion', width:'50px', pinned: true, filterable: false, sortable: false, menu:false },
+			{ text: '', datafield: 'idEstimulo', hidden: true },
+			{ text: '', datafield: 'idSecretario', hidden: true },
+			{ text: 'No. empleado', align: 'center', datafield: 'numeroEmpleado', cellsalign: 'center', width: '130px'},
+			{ text: 'Nombre completo', datafield: 'nombreCompleto', width: '359px'},
+			{ text: 'Tipo',align: 'center', datafield: 'tipoContrato', width: '140px', cellsalign: 'center'},
+			{ text: 'Env&iacute;o de solicitud', align: 'center', datafield: 'fechaRegistroEstimulo', cellsalign: 'center' , width: '160px'},
+			{ text: 'Validaci&oacute;n', datafield: 'validado', width: '155px', align: 'center', editable: false,
+				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+					if (value == '1') {
+						var html = '<div class="ButtonGroup_validado jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnValidado_'+row+'_Si" onclick="btn_validado(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnActivo btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnValidado_'+row+'_No" onclick="btn_validado(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
+							'<div style="clear: both;">' +
+							'</div>';
+					} else if (value == '0') {
+						var html = '<div class="ButtonGroup_validado jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnValidado_'+row+'_Si" onclick="btn_validado(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnValidado_'+row+'_No" onclick="btn_validado(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnActivo btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
+							'<div style="clear: both;">' +
+							'</div>';
+					} else {
+						var html = '<div class="ButtonGroup_validado jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnValidado_'+row+'_Si" onclick="btn_validado(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnValidado_'+row+'_No" onclick="btn_validado(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
+							'<div style="clear: both;">' +
+							'</div>';
+					}
 
-    for(var i=0; i<arrDocentes.length; i++){
-        var idEstimulo = arrDocentes[i].idEstimulo;
+					return html;
+				},
+			},
+			{text: 'No. hojas',align: 'center', datafield: 'numeroHojas', cellsalign: 'center', width: '140px', columntype: 'numberinput', cellsformat: 'f2', editable: false,
+				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+					var html = '<input type="number" min="0" max="100" step="1" class="inputNumeroHojas gridInput" id="input_'+row+'_numeroHojas" value="'+value+'" data-value="'+value+'" data-row="'+row+'" />';
+					return html;
+				},
+			}
+		]
 
-        // Input estado
-        var mapInputEstado = document.createElement("input");
-        mapInputEstado.type = "hidden";
-        mapInputEstado.id = "hdnEstado_" + idEstimulo;
-        mapInputEstado.name = "hdnEstado_" + idEstimulo;
-        mapInputEstado.value = arrDocentes[i].idEstadoRevisado;
+	});
 
-        // Input hojas expediente
-        var mapInputNoHojas = document.createElement("input");
-        mapInputNoHojas.type = "hidden";
-        mapInputNoHojas.id = "hdnNoHojas_" + idEstimulo;
-        mapInputNoHojas.name = "hdnNoHojas_" + idEstimulo;
-        mapInputNoHojas.value = arrDocentes[i].numeroHojas;
+	var numRegistros = $(sControl).jqxGrid('getdatainformation').rowscount,
+		registros = $(sControl).jqxGrid('getrows'),
+		camposAuxiliares = ['idEstimulo', 'idSecretario', 'validado', 'numeroHojas'];
 
-        // Agrega el input al form
-        $("#frmRevisionDocumentos").append(mapInputEstado);
-        $("#frmRevisionDocumentos").append(mapInputNoHojas);
-    }
+	crearCamposAuxiliares(numRegistros, registros, camposAuxiliares);
+
+	cargarInputsNumeroHojas();
+	$(sControl).on("pagechanged", cargarInputsNumeroHojas);
+	$(sControl).on("filter", cargarInputsNumeroHojas);
+	$(sControl).on("sort", cargarInputsNumeroHojas);
 }
 
-function docentes_RevisionDocumentos_CambiarEstado(idEstimuloLista, idCicloEstimulo){
-    var sPagina = "modelo/modDocentes_RevisionDocumentos_CambiarEstado.php";
-    var oParametros = $('#frmRevisionDocumentos').serialize();
-    oParametros += "&idEstimuloLista=" + idEstimuloLista;
-
-    $.post(sPagina, oParametros, function(datos,status){
-        if(status=='success'){
-            $("#btnGuardar").html("Guardar");
-            eval(datos);
-            if(json.noError > 0){
-                var sListaErrores = json.mensaje;
-                //sListaErrores.replace(/,/g, '');
-
-                alert("Ocurrieron errores de base de datos en las filas: \n\n" + sListaErrores);
-            }
-            else{
-                alert("Su informaci\u00f3n se registr\u00f3 correctamente en la base de datos.");
-                DocentesRevisionDocumentosTablaCargar(idCicloEstimulo);
-            }
-        }
-    });
+function validarNumero(valor) {
+	var patron = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/g;
+	return patron.test(valor);
 }
+
+
+function cargarInputsNumeroHojas() {
+	$('.inputNumeroHojas').each(function () {
+		$(this).off('change').on('change', function(event) {
+			var fila = parseInt( $(this).attr('data-row') ),
+				numAnterior = parseFloat( $(this).attr('data-value')),
+				num = parseFloat( $(this).val() );
+
+			var valor =+ num.toFixed(2);
+
+			var patron = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/g,
+				check = patron.test(valor);
+
+			if (check) {
+				$('#cd_f' + fila + '_numeroHojas').val(valor);
+				//$(this).val(num);
+				secretarioAcademicoAgregarModificar(fila);
+				event.stopPropagation();
+			} else {
+				notif({
+					msg: 'Ingrese n&uacute;mero válido de hojas',
+					type: 'warning',
+					position: 'right',
+					autohide: true,
+					width: 500
+				});
+				$(this).val(numAnterior).select();
+				$('#jqxGrid_Docentes').jqxGrid('selectrow', fila);
+			}
+		});
+
+		$(this).off('focus').on('focus', function() {
+			$(this).select();
+			$(this).on('mousewheel.disableScroll', function (e) {
+				e.preventDefault()
+			})
+		});
+
+		$(this).off('blur').on('blur', function (e) {
+			$(this).off('mousewheel.disableScroll')
+		});
+
+		$(this).off('keyup').on('keyup', function(event) {
+			var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+			if (key == 13) {
+				var fila = parseInt( $(this).attr('data-row')),
+					dataval = $(this).attr('data-value'),
+					val = $(this).val();
+
+				//filaSig = fila+1;
+
+				if (dataval != val) {
+					$(this).trigger('change');
+				}
+
+				/*$('#jqxGrid_Docentes').jqxGrid('selectrow', filaSig);
+				 $('#input_'+filaSig+'_asistencias').focus().select();*/
+			} else {
+				var valor = $(this).val(),
+					fila = parseInt( $(this).attr('data-row'));
+				$('#cd_f' + fila + '_numeroHojas').val( valor );
+			}
+		});
+	});
+}
+
+function crearCamposAuxiliares(numRegistros, registros, camposAuxiliares) {
+	var contenedor = $('#contenedorDatos'),
+		tipoCampo = 'hidden';
+
+	for(var i=0; i<numRegistros; i++) {
+		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_RowIndex" value="'+i+'" />');
+		for (var arr = 0; arr < camposAuxiliares.length; arr++) {
+			contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_'+camposAuxiliares[arr]+'" value="'+registros[i][camposAuxiliares[arr]]+'" />');
+		}
+		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_Guardado" value="" /><br />');
+	}
+}
+
+function SecretarioAcademicoComboCargar(sControl) {
+	var dataAdapter = datosSecretarioAcademicoCargar();
+	$(sControl).jqxComboBox({ // o .jqxInput
+		source: dataAdapter
+		, displayMember: 'option'
+		, valueMember: 'value'
+		, width: '100%'
+		, animationType: 'fade'
+		, theme: 'energyblue'
+		, searchMode: 'containsignorecase'
+		, autoComplete: true
+		, placeHolder: "seleccione..."
+	});
+}
+
+function SecretarioAcademicoListBoxCargar(sControl) {
+	var dataAdapter = datosSecretarioAcademicoCargar();
+	$(sControl).jqxListBox({
+		source: dataAdapter
+		, displayMember: 'option'
+		, valueMember: 'value'
+		, width: '100%'
+		, theme: 'enegryBlue'
+		, disabled: true
+	});
+}
+
+function SecretarioAcademicoFormularioCargar(pSecretarioAcademicoID) {
+	var dataAdapter = datosSecretarioAcademicoRegistroObtener(pSecretarioAcademicoID);
+	registro = dataAdapter.records[0];
+
+	$('#ctrlidSecretario').val(registro.idSecretario)
+	$('#ctrlidEstimulo').val(registro.idEstimulo)
+	$('#ctrlidPersona').val(registro.idPersona)
+	$('#ctrlnumeroEmpleado').val(registro.numeroEmpleado)
+	$('#ctrlnombreCompleto').val(registro.nombreCompleto)
+	$('#ctrltipoContrato').val(registro.tipoContrato)
+	$('#ctrlfechaRegistroEstimulo').val(registro.fechaRegistroEstimulo)
+	$('#ctrlvalidado').val(registro.validado)
+	$('#ctrlnumeroHojas').val(registro.numeroHojas)
+	$('#ctrlfechaRegistro').val(registro.fechaRegistro)
+}
+
+function secretarioAcademicoAgregarModificar(fila) {
+
+	var validado = $('#cd_f'+fila+'_validado').val(),
+		numeroHojas = $('#cd_f'+fila+'_numeroHojas').val(),
+		row = $('#cd_f'+fila+'_RowIndex').val(),
+		idEstimulo = $('#cd_f'+fila+'_idEstimulo').val(),
+		idSecretario = $('#cd_f'+fila+'_idSecretario').val();
+
+	if(validado=='') {
+		return;
+	}
+
+
+	if(numeroHojas=='') {
+		return;
+	} else {
+		if (!validarNumero(parseFloat(numeroHojas))) return;
+	}
+
+	var sPagina = "modelo/modSecretarioAcademicoAgregarModificar.php";
+
+	//Parámetros a enviar
+	var oParametros = 'idEstimulo=' + idEstimulo + '&validado=' + validado + '&numeroHojas=' + numeroHojas + '&idSecretario=' + idSecretario;
+
+	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});
+
+	$.post(sPagina, oParametros, function (datos, status) {
+		if (status == 'success') {
+			eval(datos);
+			if (json.noError > 0) {
+				notif({msg: '<b>Error al guardar:</b> " + json.mensaje', type: 'error', position: 'right', width: 200});
+			} else {
+				// Acciones posteriores a la actualizacion
+				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+				if( idSecretario=='' || typeof idSecretario == 'undefined' || idSecretario == null ){
+					$('#cd_f'+fila+'_idSecretario').val(json.idSecretario);
+				}
+				$('#cd_f'+fila+'_Guardado').val('1');
+
+				// Cambiar celdas en el grid
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'validado', validado);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'numeroHojas', numeroHojas);
+				cargarInputsNumeroHojas();
+			}
+		}
+	});
+}
+
+
+
+

@@ -1,19 +1,20 @@
-// Función de inicialización de la vista
+// Funciï¿½n de inicializaciï¿½n de la vista
 
 function revisionDocumentosInicializar() {
+//function validacionDatosInicializar() {
 
 	var crearWidgets = function () {
 
-		$("#jqxButtonGroup_Estado").jqxButtonGroup({
+		/*$("#jqxButtonGroup_Estado").jqxButtonGroup({
 			mode: 'radio',
 			enableHover: true,
 			theme: 'energyblue'
-		});
+		});*/
 	};
 
 	var agregarEventos = function () {
 
-		$("#btnGuardar").on("click", function (event) {
+		/*$("#btnGuardar").on("click", function (event) {
 			//Reemplazar texto por "Guardando..."
 			var elemento = $(this),
 				txtOriginal = $(elemento).html();
@@ -22,7 +23,7 @@ function revisionDocumentosInicializar() {
 			// Guarda en la BD
 
 			//Envio exitoso
-			//Actualizar datos después de agregar patente...
+			//Actualizar datos despuï¿½s de agregar patente...
 
 			window.setTimeout(function() {
 				//Restarurar texto original
@@ -35,28 +36,28 @@ function revisionDocumentosInicializar() {
 		});
 
 //    $('#jqxButtonGroup_Estado').on('selected', function () {
-//    });
+//    });*/
 
 	}
 
 	crearWidgets();
 	agregarEventos();
-	Docentes_RevisionDocumentos_TablaCargar("#jqxGrid_Docentes");
+	SecretarioAcademicoTablaCargar("#jqxGrid_Docentes");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicialización de contenido
+// Funciones correspondientes a eventos o inicializaciï¿½n de contenido
 
-function estadoAutorizadoCambiar(piEstimuloID, piEstado) {
+/*function estadoAutorizadoCambiar(piEstimuloID, piEstado) {
 	var arrDocentes = $("#jqxGrid_Docentes").jqxGrid('getrows');
 	var sEstado = "";
 	var hdnEstado = "";
 	var bBreak = false;
 	var idEstimulo = -1;
 
-	if (piEstado == 0) sEstado = 'Si'; // Válido
-	else if (piEstado == 1) sEstado = 'No'; // No válido
+	if (piEstado == 0) sEstado = 'Si'; // Vï¿½lido
+	else if (piEstado == 1) sEstado = 'No'; // No vï¿½lido
 
 	for (var iFila = 0; iFila < arrDocentes.length; iFila++) {
 		if (piEstimuloID > -1) {
@@ -114,3 +115,4 @@ function validaCambioEstados() {
 
 	return msjError;
 }
+*/

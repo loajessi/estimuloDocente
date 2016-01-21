@@ -33,7 +33,7 @@ function validacionDatosInicializar() {
 			    //Restablecer campos fila anterior para indicar que no se guardó la información
 			    $('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'puestoDrectivo', '');
 			    $('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'gradoAcademico', '');
-			    $('#jqxGrid_Docentes').jqxGrid('setcellvalue', filaAnterior, 'asistencias', '');
+			    $('#input_'+filaAnterior+'_asistencias').val('');
 			    $('#cd_f'+filaAnterior+'_puestoDrectivo').val('');
 				$('#cd_f'+filaAnterior+'_gradoAcademico').val('');
 				$('#cd_f'+filaAnterior+'_asistencias').val('');

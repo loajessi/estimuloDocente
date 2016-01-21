@@ -64,6 +64,6 @@ function btn_validado(obj) {
 		$('#btnValidado_'+row+'_Si').removeClass('btnActivo');
 	}
 
-	$('#cd_f'+row+'_becaFederal').val(val);
+	$('#cd_f'+row+'_validado').val(val);
 	secretarioAcademicoAgregarModificar(row);
 }

@@ -50,18 +50,18 @@ function SecretarioAcademicoTablaCargar(sControl) {
 		filterable: true,
 		autoshowfiltericon: true,
 		pageable: true,
-		editable: true,
+		editable: false,
 		pagermode: 'simple',
 		pagerbuttonscount: 10,
 		columns: [
-			{ text: '', datafield: 'accion', width:'50px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu:false },
+			{ text: '', datafield: 'accion', width:'50px', cellsalign: 'center', pinned: true, filterable: false, sortable: false, menu:false },
 			{ text: '', datafield: 'idEstimulo', hidden: true },
 			{ text: '', datafield: 'idSecretario', hidden: true },
-			{ text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '130px'},
-			{ text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '359px'},
-			{ text: 'Tipo', datafield: 'tipoContrato', editable: false, width: '140px', cellsalign: 'center'},
-			{ text: 'Env&iacute;o de solicitud', datafield: 'fechaRegistroEstimulo', editable: false, cellsalign: 'center' , width: '160px'},
-			{ text: 'Validaci&oacute;n', datafield: 'validado', width: '155px', align: 'center', editable: false,
+			{ text: 'No. empleado', align: 'center', datafield: 'numeroEmpleado', cellsalign: 'center', width: '130px'},
+			{ text: 'Nombre completo', datafield: 'nombreCompleto', width: '359px'},
+			{ text: 'Tipo',align: 'center', datafield: 'tipoContrato', width: '140px', cellsalign: 'center'},
+			{ text: 'Env&iacute;o de solicitud', align: 'center', datafield: 'fechaRegistroEstimulo', cellsalign: 'center' , width: '160px'},
+			{ text: 'Validaci&oacute;n', datafield: 'validado', width: '155px', align: 'center',
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					var temp = $('#cd_f'+row+'_validado').val();
 
@@ -97,28 +97,81 @@ function SecretarioAcademicoTablaCargar(sControl) {
 				}
 			},
 
-			{ text: 'No. hojas', datafield: 'numeroHojas', width: '140px', cellsalign: 'center', columntype: 'numberinput', editable: true,
-				createeditor: function (row, cellvalue, editor) {
-					editor.jqxNumberInput({
-						digits: 3,
-						decimalDigits: 0,
-						min: 0,
-						inputMode: 'advanced',
-						spinMode: 'simple',
-						spinButtonsStep: 1,
-						spinButtons: true,
-						theme: 'energyblue'
-					});
+			{ text: 'No. hojas',align: 'center', datafield: 'numeroHojas', width: '140px', cellsalign: 'center', columntype: 'numberinput',
+				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+					var html = '<input type="number" min="0" max="100" step="1" class="gridInput" id="input_'+row+'_numeroHojas" value="'+value+'" data-value="'+value+'" data-row="'+row+'" />';
+					return html;
 				},
-				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
-					$('#cd_f'+row+'_'+datafield).val(newvalue);
-					if (oldvalue!=newvalue) {secretarioAcademicoAgregarModificar()(row);}
-				}
 			}
 		]
 
 	});
+
+	var numRegistros = $(sControl).jqxGrid('getdatainformation').rowscount,
+		registros = $(sControl).jqxGrid('getrows'),
+		camposAuxiliares = ['idEstimulo', 'idSecretario', 'validado', 'numeroHojas'];
+
+	crearCamposAuxiliares(numRegistros, registros, camposAuxiliares);
+
+	cargarInputsAsistencias();
+	$(sControl).on("pagechanged", cargarInputsAsistencias);
+	$(sControl).on("filter", cargarInputsAsistencias);
+	$(sControl).on("sort", cargarInputsAsistencias);
 }
+
+
+function cargarInputsNumeroHojas() {
+	$('.gridInput').each(function () {
+		$(this).off('change').on('change', function(event) {
+			var fila = $(this).attr('data-row'),
+				numAnterior = parseFloat( $(this).attr('data-value')),
+				num = parseFloat( $(this).val() );
+
+			var valor =+ num.toFixed(2);
+
+			var patron = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/g,
+				check = patron.test(valor);
+
+			if (check) {
+				$('#cd_f' + fila + '_numeroHojas').val(valor);
+				$(this).val(num).select();
+				secretarioAcademicoAgregarModificar(fila);
+				event.stopPropagation();
+			} else {
+				notif({
+					msg: 'Ingrese el n&uacute;mero de hojas',
+					type: 'warning',
+					position: 'right',
+					autohide: true,
+					width: 500
+				});
+				$(this).val(numAnterior).select();
+				$('#jqxGrid_Docentes').jqxGrid('selectrow', fila);
+			}
+		});
+
+		$(this).off('focus').on('focus', function() {
+			$(this).select();
+		});
+
+		$(this).off('keyup').on('keyup', function(event) {
+			var key = event.charCode ? event.charCode : event.keyCode ? event.keyCode : 0;
+			if (key == 13) {
+				var fila = parseInt( $(this).attr('data-row') ),
+					filaSig = fila+1;
+
+				if ($(this).attr('data-value') != $(this).val()) {
+					$(this).trigger('change');
+				}
+
+				$('#jqxGrid_Docentes').jqxGrid('selectrow', filaSig);
+				$('#input_'+filaSig+'_numeroHojas').focus().select();
+			}
+		});
+	});
+}
+///////////////////////////////////////////////////////////////////////
+
 
 function SecretarioAcademicoComboCargar(sControl) {
 	var dataAdapter = datosSecretarioAcademicoCargar();
@@ -163,17 +216,27 @@ function SecretarioAcademicoFormularioCargar(pSecretarioAcademicoID) {
 	$('#ctrlfechaRegistro').val(registro.fechaRegistro)
 }
 
-function secretarioAcademicoAgregarModificar(rowid, valor) {
-	if (rowid == -1) return;
-	//$("#jqxGrid_Docentes").jqxGrid('endrowedit', rowid, false); // false = confirma cambios
+function secretarioAcademicoAgregarModificar(fila) {
+
+	var idSecretario = $('#cd_f'+fila+'_idSecretario').val(),
+		idEstimulo = $('#cd_f'+fila+'_idEstimulo').val(),
+		validado = $('#cd_f'+fila+'_validado').val(),
+		numeroHojas = $('#cd_f'+fila+'_numeroHojas').val(),
+		row = $('#cd_f'+fila+'_RowIndex').val();
+
+	if(validado=='') {;
+		return;
+	}
+
+	if(numeroHojas=='') {
+		return;
+	}
+
 
 	var sPagina = "modelo/modSecretarioAcademicoAgregarModificar.php";
 
-	//Obtener datos del row
-	var data = $("#jqxGrid_Docentes").jqxGrid('getrowdatabyid', rowid);
-
 	//Parámetros a enviar
-	var oParametros = 'idEstimulo=' + data.idEstimulo + '&numeroHojas=' + valor + '&idSecretario=' + data.idSecretario;
+	var oParametros = 'idEstimulo=' + idEstimulo + '&validado=' + validado + '&numeroHojas=' + numeroHojas + '&idSecretario=' + idSecretario;
 
 	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});
 
@@ -183,9 +246,17 @@ function secretarioAcademicoAgregarModificar(rowid, valor) {
 			if (json.noError > 0) {
 				notif({msg: '<b>Error al guardar:</b> " + json.mensaje', type: 'error', position: 'right', width: 200});
 			} else {
-				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
 				// Acciones posteriores a la actualizacion
+				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
+				if( idSecretario=='' || typeof idSecretario == 'undefined' || idSecretario == null ){
+					$('#cd_f'+fila+'_idSecretario').val(json.idSecretario);
+				}
+				$('#cd_f'+fila+'_Guardado').val('1');
 
+				// Cambiar celdas en el grid
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'validado', gradoAcademico);
+				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'numeroHojas', puestoDrectivo);
+				cargarInputsNumeroHojas();
 			}
 		}
 	});

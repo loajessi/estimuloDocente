@@ -54,14 +54,50 @@ function SecretarioAcademicoTablaCargar(sControl) {
 		pagermode: 'simple',
 		pagerbuttonscount: 10,
 		columns: [
-			{ text: '', datafield: 'accion', width:'10%', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu:false },
+			{ text: '', datafield: 'accion', width:'50px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu:false },
 			{ text: '', datafield: 'idEstimulo', hidden: true },
-			{ text: '', datafield: 'idsecretario', hidden: true },
-			{ text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '15%'},
-			{ text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '40%'},
-			{ text: 'Tipo', datafield: 'tipoContrato', editable: false, width: '5%', cellsalign: 'center'},
-			{ text: 'Env&iacute;o de solicitud', datafield: 'fechaRegistroEstimulo', editable: false, cellsalign: 'center' , width: '15%'},
-			{ text: 'No. hojas', datafield: 'numeroHojas', width: '15%', cellsalign: 'center', columntype: 'numberinput',
+			{ text: '', datafield: 'idSecretario', hidden: true },
+			{ text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '130px'},
+			{ text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '359px'},
+			{ text: 'Tipo', datafield: 'tipoContrato', editable: false, width: '140px', cellsalign: 'center'},
+			{ text: 'Env&iacute;o de solicitud', datafield: 'fechaRegistroEstimulo', editable: false, cellsalign: 'center' , width: '160px'},
+			{ text: 'Validaci&oacute;n', datafield: 'validado', width: '155px', align: 'center', editable: false,
+				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+					var temp = $('#cd_f'+row+'_validado').val();
+
+					if ( temp != "" && typeof temp != 'undefined') {
+						value = temp;
+					}
+
+					if (value == '1') {
+						var html = '<div class="ButtonGroup_validado jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnValidado_'+row+'_Si" onclick="btn_validado(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnActivo btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnValidado_'+row+'_No" onclick="btn_validado(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
+							'<div style="clear: both;">' +
+							'</div>';
+					} else if (value == '0') {
+						var html = '<div class="ButtonGroup_becaFederal jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnValidado_'+row+'_Si" onclick="btn_validado(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnValidado_'+row+'_No" onclick="btn_validado(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnActivo btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
+							'<div style="clear: both;">' +
+							'</div>';
+					} else {
+						var html = '<div class="ButtonGroup_becaFederal jqx-widget-energyblue jqx-rc-all-energyblue jqx-buttongroup jqx-buttongroup-energyblue jqx-widget jqx-rc-all" style="width:100px; margin: 5px auto 0;">' +
+							'<div id="btnValidado_'+row+'_Si" onclick="btn_validado(this)" style="width: 50px;box-sizing: border-box;display: inline-block;margin-right: -1px; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tl jqx-rc-tl-energyblue jqx-rc-bl jqx-rc-bl-energyblue btnCorrecto" role="button" data-row="'+row+'" data-val="1">Sí</div>' +
+							'<div id="btnValidado_'+row+'_No" onclick="btn_validado(this)" style="width: 50px; box-sizing: border-box;display: inline-block; height: 30px; line-height: 20px;" class="jqx-button jqx-button-energyblue jqx-group-button-normal jqx-group-button-normal-energyblue jqx-fill-state-normal jqx-fill-state-normal-energyblue jqx-rc-tr jqx-rc-tr-energyblue jqx-rc-br jqx-rc-br-energyblue btnPeligro" role="button" data-row="'+row+'" data-val="0">No</div>' +
+							'<div style="clear: both;">' +
+							'</div>';
+					}
+
+					return html;
+				},
+				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
+					$('#cd_f'+row+'_'+datafield).val(newvalue);
+					if (oldvalue!=newvalue) {secretarioAcademicoAgregarModificar()(row);}
+				}
+			},
+
+			{ text: 'No. hojas', datafield: 'numeroHojas', width: '140px', cellsalign: 'center', columntype: 'numberinput', editable: true,
 				createeditor: function (row, cellvalue, editor) {
 					editor.jqxNumberInput({
 						digits: 3,
@@ -75,8 +111,8 @@ function SecretarioAcademicoTablaCargar(sControl) {
 					});
 				},
 				cellvaluechanging: function (row, datafield, columntype, oldvalue, newvalue) {
-					if (oldvalue != newvalue) {secretarioAcademicoAgregarModificar(row, newvalue);
-					}
+					$('#cd_f'+row+'_'+datafield).val(newvalue);
+					if (oldvalue!=newvalue) {secretarioAcademicoAgregarModificar()(row);}
 				}
 			}
 		]

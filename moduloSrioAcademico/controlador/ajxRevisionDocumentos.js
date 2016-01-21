@@ -46,6 +46,26 @@ function revisionDocumentosInicializar() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funciones correspondientes a eventos o inicialización de contenido
+function btn_validado(obj) {
+	var row = $(obj).attr('data-row'),
+		val = $(obj).attr('data-val');
+
+	if (val == 1) {
+		$(obj).addClass('btnActivo');
+		$('#btnValidado_'+row+'_No').removeClass('btnActivo');
+	} else if (val == 0) {
+		$(obj).addClass('btnActivo btnPeligro');
+		$('#btnValidado_'+row+'_Si').removeClass('btnActivo');
+	}
+
+	$('#cd_f'+row+'_becaFederal').val(val);
+	secretarioAcademicoAgregarModificar(row);
+}
+
+
+
+
 
 // Funciones correspondientes a eventos o inicializaci�n de contenido
 

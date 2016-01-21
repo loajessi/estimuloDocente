@@ -497,8 +497,10 @@
 			$objProc = new clsProcedimientos("estRelacionesInternacionalesAgregarModificar");
 			$objProc->FNCAgregaParametrosEntrada($this->idEstimulo);
 			$objProc->FNCAgregaParametrosEntrada($this->becaFederal, 1);
-			$objProc->FNCAgregaParametrosEntrada($this->fechaInicioBecaFederal, 1);
-			$objProc->FNCAgregaParametrosEntrada($this->fechaTerminoBecaFederal, 1);
+
+			$objProc->FNCAgregaParametrosEntrada((($this->becaFederal == 1) ? $this->fechaInicioBecaFederal : null), (INT)($this->becaFederal == 1));
+			$objProc->FNCAgregaParametrosEntrada((($this->becaFederal == 1) ? $this->fechaTerminoBecaFederal : null), (INT)($this->becaFederal == 1));
+
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
 
 			if ($this->idRelacionesInternacionales != -1) {

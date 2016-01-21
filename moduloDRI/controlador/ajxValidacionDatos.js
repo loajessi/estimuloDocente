@@ -68,9 +68,19 @@ function btn_becaFederal(obj) {
 	if (val == 1) {
 		$(obj).addClass('btnActivo');
 		$('#btnBecaFederal_'+row+'_No').removeClass('btnActivo');
+
+		// Habilitar fechas
+		$('input[data-campo="fechaInicioBecaFederal"][data-fila="'+row+'"]').datepicker('option', 'disabled', false);
+		$('input[data-campo="fechaTerminoBecaFederal"][data-fila="'+row+'"]').datepicker('option', 'disabled', false);
 	} else if (val == 0) {
 		$(obj).addClass('btnActivo btnPeligro');
 		$('#btnBecaFederal_'+row+'_Si').removeClass('btnActivo');
+
+		// Fechas en nulo
+		$('#cd_f'+row+'_fechaInicioBecaFederal').val('');
+		$('#cd_f'+row+'_fechaTerminoBecaFederal').val('');
+		$('input[data-campo="fechaInicioBecaFederal"][data-fila="'+row+'"]').datepicker('setDate', null).datepicker('option', 'disabled', true);
+		$('input[data-campo="fechaTerminoBecaFederal"][data-fila="'+row+'"]').datepicker('setDate', null).datepicker('option', 'disabled', true);
 	}
 
 	$('#cd_f'+row+'_becaFederal').val(val);

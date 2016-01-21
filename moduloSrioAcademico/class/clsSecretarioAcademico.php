@@ -436,7 +436,7 @@
 				foreach ($arrDatos as $llaveFila => $fila) {
 					$iSecretarioAcademicoID = $arrDatos[$llaveFila]['idSecretarioAcademico'];
 					$numEmpleado = $arrDatos[$llaveFila]['numeroEmpleado'];
-					foreach($fila as $llaveColumna=>$valor){
+					foreach ($fila as $llaveColumna => $valor) {
 						$arrDatos[$llaveFila]['accion'] = "<button class='btnInfoEmpleado' id='btngVerInfo' title='Ver informaci&oacute;n del empleado' onclick='verInformacionEmpleado(".$numEmpleado.")'; >Ver informaci&oacute;n del empleado</button>";
 						$arrDatos[$llaveFila][$llaveColumna] = utf8_encode($valor);
 						$i++;

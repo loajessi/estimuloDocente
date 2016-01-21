@@ -383,7 +383,7 @@ hr + form > .columna > *:last-child {
 	font-weight: bold;
 }
 
-.inputAsistencias {
+.gridInput {
 	background: transparent;
 	border: 0;
 	width: 100%;

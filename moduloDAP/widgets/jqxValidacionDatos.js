@@ -136,7 +136,7 @@ function PersonalTablaCargar(sControl) {
 			},
 			{text: 'Porcentaje de asistencia', datafield: 'asistencias', cellsalign: 'center', width: '195px', columntype: 'numberinput', cellsformat: 'f2', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
-					var html = '<input type="number" min="0" max="100" step="0.01" class="inputAsistencias" id="input_'+row+'_asistencias" value="'+value+'" data-value="'+value+'" data-row="'+row+'" />';
+					var html = '<input type="number" min="0" max="100" step="0.01" class="inputAsistencias gridInput" id="input_'+row+'_asistencias" value="'+value+'" data-value="'+value+'" data-row="'+row+'" />';
 					return html;
 				},
 				renderer: function () {
@@ -161,7 +161,8 @@ function PersonalTablaCargar(sControl) {
 function cargarInputsAsistencias() {
 	$('.inputAsistencias').each(function () {
 		$(this).off('change').on('change', function(event) {
-			var fila = $(this).attr('data-row'),
+			var fila = parseInt( $(this).attr('data-row') ),
+				filaSig = fila + 1,
 				numAnterior = parseFloat( $(this).attr('data-value')),
 				num = parseFloat( $(this).val() );
 

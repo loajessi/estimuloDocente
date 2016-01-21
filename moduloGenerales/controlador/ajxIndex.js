@@ -2,7 +2,7 @@
 function indexInicializar() {
 
 	var crearWidgets = function () {
-		// Menú de opciones
+		// Menï¿½ de opciones
 		$("#jqxMenu_Index").jqxMenu({
 			width: $("#jqxMenu_Index").parent.width,
 			height: $("#jqxMenu_Index").parent.height,
@@ -32,7 +32,7 @@ function indexMenuOpcionIr(psNombreArchivoVista, agregarBreadcrumb) {
 
 	var tituloActual = $('.wrapper > .container h1').html();
 
-	$("#divPrincipal").fadeIn().html("Cargando...");
+	$("#divPrincipal").show().html('<div class="txtCentrado animated flash infinite slower"><h2>Cargando...</h2></div>');
 	$("#divInformacionEmpleado").fadeOut();
 
 	var vista = "vista/" + psNombreArchivoVista + ".php";

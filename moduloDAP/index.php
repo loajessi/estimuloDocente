@@ -85,17 +85,17 @@
 			<h1>Universidad Aut&oacute;noma del Estado de Hidalgo</h1>
 		</div>
 		<div id="tituloHeader">
-			<h1>Secretar&iacute;a General</h1>
+			<h1 class="animated fadeInRightBig">Secretar&iacute;a General</h1>
 
-			<h2>Est&iacute;mulo al Desempe&ntilde;o del Personal Docente </h2>
+			<h2 class="animated fadeInRightBig delay-5">Est&iacute;mulo al Desempe&ntilde;o del Personal Docente </h2>
 		</div>
 	</div>
 </div>
 <!-- ####################################################################################################### -->
 <div class="wrapper">
 	<div id="topbar">
-		<div style="float: left; height: 55px; padding-top: 18px; box-sizing: border-box; padding-left: 17px; color: #9900FF">
-			<img src="/generalesDIyS/_img/info.png" height="20" width="20" style="vertical-align: -5px; display: inline;" />&nbsp;&nbsp;Fecha límite para captura de datos: <b id="FechaLimiteCaptura">00/00/00</b>
+		<div class="info-fechaLimite animated fadeInLeft delay-10">
+			<img src="/generalesDIyS/_img/info.png" height="20" width="20" />&nbsp;&nbsp;Fecha límite para captura de datos: <b id="FechaLimiteCaptura">00/00/00</b>
 		</div>
 		<div class="fl_right">
 			<p>

@@ -216,7 +216,7 @@ function cargarInputsAsistencias() {
 
 function crearCamposAuxiliares(numRegistros, registros, camposAuxiliares) {
 	var contenedor = $('#contenedorDatos'),
-		tipoCampo = 'hidden';
+		tipoCampo = 'text';
 
 	for(var i=0; i<numRegistros; i++) {
 		contenedor.append('<input type="'+tipoCampo+'" id="cd_f'+i+'_RowIndex" value="'+i+'" />');

@@ -4,8 +4,7 @@ function verInformacionEmpleado(piEstimuloID){
 
 	$.get("/estimuloDocente/moduloGenerales/vista/vtaInformacionEmpleado.php", function(data, status){
 		if(status == 'success')
-			$("#divInformacionEmpleado").html(data);
-			$("#divInformacionEmpleado").fadeIn();
+			$("#divInformacionEmpleado").html(data).show();
 
 			infoEmpleadoInicializar();
 	});

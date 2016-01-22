@@ -71,12 +71,12 @@ function SecretarioAcademicoTablaCargar(sControl) {
 		pagermode: 'simple',
 		pagerbuttonscount: 10,
 		columns: [
-			{ text: '', datafield: 'accion', width:'50px', pinned: true, filterable: false, sortable: false, menu:false },
+			{ text: '', datafield: 'accion', width:'40px', cellsalign: 'center', pinned: true, filterable: false, sortable: false, menu:false },
 			{ text: '', datafield: 'idEstimulo', hidden: true },
 			{ text: '', datafield: 'idSecretario', hidden: true },
 			{ text: 'No. empleado', align: 'center', datafield: 'numeroEmpleado', cellsalign: 'center', width: '130px'},
 			{ text: 'Nombre completo', datafield: 'nombreCompleto', width: '359px'},
-			{ text: 'Tipo',align: 'center', datafield: 'tipoContrato', width: '140px', cellsalign: 'center'},
+			{ text: 'Tipo',align: 'center', datafield: 'tipoContrato', width: '100px', cellsalign: 'center'},
 			{ text: 'Env&iacute;o de solicitud', align: 'center', datafield: 'fechaRegistroEstimulo', cellsalign: 'center' , width: '160px'},
 			{ text: 'Validaci&oacute;n', datafield: 'validado', width: '155px', align: 'center', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
@@ -102,11 +102,16 @@ function SecretarioAcademicoTablaCargar(sControl) {
 					return html;
 				},
 			},
-			{text: 'No. hojas',align: 'center', datafield: 'numeroHojas', cellsalign: 'center', width: '140px', columntype: 'numberinput', cellsformat: 'f2', editable: false,
+			{text: 'No. hojas',align: 'center', datafield: 'numeroHojas', cellsalign: 'center', columntype: 'numberinput', cellsformat: 'f2', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					var html = '<input type="number" min="0" max="255" step="1" class="inputNumeroHojas gridInput" id="input_'+row+'_numeroHojas" value="'+value+'" data-value="'+value+'" data-row="'+row+'" />';
 					return html;
 				},
+				validation: function (cell, value) {
+					if (value < 0 || value > 255) {
+						return { result: false, message: "El valor debe estar entre 0 y 255" };
+					} else return true;
+				}
 			}
 		]
 
@@ -256,6 +261,7 @@ function secretarioAcademicoAgregarModificar(fila) {
 	}
 
 	var sPagina = "modelo/modSecretarioAcademicoAgregarModificar.php";
+
 	//Parámetros a enviar
 	var oParametros = 'idEstimulo=' + idEstimulo + '&validado=' + validado + '&numeroHojas=' + numeroHojas + '&idSecretario=' + idSecretario;
 	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});

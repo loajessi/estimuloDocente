@@ -79,11 +79,19 @@ function InvestigacionTablaCargar(sControl) {
 		pagerbuttonscount: 6,
 		keyboardnavigation: false,
 		columns: [
-			{text: '', datafield: 'accion', width: '40px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},
-			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', width: '120px'},
-			{text: 'Nombre completo', datafield: 'nombreCompleto'},
+			{text: '', datafield: 'accion', width: '35px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},
+			{text: '', datafield: 'idInvestigacion', width: '35px', cellsalign: 'center', cellclassname: 'icono-wrapper', pinned: true, sortable: true, filterable: false, menu: true,
+				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+					if (value != '' && value!=null) {
+						return '<span class="icono aprobar">&nbsp;</span>';
+					} else {
+						return '';
+					}
+				}
+			},
+			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', align: 'center', width: '100px'},
+			{text: 'Nombre completo', datafield: 'nombreCompleto', width: '340px'},
 			{text: '', datafield: 'idEstimulo', hidden: true},
-			{text: '', datafield: 'idInvestigacion', hidden: true},
 			{text: '', datafield: 'reconocimientoSNI', hidden: true},
 			{text: '', datafield: 'fechaInicioSNI', hidden: true},
 			{text: '', datafield: 'fechaTerminoSNI', hidden: true},
@@ -91,7 +99,7 @@ function InvestigacionTablaCargar(sControl) {
 			{text: '', datafield: 'noProyOrganismoResponsable', hidden: true},
 			{text: '', datafield: 'noProyInstitucionResponsable', hidden: true},
 			{text: '', datafield: 'noProyOrganismoParticipo', hidden: true},
-			{text: '', datafield: 'noProyInstitucionParticipo', hidden: true},
+			{text: '', datafield: 'noProyInstitucionParticipo', hidden: true}
 		]
 	});
 
@@ -240,6 +248,9 @@ function investigacionAgregarModificar() {
 				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'noProyInstitucionResponsable', noProyInstitucionResponsable);
 				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'noProyOrganismoParticipo', noProyOrganismoParticipo);
 				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', $('#jqxGrid_Docentes').jqxGrid('getselectedrowindex'), 'noProyInstitucionParticipo', noProyInstitucionParticipo);
+
+				//Ocultar botones al guardar
+				$('.barraSuperiorAcciones').fadeOut();
 			}
 		}
 	});

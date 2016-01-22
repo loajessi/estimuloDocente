@@ -44,14 +44,15 @@
 			</div>
 
 			<div id="SNI_CamposAdicionales" style="display: none;">
+
+				<label>Nivel <abbr title="Sistema Nacional de Investigadores">SNI</abbr></label>
+				<div id="jqxDropDownList_NivelSNI" name="nivelSNI" ></div>
+
 				<label>Fecha de inicio</label>
 				<div id="jqxDateTimeInput_FechaInicioSNI" name="fechaInicioSNI"></div>
 
 				<label>Fecha de t&eacute;rmino</label>
 				<div id="jqxDateTimeInput_FechaTerminoSNI" name="fechaTerminoSNI"></div>
-
-				<label>Nivel <abbr title="Sistema Nacional de Investigadores">SNI</abbr></label>
-				<div id="jqxDropDownList_NivelSNI" name="nivelSNI" ></div>
 
 			</div>
 

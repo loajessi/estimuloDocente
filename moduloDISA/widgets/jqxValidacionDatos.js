@@ -52,14 +52,14 @@ function SupAcademicaTablaCargar(sControl){
 		pageable: true,
 		editable: true,
 		columns: [
-			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu: false},
-			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', editable: false, width: '141px'},
+			{text: '', datafield: 'accion', width: '40px', cellsalign: 'center', editable: false, pinned: true, filterable: false, sortable: false, menu: false},
+			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', align: 'center', editable: false, width: '120px'},
 			{text: '', datafield: 'idSupAcademica', hidden: true},
-			//{text: '', datafield: 'idEstimulo', hidden: true},
+			{text: '', datafield: 'idEstimulo', hidden: true},
 			{text: 'Nombre completo', datafield: 'nombreCompleto', editable: false, width: '340px'},
-			{text: 'Tipo', datafield: 'tipoContrato',cellsalign: 'center', editable: false, width: '65px'},
-			{text: 'Env&iacute;o de solicitud', datafield: 'fechaRegistroEstimulo', cellsalign: 'center', editable: false, width: '173px'},
-			{text: 'No. de certificaciones (*)', datafield: 'certificacionIngles', width: '165px', cellsalign: 'center', columntype: 'numberinput',
+			{text: 'Tipo', datafield: 'tipoContrato',cellsalign: 'center', align: 'center', editable: false, width: '65px'},
+			{text: 'Env&iacute;o de solicitud', datafield: 'fechaRegistroEstimulo', cellsalign: 'center', align: 'center', editable: false, width: '150px'},
+			{text: 'No. de certificaciones (*)', datafield: 'certificacionIngles', cellsalign: 'center', align: 'center', columntype: 'numberinput', width: '200px',
 				createeditor: function (row, cellvalue, editor) {
 					editor.jqxNumberInput({
 						digits: 2,
@@ -73,7 +73,7 @@ function SupAcademicaTablaCargar(sControl){
 					});
 				}
 			},
-			{text: 'No. de cursos acreditados sobre competencias', datafield: 'cursoCompetencia', width: '200px', cellsalign: 'center', columntype: 'numberinput',
+			{text: 'No. de cursos acreditados sobre competencias', datafield: 'cursoCompetencia', cellsalign: 'center', align: 'center', columntype: 'numberinput',
 				renderer: function(){return '<div class="jxGrid_headerDoble txtCentrado">No. de cursos acreditados<br />sobre competencias</div>'; },
 				createeditor: function (row, cellvalue, editor) {
 					editor.jqxNumberInput({

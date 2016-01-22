@@ -156,13 +156,15 @@ function detalleEvaluacionInicializar() {
 
 		//Limitar input
 		$('#frmDetalleEvaluacion input[type="number"]').change(function() {
-			var valor = $(this).val();
+			var valor = $(this).val(),
+				max = parseInt( $(this).attr('max') );
+
 			if (valor.indexOf(".")!=-1) { //Decimal
 				valor = Math.floor(valor);
 			}
 
-			if (valor>999) {
-				$(this).val(999);
+			if (valor>max) {
+				$(this).val(max);
 			} else if (valor<0) {
 				$(this).val(0);
 			} else {

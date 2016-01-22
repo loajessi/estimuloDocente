@@ -120,10 +120,15 @@ function EvaluacionTablaCargar(sControl) {
 		pagerbuttonscount: 5,
 		keyboardnavigation: false,
 		columns: [
-			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', pinned: true, filterable: false, sortable: false, menu: false},
-			{text: '', datafield: 'idEvaluacion', width:'20px', cellsalign: 'center', pinned: true, sortable: false,
-
-
+			{text: '', datafield: 'accion', width: '35px', cellsalign: 'center', pinned: true, filterable: false, sortable: false, menu: false},
+			{text: '', datafield: 'idEvaluacion', width:'35px', cellsalign: 'center', cellclassname: 'icono-wrapper', pinned: true, sortable: true, filterable: false, menu: true,
+				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+					if (value != '' && value!=null) {
+						return '<span class="icono aprobar">&nbsp;</span>';
+					} else {
+						return '';
+					}
+				}
 			},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', width: '115px'},
 			{text: 'Nombre completo', datafield: 'nombreCompleto'},
@@ -254,6 +259,9 @@ function evaluacionAgregarModificar(fila) {
 				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'tics', tics);
 				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'egel', egel);
 				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'calidadProgramaEducativo', calidadProgramaEducativo);
+
+				//Ocultar botones al guardar
+				$('.barraSuperiorAcciones').fadeOut();
 			}
 		}
 	});

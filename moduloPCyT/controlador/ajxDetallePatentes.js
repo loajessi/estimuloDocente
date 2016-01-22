@@ -1,4 +1,4 @@
-// Función de inicialización de la vista
+// Funciï¿½n de inicializaciï¿½n de la vista
 
 function detallePatentesInicializar(pEstimuloID) {
 
@@ -23,15 +23,15 @@ function detallePatentesInicializar(pEstimuloID) {
 
 	};
 
-	var agregarEventos = function () {		
+	var agregarEventos = function () {
 		$("#btnCancelarPatente").on("click", function (event) {
 			PatenteCerrarModal();
 		});
 
 		$('#btnAgregarPatente').click(function() {
-			$('#jqxWindow_ModalAgregarPatente').jqxWindow('open');			
+			$('#jqxWindow_ModalAgregarPatente').jqxWindow('open');
 			$('#jqxWindow_ModalAgregarPatente').jqxWindow('setTitle', 'Agregar patente');
-			formularioParqueReiniciar();	
+			formularioParqueReiniciar();
 			$("#hdnEstimuloID").val(pEstimuloID);
 		});
 
@@ -40,7 +40,7 @@ function detallePatentesInicializar(pEstimuloID) {
 
 			if(data.length > 0) {
 
-				if(!confirm('Se eliminarán las patentes que ya haya registrado, de clic en Aceptar si desea continuar.'))
+				if(!confirm('Se eliminarÃ¡n las patentes que ya haya registrado, de clic en Aceptar si desea continuar.'))
 					return;
 
 				for(var i=0; i<data.length; i++){
@@ -50,8 +50,8 @@ function detallePatentesInicializar(pEstimuloID) {
 					parqueCientificoEliminar(idParqueCientifico, idEstimulo, 0);
 				}
 			}
-			else 
-				validarConNingunaPatente(pEstimuloID);					
+			else
+				validarConNingunaPatente(pEstimuloID);
 		});
 
 	};
@@ -62,7 +62,7 @@ function detallePatentesInicializar(pEstimuloID) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicialización de contenido
+// Funciones correspondientes a eventos o inicializaciï¿½n de contenido
 
 function patenteAgregarOK(){
 	//Validar datos
@@ -79,14 +79,14 @@ function patenteAgregarOK(){
 function validarConNingunaPatente(idEstimulo){
 
 	var dataAdapter= datosParqueCientificoRegistroObtener(-1, idEstimulo, 1);
-	
+
 	if(dataAdapter != null) return;
 
-	formularioParqueReiniciar();	
+	formularioParqueReiniciar();
 	$("#hdnEstimuloID").val(idEstimulo);
 	$('#txtPatente').val('Ninguna');
 	$("#jqxComboBox_idEstadoPatente").val(' ');
-	parqueCientificoAgregarModificar();	
+	parqueCientificoAgregarModificar();
 }
 
 function parqueCientificoEditar(piParqueCientificoID, piEstimuloID){
@@ -99,7 +99,7 @@ function parqueCientificoEditar(piParqueCientificoID, piEstimuloID){
 
 function PatenteCerrarModal(){
 	$('#jqxWindow_ModalAgregarPatente').jqxWindow('close');
-	formularioParqueReiniciar();	
+	formularioParqueReiniciar();
 }
 
 function formularioParqueReiniciar(){

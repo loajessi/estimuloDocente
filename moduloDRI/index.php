@@ -104,7 +104,7 @@
 		</div>
 		<div class="fl_right">
 			<p><? echo $_SESSION['sPersonaVS']; ?>&nbsp;&nbsp;&nbsp;
-				<a href="javascript:PCDCerrarSesion();" class="boton icon salir">Cerrar sesi&oacute;n </a></p></div>
+				<a href="javascript:sesionCerrar();" class="boton icon salir">Cerrar sesi&oacute;n </a></p></div>
 		<br class="clear" />
 	</div>
 </div>

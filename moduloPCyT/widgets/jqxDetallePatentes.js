@@ -4,7 +4,7 @@ function datos_Docentes_DetallePatentes_Cargar(pEstimuloID) {
 	{
 		datatype: "json",
 		datafields: [
-			{name:'accion',type:'string'},			
+			{name:'accion',type:'string'},
 			{name:'idEstimulo', type:'int'},
 			{name:'idParqueCientifico', type:'int'},
 			{name:'patente', type:'varchar'},
@@ -26,8 +26,8 @@ function datosParqueCientificoRegistroObtener(pParqueCientificoID, pEstimuloID, 
 		url: "modelo/modParqueCientificoPatenteConsultar.php",
 		data: {pParqueCientificoID : pParqueCientificoID, pEstimuloID : pEstimuloID, pNinguna : pNinguna},
 		type: 'POST',
-		success: function (data, status, xhr) {  
-			registro = jQuery.parseJSON(data);                   
+		success: function (data, status, xhr) {
+			registro = jQuery.parseJSON(data);
 		}
 	});
 	return registro;
@@ -56,7 +56,7 @@ function datos_Docentes_DetallePatentes_CargarEstados() {
 function Docentes_DetallePatentes_CargarVista(idEstimulo, datosFila) {
 	$.get('vista/vtaDetallePatentes.php', function (data, status) {
 		if (status == 'success') {
-			$("#detalleDatosPatentes").html(data);			
+			$("#detalleDatosPatentes").html(data);
 			$('#PatentesNombreEmpleado').html(datosFila.nombreCompleto);
 			detallePatentesInicializar(idEstimulo);
 		}
@@ -88,19 +88,19 @@ function Docentes_DetallePatentes_TablaCargar(sControl, idEstimulo) {
 	var registros = dataAdapter.records;
 
 	if(registros.length == 0) {
-		
+
 		// Busca si existe el registro de ninguna
 		var dataAdapter= datosParqueCientificoRegistroObtener(-1, idEstimulo, 1);
-		
+
 		if(dataAdapter != null) {
 			$("#divValidado").html("<span class='aprobado'>Validado con ninguna patente</span>");
 			$("#btnValidarNingunaPatente").hide();
-			$("#jqxGrid_DetallePatentes").hide();			
+			$("#jqxGrid_DetallePatentes").hide();
 		}
 		else{
 			// No se ha validado
 			$("#btnValidarNingunaPatente").show();
-			$("#jqxGrid_DetallePatentes").hide();		
+			$("#jqxGrid_DetallePatentes").hide();
 			$("#divValidado").html("<span class='cancelado'>Sin validar</span>");
 		}
 	}
@@ -114,13 +114,14 @@ function Docentes_DetallePatentes_TablaCargar(sControl, idEstimulo) {
 		width: '99.5%',
 		height: '280px',
 		source: dataAdapter,
-		theme: 'energyblue',		
+		theme: 'energyblue',
 		autorowheight: true,
 		localization: getLocalization('es'),
 		autoshowfiltericon: true,
 		filterable: true,
 		sortable: true,
 		pageable: true,
+		pagermode: "simple",
 		columns: [
 			{text: '', datafield: 'accion', width: '70px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},
 			{text: 'Patente', datafield: 'patente', cellsalign: 'center', width: '462px'},
@@ -130,7 +131,7 @@ function Docentes_DetallePatentes_TablaCargar(sControl, idEstimulo) {
 }
 
 function ParqueCientificoFormularioCargar(){
-	var parqueCientificoID = $("#hdnParqueCientificoID").val(); 
+	var parqueCientificoID = $("#hdnParqueCientificoID").val();
 	var estimuloID = $("#hdnEstimuloID").val();
 	var dataAdapter= datosParqueCientificoRegistroObtener(parqueCientificoID, estimuloID, 0);
 	var registro = dataAdapter[0];
@@ -154,11 +155,11 @@ function parqueCientificoAgregarModificar(){
 				if(json.noError > 0){
 					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
 				}
-				else {		
+				else {
 					var idEstimulo = $("#hdnEstimuloID").val();
-					PatenteCerrarModal();					
+					PatenteCerrarModal();
 					Docentes_DetallePatentes_TablaCargar('#jqxGrid_DetallePatentes', idEstimulo);
-					notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});					
+					notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
 				}
 			}
 		}
@@ -182,8 +183,8 @@ function parqueCientificoEliminar(pRegistroID, pEstimuloID, pSolicitarConfirmaci
 				if(json.noError > 0){
 					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
 				}
-				else {					
-					notif({msg: '<b>Registro eliminado</b>', type: 'success', position: 'right', width: 200});				
+				else {
+					notif({msg: '<b>Registro eliminado</b>', type: 'success', position: 'right', width: 200});
 					Docentes_DetallePatentes_TablaCargar('#jqxGrid_DetallePatentes', pEstimuloID);
 
 					var data = $("#jqxGrid_DetallePatentes").jqxGrid('getrows');

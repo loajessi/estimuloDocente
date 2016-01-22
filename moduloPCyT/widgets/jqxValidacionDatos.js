@@ -37,6 +37,8 @@ function ParqueCientificoTablaCargar(sControl) {
 		filterable: true,
 		sortable: true,
 		pageable: true,
+		pagermode: 'simple',
+		pagerbuttonscount: 5,
 		editable: false,
 		columns: [
 			{text: '', datafield: 'accion', width: '40px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},

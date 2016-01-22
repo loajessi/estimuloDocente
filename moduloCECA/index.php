@@ -99,7 +99,7 @@
 		<div class="fl_right">
 			<p>
 				<?= $_SESSION['sPersonaVS']; ?>&nbsp;&nbsp;&nbsp;
-				<a onclick="PCDCerrarSesion();" class="boton icon salir">Cerrar sesi&oacute;n</a>
+				<a onclick="sesionCerrar();" class="boton icon salir">Cerrar sesi&oacute;n</a>
 			</p>
 		</div>
 		<br class="clear" />

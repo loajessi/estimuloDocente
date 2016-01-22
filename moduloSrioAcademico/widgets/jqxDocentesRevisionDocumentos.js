@@ -99,13 +99,12 @@ function SecretarioAcademicoTablaCargar(sControl) {
 							'<div style="clear: both;">' +
 							'</div>';
 					}
-
 					return html;
 				},
 			},
 			{text: 'No. hojas',align: 'center', datafield: 'numeroHojas', cellsalign: 'center', width: '140px', columntype: 'numberinput', cellsformat: 'f2', editable: false,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
-					var html = '<input type="number" min="0" max="100" step="1" class="inputNumeroHojas gridInput" id="input_'+row+'_numeroHojas" value="'+value+'" data-value="'+value+'" data-row="'+row+'" />';
+					var html = '<input type="number" min="0" max="255" step="1" class="inputNumeroHojas gridInput" id="input_'+row+'_numeroHojas" value="'+value+'" data-value="'+value+'" data-row="'+row+'" />';
 					return html;
 				},
 			}
@@ -126,26 +125,22 @@ function SecretarioAcademicoTablaCargar(sControl) {
 }
 
 function validarNumero(valor) {
-	var patron = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/g;
+	var patron = /^([1]?[0-9]?[0-9]|[2]?([5][0-5]|[0-4][0-9]))$/g;
 	return patron.test(valor);
 }
-
 
 function cargarInputsNumeroHojas() {
 	$('.inputNumeroHojas').each(function () {
 		$(this).off('change').on('change', function(event) {
 			var fila = parseInt( $(this).attr('data-row') ),
-				numAnterior = parseFloat( $(this).attr('data-value')),
-				num = parseFloat( $(this).val() );
+				numAnterior = parseInt( $(this).attr('data-value')),
+				num = parseInt( $(this).val() );
 
-			var valor =+ num.toFixed(2);
-
-			var patron = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/g,
-				check = patron.test(valor);
+			var patron = /^([1]?[0-9]?[0-9]|[2]?([5][0-5]|[0-4][0-9]))$/g,
+				check = patron.test(num);
 
 			if (check) {
-				$('#cd_f' + fila + '_numeroHojas').val(valor);
-				//$(this).val(num);
+				$('#cd_f' + fila + '_numeroHojas').val(num);
 				secretarioAcademicoAgregarModificar(fila);
 				event.stopPropagation();
 			} else {
@@ -178,15 +173,9 @@ function cargarInputsNumeroHojas() {
 				var fila = parseInt( $(this).attr('data-row')),
 					dataval = $(this).attr('data-value'),
 					val = $(this).val();
-
-				//filaSig = fila+1;
-
 				if (dataval != val) {
 					$(this).trigger('change');
 				}
-
-				/*$('#jqxGrid_Docentes').jqxGrid('selectrow', filaSig);
-				 $('#input_'+filaSig+'_asistencias').focus().select();*/
 			} else {
 				var valor = $(this).val(),
 					fila = parseInt( $(this).attr('data-row'));
@@ -260,24 +249,16 @@ function secretarioAcademicoAgregarModificar(fila) {
 		idEstimulo = $('#cd_f'+fila+'_idEstimulo').val(),
 		idSecretario = $('#cd_f'+fila+'_idSecretario').val();
 
-	if(validado=='') {
-		return;
-	}
-
-
-	if(numeroHojas=='') {
-		return;
-	} else {
-		if (!validarNumero(parseFloat(numeroHojas))) return;
+	if(validado =='') { return; }
+	if(numeroHojas =='') { return;}
+	else {
+		if (!validarNumero(parseInt(numeroHojas))) return;
 	}
 
 	var sPagina = "modelo/modSecretarioAcademicoAgregarModificar.php";
-
 	//Parámetros a enviar
 	var oParametros = 'idEstimulo=' + idEstimulo + '&validado=' + validado + '&numeroHojas=' + numeroHojas + '&idSecretario=' + idSecretario;
-
 	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});
-
 	$.post(sPagina, oParametros, function (datos, status) {
 		if (status == 'success') {
 			eval(datos);
@@ -286,11 +267,10 @@ function secretarioAcademicoAgregarModificar(fila) {
 			} else {
 				// Acciones posteriores a la actualizacion
 				notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});
-				if( idSecretario=='' || typeof idSecretario == 'undefined' || idSecretario == null ){
+				if( idSecretario == '' || typeof idSecretario == 'undefined' || idSecretario == null ){
 					$('#cd_f'+fila+'_idSecretario').val(json.idSecretario);
 				}
 				$('#cd_f'+fila+'_Guardado').val('1');
-
 				// Cambiar celdas en el grid
 				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'validado', validado);
 				$('#jqxGrid_Docentes').jqxGrid('setcellvalue', fila, 'numeroHojas', numeroHojas);

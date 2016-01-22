@@ -42,10 +42,18 @@ function ParqueCientificoTablaCargar(sControl) {
 		editable: false,
 		columns: [
 			{text: '', datafield: 'accion', width: '40px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},
+			{text: '', datafield: 'idParqueCientifico', width: '35px', cellsalign: 'center', cellclassname: 'icono-wrapper', pinned: true, sortable: true, filterable: false, menu: true,
+				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+					if (value != '' && value!=null) {
+						return '<span class="icono aprobar">&nbsp;</span>';
+					} else {
+						return '';
+					}
+				}
+			},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', width: '120px'},
 			{text: 'Nombre completo', datafield: 'nombreCompleto'},
 			{text: 'ID', datafield: 'idEstimulo', hidden: true},
-			{text: 'ID', datafield: 'idParqueCientifico', hidden: true}
 		]
 	});
 }

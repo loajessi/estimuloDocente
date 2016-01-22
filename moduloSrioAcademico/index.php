@@ -51,7 +51,6 @@
 
 	<!-- Widgets estimulo -->
 	<script type="text/javascript" src="widgets/jqxDocentesRevisionDocumentos.js"></script>
-	<!--script type="text/javascript" src="widgets/jqxValidacionDatos.js"></script-->
 
 
 	<!-- Controladores -->

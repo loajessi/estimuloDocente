@@ -10,7 +10,7 @@
 	$objSecretarioAcademico->setvalidado($_POST['validado']);
 	$objSecretarioAcademico->setnumeroHojas($_POST['numeroHojas']);
 	if (isset($_POST['idSecretario']) && $_POST['idSecretario']!='') {
-		$objPersonal->setidSecretario($_POST['idSecretario']);
+		$objSecretarioAcademico->setidSecretario($_POST['idSecretario']);
 	}
 
 	$objSecretarioAcademico->setusuarioRealizo($_SESSION['VS_Usuario']);

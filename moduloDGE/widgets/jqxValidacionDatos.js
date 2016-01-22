@@ -121,6 +121,10 @@ function EvaluacionTablaCargar(sControl) {
 		keyboardnavigation: false,
 		columns: [
 			{text: '', datafield: 'accion', width: '50px', cellsalign: 'center', pinned: true, filterable: false, sortable: false, menu: false},
+			{text: '', datafield: 'idEvaluacion', width:'20px', cellsalign: 'center', pinned: true, sortable: false,
+
+
+			},
 			{text: 'No. empleado', datafield: 'numeroEmpleado', cellsalign: 'center', width: '115px'},
 			{text: 'Nombre completo', datafield: 'nombreCompleto'},
 			{text: 'Desempeño en el aula (Alumnos)', datafield: 'desempenoAula', hidden: true},
@@ -129,7 +133,6 @@ function EvaluacionTablaCargar(sControl) {
 			{text: 'TICS', align: 'center', datafield: 'tics', hidden: true},
 			{text: 'Nivel EGEL (CENEVAL)', datafield: 'egel', hidden: true},
 			{text: '', datafield: 'idEstimulo', hidden: true},
-			{text: '', datafield: 'idEvaluacion', hidden: true},
 			{text: '', datafield: 'calidadProgramaEducativo', hidden: true}
 		]
 	});

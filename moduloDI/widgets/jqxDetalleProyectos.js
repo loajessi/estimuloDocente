@@ -18,17 +18,17 @@ function Docentes_DetalleProyectos_CargarVista(datosFila) {
 				}else if(datosFila.reconocimientoSNI == 1){
 					$('#btnSNI_Si').addClass('btnActivo btnCorrecto');
 					$('#hdnBotonSNI').val(1).trigger('change');
+
+					$('#jqxDateTimeInput_FechaInicioSNI').jqxDateTimeInput('setDate', new Date(datosFila.fechaInicioSNI));
+					$('#jqxDateTimeInput_FechaTerminoSNI').jqxDateTimeInput('setDate', new Date(datosFila.fechaTerminoSNI));
+
+					$("#jqxDropDownList_NivelSNI").jqxDropDownList('selectItem', datosFila.nivelSNI);
 				}
 
 				$('#noProyOrganismoResponsable').val(datosFila.noProyOrganismoResponsable);
 				$('#noProyInstitucionResponsable').val(datosFila.noProyInstitucionResponsable);
 				$('#noProyOrganismoParticipo').val(datosFila.noProyOrganismoParticipo);
 				$('#noProyInstitucionParticipo').val(datosFila.noProyInstitucionParticipo);
-
-				$('#jqxDateTimeInput_FechaInicioSNI').jqxDateTimeInput('setDate', new Date(datosFila.fechaInicioSNI));
-				$('#jqxDateTimeInput_FechaTerminoSNI').jqxDateTimeInput('setDate', new Date(datosFila.fechaTerminoSNI));
-
-				$("#jqxDropDownList_NivelSNI").jqxDropDownList('selectItem', datosFila.nivelSNI);
 			}
 
 			$('#hdnIdEstimulo').val(datosFila.idEstimulo);

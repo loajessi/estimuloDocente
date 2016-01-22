@@ -48,10 +48,10 @@
 				<label>Nivel <abbr title="Sistema Nacional de Investigadores">SNI</abbr></label>
 				<div id="jqxDropDownList_NivelSNI" name="nivelSNI" ></div>
 
-				<label>Fecha de inicio</label>
+				<label>Fecha de inicio<br /><small>(MM/DD/AAAA)</small></label>
 				<div id="jqxDateTimeInput_FechaInicioSNI" name="fechaInicioSNI"></div>
 
-				<label>Fecha de t&eacute;rmino</label>
+				<label>Fecha de término<br /><small>(MM/DD/AAAA)</small></label>
 				<div id="jqxDateTimeInput_FechaTerminoSNI" name="fechaTerminoSNI"></div>
 
 			</div>

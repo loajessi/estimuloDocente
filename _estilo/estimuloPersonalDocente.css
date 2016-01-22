@@ -135,6 +135,24 @@ h3.dobleLinea > small {
 	border: 0;
 }
 
+.icono-wrapper {
+	padding-top: 15px;
+	height: 25px !important;
+}
+
+.icono {
+	display: block;
+	width: 12px;
+	height: 12px;
+	margin: 0 auto;
+	background: url('/generalesDIyS/_img/iconos.png') 0 99px no-repeat;
+	vertical-align: middle;
+}
+
+.icono.aprobar {
+	background-position: 0 -48px;
+}
+
 .btnEliminar {
 	background: url('/generalesDIyS/_img/iconoPapelera.png') no-repeat center center transparent;
 	width: 25%;

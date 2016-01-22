@@ -286,11 +286,8 @@ function relacionesInternacionalesAgregarModificar(fila){
 			var FI = new Date(parseInt(fechaInicioBecaFederal.substring(6,10)), parseInt(fechaInicioBecaFederal.substring(0,2))-1, parseInt(fechaInicioBecaFederal.substring(3,5))),
 				FT = new Date(parseInt(fechaTerminoBecaFederal.substring(6,10)), parseInt(fechaTerminoBecaFederal.substring(0,2))-1, parseInt(fechaTerminoBecaFederal.substring(3,5)));
 
-			if (FI.getTime() < FT.getTime()) {
-				// Fechas OK
-			} else {
-				// Fechas mal
-				notif({msg: 'La fecha de término no puede ser anterior a la fecha de inicio', type: 'warning', position: 'right', autohide: false, width: 550});
+			if (FT.getTime() <= FI.getTime()) {
+				notif({msg: 'La fecha de término debe ser posterior a la fecha de inicio', type: 'warning', position: 'right', autohide: false, width: 550});
 				return;
 			}
 

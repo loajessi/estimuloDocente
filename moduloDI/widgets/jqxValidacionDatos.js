@@ -179,17 +179,33 @@ function investigacionAgregarModificar() {
 
 	if (botonSNI=='1') {
 
-		if (nivelSNI==null || nivelSNI=='') {
-			notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
+		if (nivelSNI==null) {
+			notif({msg: 'Se requiere Nivel SNI', type: 'warning', position: 'right', width: 400});
 			return;
 		} else {
 			nivelSNI = nivelSNI.value;
 		}
 
-		if (nivelSNI=='' || fechaInicioSNI=='' || fechaTerminoSNI=='' || fechaInicioSNI==null || fechaTerminoSNI==null){
-			notif({msg: 'Todos los campos son requeridos', type: 'warning', position: 'right', width: 400});
+		if (nivelSNI==''){
+			notif({msg: 'Debe ingresar el Nivel SNI', type: 'warning', position: 'right', width: 400});
 			return null;
 		}
+
+		if (fechaInicioSNI=='' || fechaInicioSNI==null){
+			notif({msg: 'Debe ingresar Fecha de inicio', type: 'warning', position: 'right', width: 400});
+			return null;
+		}
+
+		if (fechaTerminoSNI=='' || fechaTerminoSNI==null){
+			notif({msg: 'Debe ingresar Fecha de término', type: 'warning', position: 'right', width: 400});
+			return null;
+		}
+
+		if (fechaTerminoSNI.getTime() <= fechaInicioSNI.getTime()) {
+			notif({msg: 'La fecha de término debe ser posterior a la fecha de inicio', type: 'warning', position: 'right', autohide: false, width: 550});
+			return;
+		}
+
 
 	}
 

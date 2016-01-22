@@ -263,11 +263,11 @@
 		private function getfechaRegistro() {
 			return $this->fechaRegistro;
 		}
-		
+
 		public function setningunaPatente($pningunaPatente){
 			$this->ningunaPatente = $pningunaPatente;
 		}
-		
+
 		public function setUsuarioRealizo($pUsuarioRealizo) {
 			$this->usuarioRealizo = $pUsuarioRealizo;
 		}
@@ -376,7 +376,8 @@
 			}
 			$sQuery = "
 			SELECT DISTINCT
-				 idEstimulo
+				idParqueCientifico
+				,idEstimulo
 				,idPersona
 				,numeroEmpleado
 				,nombreCompleto
@@ -388,7 +389,7 @@
 
 			return $sQuery;
 		}
-		
+
 		public function getQueryListaPatentes() {
 			$sFiltro = $this->getFiltroQuery();
 			if (strlen(trim($sFiltro)) > 0) {
@@ -399,7 +400,7 @@
 				$sOrdenQuery = "ORDER BY " . $this->ordenQuery . " ";
 			}
 			$sQuery = "
-			SELECT 
+			SELECT
 				 idParqueCientifico
 				,idEstimulo
 				,patente
@@ -411,7 +412,7 @@
 
 			return $sQuery;
 		}
-		
+
 		public function getQueryNingunaPatente() {
 			$sFiltro = $this->getFiltroQuery();
 			if (strlen(trim($sFiltro)) > 0) {
@@ -422,7 +423,7 @@
 				$sOrdenQuery = "ORDER BY " . $this->ordenQuery . " ";
 			}
 			$sQuery = "
-			SELECT 
+			SELECT
 				 idParqueCientifico
 				,idEstimulo
 				,patente
@@ -434,7 +435,7 @@
 
 			return $sQuery;
 		}
-		
+
 		public function getQueryPatente() {
 			$sFiltro = $this->getFiltroQuery();
 			if (strlen(trim($sFiltro)) > 0) {
@@ -445,7 +446,7 @@
 				$sOrdenQuery = "ORDER BY " . $this->ordenQuery . " ";
 			}
 			$sQuery = "
-			SELECT 
+			SELECT
 				 idParqueCientifico
 				,idEstimulo
 				,patente
@@ -469,9 +470,9 @@
 		 *
 		 * @return array $arrDatos arreglo de datos
 		 */
-		function getDatos($bPrimero = true) {			
+		function getDatos($bPrimero = true) {
 //			echo $this->getQuery();
-			
+
 			if($this->idEstimulo != -1) {
 				if($this->ningunaPatente == 1) $sQuery = $this->getQueryNingunaPatente();
 				else $sQuery = $this->getQueryListaPatentes();
@@ -480,7 +481,7 @@
 			else $sQuery = $this->getQuery();
 
 			//echo $sQuery;
-			
+
 			$objConsulta = new clsConsulta($sQuery);
 			$objConsulta->FNCQueryEjecutar();
 
@@ -520,20 +521,20 @@
 					foreach($fila as $llaveColumna=>$valor){
 						if($this->idEstimulo != -1) {
 							$arrDatos[$llaveFila]['accion']=
-							"<button class='btnEliminar' title='Eliminar' 
+							"<button class='btnEliminar' title='Eliminar'
 								onclick='parqueCientificoEliminar(".$iParqueCientificoID.", ".$iEstimuloID.", 1)'>
-							</button> 
-							<button class='btnEditar' title='Editar' 
+							</button>
+							<button class='btnEditar' title='Editar'
 								onclick='parqueCientificoEditar(".$iParqueCientificoID.", ".$iEstimuloID.")'>
 							</button>";
 						}
 						else {
-							$arrDatos[$llaveFila]['accion'] = 
-								"<button class='btnInfoEmpleado' id='btngVerInfo' title='Ver informaci&oacute;n del empleado' 
+							$arrDatos[$llaveFila]['accion'] =
+								"<button class='btnInfoEmpleado' id='btngVerInfo' title='Ver informaci&oacute;n del empleado'
 									onclick='verInformacionEmpleado(".$iNumeroEmpleado.")'; >Ver informaci&oacute;n del empleado
 								 </button>";
 						}
-						
+
 						$arrDatos[$llaveFila][$llaveColumna] = utf8_encode($valor);
 						$i++;
 					}
@@ -563,11 +564,17 @@
 			$objProc->FNCAgregaParametrosEntrada($this->patente, 1);
 			$objProc->FNCAgregaParametrosEntrada($this->fase, 1);
 			$objProc->FNCAgregaParametrosEntrada($this->usuarioRealizo, 1);
-			if($this->idParqueCientifico == 0)
+			/*if($this->idParqueCientifico == 0)
 				$objProc->FNCAgregaParametroSalida("idParqueCientifico", "INT");
 			else
+				$objProc->FNCAgregaParametrosEntrada($this->idParqueCientifico);*/
+
+			if($this->idParqueCientifico != -1){
 				$objProc->FNCAgregaParametrosEntrada($this->idParqueCientifico);
-						
+			} else {
+				$objProc->FNCAgregaParametroSalida("idParqueCientifico", "INT");
+			}
+
 			$objProc->FNCAgregaParametroSalida("noError", "INT");
 			$objProc->FNCAgregaParametroSalida("mensaje", "VARCHAR", 255);
 

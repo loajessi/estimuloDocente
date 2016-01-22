@@ -41,7 +41,7 @@ function ParqueCientificoTablaCargar(sControl) {
 		pagerbuttonscount: 5,
 		editable: false,
 		columns: [
-			{text: '', datafield: 'accion', width: '40px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},
+			{text: '', datafield: 'accion', width: '35px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},
 			{text: '', datafield: 'idParqueCientifico', width: '35px', cellsalign: 'center', cellclassname: 'icono-wrapper', pinned: true, sortable: true, filterable: false, menu: true,
 				cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
 					if (value != '' && value!=null) {

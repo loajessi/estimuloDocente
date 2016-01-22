@@ -1,115 +1,43 @@
-function datos_Docentes_DetallePatentes_Cargar() {
+function datos_Docentes_DetallePatentes_Cargar(pEstimuloID) {
 
-	/* var Docentes_ValidacionDatosSource =
-	 {
-	 datatype: "json",
-	 datafields: [
-	 {name: 'accion', type: 'string'},
-	 {name: 'idEstimulo', type: 'bigint'},
-	 {name: 'idEstadoRevisado', type: 'bigint'},
-	 {name: 'numeroEmpleado', type: 'bigint'},
-	 {name: 'nombreCompleto', type: 'varchar'},
-	 {name: 'tipo', type: 'varchar'},
-	 {name: 'envioSolicitud', type: 'varchar'},
-	 {name: 'numeroHojas', type: 'int'}
-	 ],
-	 url: "/modelo/modListadocentesAprobadosConsultar.php",
-	 type: 'POST',
-	 data: {'pCicloEstimulo': pCicloEstimulo},
-	 async: false
-	 };
-	 var dataAdapter = new $.jqx.dataAdapter(Docentes_ValidacionDatosSource);
-	 return dataAdapter; */
-
-	//////////////////////
-	var data = new Array();
-	var accion =
-		[
-			"<button class='btnEliminarPatente' id='btnEliminarPatente' title='Eliminar patente' onclick='PatentesEliminarRegistro(this);' >Eliminar patente</button>"
-		];
-	var nombrePatente =
-		[
-			"Elevador de coches", "Metodo para licuar cochadas de material de vidrio", "Coche y silla de viaje integrados", "Banco de rectificacion de la carroceria del coche",
-			"Coche triciclo", "Protector ajustable para asiento de coche", "Sistema de juego de futbol", "Cubierta de pelota de futbol",
-			"Disposicion para registrar fotograficamente datos digitales sobre un medio fotosensible", "Dispositivo para la captacion alternativa o simultanea de imagenes fotograficas y de video o camara polivalente", "Album fotografico digital", "Dispositivo para la captacion alternativa o simultanea de imagenes fotograficas y de video o camara polivalente", "Procedimiento fotografico de aplicacion en cinematografia para simular movimientos uniformes y no uniformes a alta velocidad de un objeto o un entorno, emulando una camara de cine o video, analogica o digital, a partir de una camara de fotografia fija, analogica o digital, y pelicula obtenida con dicho procedimiento",
-			"Computadora personal con identificacion de impulsor", "Sistema y metodo de seguridad para computadoras", "Accesorio multifunci&oacute;n para computadora personal o terminal de computadora", "Sistema, metodo y producto de programa de computadora para configurar sistemas de computo", "Sistema y metodo para operar una computadora digital para reportar un error que presenta durante la ejecucion de un segundo programa de computadora que es una traduccion de un primer programa de computadora"
-		];
-	var tipos =
-		[
-			"PTC", "PMT", "PH"
-		];
-
-	var envioSolicitud =
-		[
-			"20/01/2016", "15/01/2016", "16/01/2015", "17/01/2016", "18/01/2016", "19/01/2016", "21/01/2016"
-		];
-
-	var estados = [
-		"PCT", "IMPI", "Otorgada"
-	];
-
-	for (var i = 0; i < Math.random()*10-1; i++) {
-		var row = {};
-		var idPatente = 1 + Math.round(Math.random() * 10);
-		var numeroEmpleado = 2000 + Math.round(Math.random() * 100);
-		var numeroHojas = 1 + Math.round(Math.random() * 10);
-
-		row["accion"] = accion[Math.floor(Math.random() * accion.length)];
-		row["nombrePatente"] = nombrePatente[Math.floor(Math.random() * nombrePatente.length)];
-		row["tipo"] = tipos[Math.floor(Math.random() * tipos.length)];
-		row["envioSolicitud"] = envioSolicitud[Math.floor(Math.random() * envioSolicitud.length)];
-		row["estadoPatente"] = estados[Math.round(Math.random() * 2)];
-		row["numeroHojas"] = numeroHojas;
-		row["idPatente"] = idPatente;
-		row["numeroEmpleado"] = numeroEmpleado;
-		data[i] = row;
-	}
-	var source =
+	var ParqueCientificoSource =
 	{
-		localdata: data,
-		datatype: "array",
+		datatype: "json",
 		datafields: [
-			{name: 'accion', type: 'string'},
-			{name: 'idPatente', type: 'bigint'},
-			{name: 'estadoPatente', type: 'varchar'},
-			{name: 'numeroEmpleado', type: 'bigint'},
-			{name: 'nombrePatente', type: 'varchar'},
-			{name: 'tipo', type: 'varchar'}
-		]
+			{name:'accion',type:'string'},			
+			{name:'idEstimulo', type:'int'},
+			{name:'idParqueCientifico', type:'int'},
+			{name:'patente', type:'varchar'},
+			{name:'fase', type:'varchar'},
+			{name:'fechaRegistro', type:'datetime'}
+ 		],
+		url: "modelo/modParqueCientificoDetalleConsultar.php",
+		type: 'POST',
+		data: {'pEstimuloID':pEstimuloID},
+		async: false
 	};
-	var dataAdapter = new $.jqx.dataAdapter(source);
-
+	var dataAdapter = new $.jqx.dataAdapter(ParqueCientificoSource);
 	return dataAdapter;
 }
 
+function datosParqueCientificoRegistroObtener(pParqueCientificoID, pEstimuloID, pNinguna){
+	$.ajax({
+		async: false,
+		url: "modelo/modParqueCientificoPatenteConsultar.php",
+		data: {pParqueCientificoID : pParqueCientificoID, pEstimuloID : pEstimuloID, pNinguna : pNinguna},
+		type: 'POST',
+		success: function (data, status, xhr) {  
+			registro = jQuery.parseJSON(data);                   
+		}
+	});
+	return registro;
+}
+
 function datos_Docentes_DetallePatentes_CargarEstados() {
-
-	/* var Docentes_ValidacionDatosSource =
-	 {
-	 datatype: "json",
-	 datafields: [
-	 {name: 'accion', type: 'string'},
-	 {name: 'idEstimulo', type: 'bigint'},
-	 {name: 'idEstadoRevisado', type: 'bigint'},
-	 {name: 'numeroEmpleado', type: 'bigint'},
-	 {name: 'nombreCompleto', type: 'varchar'},
-	 {name: 'tipo', type: 'varchar'},
-	 {name: 'envioSolicitud', type: 'varchar'},
-	 {name: 'numeroHojas', type: 'int'}
-	 ],
-	 url: "/modelo/modListadocentesAprobadosConsultar.php",
-	 type: 'POST',
-	 data: {'pCicloEstimulo': pCicloEstimulo},
-	 async: false
-	 };
-	 var dataAdapter = new $.jqx.dataAdapter(Docentes_ValidacionDatosSource);
-	 return dataAdapter; */
-
-	//////////////////////
 	var estadosComboBox = [
-		{valor: 1, nombre: "PCT"},
-		{valor: 2, nombre: "IMPI"},
-		{valor: 3, nombre: "Otorgada"}
+		{valor: "PCT", nombre: "PCT"},
+		{valor: "IMPI", nombre: "IMPI"},
+		{valor: "Otorgada", nombre: "Otorgada"}
 	];
 
 	var estadosComboBoxSource = {
@@ -125,13 +53,12 @@ function datos_Docentes_DetallePatentes_CargarEstados() {
 	return estadosComboAdapter;
 }
 
-function Docentes_DetallePatentes_CargarVista(idEstimulo, datosDummy) {
+function Docentes_DetallePatentes_CargarVista(idEstimulo, datosFila) {
 	$.get('vista/vtaDetallePatentes.php', function (data, status) {
 		if (status == 'success') {
-			$("#detalleDatosPatentes").html(data);
-			// Inicializar datos dummy
-			$('#PatentesNombreEmpleado').html(datosDummy.nombreCompleto);
-			detallePatentesInicializar();
+			$("#detalleDatosPatentes").html(data);			
+			$('#PatentesNombreEmpleado').html(datosFila.nombreCompleto);
+			detallePatentesInicializar(idEstimulo);
 		}
 	});
 }
@@ -155,49 +82,114 @@ function Docentes_DetallePatentes_ComboCargar(sControl) {
 
 }
 
-function Docentes_DetallePatentes_TablaCargar(sControl) {
-	var dataAdapter = datos_Docentes_DetallePatentes_Cargar();
+function Docentes_DetallePatentes_TablaCargar(sControl, idEstimulo) {
+	var dataAdapter = datos_Docentes_DetallePatentes_Cargar(idEstimulo);
 	dataAdapter.dataBind();
 	var registros = dataAdapter.records;
 
-	var estadosComboBox = [
-		{valor: 1, nombre: "PCT"},
-		{valor: 2, nombre: "IMPI"},
-		{valor: 3, nombre: "Otorgada"}
-	];
-
-	var estadosComboBoxSource = {
-		datatype: "array",
-		datafields: [
-			{ name: 'valor', type: 'string' },
-			{ name: 'nombre', type: 'string' }
-		],
-		localdata: estadosComboBox
-	};
-	var estadosComboAdapter = new $.jqx.dataAdapter(estadosComboBoxSource);
+	if(registros.length == 0) {
+		
+		// Busca si existe el registro de ninguna
+		var dataAdapter= datosParqueCientificoRegistroObtener(-1, idEstimulo, 1);
+		
+		if(dataAdapter != null) {
+			$("#divValidado").html("<span class='aprobado'>Validado con ninguna patente</span>");
+			$("#btnValidarNingunaPatente").hide();
+			$("#jqxGrid_DetallePatentes").hide();			
+		}
+		else{
+			// No se ha validado
+			$("#btnValidarNingunaPatente").show();
+			$("#jqxGrid_DetallePatentes").hide();		
+			$("#divValidado").html("<span class='cancelado'>Sin validar</span>");
+		}
+	}
+	else {
+		$("#jqxGrid_DetallePatentes").show();
+		$("#btnValidarNingunaPatente").show();
+		$("#divValidado").html("<span class='aprobado'>Validado con "+registros.length+" patentes</span>");
+	}
 
 	$(sControl).jqxGrid({
 		width: '99.5%',
-		height: '320px',
+		height: '280px',
 		source: dataAdapter,
-		theme: 'energyblue',
-		enablehover: false,
-		selectionmode: 'none',
+		theme: 'energyblue',		
 		autorowheight: true,
 		localization: getLocalization('es'),
 		autoshowfiltericon: true,
 		filterable: true,
 		sortable: true,
 		pageable: true,
-		editable: true,
 		columns: [
-			{text: '', datafield: 'accion', width: '40px', cellsalign: 'center', editable: false, pinned: true, sortable: false, filterable: false, menu: false},
-			{text: 'Patente', datafield: 'nombrePatente', cellsalign: 'center', editable: true, width: '450px'},
-			{text: 'Estado', datafield: 'estadoPatente', cellsalign: 'center', align: 'center', editable: true, columntype: 'combobox',
-				createeditor: function (row, value, editor) {
-					editor.jqxComboBox({ source: estadosComboAdapter, displayMember: 'nombre', valueMember: 'nombre', autoDropDownHeight: true, dropDownHeight: 200 });
-				}
-			}
+			{text: '', datafield: 'accion', width: '70px', cellsalign: 'center', pinned: true, sortable: false, filterable: false, menu: false},
+			{text: 'Patente', datafield: 'patente', cellsalign: 'center', width: '462px'},
+			{text: 'Estado', datafield: 'fase', cellsalign: 'center', align: 'center', width: '110px' }
 		]
 	});
+}
+
+function ParqueCientificoFormularioCargar(){
+	var parqueCientificoID = $("#hdnParqueCientificoID").val(); 
+	var estimuloID = $("#hdnEstimuloID").val();
+	var dataAdapter= datosParqueCientificoRegistroObtener(parqueCientificoID, estimuloID, 0);
+	var registro = dataAdapter[0];
+
+	$('#txtPatente').val(registro.patente)
+	$('#jqxComboBox_idEstadoPatente').val(registro.fase)
+}
+
+function parqueCientificoAgregarModificar(){
+
+	notif({msg: 'Guardando...', type: 'info', position: 'right', autohide: false, width: 200});
+
+	var sPagina="modelo/modParqueCientificoAgregarModificar.php";
+	var oParametros=$('#frmModalAgregarPatente').serialize();
+
+	$.post(sPagina
+		,oParametros
+		,function(datos,status){
+			if(status=='success'){
+				eval(datos);
+				if(json.noError > 0){
+					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
+				}
+				else {		
+					var idEstimulo = $("#hdnEstimuloID").val();
+					PatenteCerrarModal();					
+					Docentes_DetallePatentes_TablaCargar('#jqxGrid_DetallePatentes', idEstimulo);
+					notif({msg: '<b>Guardado</b>', type: 'success', position: 'right', width: 200});					
+				}
+			}
+		}
+	);
+}
+
+function parqueCientificoEliminar(pRegistroID, pEstimuloID, pSolicitarConfirmacion){
+
+	if(pSolicitarConfirmacion)
+		if(!confirm("\u00bfEst\u00e1 seguro de eliminar el registro?")) return;
+
+	notif({msg: 'Eliminando...', type: 'info', position: 'right', autohide: false, width: 200});
+	var sPagina="modelo/modParqueCientificoEliminar.php";
+	var oParametros={'pRegistroID':pRegistroID}
+
+	$.post(sPagina
+		,oParametros
+		,function(datos,status){
+			if(status=='success'){
+				eval(datos);
+				if(json.noError > 0){
+					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
+				}
+				else {					
+					notif({msg: '<b>Registro eliminado</b>', type: 'success', position: 'right', width: 200});				
+					Docentes_DetallePatentes_TablaCargar('#jqxGrid_DetallePatentes', pEstimuloID);
+
+					var data = $("#jqxGrid_DetallePatentes").jqxGrid('getrows');
+					if(data.length == 0) validarConNingunaPatente(pEstimuloID);
+				}
+			}
+		}
+	);
 }

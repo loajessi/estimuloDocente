@@ -24,19 +24,6 @@ function datosParqueCientificoCargar(pParqueCientificoID) {
 	return dataAdapter;
 }
 
-function datosParqueCientificoRegistroObtener(pParqueCientificoID) {
-	$.ajax({
-		async: false,
-		url: "../moduloXX/modelo/modParqueCientificoConsultar.php",
-		data: {iParqueCientificoID: pParqueCientificoID},
-		type: 'POST',
-		success: function (data, status, xhr) {
-			registro = jQuery.parseJSON(data);
-		}
-	});
-	return registro;
-}
-
 function ParqueCientificoTablaCargar(sControl) {
 	var dataAdapter = datosParqueCientificoCargar();
 	$(sControl).jqxGrid({
@@ -58,21 +45,6 @@ function ParqueCientificoTablaCargar(sControl) {
 			{text: 'ID', datafield: 'idEstimulo', hidden: true},
 			{text: 'ID', datafield: 'idParqueCientifico', hidden: true}
 		]
-	});
-
-	// Configurar clics en rows
-	$(sControl).bind('rowselect', function (event) {
-		var row = event.args.rowindex,
-			datafield = event.args.datafield,
-			datarow = $(sControl).jqxGrid('getrowdata', row);
-
-		var mensajeCargando = '<div class="txtCentrado"><h2 style="width: 500px; padding-top: 90px; margin: 0 auto; color: #ABABAB;">Cargando...</h2></div>';
-
-		$("#detalleDatosPatentes").html(mensajeCargando);
-
-		window.setTimeout(function(){ //Simular carga de datos
-			Docentes_DetallePatentes_CargarVista(datarow.idEstimulo, datarow);
-		}, 1800);
 	});
 }
 
@@ -103,64 +75,6 @@ function ParqueCientificoListBoxCargar(sControl) {
 	});
 }
 
-function ParqueCientificoFormularioCargar(pParqueCientificoID) {
-	var dataAdapter = datosParqueCientificoRegistroObtener(pParqueCientificoID);
-	registro = dataAdapter.records[0];
-
-	$('#ctrlidParqueCientifico').val(registro.idParqueCientifico)
-	$('#ctrlidEstimulo').val(registro.idEstimulo)
-	$('#ctrlidPersona').val(registro.idPersona)
-	$('#ctrlnumeroEmpleado').val(registro.numeroEmpleado)
-	$('#ctrlnombreCompleto').val(registro.nombreCompleto)
-	$('#ctrltipoContrato').val(registro.tipoContrato)
-	$('#ctrlfechaRegistroEstimulo').val(registro.fechaRegistroEstimulo)
-	$('#ctrlpatente').val(registro.patente)
-	$('#ctrlfase').val(registro.fase)
-	$('#ctrlfechaRegistro').val(registro.fechaRegistro)
-}
-
-function parqueCientificoAgregarModificar() {
-	var sPagina = "../../moduloXX/modelo/modParqueCientificoAgregarModificar.php";
-	var oParametros = $('#frmFormulario').serialize();
-
-	$.post(sPagina
-		, oParametros
-		, function (datos, status) {
-			if (status == 'success') {
-				eval(datos);
-				if (json.noError > 0) {
-					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
-				}
-				else {
-					alert("Su informaci\u00f3n se registr\u00f3 correctamente en la base de datos.");
-					// Acciones posteriores a la actualizacion
-				}
-			}
-		}
-	);
-}
-
-
-function parqueCientificoEliminar(pRegistroID) {
-	var sPagina = "../../moduloXX/modelo/modParqueCientificoEliminar.php";
-	var oParametros = {'pRegistroID': pRegistroID}
-
-	$.post(sPagina
-		, oParametros
-		, function (datos, status) {
-			if (status == 'success') {
-				eval(datos);
-				if (json.noError > 0) {
-					alert("Ocurri\u00f3 un error de base de datos: \n\n" + json.mensaje);
-				}
-				else {
-					alert("Su informaci\u00f3n se elimin\u00f3 correctamente en la base de datos.");
-					// Acciones posteriores a la actualizacion
-				}
-			}
-		}
-	);
-}
 
 
 

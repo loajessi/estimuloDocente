@@ -6,9 +6,10 @@
 
 	$objParqueCientifico = new clsParqueCientifico();
 
-	$objParqueCientifico->setidEstimulo($_POST['ctridEstimulo']);
-	$objParqueCientifico->setpatente($_POST['ctrpatente']);
-	$objParqueCientifico->setfase($_POST['ctrfase']);
+	$objParqueCientifico->setidEstimulo($_POST['hdnEstimuloID']);
+	$objParqueCientifico->setidParqueCientifico($_POST['hdnParqueCientificoID']);
+	$objParqueCientifico->setpatente(utf8_decode($_POST['txtPatente']));
+	$objParqueCientifico->setfase(utf8_decode($_POST['jqxComboBox_idEstadoPatente']));
 	$objParqueCientifico->setusuarioRealizo($_SESSION['VS_Usuario']);
 
 	$arrSalida = $objParqueCientifico->estParqueCientificoAgregarModificar();

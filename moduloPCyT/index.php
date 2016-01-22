@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	if (!isset($_SESSION['VS_Usuario']) || $_SESSION['VS_Usuario'] == '') {
 		$_SESSION['Alerta'] = true;
 		$_SESSION['AlertaMensaje'] = 'Debes accesar al sistema';
@@ -30,6 +30,7 @@
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/globalize.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/globalization/localizationGrid.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/_jscript/libFunc.js"></script>
+	<script type="text/javascript" src="../_jscript/notificaciones.js"></script>
 
 	<!-- Widgets jqwidgets -->
 	<script type="text/javascript" src="/generalesDIyS/_jscript/jqwidgets_3.9.1/jqxmenu.js"></script>
@@ -57,30 +58,31 @@
 	<!-- Widgets estimulo -->
 	<script type="text/javascript" src="widgets/jqxValidacionDatos.js"></script>
 	<script type="text/javascript" src="widgets/jqxDetallePatentes.js"></script>
+	<script type="text/javascript" src="../moduloGenerales/widgets/jqxContrato_personales.js"></script>
 
 	<!-- Controladores -->
-	<script type="text/javascript" src="../manejoSesion/controlador/ajxSesion.js"></script>
-	<script type="text/javascript" src="/estimuloDocente/moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
+	<script type="text/javascript" src="../moduloAcceso/controlador/ajxAcceso.js"></script>
+	<script type="text/javascript" src="../moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
 	<script type="text/javascript" src="../moduloGenerales/controlador/ajxIndex.js"></script>
 	<script type="text/javascript" src="controlador/ajxValidacionDatos.js"></script>
 	<script type="text/javascript" src="controlador/ajxDetallePatentes.js"></script>
 
-	<!-- Control de sesi�n -->
+	<!-- Control de sesión -->
 	<script type="text/javascript">
-		/*window.onclick = function () {
+		window.onclick = function () {
 		 PCDTiempoInactividadCalcular();
-		 }
+		 };
+
 		 window.onkeypress = function () {
 		 PCDTiempoInactividadCalcular();
-		 }*/
+		 };
 
 		$(document).ready(function () {
 			indexInicializar();
 		});
 	</script>
 </head>
-<!--body id="top" onfocus="PCDTiempoInactividadCalcular();"-->
-<body id="top">
+<body id="top" onfocus="PCDTiempoInactividadCalcular();">
 <div class="wrapper">
 	<div id="header">
 		<div id="escudo">
@@ -99,10 +101,21 @@
 <!-- ####################################################################################################### -->
 <div class="wrapper">
 	<div id="topbar">
+		<div class="info-fechaLimite animated fadeInLeft delay-10">
+			<img src="/generalesDIyS/_img/info.png" height="20" width="20" />&nbsp;&nbsp;Fecha límite para captura de datos:
+			<b id="FechaLimiteCaptura"><?= $_SESSION['fechaLimiteCaptura'] ?></b>
+		</div>
 		<div class="fl_right">
 			<p>
-				<?= $_SESSION['sPersonaVS']; ?>&nbsp;&nbsp;&nbsp;
-				<a onclick="PCDCerrarSesion();" class="boton icon salir">Cerrar sesi&oacute;n</a>
+				<?
+					echo $_SESSION['VS_PersonaNombre']."&nbsp;&nbsp;&nbsp;";
+					if($_SESSION['VS_NumRoles'] > 1) {
+				?>
+                		<a href="../moduloAcceso/vista/vtaRoles.php" class="boton icon usuario">Cambiar rol de usuario</a>
+            	<?
+					}
+				?>
+				<a onclick="sesionCerrar();" class="boton icon salir">Cerrar sesi&oacute;n</a>
 			</p>
 		</div>
 		<br class="clear" />

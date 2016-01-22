@@ -1,10 +1,10 @@
-// Funci贸n de inicializaci贸n de la vista
+// Funci髇 de inicializaci髇 de la vista
 
-function detallePatentesInicializar() {
+function detallePatentesInicializar(pEstimuloID) {
 
 	var crearWidgets = function () {
 
-		Docentes_DetallePatentes_TablaCargar('#jqxGrid_DetallePatentes');
+		Docentes_DetallePatentes_TablaCargar('#jqxGrid_DetallePatentes', pEstimuloID);
 		Docentes_DetallePatentes_ComboCargar('#jqxComboBox_idEstadoPatente');
 
 		$('#jqxWindow_ModalAgregarPatente').jqxWindow({
@@ -19,64 +19,39 @@ function detallePatentesInicializar() {
 			height: '240px'
 		});
 
+		$("#jqxComboBox_idEstadoPatente").jqxComboBox({autoComplete: true, placeHolder: "Seleccione un elemento de la lista", searchMode: 'containsignorecase' });
+
 	};
 
-	var agregarEventos = function () {
-
-		console.info('Cambio para intercambiar el texto del boton automaticamente');
-		$('#btnOkAgregarPatente').click(function () {
-
-			//Validar datos
-			var nombrePatente = $('#txtPatente').val(),
-				estadoPatente = $('#jqxComboBox_idEstadoPatente').jqxComboBox('getSelectedIndex');
-
-			if (estadoPatente != null && nombrePatente != "") {
-
-				//TODO: Validar formulario antes de enviar
-
-				/*if (estadoPatente == -1 || typeof estadoPatente.value == 'undefined') {
-					alert('Los dos campos son requeridos, por favor completa el formulario.');
-					return;
-				}*/
-				//alert(estadoPatente.value);
-
-				//Reemplazar texto por "Guardando..."
-				var elemento = $(this),
-					txtOriginal = $(elemento).html();
-				$(this).html("Guardando...");
-
-				// Guarda en la BD
-
-				//Simular env铆o de datos
-				window.setTimeout(function () {
-					//Envio exitoso
-					//Actualizar datos despu茅s de agregar patente...
-
-					//TODO: Quitar... refrescar vista para emular inserci贸n de datos
-					$('#jqxGrid_Docentes').trigger('getrowdata');
-
-					//TODO: Quitar...
-
-					//Cerrar modal y limpiar formulario
-					$('#jqxWindow_ModalAgregarPatente').jqxWindow('close');
-					$('#txtPatente').val('');
-					$("#jqxComboBox_idEstadoPatente").jqxComboBox('clearSelection');
-
-					//Restarurar texto original
-					$(elemento).html(txtOriginal);
-				}, 2000);
-
-			} else {
-				alert('Los dos campos son requeridos, por favor completa el formulario.');
-			};
-		});
-
+	var agregarEventos = function () {		
 		$("#btnCancelarPatente").on("click", function (event) {
-			Docentes_ValidacionDatos_TablaCargar("#jqxGrid_Docentes");
+			PatenteCerrarModal();
 		});
 
 		$('#btnAgregarPatente').click(function() {
-			$('#jqxWindow_ModalAgregarPatente').jqxWindow('open');
+			$('#jqxWindow_ModalAgregarPatente').jqxWindow('open');			
+			$('#jqxWindow_ModalAgregarPatente').jqxWindow('setTitle', 'Agregar patente');
+			formularioParqueReiniciar();	
+			$("#hdnEstimuloID").val(pEstimuloID);
+		});
+
+		$("#btnValidarNingunaPatente").click (function (event){
+			var data = $("#jqxGrid_DetallePatentes").jqxGrid('getrows');
+
+			if(data.length > 0) {
+
+				if(!confirm('Se eliminar醤 las patentes que ya haya registrado, de clic en Aceptar si desea continuar.'))
+					return;
+
+				for(var i=0; i<data.length; i++){
+					var idEstimulo = data[i].idEstimulo;
+					var idParqueCientifico = data[i].idParqueCientifico;
+
+					parqueCientificoEliminar(idParqueCientifico, idEstimulo, 0);
+				}
+			}
+			else 
+				validarConNingunaPatente(pEstimuloID);					
 		});
 
 	};
@@ -87,25 +62,49 @@ function detallePatentesInicializar() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Funciones correspondientes a eventos o inicializaci贸n de contenido
+// Funciones correspondientes a eventos o inicializaci髇 de contenido
 
-function PatentesEliminarRegistro(objeto) {
-	if (confirm('驴Est谩s seguro que deseas eliminar esta patente?') ) {
-		// Eliminando... simular proceso
-		window.setTimeout(function() {
-			$(objeto).parent().parent().nextAll().html('<div class="jqx-grid-cell-middle-align" style="margin-top: 11px;">Eliminando...</div>');
-		}, 1000);
+function patenteAgregarOK(){
+	//Validar datos
+	var nombrePatente = $('#txtPatente').val(),
+		estadoPatente = $('#jqxComboBox_idEstadoPatente').jqxComboBox('getSelectedIndex');
 
-		// Eliminar de la base de datos
+	if (estadoPatente != -1 && nombrePatente != "") {
+			parqueCientificoAgregarModificar();
+	} else {
+			alert('Los dos campos son requeridos, por favor completa el formulario.');
+	};
+}
 
-		// Ocultar amigablemente el objeto
-		window.setTimeout(function() {
-			$(objeto).parent().parent().parent().slideUp();
-		}, 2000);
+function validarConNingunaPatente(idEstimulo){
 
-		//Eliminar del DOM
-		window.setTimeout(function() {
-			$(objeto).parent().parent().parent().remove()
-		}, 3000);
-	}
+	var dataAdapter= datosParqueCientificoRegistroObtener(-1, idEstimulo, 1);
+	
+	if(dataAdapter != null) return;
+
+	formularioParqueReiniciar();	
+	$("#hdnEstimuloID").val(idEstimulo);
+	$('#txtPatente').val('Ninguna');
+	$("#jqxComboBox_idEstadoPatente").val(' ');
+	parqueCientificoAgregarModificar();	
+}
+
+function parqueCientificoEditar(piParqueCientificoID, piEstimuloID){
+	$('#jqxWindow_ModalAgregarPatente').jqxWindow('open');
+	$('#jqxWindow_ModalAgregarPatente').jqxWindow('setTitle', 'Editar patente');
+	$("#hdnEstimuloID").val(piEstimuloID);
+	$("#hdnParqueCientificoID").val(piParqueCientificoID);
+	ParqueCientificoFormularioCargar();
+}
+
+function PatenteCerrarModal(){
+	$('#jqxWindow_ModalAgregarPatente').jqxWindow('close');
+	formularioParqueReiniciar();	
+}
+
+function formularioParqueReiniciar(){
+	$('#txtPatente').val('');
+	$("#jqxComboBox_idEstadoPatente").jqxComboBox('clearSelection');
+	$("#hdnEstimuloID").val(0);
+	$("#hdnParqueCientificoID").val(0);
 }

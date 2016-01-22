@@ -2,7 +2,7 @@
 function indexInicializar() {
 
 	var crearWidgets = function () {
-		// Men� de opciones
+		// Menú de opciones
 		$("#jqxMenu_Index").jqxMenu({
 			width: $("#jqxMenu_Index").parent.width,
 			height: $("#jqxMenu_Index").parent.height,
@@ -25,7 +25,6 @@ function indexInicializar() {
 
 	crearWidgets();
 	agregarEventos();
-	insertarFechaLimite();
 }
 
 function indexMenuOpcionIr(psNombreArchivoVista, agregarBreadcrumb) {
@@ -58,9 +57,3 @@ function indexMenuOpcionIr(psNombreArchivoVista, agregarBreadcrumb) {
 	});
 }
 
-function insertarFechaLimite() {
-	// Obtener la fecha límite ....
-	var fecha = '00/00/00';
-
-	$('#topbar').prepend('<div class="info-fechaLimite animated fadeInLeft delay-10"><img src="/generalesDIyS/_img/info.png" height="20" width="20" />&nbsp;&nbsp;Fecha límite para captura de datos: <b id="FechaLimiteCaptura">'+fecha+'</b></div>');
-}

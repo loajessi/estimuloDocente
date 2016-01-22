@@ -53,7 +53,7 @@
 	<script type="text/javascript" src="widgets/jqxValidacionDatos.js"></script>
 
 	<!-- Controladores -->
-	<script type="text/javascript" src="../manejoSesion/controlador/ajxSesion.js"></script>
+	<script type="text/javascript" src="../moduloAcceso/controlador/ajxAcceso.js"></script>
 	<script type="text/javascript" src="/estimuloDocente/moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
 	<script type="text/javascript" src="../moduloGenerales/controlador/ajxIndex.js"></script>
 	<script type="text/javascript" src="controlador/ajxValidacionDatos.js"></script>
@@ -92,6 +92,10 @@
 <!-- ####################################################################################################### -->
 <div class="wrapper">
 	<div id="topbar">
+		<div class="info-fechaLimite animated fadeInLeft delay-10">
+			<img src="/generalesDIyS/_img/info.png" height="20" width="20" />&nbsp;&nbsp;Fecha límite para captura de datos:
+			<b id="FechaLimiteCaptura"><?= $_SESSION['fechaLimiteCaptura'] ?></b>
+		</div>
 		<div class="fl_right">
 			<p>
 				<?= $_SESSION['sPersonaVS']; ?>&nbsp;&nbsp;&nbsp;

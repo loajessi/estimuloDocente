@@ -54,19 +54,20 @@
 
 
 	<!-- Controladores -->
-	<script type="text/javascript" src="../manejoSesion/controlador/ajxSesion.js"></script>
+	<script type="text/javascript" src="../moduloAcceso/controlador/ajxAcceso.js"></script>
 	<script type="text/javascript" src="/estimuloDocente/moduloGenerales/controlador/ajxInformacionEmpleado.js"></script>
 	<script type="text/javascript" src="../moduloGenerales/controlador/ajxIndex.js"></script>
 	<script type="text/javascript" src="controlador/ajxRevisionDocumentos.js"></script>
 
-	<!-- Control de sesi?n -->
+	<!-- Control de sesión -->
 	<script type="text/javascript">
 		window.onclick = function () {
 			PCDTiempoInactividadCalcular();
-		}
+		};
+
 		window.onkeypress = function () {
 			PCDTiempoInactividadCalcular();
-		}
+		};
 
 		$(document).ready(function () {
 			indexInicializar();
@@ -92,9 +93,13 @@
 <!-- ####################################################################################################### -->
 <div class="wrapper">
 	<div id="topbar">
+		<div class="info-fechaLimite animated fadeInLeft delay-10">
+			<img src="/generalesDIyS/_img/info.png" height="20" width="20" />&nbsp;&nbsp;Fecha límite para captura de datos:
+			<b id="FechaLimiteCaptura"><?= $_SESSION['fechaLimiteCaptura'] ?></b>
+		</div>
 		<div class="fl_right">
 			<p><? echo $_SESSION['sPersonaVS']; ?>&nbsp;&nbsp;&nbsp;
-				<a href="javascript:PCDCerrarSesion();" class="boton icon salir">Cerrar sesi&oacute;n </a></p></div>
+				<a onclick="sesionCerrar();" class="boton icon salir">Cerrar sesi&oacute;n </a></p></div>
 		<br class="clear" />
 	</div>
 </div>

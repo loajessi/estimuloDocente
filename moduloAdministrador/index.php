@@ -33,7 +33,7 @@
 	<script type="text/javascript" src="controlador/ajxMiembrosComite.js"></script>
 	<script type="text/javascript" src="controlador/ajxReporteGeneral.js"></script>
 	<script type="text/javascript" src="/generalesDIyS/busquedaPersonal/controlador/ajxBuscarEmpleado.js"></script>
-	<script type="text/javascript" src="../manejoSesion/controlador/ajxSesion.js"></script>
+	<script type="text/javascript" src="../moduloAcceso/controlador/ajxAcceso.js"></script>
 	<script type="text/javascript" src="../busquedaDocentesEstimulo/controlador/ajxBuscarDocenteEstimulo.js"></script>
 	<script type="text/javascript" src="../moduloComite/controlador/ajxIndex.js"></script>
 	<script type="text/javascript" src="../moduloComite/controlador/ajxBusqueda.js"></script>
@@ -43,10 +43,11 @@
 	<script type="text/javascript">
 		window.onclick = function () {
 			PCDTiempoInactividadCalcular();
-		}
+		};
+
 		window.onkeypress = function () {
 			PCDTiempoInactividadCalcular();
-		}
+		};
 	</script>
 </head>
 <body id="top" onfocus="PCDTiempoInactividadCalcular();">

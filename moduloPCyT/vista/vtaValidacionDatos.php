@@ -10,12 +10,12 @@
 	<div>
 		<div id="detalleDatosPatentes">
 			<div class="txtCentrado">
-				<h2 style="width: 500px; padding-top: 90px; margin: 0 auto; color: #ABABAB;">Selecciona un empleado de la lista para consultar aqu√≠ el detalle de patentes</h2>
+				<h2 style="width: 500px; padding-top: 90px; margin: 0 auto; color: #ABABAB;">Seleccione un empleado de la lista para consultar aqu&iacute; el detalle de patentes</h2>
 			</div>
 		</div>
 	</div>
 </div>
 
 <form id="frmValidacionDatos" name="frmValidacionDatos" method="post">
-	<!-- Agregar campos a guardar aquÔøΩ -->
+	<!-- Agregar campos a guardar aquÌ -->
 </form>

@@ -23,12 +23,12 @@
 
 		<div class="columna ancho-25 separador-der-slim txtCentrado">
 			<label for="desempenoAula" class="label_multilinea">Desempeño en el aula<br /><small>(Alumnos)</small></label>
-			<input type="number" step="1" id="desempenoAula" name="desempenoAula" maxlength="3" min="0" max="999" required="required" pattern="[0-9]{1,3}" />
+			<input type="number" step="1" id="desempenoAula" name="desempenoAula" maxlength="3" min="0" max="115" required="required" pattern="[0-9]{1,3}" />
 		</div>
 
 		<div class="columna ancho-25 separador-der-slim txtCentrado">
 			<label for="desempenoAcademico" class="label_multilinea">Desempeño académico<br /><small>(Directivos, Académicos)</small></label>
-			<input type="number" step="1" id="desempenoAcademico" name="desempenoAcademico" maxlength="3" min="0" max="999" required="required" pattern="[0-9]{1,3}" />
+			<input type="number" step="1" id="desempenoAcademico" name="desempenoAcademico" maxlength="2" min="0" max="47" required="required" pattern="[0-9]{1,3}" />
 		</div>
 
 		<div class="columna ancho-25 separador-der-slim txtCentrado">
